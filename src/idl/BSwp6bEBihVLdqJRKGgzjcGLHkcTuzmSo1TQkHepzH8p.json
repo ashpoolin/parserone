@@ -1,0 +1,3186 @@
+{
+  "accounts": [
+    {
+      "name": "Farm",
+      "type": {
+        "fields": [
+          {
+            "name": "pool",
+            "type": "publicKey"
+          },
+          {
+            "name": "tokens",
+            "type": {
+              "array": [
+                "publicKey",
+                3
+              ]
+            }
+          },
+          {
+            "name": "tokenAccounts",
+            "type": {
+              "array": [
+                "publicKey",
+                3
+              ]
+            }
+          },
+          {
+            "name": "supply",
+            "type": {
+              "array": [
+                {
+                  "defined": "Token"
+                },
+                3
+              ]
+            }
+          },
+          {
+            "name": "supplyLeft",
+            "type": {
+              "array": [
+                {
+                  "defined": "Token"
+                },
+                3
+              ]
+            }
+          },
+          {
+            "name": "accumulatedSecondsPerShare",
+            "type": {
+              "defined": "FixedPoint"
+            }
+          },
+          {
+            "name": "offsetSecondsPerShare",
+            "type": {
+              "defined": "FixedPoint"
+            }
+          },
+          {
+            "name": "startTime",
+            "type": "u64"
+          },
+          {
+            "name": "endTime",
+            "type": "u64"
+          },
+          {
+            "name": "lastUpdate",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "farmType",
+            "type": {
+              "defined": "FarmType"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "PoolV2",
+      "type": {
+        "fields": [
+          {
+            "name": "tokenX",
+            "type": "publicKey"
+          },
+          {
+            "name": "tokenY",
+            "type": "publicKey"
+          },
+          {
+            "name": "poolXAccount",
+            "type": "publicKey"
+          },
+          {
+            "name": "poolYAccount",
+            "type": "publicKey"
+          },
+          {
+            "name": "admin",
+            "type": "publicKey"
+          },
+          {
+            "name": "projectOwner",
+            "type": "publicKey"
+          },
+          {
+            "name": "tokenXReserve",
+            "type": {
+              "defined": "Token"
+            }
+          },
+          {
+            "name": "tokenYReserve",
+            "type": {
+              "defined": "Token"
+            }
+          },
+          {
+            "name": "selfShares",
+            "type": {
+              "defined": "Token"
+            }
+          },
+          {
+            "name": "allShares",
+            "type": {
+              "defined": "Token"
+            }
+          },
+          {
+            "name": "buybackAmountX",
+            "type": {
+              "defined": "Token"
+            }
+          },
+          {
+            "name": "buybackAmountY",
+            "type": {
+              "defined": "Token"
+            }
+          },
+          {
+            "name": "projectAmountX",
+            "type": {
+              "defined": "Token"
+            }
+          },
+          {
+            "name": "projectAmountY",
+            "type": {
+              "defined": "Token"
+            }
+          },
+          {
+            "name": "mercantiAmountX",
+            "type": {
+              "defined": "Token"
+            }
+          },
+          {
+            "name": "mercantiAmountY",
+            "type": {
+              "defined": "Token"
+            }
+          },
+          {
+            "name": "lpAccumulatorX",
+            "type": {
+              "defined": "FixedPoint"
+            }
+          },
+          {
+            "name": "lpAccumulatorY",
+            "type": {
+              "defined": "FixedPoint"
+            }
+          },
+          {
+            "name": "constK",
+            "type": {
+              "defined": "Product"
+            }
+          },
+          {
+            "name": "price",
+            "type": {
+              "defined": "FixedPoint"
+            }
+          },
+          {
+            "name": "lpFee",
+            "type": {
+              "defined": "FixedPoint"
+            }
+          },
+          {
+            "name": "buybackFee",
+            "type": {
+              "defined": "FixedPoint"
+            }
+          },
+          {
+            "name": "projectFee",
+            "type": {
+              "defined": "FixedPoint"
+            }
+          },
+          {
+            "name": "mercantiFee",
+            "type": {
+              "defined": "FixedPoint"
+            }
+          },
+          {
+            "name": "farmCount",
+            "type": "u64"
+          },
+          {
+            "name": "poolBump",
+            "type": "u8"
+          },
+          {
+            "name": "lpToken",
+            "type": "publicKey"
+          },
+          {
+            "name": "lpTokenMintBump",
+            "type": "u8"
+          },
+          {
+            "name": "padding",
+            "type": {
+              "array": [
+                "u64",
+                8
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "Pool",
+      "type": {
+        "fields": [
+          {
+            "name": "tokenX",
+            "type": "publicKey"
+          },
+          {
+            "name": "tokenY",
+            "type": "publicKey"
+          },
+          {
+            "name": "poolXAccount",
+            "type": "publicKey"
+          },
+          {
+            "name": "poolYAccount",
+            "type": "publicKey"
+          },
+          {
+            "name": "admin",
+            "type": "publicKey"
+          },
+          {
+            "name": "projectOwner",
+            "type": "publicKey"
+          },
+          {
+            "name": "tokenXReserve",
+            "type": {
+              "defined": "Token"
+            }
+          },
+          {
+            "name": "tokenYReserve",
+            "type": {
+              "defined": "Token"
+            }
+          },
+          {
+            "name": "selfShares",
+            "type": {
+              "defined": "Token"
+            }
+          },
+          {
+            "name": "allShares",
+            "type": {
+              "defined": "Token"
+            }
+          },
+          {
+            "name": "buybackAmountX",
+            "type": {
+              "defined": "Token"
+            }
+          },
+          {
+            "name": "buybackAmountY",
+            "type": {
+              "defined": "Token"
+            }
+          },
+          {
+            "name": "projectAmountX",
+            "type": {
+              "defined": "Token"
+            }
+          },
+          {
+            "name": "projectAmountY",
+            "type": {
+              "defined": "Token"
+            }
+          },
+          {
+            "name": "mercantiAmountX",
+            "type": {
+              "defined": "Token"
+            }
+          },
+          {
+            "name": "mercantiAmountY",
+            "type": {
+              "defined": "Token"
+            }
+          },
+          {
+            "name": "lpAccumulatorX",
+            "type": {
+              "defined": "FixedPoint"
+            }
+          },
+          {
+            "name": "lpAccumulatorY",
+            "type": {
+              "defined": "FixedPoint"
+            }
+          },
+          {
+            "name": "constK",
+            "type": {
+              "defined": "Product"
+            }
+          },
+          {
+            "name": "price",
+            "type": {
+              "defined": "FixedPoint"
+            }
+          },
+          {
+            "name": "lpFee",
+            "type": {
+              "defined": "FixedPoint"
+            }
+          },
+          {
+            "name": "buybackFee",
+            "type": {
+              "defined": "FixedPoint"
+            }
+          },
+          {
+            "name": "projectFee",
+            "type": {
+              "defined": "FixedPoint"
+            }
+          },
+          {
+            "name": "mercantiFee",
+            "type": {
+              "defined": "FixedPoint"
+            }
+          },
+          {
+            "name": "farmCount",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "Provider",
+      "type": {
+        "fields": [
+          {
+            "name": "tokenX",
+            "type": "publicKey"
+          },
+          {
+            "name": "tokenY",
+            "type": "publicKey"
+          },
+          {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
+            "name": "shares",
+            "type": {
+              "defined": "Token"
+            }
+          },
+          {
+            "name": "lastFeeAccumulatorX",
+            "type": {
+              "defined": "FixedPoint"
+            }
+          },
+          {
+            "name": "lastFeeAccumulatorY",
+            "type": {
+              "defined": "FixedPoint"
+            }
+          },
+          {
+            "name": "lastSecondsPerShare",
+            "type": {
+              "defined": "FixedPoint"
+            }
+          },
+          {
+            "name": "lastWithdrawTime",
+            "type": "u64"
+          },
+          {
+            "name": "tokensOwedX",
+            "type": {
+              "defined": "Token"
+            }
+          },
+          {
+            "name": "tokensOwedY",
+            "type": {
+              "defined": "Token"
+            }
+          },
+          {
+            "name": "currentFarmCount",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "State",
+      "type": {
+        "fields": [
+          {
+            "name": "admin",
+            "type": "publicKey"
+          },
+          {
+            "name": "programAuthority",
+            "type": "publicKey"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "nonce",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "msg": "Delta greater than providers tokens",
+      "name": "DeltaTooBig"
+    },
+    {
+      "code": 6001,
+      "msg": "Token amount underflow",
+      "name": "TokenUnderflow"
+    },
+    {
+      "code": 6002,
+      "msg": "Wrong tokens ratio",
+      "name": "WrongRatio"
+    },
+    {
+      "code": 6003,
+      "msg": "Too much shares provided",
+      "name": "TooMuchShares"
+    },
+    {
+      "code": 6004,
+      "msg": "Swap too big",
+      "name": "SwapToBig"
+    },
+    {
+      "code": 6005,
+      "msg": "Fee exceeded 100%",
+      "name": "FeeExceeded"
+    },
+    {
+      "code": 6007,
+      "msg": "Scales have to be equal",
+      "name": "ScalesNotEqual"
+    },
+    {
+      "code": 6008,
+      "msg": "Fees exceeded delta_out",
+      "name": "FeeExceededDeltaOut"
+    },
+    {
+      "code": 6009,
+      "msg": "Price limit exceeded",
+      "name": "PriceLimitExceeded"
+    },
+    {
+      "code": 6010,
+      "msg": "Mint mismatch",
+      "name": "MintMismatch"
+    },
+    {
+      "code": 6011,
+      "msg": "Tokens are the same",
+      "name": "TokensAreTheSame"
+    },
+    {
+      "code": 6012,
+      "msg": "Cannot add supply to wrong farm",
+      "name": "WrongFarm"
+    },
+    {
+      "code": 6013,
+      "msg": "Cannot withdraw rewards exceeding supply left",
+      "name": "RewardsExceedingSupply"
+    },
+    {
+      "code": 6014,
+      "msg": "Farm has not ended, cannot add additional rewards",
+      "name": "FarmNotEnded"
+    },
+    {
+      "code": 6015,
+      "msg": "Must provide a nonzero amount",
+      "name": "ZeroAmount"
+    },
+    {
+      "code": 6016,
+      "msg": "Invariant has changed",
+      "name": "InvariantDecreased"
+    }
+  ],
+  "instructions": [
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapstatev1"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswappoolv1"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_x",
+                "type": "publicKey"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_y",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenX"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenY"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "poolXAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "poolYAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "adminXAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "adminYAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "projectOwner"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "lpFee",
+          "type": {
+            "defined": "FixedPoint"
+          }
+        },
+        {
+          "name": "buybackFee",
+          "type": {
+            "defined": "FixedPoint"
+          }
+        },
+        {
+          "name": "projectFee",
+          "type": {
+            "defined": "FixedPoint"
+          }
+        },
+        {
+          "name": "mercantiFee",
+          "type": {
+            "defined": "FixedPoint"
+          }
+        },
+        {
+          "name": "initialTokenX",
+          "type": {
+            "defined": "Token"
+          }
+        },
+        {
+          "name": "initialTokenY",
+          "type": {
+            "defined": "Token"
+          }
+        },
+        {
+          "name": "bump",
+          "type": "u8"
+        }
+      ],
+      "name": "createPool"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswappoolv1"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_x",
+                "type": "publicKey"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_y",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "farm",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapfarmv1"
+              },
+              {
+                "account": "Pool",
+                "kind": "account",
+                "path": "pool",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "provider",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapproviderv1"
+              },
+              {
+                "account": "Pool",
+                "kind": "account",
+                "path": "pool",
+                "type": "publicKey"
+              },
+              {
+                "kind": "account",
+                "path": "owner",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenX"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenY"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolXAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolYAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerXAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerYAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "tokenXAmount",
+          "type": {
+            "defined": "Token"
+          }
+        },
+        {
+          "name": "tokenYAmount",
+          "type": {
+            "defined": "Token"
+          }
+        },
+        {
+          "name": "bump",
+          "type": "u8"
+        }
+      ],
+      "name": "createProvider"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapstatev1"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "nonce",
+          "type": "u8"
+        }
+      ],
+      "name": "createState"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapstatev1"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswappoolv1"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_x",
+                "type": "publicKey"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_y",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "farm",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapfarmv1"
+              },
+              {
+                "account": "Pool",
+                "kind": "account",
+                "path": "pool",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "provider",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapproviderv1"
+              },
+              {
+                "account": "Pool",
+                "kind": "account",
+                "path": "pool",
+                "type": "publicKey"
+              },
+              {
+                "kind": "account",
+                "path": "owner",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenX"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenY"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenMarco"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenProjectFirst"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenProjectSecond"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerXAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerYAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolXAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolYAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerMarcoAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerProjectFirstAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerProjectSecondAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenMarcoAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenProjectFirstAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenProjectSecondAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "deltaX",
+          "type": {
+            "defined": "Token"
+          }
+        },
+        {
+          "name": "deltaY",
+          "type": {
+            "defined": "Token"
+          }
+        }
+      ],
+      "name": "addTokens"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapstatev1"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswappoolv1"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_x",
+                "type": "publicKey"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_y",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenX"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenY"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "buybackXAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "buybackYAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolXAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolYAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [],
+      "name": "withdrawBuyback"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapstatev1"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswappoolv1"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_x",
+                "type": "publicKey"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_y",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenX"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenY"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolXAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolYAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "swapperXAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "swapperYAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "swapper"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "referrerXAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "referrerYAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "referrer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "deltaIn",
+          "type": {
+            "defined": "Token"
+          }
+        },
+        {
+          "name": "priceLimit",
+          "type": {
+            "defined": "FixedPoint"
+          }
+        },
+        {
+          "name": "xToY",
+          "type": "bool"
+        }
+      ],
+      "name": "swap"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapstatev1"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswappoolv1"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_x",
+                "type": "publicKey"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_y",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "farm",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapfarmv1"
+              },
+              {
+                "account": "Pool",
+                "kind": "account",
+                "path": "pool",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "provider",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapproviderv1"
+              },
+              {
+                "account": "Pool",
+                "kind": "account",
+                "path": "pool",
+                "type": "publicKey"
+              },
+              {
+                "kind": "account",
+                "path": "owner",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenX"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenY"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenMarco"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenProjectFirst"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenProjectSecond"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolXAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolYAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenMarcoAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenProjectFirstAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenProjectSecondAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerXAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerYAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerMarcoAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerProjectFirstAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerProjectSecondAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "shares",
+          "type": {
+            "defined": "Token"
+          }
+        }
+      ],
+      "name": "withdrawShares"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapstatev1"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswappoolv1"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_x",
+                "type": "publicKey"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_y",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "provider",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapproviderv1"
+              },
+              {
+                "account": "Pool",
+                "kind": "account",
+                "path": "pool",
+                "type": "publicKey"
+              },
+              {
+                "kind": "account",
+                "path": "owner",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenX"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenY"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerXAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerYAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolXAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolYAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [],
+      "name": "withdrawLpFee"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapstatev1"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswappoolv1"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_x",
+                "type": "publicKey"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_y",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenX"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenY"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "projectOwnerXAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "projectOwnerYAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolXAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolYAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "projectOwner"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [],
+      "name": "withdrawProjectFee"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapstatev1"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswappoolv1"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_x",
+                "type": "publicKey"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_y",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "farm",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapfarmv1"
+              },
+              {
+                "account": "Pool",
+                "kind": "account",
+                "path": "pool",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenX"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenY"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenMarco"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "tokenMarcoAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "adminMarcoAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "supply",
+          "type": {
+            "defined": "Token"
+          }
+        },
+        {
+          "name": "duration",
+          "type": "u64"
+        },
+        {
+          "name": "bump",
+          "type": "u8"
+        }
+      ],
+      "name": "createFarm"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapstatev1"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswappoolv1"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_x",
+                "type": "publicKey"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_y",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "farm",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapfarmv1"
+              },
+              {
+                "account": "Pool",
+                "kind": "account",
+                "path": "pool",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenX"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenY"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenMarco"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProjectFirst"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "tokenMarcoAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "tokenProjectFirstAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "adminMarcoAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "adminProjectFirstAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "supplyMarco",
+          "type": {
+            "defined": "Token"
+          }
+        },
+        {
+          "name": "supplyProjectFirst",
+          "type": {
+            "defined": "Token"
+          }
+        },
+        {
+          "name": "duration",
+          "type": "u64"
+        },
+        {
+          "name": "bump",
+          "type": "u8"
+        }
+      ],
+      "name": "createDualFarm"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapstatev1"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswappoolv1"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_x",
+                "type": "publicKey"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_y",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "farm",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapfarmv1"
+              },
+              {
+                "account": "Pool",
+                "kind": "account",
+                "path": "pool",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenX"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenY"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenMarco"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProjectFirst"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProjectSecond"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "tokenMarcoAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "tokenProjectFirstAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "tokenProjectSecondAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "adminMarcoAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "adminProjectFirstAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "adminProjectSecondAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "supplyMarco",
+          "type": {
+            "defined": "Token"
+          }
+        },
+        {
+          "name": "supplyProjectFirst",
+          "type": {
+            "defined": "Token"
+          }
+        },
+        {
+          "name": "supplyProjectSecond",
+          "type": {
+            "defined": "Token"
+          }
+        },
+        {
+          "name": "duration",
+          "type": "u64"
+        },
+        {
+          "name": "bump",
+          "type": "u8"
+        }
+      ],
+      "name": "createTripleFarm"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapstatev1"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswappoolv1"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_x",
+                "type": "publicKey"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_y",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "farm",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapfarmv1"
+              },
+              {
+                "account": "Pool",
+                "kind": "account",
+                "path": "pool",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "provider",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapproviderv1"
+              },
+              {
+                "account": "Pool",
+                "kind": "account",
+                "path": "pool",
+                "type": "publicKey"
+              },
+              {
+                "kind": "account",
+                "path": "owner",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenX"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenY"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenMarco"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenProjectFirst"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenProjectSecond"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenMarcoAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenProjectFirstAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenProjectSecondAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerMarcoAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerProjectFirstAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerProjectSecondAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [],
+      "name": "withdrawRewards"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapstatev1"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswappoolv1"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_x",
+                "type": "publicKey"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_y",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "farm",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapfarmv1"
+              },
+              {
+                "account": "Pool",
+                "kind": "account",
+                "path": "pool",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenX"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenY"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenMarcoAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenProjectFirstAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenProjectSecondAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolXAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolYAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "buybackXAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "buybackYAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [],
+      "name": "closePool"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapstatev1"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswappoolv1"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_x",
+                "type": "publicKey"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_y",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenX"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenY"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "mercantiXAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "mercantiYAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolXAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolYAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [],
+      "name": "withdrawMercantiFee"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapstatev1"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswappoolv1"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_x",
+                "type": "publicKey"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_y",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "farm",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapfarmv1"
+              },
+              {
+                "account": "Pool",
+                "kind": "account",
+                "path": "pool",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenX"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenY"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenMarcoAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenProjectFirstAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenProjectSecondAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "adminMarcoAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "adminProjectFirstAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "adminProjectSecondAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "supplyMarco",
+          "type": {
+            "defined": "Token"
+          }
+        },
+        {
+          "name": "supplyProjectFirst",
+          "type": {
+            "defined": "Token"
+          }
+        },
+        {
+          "name": "supplyProjectSecond",
+          "type": {
+            "defined": "Token"
+          }
+        },
+        {
+          "name": "duration",
+          "type": "u64"
+        }
+      ],
+      "name": "addSupply"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapstatev1"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswappoolv1"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_x",
+                "type": "publicKey"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_y",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenX"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenY"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programAuthority"
+        }
+      ],
+      "args": [
+        {
+          "name": "newBuybackFee",
+          "type": {
+            "defined": "FixedPoint"
+          }
+        },
+        {
+          "name": "newProjectFee",
+          "type": {
+            "defined": "FixedPoint"
+          }
+        },
+        {
+          "name": "newProviderFee",
+          "type": {
+            "defined": "FixedPoint"
+          }
+        },
+        {
+          "name": "newMercantiFee",
+          "type": {
+            "defined": "FixedPoint"
+          }
+        }
+      ],
+      "name": "updateFees"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapstatev1"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswappoolv1"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_x",
+                "type": "publicKey"
+              },
+              {
+                "account": "Mint",
+                "kind": "account",
+                "path": "token_y",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "farm",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapfarmv1"
+              },
+              {
+                "account": "Pool",
+                "kind": "account",
+                "path": "pool",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenX"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenY"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenMarco"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenMarcoAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenProjectFirstAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenProjectSecondAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "adminMarcoAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "adminProjectFirstAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "adminProjectSecondAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [],
+      "name": "resetFarm"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapstatev1"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswappoolv1"
+              },
+              {
+                "account": "Pool",
+                "kind": "account",
+                "path": "pool.token_x",
+                "type": "publicKey"
+              },
+              {
+                "account": "Pool",
+                "kind": "account",
+                "path": "pool.token_y",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "farm",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "bonkswapfarmv1"
+              },
+              {
+                "account": "Pool",
+                "kind": "account",
+                "path": "pool",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenMarcoAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenProjectFirstAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenProjectSecondAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenMarco"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "newTokenMarcoAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [],
+      "name": "updateRewardTokens"
+    }
+  ],
+  "name": "bonkswap",
+  "types": [
+    {
+      "name": "FixedPoint",
+      "type": {
+        "fields": [
+          {
+            "name": "v",
+            "type": "u128"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "Token",
+      "type": {
+        "fields": [
+          {
+            "name": "v",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "Product",
+      "type": {
+        "fields": [
+          {
+            "name": "v",
+            "type": "u128"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "FarmType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Single"
+          },
+          {
+            "name": "Dual"
+          },
+          {
+            "name": "Triple"
+          }
+        ]
+      }
+    }
+  ],
+  "version": "0.1.1"
+}

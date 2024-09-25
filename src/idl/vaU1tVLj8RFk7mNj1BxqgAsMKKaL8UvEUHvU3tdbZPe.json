@@ -1,0 +1,301 @@
+{
+  "accounts": [
+    {
+      "name": "ConditionalVault",
+      "type": {
+        "fields": [
+          {
+            "name": "status",
+            "type": {
+              "defined": "VaultStatus"
+            }
+          },
+          {
+            "docs": [
+              "The account that can either finalize the vault to make conditional tokens",
+              "redeemable for underlying tokens or revert the vault to make deposit",
+              "slips redeemable for underlying tokens."
+            ],
+            "name": "settlementAuthority",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The mint of the tokens that are deposited into the vault."
+            ],
+            "name": "underlyingTokenMint",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "A nonce to allow a single account to be the settlement authority of multiple",
+              "vaults with the same underlying token mints."
+            ],
+            "name": "nonce",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "The vaults storage account for deposited funds."
+            ],
+            "name": "underlyingTokenAccount",
+            "type": "publicKey"
+          },
+          {
+            "name": "conditionalOnFinalizeTokenMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "conditionalOnRevertTokenMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "pdaBump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "msg": "Insufficient underlying token balance to mint this amount of conditional tokens",
+      "name": "InsufficientUnderlyingTokens"
+    },
+    {
+      "code": 6001,
+      "msg": "This `vault_underlying_token_account` is not this vaults `underlying_token_account`",
+      "name": "InvalidVaultUnderlyingTokenAccount"
+    },
+    {
+      "code": 6002,
+      "msg": "This conditional token mint is not this vaults conditional token mint",
+      "name": "InvalidConditionalTokenMint"
+    },
+    {
+      "code": 6003,
+      "msg": "Vault needs to be settled as finalized before users can redeem conditional tokens for underlying tokens",
+      "name": "CantRedeemConditionalTokens"
+    },
+    {
+      "code": 6004,
+      "msg": "Once a vault has been settled, its status as either finalized or reverted cannot be changed",
+      "name": "VaultAlreadySettled"
+    }
+  ],
+  "instructions": [
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "vault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "underlyingTokenMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "conditionalOnFinalizeTokenMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "conditionalOnRevertTokenMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "vaultUnderlyingTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "settlementAuthority",
+          "type": "publicKey"
+        },
+        {
+          "name": "nonce",
+          "type": "u64"
+        }
+      ],
+      "name": "initializeConditionalVault"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "settlementAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "vault"
+        }
+      ],
+      "args": [
+        {
+          "name": "newStatus",
+          "type": {
+            "defined": "VaultStatus"
+          }
+        }
+      ],
+      "name": "settleConditionalVault"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "vault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "conditionalOnFinalizeTokenMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "conditionalOnRevertTokenMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "vaultUnderlyingTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userUnderlyingTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userConditionalOnFinalizeTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userConditionalOnRevertTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ],
+      "name": "mintConditionalTokens"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "vault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "conditionalOnFinalizeTokenMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "conditionalOnRevertTokenMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "vaultUnderlyingTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userConditionalOnFinalizeTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userConditionalOnRevertTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userUnderlyingTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [],
+      "name": "redeemConditionalTokensForUnderlyingTokens"
+    }
+  ],
+  "name": "conditional_vault",
+  "types": [
+    {
+      "name": "VaultStatus",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Active"
+          },
+          {
+            "name": "Finalized"
+          },
+          {
+            "name": "Reverted"
+          }
+        ]
+      }
+    }
+  ],
+  "version": "0.1.0"
+}

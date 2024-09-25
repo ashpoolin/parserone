@@ -1,0 +1,6272 @@
+{
+  "accounts": [
+    {
+      "name": "Custody",
+      "type": {
+        "fields": [
+          {
+            "name": "pool",
+            "type": "publicKey"
+          },
+          {
+            "name": "mint",
+            "type": "publicKey"
+          },
+          {
+            "name": "tokenAccount",
+            "type": "publicKey"
+          },
+          {
+            "name": "decimals",
+            "type": "u8"
+          },
+          {
+            "name": "isStable",
+            "type": "bool"
+          },
+          {
+            "name": "depegAdjustment",
+            "type": "bool"
+          },
+          {
+            "name": "isVirtual",
+            "type": "bool"
+          },
+          {
+            "name": "distributeRewards",
+            "type": "bool"
+          },
+          {
+            "name": "oracle",
+            "type": {
+              "defined": "OracleParams"
+            }
+          },
+          {
+            "name": "pricing",
+            "type": {
+              "defined": "PricingParams"
+            }
+          },
+          {
+            "name": "permissions",
+            "type": {
+              "defined": "Permissions"
+            }
+          },
+          {
+            "name": "fees",
+            "type": {
+              "defined": "Fees"
+            }
+          },
+          {
+            "name": "borrowRate",
+            "type": {
+              "defined": "BorrowRateParams"
+            }
+          },
+          {
+            "name": "rewardThreshold",
+            "type": "u64"
+          },
+          {
+            "name": "assets",
+            "type": {
+              "defined": "Assets"
+            }
+          },
+          {
+            "name": "feesStats",
+            "type": {
+              "defined": "FeesStats"
+            }
+          },
+          {
+            "name": "borrowRateState",
+            "type": {
+              "defined": "BorrowRateState"
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "tokenAccountBump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "FlpStake",
+      "type": {
+        "fields": [
+          {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
+            "name": "pool",
+            "type": "publicKey"
+          },
+          {
+            "name": "stakeStats",
+            "type": {
+              "defined": "StakeStats"
+            }
+          },
+          {
+            "name": "rewardSnapshot",
+            "type": "u128"
+          },
+          {
+            "name": "unclaimedRewards",
+            "type": "u64"
+          },
+          {
+            "name": "feeShareBps",
+            "type": "u64"
+          },
+          {
+            "name": "isInitialized",
+            "type": "bool"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "Market",
+      "type": {
+        "fields": [
+          {
+            "name": "pool",
+            "type": "publicKey"
+          },
+          {
+            "name": "targetCustody",
+            "type": "publicKey"
+          },
+          {
+            "name": "collateralCustody",
+            "type": "publicKey"
+          },
+          {
+            "name": "side",
+            "type": {
+              "defined": "Side"
+            }
+          },
+          {
+            "name": "correlation",
+            "type": "bool"
+          },
+          {
+            "name": "maxPayoffBps",
+            "type": "u64"
+          },
+          {
+            "name": "permissions",
+            "type": {
+              "defined": "MarketPermissions"
+            }
+          },
+          {
+            "name": "openInterest",
+            "type": "u64"
+          },
+          {
+            "name": "collectivePosition",
+            "type": {
+              "defined": "PositionStats"
+            }
+          },
+          {
+            "name": "targetCustodyId",
+            "type": "u64"
+          },
+          {
+            "name": "collateralCustodyId",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "Multisig",
+      "type": {
+        "fields": [
+          {
+            "name": "numSigners",
+            "type": "u8"
+          },
+          {
+            "name": "numSigned",
+            "type": "u8"
+          },
+          {
+            "name": "minSignatures",
+            "type": "u8"
+          },
+          {
+            "name": "instructionAccountsLen",
+            "type": "u8"
+          },
+          {
+            "name": "instructionDataLen",
+            "type": "u16"
+          },
+          {
+            "name": "instructionHash",
+            "type": "u64"
+          },
+          {
+            "name": "signers",
+            "type": {
+              "array": [
+                "publicKey",
+                6
+              ]
+            }
+          },
+          {
+            "name": "signed",
+            "type": {
+              "array": [
+                "u8",
+                6
+              ]
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "CustomOracle",
+      "type": {
+        "fields": [
+          {
+            "name": "price",
+            "type": "u64"
+          },
+          {
+            "name": "expo",
+            "type": "i32"
+          },
+          {
+            "name": "conf",
+            "type": "u64"
+          },
+          {
+            "name": "ema",
+            "type": "u64"
+          },
+          {
+            "name": "publishTime",
+            "type": "i64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "Perpetuals",
+      "type": {
+        "fields": [
+          {
+            "name": "permissions",
+            "type": {
+              "defined": "Permissions"
+            }
+          },
+          {
+            "name": "pools",
+            "type": {
+              "vec": "publicKey"
+            }
+          },
+          {
+            "name": "collections",
+            "type": {
+              "vec": "publicKey"
+            }
+          },
+          {
+            "name": "voltageMultiplier",
+            "type": {
+              "defined": "VoltageMultiplier"
+            }
+          },
+          {
+            "name": "tradingDiscount",
+            "type": {
+              "array": [
+                "u64",
+                6
+              ]
+            }
+          },
+          {
+            "name": "referralRebate",
+            "type": {
+              "array": [
+                "u64",
+                6
+              ]
+            }
+          },
+          {
+            "name": "referralDiscount",
+            "type": "u64"
+          },
+          {
+            "name": "inceptionTime",
+            "type": "i64"
+          },
+          {
+            "name": "transferAuthorityBump",
+            "type": "u8"
+          },
+          {
+            "name": "perpetualsBump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "Pool",
+      "type": {
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "permissions",
+            "type": {
+              "defined": "Permissions"
+            }
+          },
+          {
+            "name": "inceptionTime",
+            "type": "i64"
+          },
+          {
+            "name": "flpMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "oracleAuthority",
+            "type": "publicKey"
+          },
+          {
+            "name": "flpTokenAccount",
+            "type": "publicKey"
+          },
+          {
+            "name": "rewardCustody",
+            "type": "publicKey"
+          },
+          {
+            "name": "custodies",
+            "type": {
+              "vec": "publicKey"
+            }
+          },
+          {
+            "name": "ratios",
+            "type": {
+              "vec": {
+                "defined": "TokenRatios"
+              }
+            }
+          },
+          {
+            "name": "markets",
+            "type": {
+              "vec": "publicKey"
+            }
+          },
+          {
+            "name": "maxAumUsd",
+            "type": "u128"
+          },
+          {
+            "name": "aumUsd",
+            "type": "u128"
+          },
+          {
+            "name": "totalStaked",
+            "type": {
+              "defined": "StakeStats"
+            }
+          },
+          {
+            "name": "stakingFeeShareBps",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "flpMintBump",
+            "type": "u8"
+          },
+          {
+            "name": "flpTokenAccountBump",
+            "type": "u8"
+          },
+          {
+            "name": "vpVolumeFactor",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "Position",
+      "type": {
+        "fields": [
+          {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
+            "name": "market",
+            "type": "publicKey"
+          },
+          {
+            "name": "delegate",
+            "type": "publicKey"
+          },
+          {
+            "name": "openTime",
+            "type": "i64"
+          },
+          {
+            "name": "updateTime",
+            "type": "i64"
+          },
+          {
+            "name": "entryPrice",
+            "type": {
+              "defined": "OraclePrice"
+            }
+          },
+          {
+            "name": "sizeAmount",
+            "type": "u64"
+          },
+          {
+            "name": "sizeUsd",
+            "type": "u64"
+          },
+          {
+            "name": "lockedAmount",
+            "type": "u64"
+          },
+          {
+            "name": "lockedUsd",
+            "type": "u64"
+          },
+          {
+            "name": "collateralAmount",
+            "type": "u64"
+          },
+          {
+            "name": "collateralUsd",
+            "type": "u64"
+          },
+          {
+            "name": "unsettledAmount",
+            "type": "u64"
+          },
+          {
+            "name": "unsettledFeesUsd",
+            "type": "u64"
+          },
+          {
+            "name": "cumulativeLockFeeSnapshot",
+            "type": "u128"
+          },
+          {
+            "name": "takeProfitPrice",
+            "type": {
+              "defined": "OraclePrice"
+            }
+          },
+          {
+            "name": "stopLossPrice",
+            "type": {
+              "defined": "OraclePrice"
+            }
+          },
+          {
+            "name": "sizeDecimals",
+            "type": "u8"
+          },
+          {
+            "name": "lockedDecimals",
+            "type": "u8"
+          },
+          {
+            "name": "collateralDecimals",
+            "type": "u8"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "Referral",
+      "type": {
+        "fields": [
+          {
+            "name": "isInitialized",
+            "type": "bool"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "refererTradingAccount",
+            "type": "publicKey"
+          },
+          {
+            "name": "padding",
+            "type": {
+              "array": [
+                "u64",
+                8
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "Trading",
+      "type": {
+        "fields": [
+          {
+            "name": "nftMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
+            "name": "delegate",
+            "type": "publicKey"
+          },
+          {
+            "name": "isInitialized",
+            "type": "bool"
+          },
+          {
+            "name": "level",
+            "type": "u8"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "voltagePoints",
+            "type": "u64"
+          },
+          {
+            "name": "stats",
+            "type": {
+              "defined": "VoltageStats"
+            }
+          },
+          {
+            "name": "snapshot",
+            "type": {
+              "defined": "VoltageStats"
+            }
+          },
+          {
+            "name": "padding",
+            "type": {
+              "array": [
+                "u64",
+                8
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "msg": "Account is not authorized to sign this instruction",
+      "name": "MultisigAccountNotAuthorized"
+    },
+    {
+      "code": 6001,
+      "msg": "Account has already signed this instruction",
+      "name": "MultisigAlreadySigned"
+    },
+    {
+      "code": 6002,
+      "msg": "This instruction has already been executed",
+      "name": "MultisigAlreadyExecuted"
+    },
+    {
+      "code": 6003,
+      "msg": "Overflow in arithmetic operation",
+      "name": "MathOverflow"
+    },
+    {
+      "code": 6004,
+      "msg": "Unsupported price oracle",
+      "name": "UnsupportedOracle"
+    },
+    {
+      "code": 6005,
+      "msg": "Invalid oracle account",
+      "name": "InvalidOracleAccount"
+    },
+    {
+      "code": 6006,
+      "msg": "Invalid oracle state",
+      "name": "InvalidOracleState"
+    },
+    {
+      "code": 6007,
+      "msg": "Stale oracle price",
+      "name": "StaleOraclePrice"
+    },
+    {
+      "code": 6008,
+      "msg": "Invalid oracle price",
+      "name": "InvalidOraclePrice"
+    },
+    {
+      "code": 6009,
+      "msg": "Instruction is not allowed in production",
+      "name": "InvalidEnvironment"
+    },
+    {
+      "code": 6010,
+      "msg": "Invalid pool state",
+      "name": "InvalidPoolState"
+    },
+    {
+      "code": 6011,
+      "msg": "Invalid custody state",
+      "name": "InvalidCustodyState"
+    },
+    {
+      "code": 6012,
+      "msg": "Invalid custody state",
+      "name": "InvalidMarketState"
+    },
+    {
+      "code": 6013,
+      "msg": "Invalid collateral custody",
+      "name": "InvalidCollateralCustody"
+    },
+    {
+      "code": 6014,
+      "msg": "Invalid position state",
+      "name": "InvalidPositionState"
+    },
+    {
+      "code": 6015,
+      "msg": "Invalid Dispensing Custody",
+      "name": "InvalidDispensingCustody"
+    },
+    {
+      "code": 6016,
+      "msg": "Invalid perpetuals config",
+      "name": "InvalidPerpetualsConfig"
+    },
+    {
+      "code": 6017,
+      "msg": "Invalid pool config",
+      "name": "InvalidPoolConfig"
+    },
+    {
+      "code": 6018,
+      "msg": "Invalid custody config",
+      "name": "InvalidCustodyConfig"
+    },
+    {
+      "code": 6019,
+      "msg": "Insufficient token amount returned",
+      "name": "InsufficientAmountReturned"
+    },
+    {
+      "code": 6020,
+      "msg": "Price slippage limit exceeded",
+      "name": "MaxPriceSlippage"
+    },
+    {
+      "code": 6021,
+      "msg": "Position leverage limit exceeded",
+      "name": "MaxLeverage"
+    },
+    {
+      "code": 6022,
+      "msg": "Position initial leverage limit exceeded",
+      "name": "MaxInitLeverage"
+    },
+    {
+      "code": 6023,
+      "msg": "Position leverage less than minimum",
+      "name": "MinLeverage"
+    },
+    {
+      "code": 6024,
+      "msg": "Custody amount limit exceeded",
+      "name": "CustodyAmountLimit"
+    },
+    {
+      "code": 6025,
+      "msg": "Position amount limit exceeded",
+      "name": "PositionAmountLimit"
+    },
+    {
+      "code": 6026,
+      "msg": "Token ratio out of range",
+      "name": "TokenRatioOutOfRange"
+    },
+    {
+      "code": 6027,
+      "msg": "Token is not supported",
+      "name": "UnsupportedToken"
+    },
+    {
+      "code": 6028,
+      "msg": "Token is not supported",
+      "name": "UnsupportedCustody"
+    },
+    {
+      "code": 6029,
+      "msg": "Token is not supported",
+      "name": "UnsupportedPool"
+    },
+    {
+      "code": 6030,
+      "msg": "Token is not supported",
+      "name": "UnsupportedMarket"
+    },
+    {
+      "code": 6031,
+      "msg": "Instruction is not allowed at this time",
+      "name": "InstructionNotAllowed"
+    },
+    {
+      "code": 6032,
+      "msg": "Token utilization limit exceeded",
+      "name": "MaxUtilization"
+    },
+    {
+      "code": 6033,
+      "msg": "Close-only mode activated",
+      "name": "CloseOnlyMode"
+    },
+    {
+      "code": 6034,
+      "msg": "Minimum collateral limit breached",
+      "name": "MinCollateral"
+    },
+    {
+      "code": 6035,
+      "msg": "Permissionless oracle update must be preceded by Ed25519 signature verification instruction",
+      "name": "PermissionlessOracleMissingSignature"
+    },
+    {
+      "code": 6036,
+      "msg": "Ed25519 signature verification data does not match expected format",
+      "name": "PermissionlessOracleMalformedEd25519Data"
+    },
+    {
+      "code": 6037,
+      "msg": "Ed25519 signature was not signed by the oracle authority",
+      "name": "PermissionlessOracleSignerMismatch"
+    },
+    {
+      "code": 6038,
+      "msg": "Signed message does not match instruction params",
+      "name": "PermissionlessOracleMessageMismatch"
+    },
+    {
+      "code": 6039,
+      "msg": "Exponent Mismatch betweeen operands",
+      "name": "ExponentMismatch"
+    },
+    {
+      "code": 6040,
+      "msg": "Invalid Close Ratio",
+      "name": "CloseRatio"
+    },
+    {
+      "code": 6041,
+      "msg": "Insufficient FLP tokens staked",
+      "name": "InsufficientStakeAmount"
+    },
+    {
+      "code": 6042,
+      "msg": "Invalid Fee Deltas",
+      "name": "InvalidFeeDeltas"
+    },
+    {
+      "code": 6043,
+      "msg": "Invalid Fee Distrivution Custody",
+      "name": "InvalidFeeDistributionCustody"
+    },
+    {
+      "code": 6044,
+      "msg": "Invalid Collection",
+      "name": "InvalidCollection"
+    },
+    {
+      "code": 6045,
+      "msg": "Owner of Token Account does not match",
+      "name": "InvalidOwner"
+    },
+    {
+      "code": 6046,
+      "msg": "Only nft holders or referred users can trade",
+      "name": "InvalidAccess"
+    },
+    {
+      "code": 6047,
+      "msg": "Trading account doesnot match referral account",
+      "name": "TradingAccountMismatch"
+    },
+    {
+      "code": 6048,
+      "msg": "Max deposits reached",
+      "name": "MaxDepostsReached"
+    },
+    {
+      "code": 6049,
+      "msg": "Invalid Stop Loss price",
+      "name": "InvalidStopLossPrice"
+    },
+    {
+      "code": 6050,
+      "msg": "Invalid Take Profit price",
+      "name": "InvalidTakeProfitPrice"
+    }
+  ],
+  "events": [
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "owner",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "market",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "collateralAmount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "collateralPriceUsd",
+          "type": "u64"
+        }
+      ],
+      "name": "AddCollateralLog"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "poolName",
+          "type": "string"
+        },
+        {
+          "index": false,
+          "name": "owner",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "custodyId",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "amountIn",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "lpAmountOut",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "feeAmount",
+          "type": "u64"
+        }
+      ],
+      "name": "AddLiquidityLog"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "owner",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "market",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "priceUsd",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "sizeAmount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "sizeUsd",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "profitUsd",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "lossUsd",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "feeAmount",
+          "type": "u64"
+        }
+      ],
+      "name": "ClosePositionLog"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "owner",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "feeCollected",
+          "type": "u64"
+        }
+      ],
+      "name": "CollectStakeRewardLog"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "owner",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "market",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "priceUsd",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "sizeDelta",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "sizeDeltaUsd",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "settledReturns",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "deltaProfitUsd",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "deltaLossUsd",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "feeAmount",
+          "type": "u64"
+        }
+      ],
+      "name": "DecreaseSizeLog"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "owner",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "lpTokens",
+          "type": "u64"
+        }
+      ],
+      "name": "DepositStakeLog"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "owner",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "market",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "priceUsd",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "sizeAmount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "sizeUsd",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "profitUsd",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "lossUsd",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "feeAmount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "isStopLoss",
+          "type": "bool"
+        }
+      ],
+      "name": "ForceClosePositionLog"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "owner",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "market",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "priceUsd",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "sizeAmount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "sizeUsd",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "feeAmount",
+          "type": "u64"
+        }
+      ],
+      "name": "IncreaseSizeLog"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "owner",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "market",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "priceUsd",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "sizeUsd",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "sizeAmount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "feeAmount",
+          "type": "u64"
+        }
+      ],
+      "name": "LiquidateLog"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "owner",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "market",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "priceUsd",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "sizeAmount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "sizeUsd",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "collateralAmount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "collateralUsd",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "feeAmount",
+          "type": "u64"
+        }
+      ],
+      "name": "OpenPositionLog"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "owner",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "market",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "collateralAmount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "collateralPriceUsd",
+          "type": "u64"
+        }
+      ],
+      "name": "RemoveCollateralLog"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "poolName",
+          "type": "string"
+        },
+        {
+          "index": false,
+          "name": "owner",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "custodyId",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "lpAmountIn",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "amountOut",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "feeAmount",
+          "type": "u64"
+        }
+      ],
+      "name": "RemoveLiquidityLog"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "owner",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "market",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "priceUsd",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "isStopLoss",
+          "type": "bool"
+        }
+      ],
+      "name": "SetTriggerPriceLog"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "poolName",
+          "type": "string"
+        },
+        {
+          "index": false,
+          "name": "owner",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "custodyIdIn",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "custodyIdOut",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "amountIn",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "amountOut",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "feeInAmount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "feeOutAmount",
+          "type": "u64"
+        }
+      ],
+      "name": "SwapLog"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "owner",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "lpTokens",
+          "type": "u64"
+        }
+      ],
+      "name": "UnstakeRequestLog"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "owner",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "lpTokens",
+          "type": "u64"
+        }
+      ],
+      "name": "WithdrawStakeLog"
+    }
+  ],
+  "instructions": [
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "upgradeAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "multisig"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetualsProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetualsProgramData"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "InitParams"
+          }
+        }
+      ],
+      "name": "init"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "oracleAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "multisig"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lpTokenMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "metadataAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "metadataProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "AddPoolParams"
+          }
+        }
+      ],
+      "name": "addPool",
+      "returns": "u8"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "multisig"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "RemovePoolParams"
+          }
+        }
+      ],
+      "name": "removePool",
+      "returns": "u8"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "multisig"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "custody"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "custodyTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "custodyTokenMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "AddCustodyParams"
+          }
+        }
+      ],
+      "name": "addCustody",
+      "returns": "u8"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "multisig"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collectionMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "AddCollectionParams"
+          }
+        }
+      ],
+      "name": "addCollection",
+      "returns": "u8"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "multisig"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "custody"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "custodyTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "RemoveCustodyParams"
+          }
+        }
+      ],
+      "name": "removeCustody",
+      "returns": "u8"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "multisig"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "market"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "AddMarketParams"
+          }
+        }
+      ],
+      "name": "addMarket",
+      "returns": "u8"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "multisig"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "market"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "RemoveMarketParams"
+          }
+        }
+      ],
+      "name": "removeMarket",
+      "returns": "u8"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "multisig"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "SetAdminSignersParams"
+          }
+        }
+      ],
+      "name": "setAdminSigners",
+      "returns": "u8"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "multisig"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "custody"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "SetCustodyConfigParams"
+          }
+        }
+      ],
+      "name": "setCustodyConfig",
+      "returns": "u8"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "multisig"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "perpetuals"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "SetPerpetualsConfigParams"
+          }
+        }
+      ],
+      "name": "setPerpetualsConfig",
+      "returns": "u8"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "multisig"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "perpetuals"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "SetPermissionsParams"
+          }
+        }
+      ],
+      "name": "setPermissions",
+      "returns": "u8"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "multisig"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "SetPoolConfigParams"
+          }
+        }
+      ],
+      "name": "setPoolConfig",
+      "returns": "u8"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "multisig"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "market"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "SetMarketConfigParams"
+          }
+        }
+      ],
+      "name": "setMarketConfig",
+      "returns": "u8"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "multisig"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "flpStakeAccount"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "SetFlpStakeConfigParams"
+          }
+        }
+      ],
+      "name": "setFlpStakeConfig",
+      "returns": "u8"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "multisig"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "custody"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "custodyTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "receivingTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "WithdrawFeesParams"
+          }
+        }
+      ],
+      "name": "withdrawFees",
+      "returns": "u8"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "multisig"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "receivingAccount"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "WithdrawSolFeesParams"
+          }
+        }
+      ],
+      "name": "withdrawSolFees",
+      "returns": "u8"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "multisig"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "UpdateTokenRatiosParams"
+          }
+        }
+      ],
+      "name": "updateTokenRatios",
+      "returns": "u8"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "multisig"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "custody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "lpTokenMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakedLpTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "InitStakingParams"
+          }
+        }
+      ],
+      "name": "initStaking",
+      "returns": "u8"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "multisig"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "custody"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oracleAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "SetCustomOraclePriceParams"
+          }
+        }
+      ],
+      "name": "setCustomOraclePrice",
+      "returns": "u8"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "upgradeAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "multisig"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "TestInitParams"
+          }
+        }
+      ],
+      "name": "testInit"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "multisig"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "perpetuals"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "SetTestTimeParams"
+          }
+        }
+      ],
+      "name": "setTestTime",
+      "returns": "u8"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fundingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "receivingAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "receivingCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "receivingCustodyOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "receivingCustodyTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "dispensingCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "dispensingCustodyOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "dispensingCustodyTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "eventAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "program"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "SwapParams"
+          }
+        }
+      ],
+      "name": "swap",
+      "returns": "u64"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fundingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lpTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "custody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "custodyOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "custodyTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lpTokenMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "eventAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "program"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "AddLiquidityParams"
+          }
+        }
+      ],
+      "name": "addLiquidity",
+      "returns": "u64"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "receivingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lpTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "custody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "custodyOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "custodyTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lpTokenMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "eventAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "program"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "RemoveLiquidityParams"
+          }
+        }
+      ],
+      "name": "removeLiquidity"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "feePayer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fundingFlpTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "flpStakeAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolFlpTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "eventAuthority"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "DepositStakeParams"
+          }
+        }
+      ],
+      "name": "depositStake"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "rewardCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "feeDistributionTokenAccount"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "RefreshStakeParams"
+          }
+        }
+      ],
+      "name": "refreshStake"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "flpStakeAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "rewardCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "feeDistributionTokenAccount"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "UnstakeInstantParams"
+          }
+        }
+      ],
+      "name": "unstakeInstant"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "receivingFlpTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "flpStakeAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolFlpTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "eventAuthority"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "WithdrawStakeParams"
+          }
+        }
+      ],
+      "name": "withdrawStake"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "receivingTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "feeCustody"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "flpStakeAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "feeCustodyTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "eventAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "program"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "CollectStakeRewardParams"
+          }
+        }
+      ],
+      "name": "collectStakeFees"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "flpStakeAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "eventAuthority"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "UnstakeRequestParams"
+          }
+        }
+      ],
+      "name": "unstakeRequest"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "feePayer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nftMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "nftTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tradingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "metadataAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "CreateTradingAccountParams"
+          }
+        }
+      ],
+      "name": "createTradingAccount"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "feePayer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "nftTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tradingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "referralAccount"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "UpdateTradingAccountParams"
+          }
+        }
+      ],
+      "name": "updateTradingAccount"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "feePayer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tradingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "referralAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "CreateReferralParams"
+          }
+        }
+      ],
+      "name": "createReferral"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "feePayer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fundingAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "position"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "market"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralCustodyTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "eventAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "program"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "OpenPositionParams"
+          }
+        }
+      ],
+      "name": "openPosition"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "position"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "market"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetOracleAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralOracleAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "eventAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "program"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "SetTriggerPriceParams"
+          }
+        }
+      ],
+      "name": "setTriggerPrice"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fundingAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "position"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "market"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralCustodyTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "eventAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "program"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "AddCollateralParams"
+          }
+        }
+      ],
+      "name": "addCollateral"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "receivingAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "position"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "market"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralCustodyTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "eventAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "program"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "RemoveCollateralParams"
+          }
+        }
+      ],
+      "name": "removeCollateral",
+      "returns": "u64"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "position"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "market"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralCustodyTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "eventAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "program"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "IncreaseSizeParams"
+          }
+        }
+      ],
+      "name": "increaseSize"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "position"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "market"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralCustodyTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "eventAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "program"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "DecreaseSizeParams"
+          }
+        }
+      ],
+      "name": "decreaseSize"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "feePayer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "receivingAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "position"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "market"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralCustodyTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "eventAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "program"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "ClosePositionParams"
+          }
+        }
+      ],
+      "name": "closePosition",
+      "returns": "u64"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "owner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "receivingAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "position"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "market"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralCustodyTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "eventAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "program"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "ForceClosePositionParams"
+          }
+        }
+      ],
+      "name": "forceClosePosition",
+      "returns": "u64"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "metadataAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tradingAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "metadataProgram"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nftMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authorizationRulesProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authorizationRulesAccount"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "LevelUpParams"
+          }
+        }
+      ],
+      "name": "levelUp"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "signer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "position"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "market"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralOracleAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "eventAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "program"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "LiquidateParams"
+          }
+        }
+      ],
+      "name": "liquidate"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "custody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "custodyOracleAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "lpTokenMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "GetAddLiquidityAmountAndFeeParams"
+          }
+        }
+      ],
+      "name": "getAddLiquidityAmountAndFee",
+      "returns": {
+        "defined": "AmountAndFee"
+      }
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "custody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "custodyOracleAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "lpTokenMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "GetRemoveLiquidityAmountAndFeeParams"
+          }
+        }
+      ],
+      "name": "getRemoveLiquidityAmountAndFee",
+      "returns": {
+        "defined": "AmountAndFee"
+      }
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "market"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetOracleAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralOracleAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "GetEntryPriceAndFeeParams"
+          }
+        }
+      ],
+      "name": "getEntryPriceAndFee",
+      "returns": {
+        "defined": "NewPositionPricesAndFee"
+      }
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "position"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "market"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetOracleAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralOracleAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "GetExitPriceAndFeeParams"
+          }
+        }
+      ],
+      "name": "getExitPriceAndFee",
+      "returns": {
+        "defined": "PriceAndFee"
+      }
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "position"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "market"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "custodyOracleAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralOracleAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "GetPnlParams"
+          }
+        }
+      ],
+      "name": "getPnl",
+      "returns": {
+        "defined": "ProfitAndLoss"
+      }
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "position"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "market"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetOracleAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralOracleAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "GetLiquidationStateParams"
+          }
+        }
+      ],
+      "name": "getLiquidationState",
+      "returns": "u8"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "position"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "market"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralOracleAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "GetLiquidationPriceParams"
+          }
+        }
+      ],
+      "name": "getLiquidationPrice",
+      "returns": {
+        "defined": "OraclePrice"
+      }
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "custody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "custodyOracleAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "GetOraclePriceParams"
+          }
+        }
+      ],
+      "name": "getOraclePrice",
+      "returns": {
+        "defined": "(OraclePrice,OraclePrice)"
+      }
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "receivingCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "receivingCustodyOracleAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "dispensingCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "dispensingCustodyOracleAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "GetSwapAmountAndFeesParams"
+          }
+        }
+      ],
+      "name": "getSwapAmountAndFees",
+      "returns": {
+        "defined": "SwapAmountAndFees"
+      }
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "GetAssetsUnderManagementParams"
+          }
+        }
+      ],
+      "name": "getAssetsUnderManagement",
+      "returns": {
+        "defined": "(u128,u128)"
+      }
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "lpTokenMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "GetLpTokenPriceParams"
+          }
+        }
+      ],
+      "name": "getLpTokenPrice",
+      "returns": "u64"
+    }
+  ],
+  "name": "perpetuals",
+  "types": [
+    {
+      "name": "AddCollateralParams",
+      "type": {
+        "fields": [
+          {
+            "name": "collateralDelta",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AddCollectionParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AddCustodyParams",
+      "type": {
+        "fields": [
+          {
+            "name": "isStable",
+            "type": "bool"
+          },
+          {
+            "name": "depegAdjustment",
+            "type": "bool"
+          },
+          {
+            "name": "isVirtual",
+            "type": "bool"
+          },
+          {
+            "name": "oracle",
+            "type": {
+              "defined": "OracleParams"
+            }
+          },
+          {
+            "name": "pricing",
+            "type": {
+              "defined": "PricingParams"
+            }
+          },
+          {
+            "name": "permissions",
+            "type": {
+              "defined": "Permissions"
+            }
+          },
+          {
+            "name": "fees",
+            "type": {
+              "defined": "Fees"
+            }
+          },
+          {
+            "name": "borrowRate",
+            "type": {
+              "defined": "BorrowRateParams"
+            }
+          },
+          {
+            "name": "ratios",
+            "type": {
+              "vec": {
+                "defined": "TokenRatios"
+              }
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AddLiquidityParams",
+      "type": {
+        "fields": [
+          {
+            "name": "amountIn",
+            "type": "u64"
+          },
+          {
+            "name": "minLpAmountOut",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AddMarketParams",
+      "type": {
+        "fields": [
+          {
+            "name": "side",
+            "type": {
+              "defined": "Side"
+            }
+          },
+          {
+            "name": "correlation",
+            "type": "bool"
+          },
+          {
+            "name": "maxPayoffBps",
+            "type": "u64"
+          },
+          {
+            "name": "permissions",
+            "type": {
+              "defined": "MarketPermissions"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AddPoolParams",
+      "type": {
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "permissions",
+            "type": {
+              "defined": "Permissions"
+            }
+          },
+          {
+            "name": "maxAumUsd",
+            "type": "u128"
+          },
+          {
+            "name": "metadataTitle",
+            "type": "string"
+          },
+          {
+            "name": "metadataSymbol",
+            "type": "string"
+          },
+          {
+            "name": "metadataUri",
+            "type": "string"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "ClosePositionParams",
+      "type": {
+        "fields": [
+          {
+            "name": "priceWithSlippage",
+            "type": {
+              "defined": "OraclePrice"
+            }
+          },
+          {
+            "name": "privilege",
+            "type": {
+              "defined": "Privilege"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "CollectStakeRewardParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "CreateReferralParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "CreateTradingAccountParams",
+      "type": {
+        "fields": [
+          {
+            "name": "collectionIndex",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "DecreaseSizeParams",
+      "type": {
+        "fields": [
+          {
+            "name": "priceWithSlippage",
+            "type": {
+              "defined": "OraclePrice"
+            }
+          },
+          {
+            "name": "sizeDelta",
+            "type": "u64"
+          },
+          {
+            "name": "privilege",
+            "type": {
+              "defined": "Privilege"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "DepositStakeParams",
+      "type": {
+        "fields": [
+          {
+            "name": "depositAmount",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "ForceClosePositionParams",
+      "type": {
+        "fields": [
+          {
+            "name": "privilege",
+            "type": {
+              "defined": "Privilege"
+            }
+          },
+          {
+            "name": "isStopLoss",
+            "type": "bool"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "GetAddLiquidityAmountAndFeeParams",
+      "type": {
+        "fields": [
+          {
+            "name": "amountIn",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "GetAssetsUnderManagementParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "GetEntryPriceAndFeeParams",
+      "type": {
+        "fields": [
+          {
+            "name": "collateral",
+            "type": "u64"
+          },
+          {
+            "name": "size",
+            "type": "u64"
+          },
+          {
+            "name": "side",
+            "type": {
+              "defined": "Side"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "GetExitPriceAndFeeParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "GetLiquidationPriceParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "GetLiquidationStateParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "GetLpTokenPriceParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "GetOraclePriceParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "GetPnlParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "GetRemoveLiquidityAmountAndFeeParams",
+      "type": {
+        "fields": [
+          {
+            "name": "lpAmountIn",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "GetSwapAmountAndFeesParams",
+      "type": {
+        "fields": [
+          {
+            "name": "amountIn",
+            "type": "u64"
+          },
+          {
+            "name": "useFeePool",
+            "type": "bool"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "IncreaseSizeParams",
+      "type": {
+        "fields": [
+          {
+            "name": "priceWithSlippage",
+            "type": {
+              "defined": "OraclePrice"
+            }
+          },
+          {
+            "name": "sizeDelta",
+            "type": "u64"
+          },
+          {
+            "name": "privilege",
+            "type": {
+              "defined": "Privilege"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "InitStakingParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "InitParams",
+      "type": {
+        "fields": [
+          {
+            "name": "minSignatures",
+            "type": "u8"
+          },
+          {
+            "name": "permissions",
+            "type": {
+              "defined": "Permissions"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "LevelUpParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "LiquidateParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "OpenPositionParams",
+      "type": {
+        "fields": [
+          {
+            "name": "priceWithSlippage",
+            "type": {
+              "defined": "OraclePrice"
+            }
+          },
+          {
+            "name": "collateralAmount",
+            "type": "u64"
+          },
+          {
+            "name": "sizeAmount",
+            "type": "u64"
+          },
+          {
+            "name": "privilege",
+            "type": {
+              "defined": "Privilege"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "RefreshStakeParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "RemoveCollateralParams",
+      "type": {
+        "fields": [
+          {
+            "name": "collateralDelta",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "RemoveCustodyParams",
+      "type": {
+        "fields": [
+          {
+            "name": "ratios",
+            "type": {
+              "vec": {
+                "defined": "TokenRatios"
+              }
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "RemoveLiquidityParams",
+      "type": {
+        "fields": [
+          {
+            "name": "lpAmountIn",
+            "type": "u64"
+          },
+          {
+            "name": "minAmountOut",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "RemoveMarketParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "RemovePoolParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SetAdminSignersParams",
+      "type": {
+        "fields": [
+          {
+            "name": "minSignatures",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SetCustodyConfigParams",
+      "type": {
+        "fields": [
+          {
+            "name": "depegAdjustment",
+            "type": "bool"
+          },
+          {
+            "name": "customOracleAccount",
+            "type": "publicKey"
+          },
+          {
+            "name": "maxDivergenceBps",
+            "type": "u64"
+          },
+          {
+            "name": "maxConfBps",
+            "type": "u64"
+          },
+          {
+            "name": "maxPriceAgeSec",
+            "type": "u64"
+          },
+          {
+            "name": "pricing",
+            "type": {
+              "defined": "PricingParams"
+            }
+          },
+          {
+            "name": "permissions",
+            "type": {
+              "defined": "Permissions"
+            }
+          },
+          {
+            "name": "fees",
+            "type": {
+              "defined": "Fees"
+            }
+          },
+          {
+            "name": "borrowRate",
+            "type": {
+              "defined": "BorrowRateParams"
+            }
+          },
+          {
+            "name": "ratios",
+            "type": {
+              "vec": {
+                "defined": "TokenRatios"
+              }
+            }
+          },
+          {
+            "name": "rewardThreshold",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SetCustomOraclePriceParams",
+      "type": {
+        "fields": [
+          {
+            "name": "price",
+            "type": "u64"
+          },
+          {
+            "name": "expo",
+            "type": "i32"
+          },
+          {
+            "name": "conf",
+            "type": "u64"
+          },
+          {
+            "name": "ema",
+            "type": "u64"
+          },
+          {
+            "name": "publishTime",
+            "type": "i64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SetFlpStakeConfigParams",
+      "type": {
+        "fields": [
+          {
+            "name": "feeShareBps",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SetMarketConfigParams",
+      "type": {
+        "fields": [
+          {
+            "name": "maxPayoffBps",
+            "type": "u64"
+          },
+          {
+            "name": "permissions",
+            "type": {
+              "defined": "MarketPermissions"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SetPermissionsParams",
+      "type": {
+        "fields": [
+          {
+            "name": "permissions",
+            "type": {
+              "defined": "Permissions"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SetPerpetualsConfigParams",
+      "type": {
+        "fields": [
+          {
+            "name": "allowUngatedTrading",
+            "type": "bool"
+          },
+          {
+            "name": "tradingDiscount",
+            "type": {
+              "array": [
+                "u64",
+                6
+              ]
+            }
+          },
+          {
+            "name": "referralRebate",
+            "type": {
+              "array": [
+                "u64",
+                6
+              ]
+            }
+          },
+          {
+            "name": "referralDiscount",
+            "type": "u64"
+          },
+          {
+            "name": "voltageMultiplier",
+            "type": {
+              "defined": "VoltageMultiplier"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SetPoolConfigParams",
+      "type": {
+        "fields": [
+          {
+            "name": "permissions",
+            "type": {
+              "defined": "Permissions"
+            }
+          },
+          {
+            "name": "oracleAuthority",
+            "type": "publicKey"
+          },
+          {
+            "name": "maxAumUsd",
+            "type": "u128"
+          },
+          {
+            "name": "stakingFeeShareBps",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SetTestTimeParams",
+      "type": {
+        "fields": [
+          {
+            "name": "time",
+            "type": "i64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SetTriggerPriceParams",
+      "type": {
+        "fields": [
+          {
+            "name": "triggerPrice",
+            "type": {
+              "defined": "OraclePrice"
+            }
+          },
+          {
+            "name": "isStopLoss",
+            "type": "bool"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SwapParams",
+      "type": {
+        "fields": [
+          {
+            "name": "amountIn",
+            "type": "u64"
+          },
+          {
+            "name": "minAmountOut",
+            "type": "u64"
+          },
+          {
+            "name": "useFeesPool",
+            "type": "bool"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "TestInitParams",
+      "type": {
+        "fields": [
+          {
+            "name": "minSignatures",
+            "type": "u8"
+          },
+          {
+            "name": "permissions",
+            "type": {
+              "defined": "Permissions"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "UnstakeInstantParams",
+      "type": {
+        "fields": [
+          {
+            "name": "unstakeAmount",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "UnstakeRequestParams",
+      "type": {
+        "fields": [
+          {
+            "name": "unstakeAmount",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "UpdateTokenRatiosParams",
+      "type": {
+        "fields": [
+          {
+            "name": "ratios",
+            "type": {
+              "vec": {
+                "defined": "TokenRatios"
+              }
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "UpdateTradingAccountParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "WithdrawFeesParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "WithdrawSolFeesParams",
+      "type": {
+        "fields": [
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "WithdrawStakeParams",
+      "type": {
+        "fields": [
+          {
+            "name": "pendingActivation",
+            "type": "bool"
+          },
+          {
+            "name": "deactivated",
+            "type": "bool"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "Fees",
+      "type": {
+        "fields": [
+          {
+            "name": "mode",
+            "type": {
+              "defined": "FeesMode"
+            }
+          },
+          {
+            "name": "swapIn",
+            "type": {
+              "defined": "RatioFees"
+            }
+          },
+          {
+            "name": "swapOut",
+            "type": {
+              "defined": "RatioFees"
+            }
+          },
+          {
+            "name": "stableSwapIn",
+            "type": {
+              "defined": "RatioFees"
+            }
+          },
+          {
+            "name": "stableSwapOut",
+            "type": {
+              "defined": "RatioFees"
+            }
+          },
+          {
+            "name": "addLiquidity",
+            "type": {
+              "defined": "RatioFees"
+            }
+          },
+          {
+            "name": "removeLiquidity",
+            "type": {
+              "defined": "RatioFees"
+            }
+          },
+          {
+            "name": "openPosition",
+            "type": "u64"
+          },
+          {
+            "name": "closePosition",
+            "type": "u64"
+          },
+          {
+            "name": "removeCollateral",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "RatioFees",
+      "type": {
+        "fields": [
+          {
+            "name": "minFee",
+            "type": "u64"
+          },
+          {
+            "name": "targetFee",
+            "type": "u64"
+          },
+          {
+            "name": "maxFee",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "Assets",
+      "type": {
+        "fields": [
+          {
+            "name": "collateral",
+            "type": "u64"
+          },
+          {
+            "name": "owned",
+            "type": "u64"
+          },
+          {
+            "name": "locked",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "FeesStats",
+      "type": {
+        "fields": [
+          {
+            "name": "accrued",
+            "type": "u128"
+          },
+          {
+            "name": "distributed",
+            "type": "u128"
+          },
+          {
+            "name": "paid",
+            "type": "u128"
+          },
+          {
+            "name": "rewardPerLpStaked",
+            "type": "u64"
+          },
+          {
+            "name": "protocolFee",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "PricingParams",
+      "type": {
+        "fields": [
+          {
+            "name": "tradeSpreadLong",
+            "type": "u64"
+          },
+          {
+            "name": "tradeSpreadShort",
+            "type": "u64"
+          },
+          {
+            "name": "swapSpread",
+            "type": "u64"
+          },
+          {
+            "name": "minInitialLeverage",
+            "type": "u64"
+          },
+          {
+            "name": "maxInitialLeverage",
+            "type": "u64"
+          },
+          {
+            "name": "maxLeverage",
+            "type": "u64"
+          },
+          {
+            "name": "minCollateralUsd",
+            "type": "u64"
+          },
+          {
+            "name": "delaySeconds",
+            "type": "i64"
+          },
+          {
+            "name": "maxUtilization",
+            "type": "u64"
+          },
+          {
+            "name": "maxPositionLockedUsd",
+            "type": "u64"
+          },
+          {
+            "name": "maxTotalLockedUsd",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "BorrowRateParams",
+      "type": {
+        "fields": [
+          {
+            "name": "baseRate",
+            "type": "u64"
+          },
+          {
+            "name": "slope1",
+            "type": "u64"
+          },
+          {
+            "name": "slope2",
+            "type": "u64"
+          },
+          {
+            "name": "optimalUtilization",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "BorrowRateState",
+      "type": {
+        "fields": [
+          {
+            "name": "currentRate",
+            "type": "u64"
+          },
+          {
+            "name": "cumulativeLockFee",
+            "type": "u128"
+          },
+          {
+            "name": "lastUpdate",
+            "type": "i64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "StakeStats",
+      "type": {
+        "fields": [
+          {
+            "name": "pendingActivation",
+            "type": "u64"
+          },
+          {
+            "name": "activeAmount",
+            "type": "u64"
+          },
+          {
+            "name": "pendingDeactivation",
+            "type": "u64"
+          },
+          {
+            "name": "deactivatedAmount",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "MarketPermissions",
+      "type": {
+        "fields": [
+          {
+            "name": "allowOpenPosition",
+            "type": "bool"
+          },
+          {
+            "name": "allowClosePosition",
+            "type": "bool"
+          },
+          {
+            "name": "allowCollateralWithdrawal",
+            "type": "bool"
+          },
+          {
+            "name": "allowSizeChange",
+            "type": "bool"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "PositionStats",
+      "type": {
+        "fields": [
+          {
+            "name": "openPositions",
+            "type": "u64"
+          },
+          {
+            "name": "updateTime",
+            "type": "i64"
+          },
+          {
+            "name": "averageEntryPrice",
+            "type": {
+              "defined": "OraclePrice"
+            }
+          },
+          {
+            "name": "sizeAmount",
+            "type": "u64"
+          },
+          {
+            "name": "sizeUsd",
+            "type": "u64"
+          },
+          {
+            "name": "lockedAmount",
+            "type": "u64"
+          },
+          {
+            "name": "lockedUsd",
+            "type": "u64"
+          },
+          {
+            "name": "collateralAmount",
+            "type": "u64"
+          },
+          {
+            "name": "collateralUsd",
+            "type": "u64"
+          },
+          {
+            "name": "unsettledFeeUsd",
+            "type": "u64"
+          },
+          {
+            "name": "cumulativeLockFeeSnapshot",
+            "type": "u128"
+          },
+          {
+            "name": "sizeDecimals",
+            "type": "u8"
+          },
+          {
+            "name": "lockedDecimals",
+            "type": "u8"
+          },
+          {
+            "name": "collateralDecimals",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "OraclePrice",
+      "type": {
+        "fields": [
+          {
+            "name": "price",
+            "type": "u64"
+          },
+          {
+            "name": "exponent",
+            "type": "i32"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "OracleParams",
+      "type": {
+        "fields": [
+          {
+            "name": "oracleAccount",
+            "type": "publicKey"
+          },
+          {
+            "name": "customOracleAccount",
+            "type": "publicKey"
+          },
+          {
+            "name": "oracleType",
+            "type": {
+              "defined": "OracleType"
+            }
+          },
+          {
+            "name": "maxDivergenceBps",
+            "type": "u64"
+          },
+          {
+            "name": "maxConfBps",
+            "type": "u64"
+          },
+          {
+            "name": "maxPriceAgeSec",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "BackupOracle",
+      "type": {
+        "fields": [
+          {
+            "name": "price",
+            "type": "i64"
+          },
+          {
+            "name": "expo",
+            "type": "i32"
+          },
+          {
+            "name": "conf",
+            "type": "i64"
+          },
+          {
+            "name": "emaPrice",
+            "type": "i64"
+          },
+          {
+            "name": "publishTime",
+            "type": "i64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "PermissionlessPythCache",
+      "type": {
+        "fields": [
+          {
+            "name": "backupCache",
+            "type": {
+              "vec": {
+                "defined": "BackupOracle"
+              }
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "PriceAndFee",
+      "type": {
+        "fields": [
+          {
+            "name": "price",
+            "type": {
+              "defined": "OraclePrice"
+            }
+          },
+          {
+            "name": "fee",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AmountAndFee",
+      "type": {
+        "fields": [
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "fee",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "NewPositionPricesAndFee",
+      "type": {
+        "fields": [
+          {
+            "name": "entryPrice",
+            "type": {
+              "defined": "OraclePrice"
+            }
+          },
+          {
+            "name": "fee",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SwapAmountAndFees",
+      "type": {
+        "fields": [
+          {
+            "name": "amountOut",
+            "type": "u64"
+          },
+          {
+            "name": "feeIn",
+            "type": "u64"
+          },
+          {
+            "name": "feeOut",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "ProfitAndLoss",
+      "type": {
+        "fields": [
+          {
+            "name": "profit",
+            "type": "u64"
+          },
+          {
+            "name": "loss",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "Permissions",
+      "type": {
+        "fields": [
+          {
+            "name": "allowSwap",
+            "type": "bool"
+          },
+          {
+            "name": "allowAddLiquidity",
+            "type": "bool"
+          },
+          {
+            "name": "allowRemoveLiquidity",
+            "type": "bool"
+          },
+          {
+            "name": "allowOpenPosition",
+            "type": "bool"
+          },
+          {
+            "name": "allowClosePosition",
+            "type": "bool"
+          },
+          {
+            "name": "allowCollateralWithdrawal",
+            "type": "bool"
+          },
+          {
+            "name": "allowSizeChange",
+            "type": "bool"
+          },
+          {
+            "name": "allowLiquidation",
+            "type": "bool"
+          },
+          {
+            "name": "allowFlpStaking",
+            "type": "bool"
+          },
+          {
+            "name": "allowFeeDistribution",
+            "type": "bool"
+          },
+          {
+            "name": "allowUngatedTrading",
+            "type": "bool"
+          },
+          {
+            "name": "allowFeeDiscounts",
+            "type": "bool"
+          },
+          {
+            "name": "allowReferralRebates",
+            "type": "bool"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "VoltageMultiplier",
+      "type": {
+        "fields": [
+          {
+            "name": "volume",
+            "type": "u64"
+          },
+          {
+            "name": "rewards",
+            "type": "u64"
+          },
+          {
+            "name": "rebates",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "TokenRatios",
+      "type": {
+        "fields": [
+          {
+            "name": "target",
+            "type": "u64"
+          },
+          {
+            "name": "min",
+            "type": "u64"
+          },
+          {
+            "name": "max",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "CustodyDetails",
+      "type": {
+        "fields": [
+          {
+            "name": "tradeSpreadLong",
+            "type": "u64"
+          },
+          {
+            "name": "tradeSpreadShort",
+            "type": "u64"
+          },
+          {
+            "name": "delaySeconds",
+            "type": "i64"
+          },
+          {
+            "name": "minPrice",
+            "type": {
+              "defined": "OraclePrice"
+            }
+          },
+          {
+            "name": "maxPrice",
+            "type": {
+              "defined": "OraclePrice"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "VoltageStats",
+      "type": {
+        "fields": [
+          {
+            "name": "volumeUsd",
+            "type": "u128"
+          },
+          {
+            "name": "lpRewardsUsd",
+            "type": "u128"
+          },
+          {
+            "name": "referralRebateUsd",
+            "type": "u128"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "FeesMode",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Fixed"
+          },
+          {
+            "name": "Linear"
+          }
+        ]
+      }
+    },
+    {
+      "name": "FeesAction",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "AddLiquidity"
+          },
+          {
+            "name": "RemoveLiquidity"
+          },
+          {
+            "name": "SwapIn"
+          },
+          {
+            "name": "SwapOut"
+          },
+          {
+            "name": "StableSwapIn"
+          },
+          {
+            "name": "StableSwapOut"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Side",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "None"
+          },
+          {
+            "name": "Long"
+          },
+          {
+            "name": "Short"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AdminInstruction",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "AddPool"
+          },
+          {
+            "name": "RemovePool"
+          },
+          {
+            "name": "AddCustody"
+          },
+          {
+            "name": "RemoveCustody"
+          },
+          {
+            "name": "AddMarket"
+          },
+          {
+            "name": "RemoveMarket"
+          },
+          {
+            "name": "InitStaking"
+          },
+          {
+            "name": "SetAdminSigners"
+          },
+          {
+            "name": "SetCustodyConfig"
+          },
+          {
+            "name": "SetPermissions"
+          },
+          {
+            "name": "SetBorrowRate"
+          },
+          {
+            "name": "SetPerpetualsConfig"
+          },
+          {
+            "name": "SetPoolConfig"
+          },
+          {
+            "name": "SetFlpStakeConfig"
+          },
+          {
+            "name": "SetMarketConfig"
+          },
+          {
+            "name": "AddCollection"
+          },
+          {
+            "name": "WithdrawFees"
+          },
+          {
+            "name": "WithdrawSolFees"
+          },
+          {
+            "name": "SetCustomOraclePrice"
+          },
+          {
+            "name": "SetTestTime"
+          },
+          {
+            "name": "UpdateTokenRatios"
+          }
+        ]
+      }
+    },
+    {
+      "name": "OracleType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "None"
+          },
+          {
+            "name": "Custom"
+          },
+          {
+            "name": "Pyth"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AumCalcMode",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "IncludePnl"
+          },
+          {
+            "name": "ExcludePnl"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Privilege",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "None"
+          },
+          {
+            "name": "NFT"
+          },
+          {
+            "name": "Referral"
+          }
+        ]
+      }
+    }
+  ],
+  "version": "0.1.0"
+}

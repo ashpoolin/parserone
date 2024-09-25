@@ -1,0 +1,1727 @@
+{
+  "accounts": [
+    {
+      "name": "OrderBook",
+      "type": {
+        "fields": [
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "orderBookType",
+            "type": {
+              "defined": "OrderBookType"
+            }
+          },
+          {
+            "name": "apy",
+            "type": {
+              "defined": "APY"
+            }
+          },
+          {
+            "name": "loanTerms",
+            "type": {
+              "defined": "BookLoanTerms"
+            }
+          },
+          {
+            "name": "feePermillicentage",
+            "type": "u16"
+          },
+          {
+            "name": "feeAuthority",
+            "type": "publicKey"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "Loan",
+      "type": {
+        "fields": [
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "docs": [
+              "amount in tokens, decimals included"
+            ],
+            "name": "principalLamports",
+            "type": "u64"
+          },
+          {
+            "name": "orderBook",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Token mint for what the loan is in (spl address)"
+            ],
+            "name": "valueTokenMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "escrowBumpSeed",
+            "type": "u8"
+          },
+          {
+            "docs": [
+              "stores start and duration"
+            ],
+            "name": "loanState",
+            "type": {
+              "defined": "LoanState"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "NFTList",
+      "type": {
+        "fields": [
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "collectionName",
+            "type": "string"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "EscrowPDA",
+      "type": {
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "ProgramVersion",
+      "type": {
+        "fields": [
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "updated",
+            "type": "i64"
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "msg": "Custom",
+      "name": "Custom"
+    },
+    {
+      "code": 6001,
+      "msg": "InvalidArgument",
+      "name": "InvalidArgument"
+    },
+    {
+      "code": 6002,
+      "msg": "InvalidAccountData",
+      "name": "InvalidAccountData"
+    },
+    {
+      "code": 6003,
+      "msg": "IllegalOwner",
+      "name": "IllegalOwner"
+    },
+    {
+      "code": 6004,
+      "msg": "Mint is invalid",
+      "name": "InvalidMint"
+    },
+    {
+      "code": 6005,
+      "msg": "Numerical overflow error",
+      "name": "NumericalOverflowError"
+    },
+    {
+      "code": 6006,
+      "msg": "Mismatched NFT collateral mint",
+      "name": "MismatchedNftCollateralMint"
+    },
+    {
+      "code": 6007,
+      "msg": "Mismatched value token mint",
+      "name": "MismatchedValueTokenMint"
+    },
+    {
+      "code": 6008,
+      "msg": "Mismatched lender",
+      "name": "MismatchedLender"
+    },
+    {
+      "code": 6009,
+      "msg": "Loan is not foreclosable",
+      "name": "NotForeclosable"
+    },
+    {
+      "code": 6010,
+      "msg": "Fee calculation error",
+      "name": "FeeCalculationError"
+    },
+    {
+      "code": 6011,
+      "msg": "Invalid book loan terms type",
+      "name": "InvalidBookLoanTermsType"
+    },
+    {
+      "code": 6012,
+      "msg": "Invalid escrow bump",
+      "name": "InvalidEscrowBump"
+    },
+    {
+      "code": 6013,
+      "msg": "Invalid loan version",
+      "name": "InvalidLoanVersion"
+    },
+    {
+      "code": 6014,
+      "msg": "Value mint only supports native mint",
+      "name": "InvalidValueMint"
+    },
+    {
+      "code": 6015,
+      "msg": "Offered loan cannot be foreclosed",
+      "name": "OfferedLoanCannotBeForeclosed"
+    }
+  ],
+  "instructions": [
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "orderBook"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "orderBookType",
+          "type": {
+            "defined": "OrderBookType"
+          }
+        },
+        {
+          "name": "apy",
+          "type": {
+            "defined": "APY"
+          }
+        },
+        {
+          "name": "loanTerms",
+          "type": {
+            "defined": "BookLoanTerms"
+          }
+        },
+        {
+          "name": "feePermillicentage",
+          "type": "u16"
+        },
+        {
+          "name": "feeAuthority",
+          "type": "publicKey"
+        }
+      ],
+      "docs": [
+        "Creates an order book, must be signed by sharky key"
+      ],
+      "name": "createOrderBook"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "orderBook"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "payer"
+        }
+      ],
+      "args": [
+        {
+          "name": "orderBookType",
+          "type": {
+            "option": {
+              "defined": "OrderBookType"
+            }
+          }
+        },
+        {
+          "name": "apy",
+          "type": {
+            "option": {
+              "defined": "APY"
+            }
+          }
+        },
+        {
+          "name": "loanTerms",
+          "type": {
+            "option": {
+              "defined": "BookLoanTerms"
+            }
+          }
+        },
+        {
+          "name": "feePermillicentage",
+          "type": {
+            "option": "u16"
+          }
+        },
+        {
+          "name": "feeAuthority",
+          "type": {
+            "option": "publicKey"
+          }
+        }
+      ],
+      "docs": [
+        "Updates an order book, must be signed by sharky key"
+      ],
+      "name": "updateOrderBook"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "orderBook"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "payer"
+        }
+      ],
+      "args": [],
+      "docs": [
+        "Closes an order book, must be signed by sharky key"
+      ],
+      "name": "closeOrderBook"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "lender"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lenderValueTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "valueMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "loan"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrowTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "orderBook"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "escrowBump",
+          "type": "u8"
+        },
+        {
+          "name": "principalLamports",
+          "type": "u64"
+        },
+        {
+          "name": "termsChoice",
+          "type": {
+            "option": {
+              "defined": "LoanTermsSpec"
+            }
+          }
+        }
+      ],
+      "docs": [
+        "Offers a loan for a given order book"
+      ],
+      "name": "offerLoan"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "loan"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lenderValueTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "lender"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "valueMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrowTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [],
+      "docs": [
+        "Removes an offered but not taken loan"
+      ],
+      "name": "rescindLoan"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lender"
+        },
+        {
+          "docs": [
+            "The borrower that will receive the tokens in exchange for collateral"
+          ],
+          "isMut": true,
+          "isSigner": true,
+          "name": "borrower"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "borrowerCollateralTokenAccount"
+        },
+        {
+          "docs": [
+            "type of token"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralMint"
+        },
+        {
+          "docs": [
+            "Expected loan prevents a replacement attack where the loan is replaced between the",
+            "user signing take_loan and it hitting the chain"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "loan"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrowCollateralTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "orderBook"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "metadata"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "edition"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mplTokenMetadataProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "expectedLoan",
+          "type": "string"
+        },
+        {
+          "name": "nftListIndex",
+          "type": {
+            "option": "u32"
+          }
+        },
+        {
+          "name": "skipFreezingCollateral",
+          "type": "bool"
+        }
+      ],
+      "docs": [
+        "Takes an offered loan in exchange for a valid NFT (migration off cardinal)"
+      ],
+      "name": "takeLoanV3"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lender"
+        },
+        {
+          "docs": [
+            "The borrower that will receive the tokens in exchange for collateral"
+          ],
+          "isMut": true,
+          "isSigner": true,
+          "name": "borrower"
+        },
+        {
+          "docs": [
+            "Expected loan prevents a replacement attack where the loan is replaced between the",
+            "user signing take_loan and it hitting the chain"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "loan"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "orderBook"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "treeAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "logWrapper"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "merkleTree"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mplBubblegumProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "compressionProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "expectedLoan",
+          "type": "string"
+        },
+        {
+          "name": "nftListIndex",
+          "type": {
+            "option": "u32"
+          }
+        },
+        {
+          "name": "cnftArgs",
+          "type": {
+            "defined": "CnftArgs"
+          }
+        }
+      ],
+      "docs": [
+        "Takes an offered loan in exchange for a valid NFT (cNFT)"
+      ],
+      "name": "takeLoanV3Compressed"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "loan"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrowCollateralTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "borrower"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "lender"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lenderCollateralTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "borrowerCollateralTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "metadata"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "edition"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mplTokenMetadataProgram"
+        }
+      ],
+      "args": [],
+      "docs": [
+        "Forecloses on a taken lone that has met some condition"
+      ],
+      "name": "forecloseLoanV3"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "loan"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "borrower"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "lender"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "treeAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "logWrapper"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "merkleTree"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mplBubblegumProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "compressionProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "cnftRoot",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "cnftDataHash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "cnftCreatorHash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "cnftNonce",
+          "type": "u64"
+        },
+        {
+          "name": "cnftIndex",
+          "type": "u32"
+        }
+      ],
+      "docs": [
+        "Forecloses on a taken lone that has met some condition (cNFT)"
+      ],
+      "name": "forecloseLoanV3Compressed"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "loan"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "borrower"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lender"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "valueMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "orderBook"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "feeAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "treeAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "logWrapper"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "merkleTree"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mplBubblegumProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "compressionProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "cnftRoot",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "cnftDataHash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "cnftCreatorHash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "cnftNonce",
+          "type": "u64"
+        },
+        {
+          "name": "cnftIndex",
+          "type": "u32"
+        }
+      ],
+      "docs": [
+        "Repays a given loan in exchange for the NFT (cNFT)"
+      ],
+      "name": "repayLoanV3Compressed"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "loan"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "borrower"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "borrowerCollateralTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lender"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrowCollateralTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "valueMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "orderBook"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "feeAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "metadata"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "edition"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mplTokenMetadataProgram"
+        }
+      ],
+      "args": [],
+      "docs": [
+        "Repays a given loan in exchange for the NFT"
+      ],
+      "name": "repayLoanV3"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "loan"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "newLoan"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "borrower"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "borrowerCollateralTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lender"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "newLender"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrowCollateralTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "newEscrow"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "newEscrowCollateralTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "valueMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "orderBook"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "feeAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "metadata"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "edition"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mplTokenMetadataProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "expectedLoan",
+          "type": "string"
+        }
+      ],
+      "name": "extendLoanV3"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "loan"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "newLoan"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "borrower"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lender"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "newLender"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "newEscrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "valueMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "orderBook"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "feeAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "treeAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "logWrapper"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "merkleTree"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mplBubblegumProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "compressionProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "expectedLoan",
+          "type": "string"
+        },
+        {
+          "name": "cnftRoot",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "cnftDataHash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "cnftCreatorHash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "cnftNonce",
+          "type": "u64"
+        },
+        {
+          "name": "cnftIndex",
+          "type": "u32"
+        }
+      ],
+      "docs": [
+        "Extend a loan with a new loan (cNFT)"
+      ],
+      "name": "extendLoanV3Compressed"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nftList"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "payer"
+        }
+      ],
+      "args": [
+        {
+          "name": "collectionName",
+          "type": "string"
+        }
+      ],
+      "name": "createNftList"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nftList"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "payer"
+        }
+      ],
+      "args": [
+        {
+          "name": "mints",
+          "type": {
+            "vec": {
+              "defined": "UpdateIndex"
+            }
+          }
+        }
+      ],
+      "name": "updateNftList"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nftList"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "payer"
+        }
+      ],
+      "args": [],
+      "name": "closeNftList"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "programVersion"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "version",
+          "type": "u8"
+        }
+      ],
+      "name": "createProgramVersion"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "programVersion"
+        }
+      ],
+      "args": [
+        {
+          "name": "version",
+          "type": "u8"
+        }
+      ],
+      "name": "updateProgramVersion"
+    }
+  ],
+  "name": "sharky",
+  "types": [
+    {
+      "name": "CnftArgs",
+      "type": {
+        "fields": [
+          {
+            "name": "cnftRoot",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "cnftDataHash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "cnftCreatorHash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "cnftNonce",
+            "type": "u64"
+          },
+          {
+            "name": "cnftIndex",
+            "type": "u32"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "UpdateIndex",
+      "type": {
+        "fields": [
+          {
+            "name": "index",
+            "type": "u32"
+          },
+          {
+            "name": "mint",
+            "type": "publicKey"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "LoanOffer",
+      "type": {
+        "fields": [
+          {
+            "name": "lenderWallet",
+            "type": "publicKey"
+          },
+          {
+            "name": "termsSpec",
+            "type": {
+              "defined": "LoanTermsSpec"
+            }
+          },
+          {
+            "name": "offerTime",
+            "type": "i64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "TakenLoan",
+      "type": {
+        "fields": [
+          {
+            "name": "nftCollateralMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "lenderNoteMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "borrowerNoteMint",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Thousandths of a percent (allows to have 3 decimal points of precision)"
+            ],
+            "name": "apy",
+            "type": {
+              "defined": "APY"
+            }
+          },
+          {
+            "name": "terms",
+            "type": {
+              "defined": "LoanTerms"
+            }
+          },
+          {
+            "name": "isCollateralFrozen",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "docs": [
+        "APY settings on an [`OrderBook`]"
+      ],
+      "name": "APY",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "fields": [
+              {
+                "docs": [
+                  "Thousandths of a percent"
+                ],
+                "name": "apy",
+                "type": "u32"
+              }
+            ],
+            "name": "Fixed"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BookLoanTerms",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "fields": [
+              {
+                "name": "terms",
+                "type": {
+                  "defined": "LoanTermsSpec"
+                }
+              }
+            ],
+            "name": "Fixed"
+          },
+          {
+            "name": "LenderChooses"
+          }
+        ]
+      }
+    },
+    {
+      "name": "LoanTermsSpec",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "fields": [
+              {
+                "name": "duration",
+                "type": "u64"
+              }
+            ],
+            "name": "Time"
+          }
+        ]
+      }
+    },
+    {
+      "name": "OrderBookType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "fields": [
+              {
+                "name": "collection_key",
+                "type": "publicKey"
+              }
+            ],
+            "name": "Collection"
+          },
+          {
+            "fields": [
+              {
+                "name": "list_account",
+                "type": "publicKey"
+              }
+            ],
+            "name": "NFTList"
+          }
+        ]
+      }
+    },
+    {
+      "name": "LoanTerms",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "fields": [
+              {
+                "docs": [
+                  "This is a [`UnixTimeStamp`]"
+                ],
+                "name": "start",
+                "type": "i64"
+              },
+              {
+                "name": "duration",
+                "type": "u64"
+              },
+              {
+                "name": "total_owed_lamports",
+                "type": "u64"
+              }
+            ],
+            "name": "Time"
+          }
+        ]
+      }
+    },
+    {
+      "name": "LoanState",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "fields": [
+              {
+                "name": "offer",
+                "type": {
+                  "defined": "LoanOffer"
+                }
+              }
+            ],
+            "name": "Offer"
+          },
+          {
+            "fields": [
+              {
+                "name": "taken",
+                "type": {
+                  "defined": "TakenLoan"
+                }
+              }
+            ],
+            "name": "Taken"
+          }
+        ]
+      }
+    }
+  ],
+  "version": "6.3.0"
+}

@@ -1,0 +1,675 @@
+{
+  "accounts": [
+    {
+      "name": "Liquidity",
+      "type": {
+        "fields": [
+          {
+            "name": "seed",
+            "type": "publicKey"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "bootstrapStartTime",
+            "type": {
+              "option": "i64"
+            }
+          },
+          {
+            "name": "bootstrapRequiresSoldOut",
+            "type": "bool"
+          },
+          {
+            "name": "poolBootstrapped",
+            "type": "bool"
+          },
+          {
+            "name": "creatorBasisPoints",
+            "type": "u64"
+          },
+          {
+            "name": "deployment",
+            "type": "publicKey"
+          },
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "treasury",
+            "type": "publicKey"
+          },
+          {
+            "name": "lpRatio",
+            "type": "u16"
+          },
+          {
+            "name": "totalMints",
+            "type": "u64"
+          },
+          {
+            "name": "poolFeeBasisPoints",
+            "type": "u64"
+          },
+          {
+            "name": "lookupTableAddress",
+            "type": "publicKey"
+          },
+          {
+            "name": "padding",
+            "type": {
+              "array": [
+                "u8",
+                100
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "instructions": [
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "liquidity",
+          "relations": [
+            "deployment"
+          ]
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "deployment",
+          "relations": [
+            "fungible_mint"
+          ]
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fungibleMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "hashlistMarker",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "hashlist_marker"
+              },
+              {
+                "account": "Deployment",
+                "kind": "account",
+                "path": "deployment",
+                "type": "publicKey"
+              },
+              {
+                "kind": "account",
+                "path": "non_fungible_mint",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fungibleSourceTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fungibleTargetTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nonFungibleMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nonFungibleSourceTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nonFungibleTargetTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram22"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "sysvarInstructions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "fairLaunchProgram"
+        }
+      ],
+      "args": [],
+      "name": "swapToFungible"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "receiver"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "treasury"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "liquidity",
+          "relations": [
+            "deployment",
+            "treasury"
+          ]
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "deploymentFungibleTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "deploymentNonFungibleTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "deployment"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "deploymentConfig"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "creatorFeeTreasury"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "hashlist"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "hashlistMarker"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pooledHashlistMarket"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fungibleMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "liquidityFungibleTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "nonFungibleMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nonFungibleTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "pooledNonFungibleMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pooledNonFungibleTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram22"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "fairLaunch"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "sysvarInstructions"
+        }
+      ],
+      "args": [],
+      "name": "mint"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "liquidity",
+          "relations": [
+            "deployment"
+          ]
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "deployment"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lookupTable"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "wrappedSolVault"
+        }
+      ],
+      "args": [
+        {
+          "name": "recentSlot",
+          "type": "u64"
+        }
+      ],
+      "name": "createLookupTable"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "treasury"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "liquidity",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "liquidity"
+              },
+              {
+                "kind": "arg",
+                "path": "input.seed",
+                "type": {
+                  "defined": "InitialiseInput"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "input",
+          "type": {
+            "defined": "InitialiseInput"
+          }
+        }
+      ],
+      "name": "initialise"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "liquidity",
+          "relations": [
+            "deployment"
+          ]
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "deployment",
+          "relations": [
+            "fungible_mint"
+          ]
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "payerWrappedSolAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "payerFungibleMintTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fungibleMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fungibleEscrowTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "wrappedSolMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "wrappedSolEscrow"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "wrappedSolVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fungibleVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "wrappedSolTokenVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fungibleTokenVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "wrappedSolVaultLpMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fungibleVaultLpMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "wrappedSolVaultLp"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fungibleVaultLp"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lpMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "payerLpTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "systemProgramLpTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ammProgram"
+        },
+        {
+          "docs": [
+            "Vault program. The pool will deposit/withdraw liquidity from the vault."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "vaultProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fungibleTokenFee"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "wrappedSolTokenFee"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "feeOwner"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "metadataProgram"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lpMintMetadata"
+        }
+      ],
+      "args": [],
+      "name": "bootstrapPool"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "liquidity"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "wrappedSolMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrowWrappedSolAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        }
+      ],
+      "args": [],
+      "name": "prepareNativeEscrow"
+    }
+  ],
+  "name": "libreplex_liquidity",
+  "types": [
+    {
+      "name": "InitialiseInput",
+      "type": {
+        "fields": [
+          {
+            "name": "seed",
+            "type": "publicKey"
+          },
+          {
+            "name": "deployment",
+            "type": "publicKey"
+          },
+          {
+            "name": "bootstrapStartTime",
+            "type": {
+              "option": "i64"
+            }
+          },
+          {
+            "name": "bootstrapRequiresSoldOut",
+            "type": "bool"
+          },
+          {
+            "name": "creatorBasisPoints",
+            "type": "u64"
+          },
+          {
+            "name": "lpRatio",
+            "type": "u16"
+          },
+          {
+            "name": "poolFeeBasisPoints",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "version": "0.0.1"
+}

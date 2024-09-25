@@ -1,0 +1,2572 @@
+{
+  "accounts": [
+    {
+      "name": "pool",
+      "type": {
+        "fields": [
+          {
+            "name": "spotPrice",
+            "type": "u64"
+          },
+          {
+            "name": "curveType",
+            "type": "u8"
+          },
+          {
+            "name": "curveDelta",
+            "type": "u64"
+          },
+          {
+            "name": "reinvestFulfillBuy",
+            "type": "bool"
+          },
+          {
+            "name": "reinvestFulfillSell",
+            "type": "bool"
+          },
+          {
+            "name": "expiry",
+            "type": "i64"
+          },
+          {
+            "name": "lpFeeBp",
+            "type": "u16"
+          },
+          {
+            "name": "referral",
+            "type": "publicKey"
+          },
+          {
+            "name": "referralBp",
+            "type": "u16"
+          },
+          {
+            "name": "buysideCreatorRoyaltyBp",
+            "type": "u16"
+          },
+          {
+            "name": "cosignerAnnotation",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "sellsideAssetAmount",
+            "type": "u64"
+          },
+          {
+            "name": "lpFeeEarned",
+            "type": "u64"
+          },
+          {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
+            "name": "cosigner",
+            "type": "publicKey"
+          },
+          {
+            "name": "uuid",
+            "type": "publicKey"
+          },
+          {
+            "name": "paymentMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "allowlists",
+            "type": {
+              "array": [
+                {
+                  "defined": "Allowlist"
+                },
+                6
+              ]
+            }
+          },
+          {
+            "name": "buysidePaymentAmount",
+            "type": "u64"
+          },
+          {
+            "name": "sharedEscrowAccount",
+            "type": "publicKey"
+          },
+          {
+            "name": "sharedEscrowCount",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "sellState",
+      "type": {
+        "fields": [
+          {
+            "name": "pool",
+            "type": "publicKey"
+          },
+          {
+            "name": "poolOwner",
+            "type": "publicKey"
+          },
+          {
+            "name": "assetMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "assetAmount",
+            "type": "u64"
+          },
+          {
+            "name": "cosignerAnnotation",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "msg": "lp fee bp must be between 0 and 2000",
+      "name": "InvalidLPFee"
+    },
+    {
+      "code": 6001,
+      "msg": "invalid allowlists",
+      "name": "InvalidAllowLists"
+    },
+    {
+      "code": 6002,
+      "msg": "invalid bp",
+      "name": "InvalidBP"
+    },
+    {
+      "code": 6003,
+      "msg": "invalid curve type",
+      "name": "InvalidCurveType"
+    },
+    {
+      "code": 6004,
+      "msg": "invalid curve delta",
+      "name": "InvalidCurveDelta"
+    },
+    {
+      "code": 6005,
+      "msg": "invalid cosigner",
+      "name": "InvalidCosigner"
+    },
+    {
+      "code": 6006,
+      "msg": "invalid payment mint",
+      "name": "InvalidPaymentMint"
+    },
+    {
+      "code": 6007,
+      "msg": "invalid owner",
+      "name": "InvalidOwner"
+    },
+    {
+      "code": 6008,
+      "msg": "numeric overflow",
+      "name": "NumericOverflow"
+    },
+    {
+      "code": 6009,
+      "msg": "invalid requested price",
+      "name": "InvalidRequestedPrice"
+    },
+    {
+      "code": 6010,
+      "msg": "not empty escrow account",
+      "name": "NotEmptyEscrowAccount"
+    },
+    {
+      "code": 6011,
+      "msg": "not empty sell side asset amount",
+      "name": "NotEmptySellsideAssetAmount"
+    },
+    {
+      "code": 6012,
+      "msg": "invalid referral",
+      "name": "InvalidReferral"
+    },
+    {
+      "code": 6013,
+      "msg": "invalid master edition",
+      "name": "InvalidMasterEdition"
+    },
+    {
+      "code": 6014,
+      "msg": "expired",
+      "name": "Expired"
+    },
+    {
+      "code": 6015,
+      "msg": "invalid creator address",
+      "name": "InvalidCreatorAddress"
+    },
+    {
+      "code": 6016,
+      "msg": "not enough balance",
+      "name": "NotEnoughBalance"
+    },
+    {
+      "code": 6017,
+      "msg": "invalid token owner",
+      "name": "InvalidTokenOwner"
+    },
+    {
+      "code": 6018,
+      "msg": "pubkey mismatch",
+      "name": "PubkeyMismatch"
+    },
+    {
+      "code": 6019,
+      "msg": "uninitialized account",
+      "name": "UninitializedAccount"
+    },
+    {
+      "code": 6020,
+      "msg": "invalid spot_price",
+      "name": "InvalidSpotPrice"
+    },
+    {
+      "code": 6021,
+      "msg": "invalid metadata creator royalty",
+      "name": "InvalidMetadataCreatorRoyalty"
+    },
+    {
+      "code": 6022,
+      "msg": "invalid maker or taker bp",
+      "name": "InvalidMakerOrTakerFeeBP"
+    },
+    {
+      "code": 6023,
+      "msg": "Invalid OCP mint supply constraints",
+      "name": "InvalidOcpAssetParams"
+    },
+    {
+      "code": 6024,
+      "msg": "Invalid account state",
+      "name": "InvalidAccountState"
+    },
+    {
+      "code": 6025,
+      "msg": "Invalid token mint",
+      "name": "InvalidTokenMint"
+    },
+    {
+      "code": 6026,
+      "msg": "Invalid MIP1 mint supply constraints",
+      "name": "InvalidMip1AssetParams"
+    },
+    {
+      "code": 6027,
+      "msg": "Invalid token standard",
+      "name": "InvalidTokenStandard"
+    },
+    {
+      "code": 6028,
+      "msg": "Unexpected metadata uri",
+      "name": "UnexpectedMetadataUri"
+    },
+    {
+      "code": 6029,
+      "msg": "Invalid remaining accounts",
+      "name": "InvalidRemainingAccounts"
+    },
+    {
+      "code": 6030,
+      "msg": "Invalid token metadata extensions",
+      "name": "InvalidTokenMetadataExtension"
+    },
+    {
+      "code": 6031,
+      "msg": "Invalid token member extensions",
+      "name": "InvalidTokenMemberExtension"
+    }
+  ],
+  "instructions": [
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "cosigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": "CreatePoolArgs"
+          }
+        }
+      ],
+      "name": "createPool"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "cosigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": "UpdatePoolArgs"
+          }
+        }
+      ],
+      "name": "updatePool"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "cosigner"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "owner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": "UpdateAllowlistsArgs"
+          }
+        }
+      ],
+      "name": "updateAllowlists"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "cosigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "buysideSolEscrowAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [],
+      "name": "solClosePool"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "cosigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "buysideSolEscrowAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": "SolDepositBuyArgs"
+          }
+        }
+      ],
+      "name": "solDepositBuy"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "cosigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "buysideSolEscrowAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": "SolWithdrawBuyArgs"
+          }
+        }
+      ],
+      "name": "solWithdrawBuy"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "cosigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "referral"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "buysideSolEscrowAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMetadata"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMasterEdition"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "payerAssetAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellsideEscrowTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "allowlistAuxAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": "SolFulfillBuyArgs"
+          }
+        }
+      ],
+      "name": "solFulfillBuy"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "cosigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "referral"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "buysideSolEscrowAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMetadata"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMasterEdition"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellsideEscrowTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "payerAssetAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "allowlistAuxAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": "SolFulfillSellArgs"
+          }
+        }
+      ],
+      "name": "solFulfillSell"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "cosigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "assetTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellsideEscrowTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "buysideSolEscrowAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "allowlistAuxAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": "WithdrawSellArgs"
+          }
+        }
+      ],
+      "name": "withdrawSell"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "cosigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMetadata"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMasterEdition"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "assetTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellsideEscrowTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "allowlistAuxAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": "DepositSellArgs"
+          }
+        }
+      ],
+      "name": "depositSell"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "cosigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMetadata"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "assetTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellsideEscrowTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "allowlistAuxAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ocpMintState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ocpPolicy"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ocpFreezeAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ocpProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "cmtProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": "DepositSellArgs"
+          }
+        }
+      ],
+      "name": "ocpDepositSell"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "cosigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "referral"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "buysideSolEscrowAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMetadata"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "payerAssetAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellsideEscrowTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "allowlistAuxAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellState"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ocpMintState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ocpPolicy"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ocpFreezeAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ocpProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "cmtProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": "SolFulfillBuyArgs"
+          }
+        }
+      ],
+      "name": "solOcpFulfillBuy"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "cosigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "referral"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "buysideSolEscrowAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMetadata"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellsideEscrowTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "payerAssetAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "allowlistAuxAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellState"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ocpMintState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ocpPolicy"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ocpFreezeAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ocpProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "cmtProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": "SolOcpFulfillSellArgs"
+          }
+        }
+      ],
+      "name": "solOcpFulfillSell"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "cosigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMetadata"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "assetTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellsideEscrowTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "buysideSolEscrowAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "allowlistAuxAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellState"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ocpMintState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ocpPolicy"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ocpFreezeAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ocpProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "cmtProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": "WithdrawSellArgs"
+          }
+        }
+      ],
+      "name": "ocpWithdrawSell"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "cosigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "assetMetadata"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMasterEdition"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "assetTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellsideEscrowTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "allowlistAuxAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerTokenRecord"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "destinationTokenRecord"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authorizationRules"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenMetadataProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authorizationRulesProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": "DepositSellArgs"
+          }
+        }
+      ],
+      "name": "mip1DepositSell"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "cosigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMasterEdition"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "assetMetadata"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "assetTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellsideEscrowTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "buysideSolEscrowAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "allowlistAuxAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellState"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerTokenRecord"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "destinationTokenRecord"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authorizationRules"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenMetadataProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authorizationRulesProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": "WithdrawSellArgs"
+          }
+        }
+      ],
+      "name": "mip1WithdrawSell"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "cosigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "referral"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "buysideSolEscrowAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "assetMetadata"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMasterEdition"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellsideEscrowTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "payerAssetAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "allowlistAuxAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellState"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerTokenRecord"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "destinationTokenRecord"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authorizationRules"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenMetadataProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authorizationRulesProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": "SolMip1FulfillSellArgs"
+          }
+        }
+      ],
+      "name": "solMip1FulfillSell"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "cosigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "referral"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "buysideSolEscrowAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "assetMetadata"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMasterEdition"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "payerAssetAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellsideEscrowTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "allowlistAuxAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellState"
+        },
+        {
+          "docs": [
+            "This is the token record for the seller"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenOwnerTokenRecord"
+        },
+        {
+          "docs": [
+            "This is the token record for the pool - will always be required"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolTokenRecord"
+        },
+        {
+          "docs": [
+            "This is the token record for the pool owner - will be required if reinvest = true"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolOwnerTokenRecord"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenMetadataProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authorizationRulesProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authorizationRules"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": "SolFulfillBuyArgs"
+          }
+        }
+      ],
+      "name": "solMip1FulfillBuy"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "owner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "buysideSolEscrowAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [],
+      "name": "closeIfBalanceInvalid"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "cosigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "sharedEscrowAccount"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": "SetSharedEscrowArgs"
+          }
+        }
+      ],
+      "name": "setSharedEscrow"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "cosigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "assetTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellsideEscrowTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": "DepositSellArgs"
+          }
+        }
+      ],
+      "name": "extDepositSell"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "cosigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "referral"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "buysideSolEscrowAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellsideEscrowTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "payerAssetAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": "SolFulfillSellArgs"
+          }
+        }
+      ],
+      "name": "solExtFulfillSell"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "cosigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "referral"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "buysideSolEscrowAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "payerAssetAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellsideEscrowTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "allowlistAuxAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": "SolFulfillBuyArgs"
+          }
+        }
+      ],
+      "name": "solExtFulfillBuy"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "cosigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "assetTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellsideEscrowTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "buysideSolEscrowAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "allowlistAuxAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sellState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": "WithdrawSellArgs"
+          }
+        }
+      ],
+      "name": "extWithdrawSell"
+    }
+  ],
+  "name": "mmm",
+  "types": [
+    {
+      "name": "CreatePoolArgs",
+      "type": {
+        "fields": [
+          {
+            "name": "spotPrice",
+            "type": "u64"
+          },
+          {
+            "name": "curveType",
+            "type": "u8"
+          },
+          {
+            "name": "curveDelta",
+            "type": "u64"
+          },
+          {
+            "name": "reinvestFulfillBuy",
+            "type": "bool"
+          },
+          {
+            "name": "reinvestFulfillSell",
+            "type": "bool"
+          },
+          {
+            "name": "expiry",
+            "type": "i64"
+          },
+          {
+            "name": "lpFeeBp",
+            "type": "u16"
+          },
+          {
+            "name": "referral",
+            "type": "publicKey"
+          },
+          {
+            "name": "cosignerAnnotation",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "buysideCreatorRoyaltyBp",
+            "type": "u16"
+          },
+          {
+            "name": "uuid",
+            "type": "publicKey"
+          },
+          {
+            "name": "paymentMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "allowlists",
+            "type": {
+              "array": [
+                {
+                  "defined": "Allowlist"
+                },
+                6
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SetSharedEscrowArgs",
+      "type": {
+        "fields": [
+          {
+            "name": "sharedEscrowCount",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "UpdateAllowlistsArgs",
+      "type": {
+        "fields": [
+          {
+            "name": "allowlists",
+            "type": {
+              "array": [
+                {
+                  "defined": "Allowlist"
+                },
+                6
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "UpdatePoolArgs",
+      "type": {
+        "fields": [
+          {
+            "name": "spotPrice",
+            "type": "u64"
+          },
+          {
+            "name": "curveType",
+            "type": "u8"
+          },
+          {
+            "name": "curveDelta",
+            "type": "u64"
+          },
+          {
+            "name": "reinvestFulfillBuy",
+            "type": "bool"
+          },
+          {
+            "name": "reinvestFulfillSell",
+            "type": "bool"
+          },
+          {
+            "name": "expiry",
+            "type": "i64"
+          },
+          {
+            "name": "lpFeeBp",
+            "type": "u16"
+          },
+          {
+            "name": "referral",
+            "type": "publicKey"
+          },
+          {
+            "name": "cosignerAnnotation",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "buysideCreatorRoyaltyBp",
+            "type": "u16"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SolMip1FulfillSellArgs",
+      "type": {
+        "fields": [
+          {
+            "name": "assetAmount",
+            "type": "u64"
+          },
+          {
+            "name": "maxPaymentAmount",
+            "type": "u64"
+          },
+          {
+            "name": "allowlistAux",
+            "type": {
+              "option": "string"
+            }
+          },
+          {
+            "name": "makerFeeBp",
+            "type": "i16"
+          },
+          {
+            "name": "takerFeeBp",
+            "type": "i16"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SolOcpFulfillSellArgs",
+      "type": {
+        "fields": [
+          {
+            "name": "assetAmount",
+            "type": "u64"
+          },
+          {
+            "name": "maxPaymentAmount",
+            "type": "u64"
+          },
+          {
+            "name": "allowlistAux",
+            "type": {
+              "option": "string"
+            }
+          },
+          {
+            "name": "makerFeeBp",
+            "type": "i16"
+          },
+          {
+            "name": "takerFeeBp",
+            "type": "i16"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "DepositSellArgs",
+      "type": {
+        "fields": [
+          {
+            "name": "assetAmount",
+            "type": "u64"
+          },
+          {
+            "name": "allowlistAux",
+            "type": {
+              "option": "string"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SolDepositBuyArgs",
+      "type": {
+        "fields": [
+          {
+            "name": "paymentAmount",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SolFulfillBuyArgs",
+      "type": {
+        "fields": [
+          {
+            "name": "assetAmount",
+            "type": "u64"
+          },
+          {
+            "name": "minPaymentAmount",
+            "type": "u64"
+          },
+          {
+            "name": "allowlistAux",
+            "type": {
+              "option": "string"
+            }
+          },
+          {
+            "name": "makerFeeBp",
+            "type": "i16"
+          },
+          {
+            "name": "takerFeeBp",
+            "type": "i16"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SolFulfillSellArgs",
+      "type": {
+        "fields": [
+          {
+            "name": "assetAmount",
+            "type": "u64"
+          },
+          {
+            "name": "maxPaymentAmount",
+            "type": "u64"
+          },
+          {
+            "name": "buysideCreatorRoyaltyBp",
+            "type": "u16"
+          },
+          {
+            "name": "allowlistAux",
+            "type": {
+              "option": "string"
+            }
+          },
+          {
+            "name": "makerFeeBp",
+            "type": "i16"
+          },
+          {
+            "name": "takerFeeBp",
+            "type": "i16"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SolWithdrawBuyArgs",
+      "type": {
+        "fields": [
+          {
+            "name": "paymentAmount",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "WithdrawSellArgs",
+      "type": {
+        "fields": [
+          {
+            "name": "assetAmount",
+            "type": "u64"
+          },
+          {
+            "name": "allowlistAux",
+            "type": {
+              "option": "string"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "Allowlist",
+      "type": {
+        "fields": [
+          {
+            "name": "kind",
+            "type": "u8"
+          },
+          {
+            "name": "value",
+            "type": "publicKey"
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "version": "0.2.0"
+}

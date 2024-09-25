@@ -1,0 +1,618 @@
+{
+  "accounts": [
+    {
+      "name": "Deatils",
+      "type": {
+        "fields": [
+          {
+            "name": "initAt",
+            "type": "i64"
+          },
+          {
+            "name": "isActive",
+            "type": "bool"
+          },
+          {
+            "name": "creator",
+            "type": "publicKey"
+          },
+          {
+            "name": "rewardMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "reward",
+            "type": "u64"
+          },
+          {
+            "name": "collection",
+            "type": "publicKey"
+          },
+          {
+            "name": "stakeBump",
+            "type": "u8"
+          },
+          {
+            "name": "tokenAuthBump",
+            "type": "u8"
+          },
+          {
+            "name": "nftAuthBump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "StakingRecord",
+      "type": {
+        "fields": [
+          {
+            "name": "staker",
+            "type": "publicKey"
+          },
+          {
+            "name": "nftMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "stakedAt",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "stakingPeriod",
+            "type": "u8"
+          },
+          {
+            "name": "lastClaimed",
+            "type": "i64"
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "msg": "Undefined Stake Period",
+      "name": "StakePeriodError"
+    },
+    {
+      "code": 6001,
+      "msg": "the given mint account doesnt belong to NFT",
+      "name": "TokenNotNFT"
+    },
+    {
+      "code": 6002,
+      "msg": "the given token account has no NFT",
+      "name": "TokenAccountEmpty"
+    },
+    {
+      "code": 6003,
+      "msg": "the collection field in the metadata is not verified",
+      "name": "CollectionNotVerified"
+    },
+    {
+      "code": 6004,
+      "msg": "the collection doesnt match the staking details",
+      "name": "InvalidCollection"
+    },
+    {
+      "code": 6005,
+      "msg": "the staking is not currently active",
+      "name": "StakingInactive"
+    },
+    {
+      "code": 6006,
+      "msg": "Unable To Subtract",
+      "name": "ProgramSubError"
+    },
+    {
+      "code": 6007,
+      "msg": "Unable To Multiply",
+      "name": "ProgramMulError"
+    },
+    {
+      "code": 6008,
+      "msg": "Failed to convert the time to u64",
+      "name": "FailedTimeConversion"
+    },
+    {
+      "code": 6009,
+      "msg": "Staking Period is not over yet",
+      "name": "UnStakePeriodError"
+    },
+    {
+      "code": 6010,
+      "msg": "Claim Is Not Active yet",
+      "name": "ClaimError"
+    }
+  ],
+  "events": [
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "creator",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "collectionMint",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "rewardMint",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "initAt",
+          "type": "i64"
+        }
+      ],
+      "name": "InitEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "staker",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "stakingPeriod",
+          "type": "u8"
+        },
+        {
+          "index": false,
+          "name": "stakedAt",
+          "type": "i64"
+        },
+        {
+          "index": false,
+          "name": "nftMint",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "collectionMint",
+          "type": "publicKey"
+        }
+      ],
+      "name": "StakeEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "reward",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "rewardMint",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "collectionMint",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "nftMint",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "staker",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "claimedAt",
+          "type": "i64"
+        }
+      ],
+      "name": "ClaimEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "staker",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "stakedAt",
+          "type": "i64"
+        },
+        {
+          "index": false,
+          "name": "nftMint",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "collectionMint",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "unstakedAt",
+          "type": "i64"
+        }
+      ],
+      "name": "UnstakeEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "creator",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "rewardMint",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "closedAt",
+          "type": "i64"
+        },
+        {
+          "index": false,
+          "name": "collectionMint",
+          "type": "publicKey"
+        }
+      ],
+      "name": "CloseEvent"
+    }
+  ],
+  "instructions": [
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakeDetails"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "creator"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collectionAddress"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "nftAuthority"
+        }
+      ],
+      "args": [
+        {
+          "name": "reward",
+          "type": "u64"
+        }
+      ],
+      "name": "init"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "stakeDetails"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakingRecord"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "nftMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nftToken"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "metadataProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "sysvarInstructions"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nftMetadata"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "nftEdition"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "nftAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nftCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authRules"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenRecord"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenRecordDest"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "staker"
+        }
+      ],
+      "args": [
+        {
+          "name": "stakingPeriod",
+          "type": "u8"
+        }
+      ],
+      "name": "stake"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "stakeDetails"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "staker"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakingRecord"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "rewardMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "rewardReceiveAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [],
+      "name": "claim"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "metadataProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "sysvarInstructions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "stakeDetails"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "staker"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakingRecord"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nftMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nftReceiveAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nftAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nftCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nftMetadata"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "nftEdition"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authRules"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenRecord"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenRecordDest"
+        }
+      ],
+      "args": [],
+      "name": "unstake"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakeDetails"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "creator"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [],
+      "name": "closeStaking"
+    }
+  ],
+  "name": "staking",
+  "version": "0.1.0"
+}

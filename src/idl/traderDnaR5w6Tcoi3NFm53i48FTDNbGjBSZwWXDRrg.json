@@ -1,0 +1,1097 @@
+{
+  "accounts": [
+    {
+      "name": "AtlasRateAccount",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "`atlas_rate` * Atlas sub-tokens = USDC sub-tokens",
+              "`atlas_rate` = USDC sub-tokens/(`100` * Atlas sub-tokens)",
+              "`atlas_rate` = Atlas price/`100`"
+            ],
+            "name": "atlasRate",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "FeeReduction",
+      "type": {
+        "fields": [
+          {
+            "name": "account",
+            "type": "publicKey"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "docs": [
+              "1_000_000 = 100% discount"
+            ],
+            "name": "discount",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "MarketVars",
+      "type": {
+        "fields": [
+          {
+            "name": "updateAuthorityMaster",
+            "type": "publicKey"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "OpenOrdersCounter",
+      "type": {
+        "fields": [
+          {
+            "name": "openOrderCount",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "OrderAccount",
+      "type": {
+        "fields": [
+          {
+            "name": "orderInitializerPubkey",
+            "type": "publicKey"
+          },
+          {
+            "name": "currencyMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "assetMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "initializerCurrencyTokenAccount",
+            "type": "publicKey"
+          },
+          {
+            "name": "initializerAssetTokenAccount",
+            "type": "publicKey"
+          },
+          {
+            "name": "orderSide",
+            "type": {
+              "defined": "OrderSide"
+            }
+          },
+          {
+            "name": "price",
+            "type": "u64"
+          },
+          {
+            "name": "orderOriginationQty",
+            "type": "u64"
+          },
+          {
+            "name": "orderRemainingQty",
+            "type": "u64"
+          },
+          {
+            "name": "createdAtTimestamp",
+            "type": "i64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "RegisteredCurrency",
+      "type": {
+        "fields": [
+          {
+            "name": "tokenMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "saCurrencyVault",
+            "type": "publicKey"
+          },
+          {
+            "name": "royalty",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "royaltyTiers",
+            "type": {
+              "vec": {
+                "defined": "RoyaltyTier"
+              }
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "msg": "Invalid Destination Token Account",
+      "name": "InvalidDestinationAccount"
+    },
+    {
+      "code": 6001,
+      "msg": "Invalid instruction.",
+      "name": "InvalidInstruction"
+    },
+    {
+      "code": 6002,
+      "msg": "Invalid SPL Token mint",
+      "name": "InvalidMint"
+    },
+    {
+      "code": 6003,
+      "msg": "Invalid Offer Account Owner",
+      "name": "InvalidOfferAccountOwner"
+    },
+    {
+      "code": 6004,
+      "msg": "Invalid SPL Token account",
+      "name": "InvalidTokenAccount"
+    },
+    {
+      "code": 6005,
+      "msg": "Numerical overflow error",
+      "name": "NumericalOverflowError"
+    },
+    {
+      "code": 6006,
+      "msg": "Invalid Update Authority account",
+      "name": "InvalidUpdateAuthorityAccount"
+    },
+    {
+      "code": 6007,
+      "msg": "Invalid Order Vault Authority account",
+      "name": "InvalidOrderVaultAuthorityAccount"
+    },
+    {
+      "code": 6008,
+      "msg": "Uninitialized Token Account",
+      "name": "UninitializedTokenAccount"
+    },
+    {
+      "code": 6009,
+      "msg": "Insufficient Balance",
+      "name": "InsufficientBalance"
+    },
+    {
+      "code": 6010,
+      "msg": "Invalid Order Duration",
+      "name": "InvalidOrderDuration"
+    },
+    {
+      "code": 6011,
+      "msg": "Origination quantity must be greater than 0",
+      "name": "InvalidOriginationQty"
+    },
+    {
+      "code": 6012,
+      "msg": "Insufficient Order Quantity Remaining",
+      "name": "InsufficientOrderQty"
+    },
+    {
+      "code": 6013,
+      "msg": "Invalid Royalty Value",
+      "name": "InvalidRoyalty"
+    },
+    {
+      "code": 6014,
+      "msg": "Invalid Open Order Counter",
+      "name": "InvalidCounter"
+    },
+    {
+      "code": 6015,
+      "msg": "Mint must be zero decimal",
+      "name": "MintDecimalError"
+    },
+    {
+      "code": 6016,
+      "msg": "Order Account does not match provided account",
+      "name": "InvalidOrderAccountError"
+    },
+    {
+      "code": 6017,
+      "msg": "No royalty tier exists with provided stake amount",
+      "name": "InvalidRoyaltyTier"
+    },
+    {
+      "code": 6018,
+      "msg": "Royalty Tier vector cannot hold any additional tiers",
+      "name": "RoyaltyTierLength"
+    },
+    {
+      "code": 6019,
+      "msg": "Order price did not match expected price",
+      "name": "InvalidOrderPrice"
+    },
+    {
+      "code": 6020,
+      "msg": "Royalty tier already exists",
+      "name": "DuplicateRoyaltyTier"
+    },
+    {
+      "code": 6021,
+      "msg": "Order seller did not match expected seller",
+      "name": "InvalidSeller"
+    }
+  ],
+  "instructions": [
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "updateAuthorityMaster"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "funder"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "marketVarsAccount"
+        },
+        {
+          "docs": [
+            "Who the fee exemption is for"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "feeExemptTarget"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "feeExemptAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "discount",
+          "type": "u64"
+        }
+      ],
+      "name": "addFeeExemption"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "Transaction signer must be the update authority in the market",
+            "vars account"
+          ],
+          "isMut": true,
+          "isSigner": true,
+          "name": "updateAuthorityAccount"
+        },
+        {
+          "docs": [
+            "The `MarketVars` account"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "marketVarsAccount"
+        },
+        {
+          "docs": [
+            ""
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "registeredCurrency"
+        }
+      ],
+      "args": [
+        {
+          "name": "stakeAmount",
+          "type": "u64"
+        },
+        {
+          "name": "discount",
+          "type": "u64"
+        }
+      ],
+      "name": "addRoyaltyTier"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "Transaction signer must be the update authority in the market",
+            "vars account"
+          ],
+          "isMut": true,
+          "isSigner": true,
+          "name": "updateAuthorityAccount"
+        },
+        {
+          "docs": [
+            "The `MarketVars` account"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "marketVarsAccount"
+        },
+        {
+          "docs": [
+            ""
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "registeredCurrency"
+        }
+      ],
+      "args": [
+        {
+          "name": "stakeAmount",
+          "type": "u64"
+        }
+      ],
+      "name": "deleteRoyaltyTier"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "updateAuthorityAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "marketVarsAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "registeredCurrency"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "currencyMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [],
+      "name": "deregisterCurrency"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "updateAuthorityAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "marketVarsAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [],
+      "name": "initializeMarketplace"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The account paying to open the `OpenOrderCounter`"
+          ],
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "user"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "openOrdersCounter"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "depositMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [],
+      "name": "initializeOpenOrdersCounter"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "Must be either the market authority or the order initializer"
+          ],
+          "isMut": true,
+          "isSigner": true,
+          "name": "signer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "orderInitializer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "marketVarsAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "depositMint"
+        },
+        {
+          "docs": [
+            "Mint check based on asset/currency mint - validated in assert_init_deposit_token_acct()"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "initializerDepositTokenAccount"
+        },
+        {
+          "docs": [
+            "in function body"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "orderVaultAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "orderVaultAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "orderAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "openOrdersCounter"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [],
+      "name": "processCancel"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "orderTaker"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "orderTakerDepositTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "orderTakerReceiveTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "currencyMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "assetMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "orderInitializer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "initializerDepositTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "initializerReceiveTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "orderVaultAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "orderVaultAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "orderAccount"
+        },
+        {
+          "docs": [
+            "Star Atlas vault account - must match account in registerd currency"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "saVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "registeredCurrency"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "openOrdersCounter"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "docs": [
+            "Atlas Staking program"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "atlasStaking"
+        },
+        {
+          "docs": [
+            "Atlas `RegisteredStake` Account"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "registeredStake"
+        },
+        {
+          "docs": [
+            "Users Atlas staking account"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "stakingAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "feeReduction"
+        }
+      ],
+      "args": [
+        {
+          "name": "purchaseQuantity",
+          "type": "u64"
+        },
+        {
+          "name": "expectedPrice",
+          "type": "u64"
+        },
+        {
+          "name": "seller",
+          "type": "publicKey"
+        }
+      ],
+      "name": "processExchange"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "orderInitializer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "marketVarsAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "depositMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "receiveMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "orderVaultAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "orderVaultAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "initializerDepositTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "initializerReceiveTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "orderAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "registeredCurrency"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "openOrdersCounter"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "price",
+          "type": "u64"
+        },
+        {
+          "name": "originationQty",
+          "type": "u64"
+        }
+      ],
+      "name": "processInitializeBuy"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "orderInitializer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "marketVarsAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "depositMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "receiveMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "orderVaultAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "orderVaultAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "initializerDepositTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "initializerReceiveTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "orderAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "registeredCurrency"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "openOrdersCounter"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "price",
+          "type": "u64"
+        },
+        {
+          "name": "originationQty",
+          "type": "u64"
+        }
+      ],
+      "name": "processInitializeSell"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "updateAuthorityAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "marketVarsAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "registeredCurrency"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "currencyMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "saCurrencyVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "royalty",
+          "type": "u64"
+        }
+      ],
+      "name": "registerCurrency"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "updateAuthorityMaster"
+        },
+        {
+          "docs": [
+            "Where the funds go"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "funder"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "marketVarsAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "feeExemptAccount"
+        }
+      ],
+      "args": [],
+      "name": "removeFeeExemption"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "funder"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "updateAuthorityAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "marketVarsAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "atlasRate"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "rate",
+          "type": "u64"
+        }
+      ],
+      "name": "updateAtlasRate"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "updateAuthorityAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "marketVarsAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "registeredCurrency"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "currencyMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "royalty",
+          "type": "u64"
+        }
+      ],
+      "name": "updateCurrencyRoyalty"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "updateAuthorityAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "marketVarsAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "registeredCurrency"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "currencyMint"
+        },
+        {
+          "docs": [
+            "New SA Currency vault"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "saCurrencyVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [],
+      "name": "updateCurrencyVault"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "Transaction signer must be the update authority in the market",
+            "vars account"
+          ],
+          "isMut": true,
+          "isSigner": true,
+          "name": "updateAuthorityAccount"
+        },
+        {
+          "docs": [
+            "The `MarketVars` account"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "marketVarsAccount"
+        },
+        {
+          "docs": [
+            ""
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "registeredCurrency"
+        }
+      ],
+      "args": [
+        {
+          "name": "stakeAmount",
+          "type": "u64"
+        },
+        {
+          "name": "discount",
+          "type": "u64"
+        }
+      ],
+      "name": "updateRoyaltyTier"
+    }
+  ],
+  "name": "marketplace",
+  "types": [
+    {
+      "name": "OrderSide",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Buy"
+          },
+          {
+            "name": "Sell"
+          }
+        ]
+      }
+    },
+    {
+      "docs": [
+        "A royalty tier which defines a discount rate for a given staked amount of tokens"
+      ],
+      "name": "RoyaltyTier",
+      "type": {
+        "fields": [
+          {
+            "name": "stakeAmount",
+            "type": "u64"
+          },
+          {
+            "name": "discount",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "version": "0.1.0"
+}

@@ -1,0 +1,1646 @@
+{
+  "accounts": [
+    {
+      "docs": [
+        "A Governor is the DAO: it is the account that holds control over important protocol functions,",
+        "including treasury, protocol parameters, and more."
+      ],
+      "name": "Governor",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "Base."
+            ],
+            "name": "base",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Bump seed"
+            ],
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "docs": [
+              "The total number of [Proposal]s"
+            ],
+            "name": "proposalCount",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "The voting body associated with the Governor.",
+              "This account is responsible for handling vote proceedings, such as:",
+              "- activating proposals",
+              "- setting the number of votes per voter"
+            ],
+            "name": "locker",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The public key of the [smart_wallet::SmartWallet] account.",
+              "This smart wallet executes proposals."
+            ],
+            "name": "smartWallet",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Governance parameters."
+            ],
+            "name": "params",
+            "type": {
+              "defined": "GovernanceParameters"
+            }
+          },
+          {
+            "docs": [
+              "optional reward, can set by smartwallet"
+            ],
+            "name": "votingReward",
+            "type": {
+              "defined": "VotingReward"
+            }
+          },
+          {
+            "docs": [
+              "buffer for further use"
+            ],
+            "name": "buffers",
+            "type": {
+              "array": [
+                "u128",
+                32
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "docs": [
+        "A Yes/No Proposal is a pending transaction that may or may not be executed by the DAO."
+      ],
+      "name": "Proposal",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "The public key of the governor."
+            ],
+            "name": "governor",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The unique ID of the proposal, auto-incremented."
+            ],
+            "name": "index",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "Bump seed"
+            ],
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "docs": [
+              "The public key of the proposer."
+            ],
+            "name": "proposer",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The number of votes in support of a proposal required in order for a quorum to be reached and for a vote to succeed"
+            ],
+            "name": "quorumVotes",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "maximum options of the proposal"
+            ],
+            "name": "maxOption",
+            "type": "u8"
+          },
+          {
+            "docs": [
+              "Vote for each option"
+            ],
+            "name": "optionVotes",
+            "type": {
+              "vec": "u64"
+            }
+          },
+          {
+            "docs": [
+              "The timestamp when the proposal was canceled."
+            ],
+            "name": "canceledAt",
+            "type": "i64"
+          },
+          {
+            "docs": [
+              "The timestamp when the proposal was created."
+            ],
+            "name": "createdAt",
+            "type": "i64"
+          },
+          {
+            "docs": [
+              "The timestamp in which the proposal was activated.",
+              "This is when voting begins."
+            ],
+            "name": "activatedAt",
+            "type": "i64"
+          },
+          {
+            "docs": [
+              "The timestamp when voting ends.",
+              "This only applies to active proposals."
+            ],
+            "name": "votingEndsAt",
+            "type": "i64"
+          },
+          {
+            "docs": [
+              "The timestamp in which the proposal was queued, i.e.",
+              "approved for execution on the Smart Wallet."
+            ],
+            "name": "queuedAt",
+            "type": "i64"
+          },
+          {
+            "docs": [
+              "If the transaction was queued, this is the associated Smart Wallet transaction."
+            ],
+            "name": "queuedTransaction",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "optional reward"
+            ],
+            "name": "votingReward",
+            "type": {
+              "defined": "VotingReward"
+            }
+          },
+          {
+            "docs": [
+              "total claimed reward"
+            ],
+            "name": "totalClaimedReward",
+            "type": "u64"
+          },
+          {
+            "name": "proposalType",
+            "type": "u8"
+          },
+          {
+            "docs": [
+              "buffers for future use"
+            ],
+            "name": "buffers",
+            "type": {
+              "array": [
+                "u128",
+                10
+              ]
+            }
+          },
+          {
+            "docs": [
+              "The instructions associated with the proposal."
+            ],
+            "name": "instructions",
+            "type": {
+              "vec": {
+                "defined": "ProposalInstruction"
+              }
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "docs": [
+        "Metadata about a proposal."
+      ],
+      "name": "ProposalMeta",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "The [Proposal]."
+            ],
+            "name": "proposal",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Title of the proposal."
+            ],
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "docs": [
+              "Link to a description of the proposal."
+            ],
+            "name": "descriptionLink",
+            "type": "string"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "docs": [
+        "Metadata about an option proposal."
+      ],
+      "name": "OptionProposalMeta",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "The [Proposal]."
+            ],
+            "name": "proposal",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "description for options"
+            ],
+            "name": "optionDescriptions",
+            "type": {
+              "vec": "string"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "docs": [
+        "A [Vote] is a vote made by a `voter`"
+      ],
+      "name": "Vote",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "The proposal being voted on."
+            ],
+            "name": "proposal",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The voter."
+            ],
+            "name": "voter",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Bump seed"
+            ],
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "docs": [
+              "The side of the vote taken."
+            ],
+            "name": "side",
+            "type": "u8"
+          },
+          {
+            "docs": [
+              "The number of votes this vote holds."
+            ],
+            "name": "votingPower",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "Flag to check whether voter has claim the reward or not"
+            ],
+            "name": "claimed",
+            "type": "bool"
+          },
+          {
+            "docs": [
+              "buffers for future use"
+            ],
+            "name": "buffers",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "constants": [
+    {
+      "name": "MAX_OPTION",
+      "type": "u8",
+      "value": "10"
+    },
+    {
+      "name": "ABSTAIN_VOTE_INDEX",
+      "type": {
+        "defined": "usize"
+      },
+      "value": "0"
+    },
+    {
+      "name": "AGAINST_VOTE_INDEX",
+      "type": {
+        "defined": "usize"
+      },
+      "value": "1"
+    },
+    {
+      "name": "FOR_VOTE_INDEX",
+      "type": {
+        "defined": "usize"
+      },
+      "value": "2"
+    }
+  ],
+  "docs": [
+    "The [govern] program."
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "msg": "Invalid vote side.",
+      "name": "InvalidVoteSide"
+    },
+    {
+      "code": 6001,
+      "msg": "Invalid proposal type.",
+      "name": "InvalidProposalType"
+    },
+    {
+      "code": 6002,
+      "msg": "The owner of the smart wallet doesnt match with current.",
+      "name": "GovernorNotFound"
+    },
+    {
+      "code": 6003,
+      "msg": "The proposal cannot be activated since it has not yet passed the voting delay.",
+      "name": "VotingDelayNotMet"
+    },
+    {
+      "code": 6004,
+      "msg": "Only drafts can be canceled.",
+      "name": "ProposalNotDraft"
+    },
+    {
+      "code": 6005,
+      "msg": "The proposal must be active.",
+      "name": "ProposalNotActive"
+    },
+    {
+      "code": 6006,
+      "msg": "Max option is invalid",
+      "name": "InvalidMaxOption"
+    },
+    {
+      "code": 6007,
+      "msg": "Proposal is not YesNo.",
+      "name": "NotYesNoProposal"
+    },
+    {
+      "code": 6008,
+      "msg": "Proposal is not Option.",
+      "name": "NotOptionProposal"
+    },
+    {
+      "code": 6009,
+      "msg": "Invalid option descriptions.",
+      "name": "InvalidOptionDescriptions"
+    }
+  ],
+  "events": [
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "governor",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "proposal",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "votingEndsAt",
+          "type": "i64"
+        }
+      ],
+      "name": "ProposalActivateEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "governor",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "proposal",
+          "type": "publicKey"
+        }
+      ],
+      "name": "ProposalCancelEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "governor",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "voter",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "proposal",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "votingReward",
+          "type": "u64"
+        }
+      ],
+      "name": "ClaimRewardEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "governor",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "locker",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "smartWallet",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "parameters",
+          "type": {
+            "defined": "GovernanceParameters"
+          }
+        }
+      ],
+      "name": "GovernorCreateEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "governor",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "proposal",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "optionDescriptions",
+          "type": {
+            "vec": "string"
+          }
+        }
+      ],
+      "name": "OptionProposalMetaCreateEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "governor",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "proposal",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "index": false,
+          "name": "descriptionLink",
+          "type": "string"
+        }
+      ],
+      "name": "ProposalMetaCreateEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "governor",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "proposal",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "proposer",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "proposalType",
+          "type": "u8"
+        },
+        {
+          "index": false,
+          "name": "maxOption",
+          "type": "u8"
+        },
+        {
+          "index": false,
+          "name": "index",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "instructions",
+          "type": {
+            "vec": {
+              "defined": "ProposalInstruction"
+            }
+          }
+        }
+      ],
+      "name": "ProposalCreateEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "governor",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "proposal",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "transaction",
+          "type": "publicKey"
+        }
+      ],
+      "name": "ProposalQueueEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "governor",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "prevParams",
+          "type": {
+            "defined": "GovernanceParameters"
+          }
+        },
+        {
+          "index": false,
+          "name": "params",
+          "type": {
+            "defined": "GovernanceParameters"
+          }
+        }
+      ],
+      "name": "GovernorSetParamsEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "governor",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "prevLocker",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "newLocker",
+          "type": "publicKey"
+        }
+      ],
+      "name": "GovernorSetVoterEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "governor",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "proposal",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "voter",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "vote",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "side",
+          "type": "u8"
+        },
+        {
+          "index": false,
+          "name": "votingPower",
+          "type": "u64"
+        }
+      ],
+      "name": "VoteSetEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "governor",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "rewardMint",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "rewardPerProposal",
+          "type": "u64"
+        }
+      ],
+      "name": "GovernorSetVotingReward"
+    }
+  ],
+  "instructions": [
+    {
+      "accounts": [
+        {
+          "docs": [
+            "Base of the [Governor] key."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "base"
+        },
+        {
+          "docs": [
+            "Governor."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "governor"
+        },
+        {
+          "docs": [
+            "The Smart Wallet."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "smartWallet"
+        },
+        {
+          "docs": [
+            "Payer."
+          ],
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "docs": [
+            "System program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "locker",
+          "type": "publicKey"
+        },
+        {
+          "name": "params",
+          "type": {
+            "defined": "GovernanceParameters"
+          }
+        }
+      ],
+      "docs": [
+        "Creates a [Governor]."
+      ],
+      "name": "createGovernor"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The [Governor]."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "governor"
+        },
+        {
+          "docs": [
+            "The [Proposal]."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "proposal"
+        },
+        {
+          "docs": [
+            "smart wallet of governor"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "smartWallet"
+        },
+        {
+          "docs": [
+            "Proposer of the proposal.",
+            "One of the owners. Checked in the handler via [SmartWallet::owner_index]."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "proposer"
+        },
+        {
+          "docs": [
+            "Payer of the proposal."
+          ],
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "docs": [
+            "System program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "eventAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "program"
+        }
+      ],
+      "args": [
+        {
+          "name": "proposalType",
+          "type": "u8"
+        },
+        {
+          "name": "maxOption",
+          "type": "u8"
+        }
+      ],
+      "docs": [
+        "Creates a [Proposal].",
+        "This may be called by anyone, since the [Proposal] does not do anything until",
+        "it is activated in [activate_proposal]."
+      ],
+      "name": "createProposal"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The [Governor]."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "governor"
+        },
+        {
+          "docs": [
+            "The [Proposal] to activate."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "proposal"
+        },
+        {
+          "docs": [
+            "The locker of the [Governor] that may activate the proposal."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "locker"
+        }
+      ],
+      "args": [],
+      "docs": [
+        "Activates a proposal.",
+        "Only the [Governor::voter] may call this; that program",
+        "may ensure that only certain types of users can activate proposals."
+      ],
+      "name": "activateProposal"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The [Governor]."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "governor"
+        },
+        {
+          "docs": [
+            "The [Proposal] to activate."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "proposal"
+        },
+        {
+          "docs": [
+            "The [Proposal::proposer]."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "proposer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "eventAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "program"
+        }
+      ],
+      "args": [],
+      "docs": [
+        "Cancels a proposal.",
+        "This is only callable by the creator of the proposal."
+      ],
+      "name": "cancelProposal"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The Governor."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "governor"
+        },
+        {
+          "docs": [
+            "The Proposal to queue."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "proposal"
+        },
+        {
+          "docs": [
+            "The transaction key of the proposal.",
+            "This account is passed to and validated by the Smart Wallet program to be initialized."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "transaction"
+        },
+        {
+          "docs": [
+            "The Smart Wallet."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "smartWallet"
+        },
+        {
+          "docs": [
+            "Payer of the queued transaction."
+          ],
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "docs": [
+            "The Smart Wallet program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "smartWalletProgram"
+        },
+        {
+          "docs": [
+            "The System program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "eventAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "program"
+        }
+      ],
+      "args": [],
+      "docs": [
+        "Queues a proposal for execution by the [SmartWallet]."
+      ],
+      "name": "queueProposal"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "Proposal being voted on."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "proposal"
+        },
+        {
+          "docs": [
+            "The vote."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "vote"
+        },
+        {
+          "docs": [
+            "Payer of the [Vote]."
+          ],
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "docs": [
+            "System program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "voter",
+          "type": "publicKey"
+        }
+      ],
+      "docs": [
+        "Creates a new [Vote]. Anyone can call this."
+      ],
+      "name": "newVote"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The [Governor]."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "governor"
+        },
+        {
+          "docs": [
+            "The [Proposal]."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "proposal"
+        },
+        {
+          "docs": [
+            "The [Vote]."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "vote"
+        },
+        {
+          "docs": [
+            "The [Governor::locker]."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "locker"
+        }
+      ],
+      "args": [
+        {
+          "name": "side",
+          "type": "u8"
+        },
+        {
+          "name": "weight",
+          "type": "u64"
+        }
+      ],
+      "docs": [
+        "Sets a [Vote] weight and side.",
+        "This may only be called by the [Governor::voter]."
+      ],
+      "name": "setVote"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The [Governor]"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "governor"
+        },
+        {
+          "docs": [
+            "The Smart Wallet."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "smartWallet"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "GovernanceParameters"
+          }
+        }
+      ],
+      "docs": [
+        "Sets the [GovernanceParameters].",
+        "This may only be called by the [Governor::smart_wallet]."
+      ],
+      "name": "setGovernanceParams"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The [Governor]"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "governor"
+        },
+        {
+          "docs": [
+            "reward mint"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "rewardMint"
+        },
+        {
+          "docs": [
+            "The Smart Wallet."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "smartWallet"
+        }
+      ],
+      "args": [
+        {
+          "name": "rewardPerProposal",
+          "type": "u64"
+        }
+      ],
+      "docs": [
+        "Sets Voting Reward.",
+        "This may only be called by the [Governor::smart_wallet]."
+      ],
+      "name": "setVotingReward"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The [Governor]"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "governor"
+        },
+        {
+          "docs": [
+            "reward mint"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "rewardVault"
+        },
+        {
+          "docs": [
+            "proposal"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "proposal"
+        },
+        {
+          "docs": [
+            "The [Vote]."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "vote"
+        },
+        {
+          "docs": [
+            "Owner of the vault",
+            "TODO: check whether vote delegrate can claim on behalf of owner?"
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "voter"
+        },
+        {
+          "docs": [
+            "Voter token account"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "voterTokenAccount"
+        },
+        {
+          "docs": [
+            "Token program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "eventAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "program"
+        }
+      ],
+      "args": [],
+      "docs": [
+        "Claim rewards, for voter"
+      ],
+      "name": "claimReward"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The [Governor]"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "governor"
+        },
+        {
+          "docs": [
+            "The Smart Wallet."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "smartWallet"
+        }
+      ],
+      "args": [
+        {
+          "name": "newLocker",
+          "type": "publicKey"
+        }
+      ],
+      "docs": [
+        "Sets the locker of the [Governor]."
+      ],
+      "name": "setLocker"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The [Proposal]."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "proposal"
+        },
+        {
+          "docs": [
+            "Proposer of the proposal."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "proposer"
+        },
+        {
+          "docs": [
+            "The [ProposalMeta]."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "proposalMeta"
+        },
+        {
+          "docs": [
+            "Payer of the [ProposalMeta]."
+          ],
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "docs": [
+            "System program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "eventAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "program"
+        }
+      ],
+      "args": [
+        {
+          "name": "bump",
+          "type": "u8"
+        },
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "descriptionLink",
+          "type": "string"
+        }
+      ],
+      "docs": [
+        "Creates a [ProposalMeta]."
+      ],
+      "name": "createProposalMeta"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The [Proposal]."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "proposal"
+        },
+        {
+          "docs": [
+            "Proposer of the proposal."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "proposer"
+        },
+        {
+          "docs": [
+            "The [ProposalMeta]."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "optionProposalMeta"
+        },
+        {
+          "docs": [
+            "Payer of the [ProposalMeta]."
+          ],
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "docs": [
+            "System program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "eventAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "program"
+        }
+      ],
+      "args": [
+        {
+          "name": "bump",
+          "type": "u8"
+        },
+        {
+          "name": "optionDescriptions",
+          "type": {
+            "vec": "string"
+          }
+        }
+      ],
+      "docs": [
+        "Creates an [OptionProposalMeta]."
+      ],
+      "name": "createOptionProposalMeta"
+    }
+  ],
+  "name": "govern",
+  "types": [
+    {
+      "docs": [
+        "Governance parameters."
+      ],
+      "name": "VotingReward",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "Reward mint"
+            ],
+            "name": "rewardMint",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Reward vault"
+            ],
+            "name": "rewardVault",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Total reward per proposal"
+            ],
+            "name": "rewardPerProposal",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "docs": [
+        "Governance parameters."
+      ],
+      "name": "GovernanceParameters",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "The delay before voting on a proposal may take place, once proposed, in seconds"
+            ],
+            "name": "votingDelay",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "The duration of voting on a proposal, in seconds"
+            ],
+            "name": "votingPeriod",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "The number of votes in support of a proposal required in order for a quorum to be reached and for a vote to succeed"
+            ],
+            "name": "quorumVotes",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "The timelock delay of the DAOs created proposals."
+            ],
+            "name": "timelockDelaySeconds",
+            "type": "i64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "docs": [
+        "Instruction."
+      ],
+      "name": "ProposalInstruction",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "Pubkey of the instruction processor that executes this instruction"
+            ],
+            "name": "programId",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Metadata for what accounts should be passed to the instruction processor"
+            ],
+            "name": "keys",
+            "type": {
+              "vec": {
+                "defined": "ProposalAccountMeta"
+              }
+            }
+          },
+          {
+            "docs": [
+              "Opaque data passed to the instruction processor"
+            ],
+            "name": "data",
+            "type": "bytes"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "docs": [
+        "Account metadata used to define Instructions"
+      ],
+      "name": "ProposalAccountMeta",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "An accounts public key"
+            ],
+            "name": "pubkey",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "True if an Instruction requires a Transaction signature matching `pubkey`."
+            ],
+            "name": "isSigner",
+            "type": "bool"
+          },
+          {
+            "docs": [
+              "True if the `pubkey` can be loaded as a read-write account."
+            ],
+            "name": "isWritable",
+            "type": "bool"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "docs": [
+        "The state of a proposal.",
+        "",
+        "The `expired` state from Compound is missing here, because the",
+        "Smart Wallet handles execution."
+      ],
+      "name": "ProposalState",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Draft"
+          },
+          {
+            "name": "Active"
+          },
+          {
+            "name": "Canceled"
+          },
+          {
+            "name": "Defeated"
+          },
+          {
+            "name": "Succeeded"
+          },
+          {
+            "name": "Queued"
+          }
+        ]
+      }
+    },
+    {
+      "docs": [
+        "Proposal type"
+      ],
+      "name": "ProposalType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "YesNo"
+          },
+          {
+            "name": "Option"
+          }
+        ]
+      }
+    }
+  ],
+  "version": "0.1.0"
+}

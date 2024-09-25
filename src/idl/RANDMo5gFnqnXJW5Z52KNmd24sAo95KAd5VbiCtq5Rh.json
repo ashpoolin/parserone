@@ -1,0 +1,999 @@
+{
+  "accounts": [
+    {
+      "docs": [
+        "Keypair account used as a fallback for listening to randomness requests.",
+        "These accounts are ephemeral and are intended to be closed upon completion."
+      ],
+      "name": "SimpleRandomnessV1Account",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "Flag for determining whether the request has been completed."
+            ],
+            "name": "isCompleted",
+            "type": "u8"
+          },
+          {
+            "name": "numBytes",
+            "type": "u8"
+          },
+          {
+            "name": "user",
+            "type": "publicKey"
+          },
+          {
+            "name": "escrow",
+            "type": "publicKey"
+          },
+          {
+            "name": "requestSlot",
+            "type": "u64"
+          },
+          {
+            "name": "callback",
+            "type": {
+              "defined": "Callback"
+            }
+          },
+          {
+            "name": "computeUnits",
+            "type": "u32"
+          },
+          {
+            "name": "priorityFeeMicroLamports",
+            "type": "u64"
+          },
+          {
+            "name": "errorMessage",
+            "type": "string"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "docs": [
+        "Program global state for processing randomness requests."
+      ],
+      "name": "State",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "The PDA bump."
+            ],
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "docs": [
+              "The program authority."
+            ],
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The token mint for the program reward."
+            ],
+            "name": "mint",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The Switchboard Service responsible for responding to randomness requests"
+            ],
+            "name": "switchboardService",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Token wallet used for rewards"
+            ],
+            "name": "wallet",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The cost for each randomness request."
+            ],
+            "name": "costPerByte",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "The unix timestamp when the cost per byte was last updated."
+            ],
+            "name": "lastUpdated",
+            "type": "i64"
+          },
+          {
+            "docs": [
+              "Reserved for future use."
+            ],
+            "name": "ebuf",
+            "type": {
+              "array": [
+                "u8",
+                512
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "msg": "num_bytes must be greater than 0 and less than or equal to 32",
+      "name": "InvalidNumberOfBytes"
+    },
+    {
+      "code": 6001,
+      "msg": "Users callback cannot be executed",
+      "name": "InvalidCallback"
+    },
+    {
+      "code": 6002,
+      "msg": "Account not found in remaining_accounts",
+      "name": "MissingCallbackAccount"
+    },
+    {
+      "code": 6003,
+      "msg": "Invalid token account",
+      "name": "InvalidEscrow"
+    },
+    {
+      "code": 6004,
+      "msg": "User escrow has insufficient funds",
+      "name": "InsufficientFunds"
+    },
+    {
+      "code": 6005,
+      "msg": "This instruction cannot be invoked with a CPI call",
+      "name": "CpiUnauthorized"
+    },
+    {
+      "code": 6006,
+      "msg": "The provided request has not been completed yet",
+      "name": "RequestStillActive"
+    },
+    {
+      "code": 6007,
+      "msg": "The randomness request has already been completed",
+      "name": "RequestAlreadyCompleted"
+    },
+    {
+      "code": 6008,
+      "msg": "The provided error message exceeded 256 bytes",
+      "name": "ErrorMessageOverflow"
+    },
+    {
+      "code": 6009,
+      "msg": "The provided callback program_id is incorrect",
+      "name": "IncorrectCallbackProgramId"
+    },
+    {
+      "code": 6010,
+      "msg": "The program token wallet had insufficient funds for the request",
+      "name": "ProgramWalletInsufficientFunds"
+    }
+  ],
+  "events": [
+    {
+      "fields": [
+        {
+          "index": true,
+          "name": "callbackPid",
+          "type": "publicKey"
+        },
+        {
+          "index": true,
+          "name": "user",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "request",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "requestSlot",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "callback",
+          "type": {
+            "defined": "Callback"
+          }
+        },
+        {
+          "index": false,
+          "name": "computeUnits",
+          "type": "u32"
+        },
+        {
+          "index": false,
+          "name": "priorityFeeMicroLamports",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "numBytes",
+          "type": "u8"
+        }
+      ],
+      "name": "SimpleRandomnessV1RequestedEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": true,
+          "name": "callbackPid",
+          "type": "publicKey"
+        },
+        {
+          "index": true,
+          "name": "user",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "request",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "requestSlot",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "settledSlot",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "isSuccess",
+          "type": "bool"
+        },
+        {
+          "index": false,
+          "name": "randomness",
+          "type": "bytes"
+        }
+      ],
+      "name": "SimpleRandomnessV1SettledEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": true,
+          "name": "callbackPid",
+          "type": "publicKey"
+        },
+        {
+          "index": true,
+          "name": "user",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "request",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "requestSlot",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "settledSlot",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "errorMessage",
+          "type": "string"
+        }
+      ],
+      "name": "SimpleRandomnessV1CallbackErrorEvent"
+    }
+  ],
+  "instructions": [
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "STATE"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "wallet"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "switchboardFunction"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "switchboardService"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "costPerByte",
+          "type": "u64"
+        }
+      ],
+      "docs": [
+        "Initializes the program state and sets the:",
+        "- program authority",
+        "- Switchboard service that is used to fulfill requests",
+        "- The cost per randomness byte, in addition to 5000 lamports for the txn fee",
+        "- The wallet that will accrue rewards for fulfilling randomness"
+      ],
+      "name": "initialize"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "STATE"
+              }
+            ]
+          },
+          "relations": [
+            "authority"
+          ]
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        }
+      ],
+      "args": [
+        {
+          "name": "costPerByte",
+          "type": "u64"
+        }
+      ],
+      "docs": [
+        "Sets the fees for requesting randomness"
+      ],
+      "name": "setFees"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "STATE"
+              }
+            ]
+          },
+          "relations": [
+            "authority"
+          ]
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "switchboardFunction"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "switchboardService"
+        }
+      ],
+      "args": [],
+      "docs": [
+        "Sets the Switchboard service that will be used to fulfill requests."
+      ],
+      "name": "setSwitchboardService"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "STATE"
+              }
+            ]
+          },
+          "relations": [
+            "wallet",
+            "authority",
+            "mint"
+          ]
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "wallet"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "ephemeralWallet"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructionsSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ],
+      "docs": [
+        "Allows the program authority to withdraw from the reward escrow."
+      ],
+      "name": "programAuthorityWithdraw"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "STATE"
+              }
+            ]
+          },
+          "relations": [
+            "wallet",
+            "mint"
+          ]
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "wallet"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "switchboardFunction"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "switchboardService"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "enclaveSigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "ephemeralWallet"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructionsSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ],
+      "docs": [
+        "Allows the Switchboard service to withdraw funds to pay for future requests"
+      ],
+      "name": "switchboardServiceWithdraw"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "request"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "STATE"
+              }
+            ]
+          },
+          "relations": [
+            "mint"
+          ]
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mint"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "numBytes",
+          "type": "u8"
+        },
+        {
+          "name": "callback",
+          "type": {
+            "defined": "Callback"
+          }
+        },
+        {
+          "name": "options",
+          "type": {
+            "option": {
+              "defined": "TransactionOptions"
+            }
+          }
+        }
+      ],
+      "docs": [
+        "Simple Randomness V1",
+        "Request randomness from the Switchboard service."
+      ],
+      "name": "simpleRandomnessV1"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "user"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "request",
+          "relations": [
+            "user",
+            "escrow"
+          ]
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "STATE"
+              }
+            ]
+          },
+          "relations": [
+            "wallet",
+            "switchboard_service"
+          ]
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "wallet"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "switchboardFunction"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "switchboardService"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "enclaveSigner"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "docs": [
+            "The account that pays for the randomness request"
+          ],
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "callbackPid"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructionsSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "randomness",
+          "type": "bytes"
+        }
+      ],
+      "docs": [
+        "Settles a randomness request and invokes the users callback."
+      ],
+      "name": "simpleRandomnessV1Settle"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "request",
+          "relations": [
+            "escrow"
+          ]
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "STATE"
+              }
+            ]
+          },
+          "relations": [
+            "wallet",
+            "switchboard_service"
+          ]
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "wallet"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "switchboardFunction"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "switchboardService"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "enclaveSigner"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructionsSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "errorMessage",
+          "type": "string"
+        }
+      ],
+      "docs": [
+        "Sets the error message for a randomness request. This provides visibility to the user that the request failed off-chain."
+      ],
+      "name": "simpleRandomnessV1CallbackError"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "user"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "request",
+          "relations": [
+            "user",
+            "escrow"
+          ]
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "STATE"
+              }
+            ]
+          },
+          "relations": [
+            "wallet"
+          ]
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "wallet"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [],
+      "docs": [
+        "Allows the user to acknowledge the error message and close the request."
+      ],
+      "name": "simpleRandomnessV1CallbackClose"
+    }
+  ],
+  "name": "solana_randomness_service",
+  "types": [
+    {
+      "name": "TransactionOptions",
+      "type": {
+        "fields": [
+          {
+            "name": "computeUnits",
+            "type": {
+              "option": "u32"
+            }
+          },
+          {
+            "name": "computeUnitPrice",
+            "type": {
+              "option": "u64"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AccountMetaBorsh",
+      "type": {
+        "fields": [
+          {
+            "name": "pubkey",
+            "type": "publicKey"
+          },
+          {
+            "name": "isSigner",
+            "type": "bool"
+          },
+          {
+            "name": "isWritable",
+            "type": "bool"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "Callback",
+      "type": {
+        "fields": [
+          {
+            "name": "programId",
+            "type": "publicKey"
+          },
+          {
+            "name": "accounts",
+            "type": {
+              "vec": {
+                "defined": "AccountMetaBorsh"
+              }
+            }
+          },
+          {
+            "name": "ixData",
+            "type": "bytes"
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "version": "1.0.0"
+}

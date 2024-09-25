@@ -1,0 +1,8262 @@
+{
+  "accounts": [
+    {
+      "name": "SbState",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "The account authority permitted to make account changes."
+            ],
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The token mint used for oracle rewards, aggregator leases, and other reward incentives."
+            ],
+            "name": "tokenMint",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Token vault used by the program to receive kickbacks."
+            ],
+            "name": "tokenVault",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The token mint used by the DAO."
+            ],
+            "name": "daoMint",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The PDA bump to derive the pubkey."
+            ],
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "docs": [
+              "Permitted enclave measurements"
+            ],
+            "name": "mrEnclaves",
+            "type": {
+              "array": [
+                {
+                  "array": [
+                    "u8",
+                    32
+                  ]
+                },
+                6
+              ]
+            }
+          },
+          {
+            "docs": [
+              "Reserved for future info."
+            ],
+            "name": "ebuf",
+            "type": {
+              "array": [
+                "u8",
+                799
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "TaskSpecRecord",
+      "type": {
+        "fields": [
+          {
+            "name": "hash",
+            "type": {
+              "defined": "Hash"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AggregatorAccountData",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "Name of the aggregator to store on-chain."
+            ],
+            "name": "name",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "docs": [
+              "Metadata of the aggregator to store on-chain."
+            ],
+            "name": "metadata",
+            "type": {
+              "array": [
+                "u8",
+                128
+              ]
+            }
+          },
+          {
+            "docs": [
+              "Reserved."
+            ],
+            "name": "reserved1",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "docs": [
+              "Pubkey of the queue the aggregator belongs to."
+            ],
+            "name": "queuePubkey",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "CONFIGS",
+              "Number of oracles assigned to an update request."
+            ],
+            "name": "oracleRequestBatchSize",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "Minimum number of oracle responses required before a round is validated."
+            ],
+            "name": "minOracleResults",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "Minimum number of job results before an oracle accepts a result."
+            ],
+            "name": "minJobResults",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "Minimum number of seconds required between aggregator rounds."
+            ],
+            "name": "minUpdateDelaySeconds",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "Unix timestamp for which no feed update will occur before."
+            ],
+            "name": "startAfter",
+            "type": "i64"
+          },
+          {
+            "docs": [
+              "Change percentage required between a previous round and the current round. If variance percentage is not met, reject new oracle responses."
+            ],
+            "name": "varianceThreshold",
+            "type": {
+              "defined": "SwitchboardDecimal"
+            }
+          },
+          {
+            "docs": [
+              "Number of seconds for which, even if the variance threshold is not passed, accept new responses from oracles."
+            ],
+            "name": "forceReportPeriod",
+            "type": "i64"
+          },
+          {
+            "docs": [
+              "Timestamp when the feed is no longer needed."
+            ],
+            "name": "expiration",
+            "type": "i64"
+          },
+          {
+            "docs": [
+              "Counter for the number of consecutive failures before a feed is removed from a queue. If set to 0, failed feeds will remain on the queue."
+            ],
+            "name": "consecutiveFailureCount",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "Timestamp when the next update request will be available."
+            ],
+            "name": "nextAllowedUpdateTime",
+            "type": "i64"
+          },
+          {
+            "docs": [
+              "Flag for whether an aggregators configuration is locked for editing."
+            ],
+            "name": "isLocked",
+            "type": "bool"
+          },
+          {
+            "docs": [
+              "Optional, public key of the crank the aggregator is currently using. Event based feeds do not need a crank."
+            ],
+            "name": "crankPubkey",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Latest confirmed update request result that has been accepted as valid."
+            ],
+            "name": "latestConfirmedRound",
+            "type": {
+              "defined": "AggregatorRound"
+            }
+          },
+          {
+            "docs": [
+              "Oracle results from the current round of update request that has not been accepted as valid yet."
+            ],
+            "name": "currentRound",
+            "type": {
+              "defined": "AggregatorRound"
+            }
+          },
+          {
+            "docs": [
+              "List of public keys containing the job definitions for how data is sourced off-chain by oracles."
+            ],
+            "name": "jobPubkeysData",
+            "type": {
+              "array": [
+                "publicKey",
+                16
+              ]
+            }
+          },
+          {
+            "docs": [
+              "Used to protect against malicious RPC nodes providing incorrect task definitions to oracles before fulfillment."
+            ],
+            "name": "jobHashes",
+            "type": {
+              "array": [
+                {
+                  "defined": "Hash"
+                },
+                16
+              ]
+            }
+          },
+          {
+            "docs": [
+              "Number of jobs assigned to an oracle."
+            ],
+            "name": "jobPubkeysSize",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "Used to protect against malicious RPC nodes providing incorrect task definitions to oracles before fulfillment."
+            ],
+            "name": "jobsChecksum",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "docs": [
+              "The account delegated as the authority for making account changes."
+            ],
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Optional, public key of a history buffer account storing the last N accepted results and their timestamps."
+            ],
+            "name": "historyBuffer",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The previous confirmed round result."
+            ],
+            "name": "previousConfirmedRoundResult",
+            "type": {
+              "defined": "SwitchboardDecimal"
+            }
+          },
+          {
+            "docs": [
+              "The slot when the previous confirmed round was opened."
+            ],
+            "name": "previousConfirmedRoundSlot",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "Whether an aggregator is permitted to join a crank."
+            ],
+            "name": "disableCrank",
+            "type": "bool"
+          },
+          {
+            "docs": [
+              "Job weights used for the weighted median of the aggregators assigned job accounts."
+            ],
+            "name": "jobWeights",
+            "type": {
+              "array": [
+                "u8",
+                16
+              ]
+            }
+          },
+          {
+            "docs": [
+              "Unix timestamp when the feed was created."
+            ],
+            "name": "creationTimestamp",
+            "type": "i64"
+          },
+          {
+            "docs": [
+              "Use sliding window or round based resolution",
+              "NOTE: This changes result propogation in latest_round_result"
+            ],
+            "name": "resolutionMode",
+            "type": {
+              "defined": "AggregatorResolutionMode"
+            }
+          },
+          {
+            "name": "basePriorityFee",
+            "type": "u32"
+          },
+          {
+            "name": "priorityFeeBump",
+            "type": "u32"
+          },
+          {
+            "name": "priorityFeeBumpPeriod",
+            "type": "u32"
+          },
+          {
+            "name": "maxPriorityFeeMultiplier",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "Reserved for future info."
+            ],
+            "name": "ebuf",
+            "type": {
+              "array": [
+                "u8",
+                122
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SlidingResultAccountData",
+      "type": {
+        "fields": [
+          {
+            "name": "data",
+            "type": {
+              "array": [
+                {
+                  "defined": "SlidingWindowElement"
+                },
+                16
+              ]
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "ebuf",
+            "type": {
+              "array": [
+                "u8",
+                512
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "PermissionAccountData",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "The authority that is allowed to set permissions for this account."
+            ],
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The SwitchboardPermission enumeration assigned by the granter to the grantee."
+            ],
+            "name": "permissions",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "Public key of account that is granting permissions to use its resources."
+            ],
+            "name": "granter",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Public key of account that is being assigned permissions to use a granters resources."
+            ],
+            "name": "grantee",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "unused currently. may want permission PDA per permission for",
+              "unique expiration periods, BUT currently only one permission",
+              "per account makes sense for the infra. Dont over engineer."
+            ],
+            "name": "expiration",
+            "type": "i64"
+          },
+          {
+            "docs": [
+              "The PDA bump to derive the pubkey."
+            ],
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "docs": [
+              "Reserved for future info."
+            ],
+            "name": "ebuf",
+            "type": {
+              "array": [
+                "u8",
+                255
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "RealmSpawnRecordAccountData",
+      "type": {
+        "fields": [
+          {
+            "name": "ebuf",
+            "type": {
+              "array": [
+                "u8",
+                256
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "docs": [
+        "This should be any ccount that links a permission to an escrow"
+      ],
+      "name": "LeaseAccountData",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "Public key of the token account holding the lease contract funds until rewarded to oracles for successfully processing updates"
+            ],
+            "name": "escrow",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Public key of the oracle queue that the lease contract is applicable for."
+            ],
+            "name": "queue",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Public key of the aggregator that the lease contract is applicable for"
+            ],
+            "name": "aggregator",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Public key of the Solana token program ID."
+            ],
+            "name": "tokenProgram",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Whether the lease contract is still active."
+            ],
+            "name": "isActive",
+            "type": "bool"
+          },
+          {
+            "docs": [
+              "Index of an aggregators position on a crank."
+            ],
+            "name": "crankRowCount",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "Timestamp when the lease contract was created."
+            ],
+            "name": "createdAt",
+            "type": "i64"
+          },
+          {
+            "docs": [
+              "Counter keeping track of the number of updates for the given aggregator."
+            ],
+            "name": "updateCount",
+            "type": "u128"
+          },
+          {
+            "docs": [
+              "Public key of keypair that may withdraw funds from the lease at any time"
+            ],
+            "name": "withdrawAuthority",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The PDA bump to derive the pubkey."
+            ],
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "ebuf",
+            "type": {
+              "array": [
+                "u8",
+                255
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "OracleQueueAccountData",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "Name of the queue to store on-chain."
+            ],
+            "name": "name",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "docs": [
+              "Metadata of the queue to store on-chain."
+            ],
+            "name": "metadata",
+            "type": {
+              "array": [
+                "u8",
+                64
+              ]
+            }
+          },
+          {
+            "docs": [
+              "The account delegated as the authority for making account changes or assigning permissions targeted at the queue."
+            ],
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Interval when stale oracles will be removed if they fail to heartbeat."
+            ],
+            "name": "oracleTimeout",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "Rewards to provide oracles and round openers on this queue."
+            ],
+            "name": "reward",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "The minimum amount of stake oracles must present to remain on the queue."
+            ],
+            "name": "minStake",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "Whether slashing is enabled on this queue."
+            ],
+            "name": "slashingEnabled",
+            "type": "bool"
+          },
+          {
+            "docs": [
+              "The tolerated variance amount oracle results can have from the accepted round result before being slashed.",
+              "slashBound = varianceToleranceMultiplier * stdDeviation Default: 2"
+            ],
+            "name": "varianceToleranceMultiplier",
+            "type": {
+              "defined": "SwitchboardDecimal"
+            }
+          },
+          {
+            "docs": [
+              "Number of update rounds new feeds are on probation for.",
+              "If a feed returns 429s within probation period, auto disable permissions."
+            ],
+            "name": "feedProbationPeriod",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "Current index of the oracle rotation."
+            ],
+            "name": "currIdx",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "Current number of oracles on a queue."
+            ],
+            "name": "size",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "Garbage collection index."
+            ],
+            "name": "gcIdx",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "Consecutive failure limit for a feed before feed permission is revoked."
+            ],
+            "name": "consecutiveFeedFailureLimit",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "Consecutive failure limit for an oracle before oracle permission is revoked."
+            ],
+            "name": "consecutiveOracleFailureLimit",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "Enabling this setting means data feeds do not need explicit permission to join the queue and request new values from its oracles."
+            ],
+            "name": "unpermissionedFeedsEnabled",
+            "type": "bool"
+          },
+          {
+            "docs": [
+              "Enabling this setting means VRF accounts do not need explicit permission to join the queue and request new values from its oracles."
+            ],
+            "name": "unpermissionedVrfEnabled",
+            "type": "bool"
+          },
+          {
+            "docs": [
+              "TODO: Revenue percentage rewarded to job curators overall."
+            ],
+            "name": "curatorRewardCut",
+            "type": {
+              "defined": "SwitchboardDecimal"
+            }
+          },
+          {
+            "docs": [
+              "Prevent new leases from being funded n this queue.",
+              "Useful to turn down a queue for migrations, since authority is always immutable."
+            ],
+            "name": "lockLeaseFunding",
+            "type": "bool"
+          },
+          {
+            "docs": [
+              "Token mint used for the oracle queue rewards and slashing."
+            ],
+            "name": "mint",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Whether oracles are permitted to fulfill buffer relayer update request."
+            ],
+            "name": "enableBufferRelayers",
+            "type": "bool"
+          },
+          {
+            "name": "enableTeeOnly",
+            "type": "bool"
+          },
+          {
+            "docs": [
+              "Reserved for future info."
+            ],
+            "name": "ebuf",
+            "type": {
+              "array": [
+                "u8",
+                967
+              ]
+            }
+          },
+          {
+            "docs": [
+              "Maximum number of oracles a queue can support."
+            ],
+            "name": "maxSize",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "The public key of the OracleQueueBuffer account holding a collection of Oracle pubkeys that haver successfully heartbeated before the queues `oracleTimeout`."
+            ],
+            "name": "dataBuffer",
+            "type": "publicKey"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "CrankAccountData",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "Name of the crank to store on-chain."
+            ],
+            "name": "name",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "docs": [
+              "Metadata of the crank to store on-chain."
+            ],
+            "name": "metadata",
+            "type": {
+              "array": [
+                "u8",
+                64
+              ]
+            }
+          },
+          {
+            "docs": [
+              "Public key of the oracle queue who owns the crank."
+            ],
+            "name": "queuePubkey",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Number of aggregators added to the crank."
+            ],
+            "name": "pqSize",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "Maximum number of aggregators allowed to be added to a crank."
+            ],
+            "name": "maxRows",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "Pseudorandom value added to next aggregator update time."
+            ],
+            "name": "jitterModifier",
+            "type": "u8"
+          },
+          {
+            "docs": [
+              "Reserved for future info."
+            ],
+            "name": "ebuf",
+            "type": {
+              "array": [
+                "u8",
+                255
+              ]
+            }
+          },
+          {
+            "docs": [
+              "The public key of the CrankBuffer account holding a collection of Aggregator pubkeys and their next allowed update time."
+            ],
+            "name": "dataBuffer",
+            "type": "publicKey"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "OracleAccountData",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "Name of the oracle to store on-chain."
+            ],
+            "name": "name",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "docs": [
+              "Metadata of the oracle to store on-chain."
+            ],
+            "name": "metadata",
+            "type": {
+              "array": [
+                "u8",
+                128
+              ]
+            }
+          },
+          {
+            "docs": [
+              "The account delegated as the authority for making account changes or withdrawing funds from a staking wallet."
+            ],
+            "name": "oracleAuthority",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Unix timestamp when the oracle last heartbeated"
+            ],
+            "name": "lastHeartbeat",
+            "type": "i64"
+          },
+          {
+            "docs": [
+              "Flag dictating if an oracle is active and has heartbeated before the queues oracle timeout parameter."
+            ],
+            "name": "numInUse",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "Stake account and reward/slashing wallet."
+            ],
+            "name": "tokenAccount",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Public key of the oracle queue who has granted it permission to use its resources."
+            ],
+            "name": "queuePubkey",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Oracle track record."
+            ],
+            "name": "metrics",
+            "type": {
+              "defined": "OracleMetrics"
+            }
+          },
+          {
+            "docs": [
+              "The PDA bump to derive the pubkey."
+            ],
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "docs": [
+              "Reserved for future info."
+            ],
+            "name": "ebuf",
+            "type": {
+              "array": [
+                "u8",
+                255
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "JobAccountData",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "Name of the job to store on-chain."
+            ],
+            "name": "name",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "docs": [
+              "Metadata of the job to store on-chain."
+            ],
+            "name": "metadata",
+            "type": {
+              "array": [
+                "u8",
+                64
+              ]
+            }
+          },
+          {
+            "docs": [
+              "The account delegated as the authority for making account changes."
+            ],
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Unix timestamp when the job is considered invalid"
+            ],
+            "name": "expiration",
+            "type": "i64"
+          },
+          {
+            "docs": [
+              "Hash of the serialized data to prevent tampering."
+            ],
+            "name": "hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "docs": [
+              "Serialized protobuf containing the collection of task to retrieve data off-chain."
+            ],
+            "name": "data",
+            "type": "bytes"
+          },
+          {
+            "docs": [
+              "The number of data feeds referencing the job account.."
+            ],
+            "name": "referenceCount",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "The token amount funded into a feed that contains this job account."
+            ],
+            "name": "totalSpent",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "Unix timestamp when the job was created on-chain."
+            ],
+            "name": "createdAt",
+            "type": "i64"
+          },
+          {
+            "name": "isInitializing",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "VrfAccountData",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "The current status of the VRF account."
+            ],
+            "name": "status",
+            "type": {
+              "defined": "VrfStatus"
+            }
+          },
+          {
+            "docs": [
+              "Incremental counter for tracking VRF rounds."
+            ],
+            "name": "counter",
+            "type": "u128"
+          },
+          {
+            "docs": [
+              "On-chain account delegated for making account changes."
+            ],
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The OracleQueueAccountData that is assigned to fulfill VRF update request."
+            ],
+            "name": "oracleQueue",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The token account used to hold funds for VRF update request."
+            ],
+            "name": "escrow",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The callback that is invoked when an update request is successfully verified."
+            ],
+            "name": "callback",
+            "type": {
+              "defined": "CallbackZC"
+            }
+          },
+          {
+            "docs": [
+              "The number of oracles assigned to a VRF update request."
+            ],
+            "name": "batchSize",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "Struct containing the intermediate state between VRF crank actions."
+            ],
+            "name": "builders",
+            "type": {
+              "array": [
+                {
+                  "defined": "VrfBuilder"
+                },
+                8
+              ]
+            }
+          },
+          {
+            "docs": [
+              "The number of builders."
+            ],
+            "name": "buildersLen",
+            "type": "u32"
+          },
+          {
+            "name": "testMode",
+            "type": "bool"
+          },
+          {
+            "docs": [
+              "Oracle results from the current round of update request that has not been accepted as valid yet"
+            ],
+            "name": "currentRound",
+            "type": {
+              "defined": "VrfRound"
+            }
+          },
+          {
+            "docs": [
+              "Reserved for future info."
+            ],
+            "name": "ebuf",
+            "type": {
+              "array": [
+                "u8",
+                1024
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "VrfLiteAccountData",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "The bump used to derive the SbState account."
+            ],
+            "name": "stateBump",
+            "type": "u8"
+          },
+          {
+            "docs": [
+              "The bump used to derive the permission account."
+            ],
+            "name": "permissionBump",
+            "type": "u8"
+          },
+          {
+            "docs": [
+              "The VrfPool the account belongs to."
+            ],
+            "name": "vrfPool",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The current status of the VRF account."
+            ],
+            "name": "status",
+            "type": {
+              "defined": "VrfStatus"
+            }
+          },
+          {
+            "docs": [
+              "The VRF round result. Will be zeroized if still awaiting fulfillment."
+            ],
+            "name": "result",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "docs": [
+              "Incremental counter for tracking VRF rounds."
+            ],
+            "name": "counter",
+            "type": "u128"
+          },
+          {
+            "docs": [
+              "The alpha bytes used to calculate the VRF proof."
+            ],
+            "name": "alpha",
+            "type": {
+              "array": [
+                "u8",
+                256
+              ]
+            }
+          },
+          {
+            "docs": [
+              "The number of bytes in the alpha buffer."
+            ],
+            "name": "alphaLen",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "The Slot when the VRF round was opened."
+            ],
+            "name": "requestSlot",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "The unix timestamp when the VRF round was opened."
+            ],
+            "name": "requestTimestamp",
+            "type": "i64"
+          },
+          {
+            "docs": [
+              "On-chain account delegated for making account changes."
+            ],
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The OracleQueueAccountData that is assigned to fulfill VRF update request."
+            ],
+            "name": "queue",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The token account used to hold funds for VRF update request."
+            ],
+            "name": "escrow",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The callback that is invoked when an update request is successfully verified."
+            ],
+            "name": "callback",
+            "type": {
+              "defined": "CallbackZC"
+            }
+          },
+          {
+            "docs": [
+              "The incremental VRF proof calculation."
+            ],
+            "name": "builder",
+            "type": {
+              "defined": "VrfBuilder"
+            }
+          },
+          {
+            "name": "expiration",
+            "type": "i64"
+          },
+          {
+            "name": "ebuf",
+            "type": {
+              "array": [
+                "u8",
+                1024
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "VrfPoolAccountData",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "ACCOUNTS"
+            ],
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "queue",
+            "type": "publicKey"
+          },
+          {
+            "name": "escrow",
+            "type": "publicKey"
+          },
+          {
+            "name": "minInterval",
+            "type": "u32"
+          },
+          {
+            "name": "maxRows",
+            "type": "u32"
+          },
+          {
+            "name": "size",
+            "type": "u32"
+          },
+          {
+            "name": "idx",
+            "type": "u32"
+          },
+          {
+            "name": "stateBump",
+            "type": "u8"
+          },
+          {
+            "name": "ebuf",
+            "type": {
+              "array": [
+                "u8",
+                135
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "BufferRelayerAccountData",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "Name of the buffer account to store on-chain."
+            ],
+            "name": "name",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "docs": [
+              "Public key of the OracleQueueAccountData that is currently assigned to fulfill buffer relayer update request."
+            ],
+            "name": "queuePubkey",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Token account to reward oracles for completing update request."
+            ],
+            "name": "escrow",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The account delegated as the authority for making account changes."
+            ],
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Public key of the JobAccountData that defines how the buffer relayer is updated."
+            ],
+            "name": "jobPubkey",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Used to protect against malicious RPC nodes providing incorrect task definitions to oracles before fulfillment"
+            ],
+            "name": "jobHash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "docs": [
+              "Minimum delay between update request."
+            ],
+            "name": "minUpdateDelaySeconds",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "Whether buffer relayer config is locked for further changes."
+            ],
+            "name": "isLocked",
+            "type": "bool"
+          },
+          {
+            "docs": [
+              "The current buffer relayer update round that is yet to be confirmed."
+            ],
+            "name": "currentRound",
+            "type": {
+              "defined": "BufferRelayerRound"
+            }
+          },
+          {
+            "docs": [
+              "The latest confirmed buffer relayer update round."
+            ],
+            "name": "latestConfirmedRound",
+            "type": {
+              "defined": "BufferRelayerRound"
+            }
+          },
+          {
+            "docs": [
+              "The buffer holding the latest confirmed result."
+            ],
+            "name": "result",
+            "type": "bytes"
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "msg": "Illegal operation on a Switchboard array.",
+      "name": "ArrayOperationError"
+    },
+    {
+      "code": 6001,
+      "msg": "Illegal operation on a Switchboard queue.",
+      "name": "QueueOperationError"
+    },
+    {
+      "code": 6002,
+      "msg": "An account required to be owned by the program has a different owner.",
+      "name": "IncorrectProgramOwnerError"
+    },
+    {
+      "code": 6003,
+      "msg": "Aggregator is not currently populated with a valid round.",
+      "name": "InvalidAggregatorRound"
+    },
+    {
+      "code": 6004,
+      "msg": "Aggregator cannot fit any more jobs.",
+      "name": "TooManyAggregatorJobs"
+    },
+    {
+      "code": 6005,
+      "msg": "Aggregators current round is closed. No results are being accepted.",
+      "name": "AggregatorCurrentRoundClosed"
+    },
+    {
+      "code": 6006,
+      "msg": "Aggregator received an invalid save result instruction.",
+      "name": "AggregatorInvalidSaveResult"
+    },
+    {
+      "code": 6007,
+      "msg": "Failed to convert string to decimal format.",
+      "name": "InvalidStrDecimalConversion"
+    },
+    {
+      "code": 6008,
+      "msg": "AccountLoader account is missing a required signature.",
+      "name": "AccountLoaderMissingSignature"
+    },
+    {
+      "code": 6009,
+      "msg": "Account is missing a required signature.",
+      "name": "MissingRequiredSignature"
+    },
+    {
+      "code": 6010,
+      "msg": "The attempted action will overflow a zero-copy account array.",
+      "name": "ArrayOverflowError"
+    },
+    {
+      "code": 6011,
+      "msg": "The attempted action will underflow a zero-copy account array.",
+      "name": "ArrayUnderflowError"
+    },
+    {
+      "code": 6012,
+      "msg": "The queried public key was not found.",
+      "name": "PubkeyNotFoundError"
+    },
+    {
+      "code": 6013,
+      "msg": "Aggregator round open called too early.",
+      "name": "AggregatorIllegalRoundOpenCall"
+    },
+    {
+      "code": 6014,
+      "msg": "Aggregator round close called too early.",
+      "name": "AggregatorIllegalRoundCloseCall"
+    },
+    {
+      "code": 6015,
+      "msg": "Aggregator is closed. Illegal action.",
+      "name": "AggregatorClosedError"
+    },
+    {
+      "code": 6016,
+      "msg": "Illegal oracle index.",
+      "name": "IllegalOracleIdxError"
+    },
+    {
+      "code": 6017,
+      "msg": "The provided oracle has already responded this round.",
+      "name": "OracleAlreadyRespondedError"
+    },
+    {
+      "code": 6018,
+      "msg": "Failed to deserialize protocol buffer.",
+      "name": "ProtoDeserializeError"
+    },
+    {
+      "code": 6019,
+      "msg": "Unauthorized program state modification attempted.",
+      "name": "UnauthorizedStateUpdateError"
+    },
+    {
+      "code": 6020,
+      "msg": "Not enough oracle accounts provided to closeRounds.",
+      "name": "MissingOracleAccountsError"
+    },
+    {
+      "code": 6021,
+      "msg": "An unexpected oracle account was provided for the transaction.",
+      "name": "OracleMismatchError"
+    },
+    {
+      "code": 6022,
+      "msg": "Attempted to push to a Crank thats at capacity",
+      "name": "CrankMaxCapacityError"
+    },
+    {
+      "code": 6023,
+      "msg": "Aggregator update call attempted but attached lease has insufficient funds.",
+      "name": "AggregatorLeaseInsufficientFunds"
+    },
+    {
+      "code": 6024,
+      "msg": "The provided token account does not point to the Switchboard token mint.",
+      "name": "IncorrectTokenAccountMint"
+    },
+    {
+      "code": 6025,
+      "msg": "An invalid escrow account was provided.",
+      "name": "InvalidEscrowAccount"
+    },
+    {
+      "code": 6026,
+      "msg": "Crank empty. Pop failed.",
+      "name": "CrankEmptyError"
+    },
+    {
+      "code": 6027,
+      "msg": "Failed to derive a PDA from the provided seed.",
+      "name": "PdaDeriveError"
+    },
+    {
+      "code": 6028,
+      "msg": "Aggregator account missing from provided account list.",
+      "name": "AggregatorAccountNotFound"
+    },
+    {
+      "code": 6029,
+      "msg": "Permission account missing from provided account list.",
+      "name": "PermissionAccountNotFound"
+    },
+    {
+      "code": 6030,
+      "msg": "Failed to derive a lease account.",
+      "name": "LeaseAccountDeriveFailure"
+    },
+    {
+      "code": 6031,
+      "msg": "Failed to derive a permission account.",
+      "name": "PermissionAccountDeriveFailure"
+    },
+    {
+      "code": 6032,
+      "msg": "Escrow account missing from provided account list.",
+      "name": "EscrowAccountNotFound"
+    },
+    {
+      "code": 6033,
+      "msg": "Lease account missing from provided account list.",
+      "name": "LeaseAccountNotFound"
+    },
+    {
+      "code": 6034,
+      "msg": "Decimal conversion method failed.",
+      "name": "DecimalConversionError"
+    },
+    {
+      "code": 6035,
+      "msg": "Permission account is missing required flags for the given action.",
+      "name": "PermissionDenied"
+    },
+    {
+      "code": 6036,
+      "msg": "Oracle queue is at lease capacity.",
+      "name": "QueueAtCapacity"
+    },
+    {
+      "code": 6037,
+      "msg": "Data feed is already pushed on a crank.",
+      "name": "ExcessiveCrankRowsError"
+    },
+    {
+      "code": 6038,
+      "msg": "Aggregator is locked, no setting modifications or job additions allowed.",
+      "name": "AggregatorLockedError"
+    },
+    {
+      "code": 6039,
+      "msg": "Aggregator invalid batch size.",
+      "name": "AggregatorInvalidBatchSizeError"
+    },
+    {
+      "code": 6040,
+      "msg": "Oracle provided an incorrect aggregator job checksum.",
+      "name": "AggregatorJobChecksumMismatch"
+    },
+    {
+      "code": 6041,
+      "msg": "An integer overflow occurred.",
+      "name": "IntegerOverflowError"
+    },
+    {
+      "code": 6042,
+      "msg": "Minimum update period is 5 seconds.",
+      "name": "InvalidUpdatePeriodError"
+    },
+    {
+      "code": 6043,
+      "msg": "Aggregator round evaluation attempted with no results.",
+      "name": "NoResultsError"
+    },
+    {
+      "code": 6044,
+      "msg": "An expiration constraint was broken.",
+      "name": "InvalidExpirationError"
+    },
+    {
+      "code": 6045,
+      "msg": "An account provided insufficient stake for action.",
+      "name": "InsufficientStakeError"
+    },
+    {
+      "code": 6046,
+      "msg": "The provided lease account is not active.",
+      "name": "LeaseInactiveError"
+    },
+    {
+      "code": 6047,
+      "msg": "No jobs are currently included in the aggregator.",
+      "name": "NoAggregatorJobsFound"
+    },
+    {
+      "code": 6048,
+      "msg": "An integer underflow occurred.",
+      "name": "IntegerUnderflowError"
+    },
+    {
+      "code": 6049,
+      "msg": "An invalid oracle queue account was provided.",
+      "name": "OracleQueueMismatch"
+    },
+    {
+      "code": 6050,
+      "msg": "An unexpected oracle wallet account was provided for the transaction.",
+      "name": "OracleWalletMismatchError"
+    },
+    {
+      "code": 6051,
+      "msg": "An invalid buffer account was provided.",
+      "name": "InvalidBufferAccountError"
+    },
+    {
+      "code": 6052,
+      "msg": "Insufficient oracle queue size.",
+      "name": "InsufficientOracleQueueError"
+    },
+    {
+      "code": 6053,
+      "msg": "Invalid authority account provided.",
+      "name": "InvalidAuthorityError"
+    },
+    {
+      "code": 6054,
+      "msg": "A provided token wallet is associated with an incorrect mint.",
+      "name": "InvalidTokenAccountMintError"
+    },
+    {
+      "code": 6055,
+      "msg": "You must leave enough funds to perform at least 1 update in the lease.",
+      "name": "ExcessiveLeaseWithdrawlError"
+    },
+    {
+      "code": 6056,
+      "msg": "Invalid history account provided.",
+      "name": "InvalideHistoryAccountError"
+    },
+    {
+      "code": 6057,
+      "msg": "Invalid lease account escrow.",
+      "name": "InvalidLeaseAccountEscrowError"
+    },
+    {
+      "code": 6058,
+      "msg": "Invalid crank provided.",
+      "name": "InvalidCrankAccountError"
+    },
+    {
+      "code": 6059,
+      "msg": "No elements ready to be popped.",
+      "name": "CrankNoElementsReadyError"
+    },
+    {
+      "code": 6060,
+      "msg": "Index out of bounds",
+      "name": "IndexOutOfBoundsError"
+    },
+    {
+      "code": 6061,
+      "msg": "Invalid vrf request params",
+      "name": "VrfInvalidRequestError"
+    },
+    {
+      "code": 6062,
+      "msg": "Vrf proof failed to verify",
+      "name": "VrfInvalidProofSubmissionError"
+    },
+    {
+      "code": 6063,
+      "msg": "Error in verifying vrf proof.",
+      "name": "VrfVerifyError"
+    },
+    {
+      "code": 6064,
+      "msg": "Vrf callback function failed.",
+      "name": "VrfCallbackError"
+    },
+    {
+      "code": 6065,
+      "msg": "Invalid vrf callback params provided.",
+      "name": "VrfCallbackParamsError"
+    },
+    {
+      "code": 6066,
+      "msg": "Vrf callback has already been triggered.",
+      "name": "VrfCallbackAlreadyCalledError"
+    },
+    {
+      "code": 6067,
+      "msg": "The provided pubkey is invalid to use in ecvrf proofs",
+      "name": "VrfInvalidPubkeyError"
+    },
+    {
+      "code": 6068,
+      "msg": "Number of required verify calls exceeded",
+      "name": "VrfTooManyVerifyCallsError"
+    },
+    {
+      "code": 6069,
+      "msg": "Vrf request is already pending",
+      "name": "VrfRequestAlreadyLaunchedError"
+    },
+    {
+      "code": 6070,
+      "msg": "Insufficient amount of proofs collected for VRF callback",
+      "name": "VrfInsufficientVerificationError"
+    },
+    {
+      "code": 6071,
+      "msg": "An incorrect oracle attempted to submit a proof",
+      "name": "InvalidVrfProducerError"
+    },
+    {
+      "code": 6072,
+      "msg": "Invalid SPLGovernance Account Supplied",
+      "name": "InvalidGovernancePidError"
+    },
+    {
+      "code": 6073,
+      "msg": "An Invalid Governance Account was supplied",
+      "name": "InvalidGovernanceAccountError"
+    },
+    {
+      "code": 6074,
+      "msg": "Expected an optional account",
+      "name": "MissingOptionalAccount"
+    },
+    {
+      "code": 6075,
+      "msg": "Invalid Owner for Spawn Record",
+      "name": "InvalidSpawnRecordOwner"
+    },
+    {
+      "code": 6076,
+      "msg": "Noop error",
+      "name": "NoopError"
+    },
+    {
+      "code": 6077,
+      "msg": "A required instruction account was not included",
+      "name": "MissingRequiredAccountsError"
+    },
+    {
+      "code": 6078,
+      "msg": "Invalid mint account passed for instruction",
+      "name": "InvalidMintError"
+    },
+    {
+      "code": 6079,
+      "msg": "An invalid token account was passed into the instruction",
+      "name": "InvalidTokenAccountKeyError"
+    },
+    {
+      "code": 6080,
+      "msg": "",
+      "name": "InvalidJobAccountError"
+    },
+    {
+      "code": 6081,
+      "msg": "",
+      "name": "VoterStakeRegistryError"
+    },
+    {
+      "code": 6082,
+      "msg": "Account discriminator did not match.",
+      "name": "AccountDiscriminatorMismatch"
+    },
+    {
+      "code": 6083,
+      "msg": "This error is fucking impossible.",
+      "name": "FuckingImpossibleError"
+    },
+    {
+      "code": 6084,
+      "msg": "Responding to the wrong VRF round",
+      "name": "InvalidVrfRound"
+    },
+    {
+      "code": 6085,
+      "msg": "Job size has exceeded the max of 6400 bytes",
+      "name": "JobSizeExceeded"
+    },
+    {
+      "code": 6086,
+      "msg": "Job loading can only support a maximum of 8 chunks",
+      "name": "JobChunksExceeded"
+    },
+    {
+      "code": 6087,
+      "msg": "Job has finished initializing and is immutable",
+      "name": "JobDataLocked"
+    },
+    {
+      "code": 6088,
+      "msg": "Job account has not finished initializing",
+      "name": "JobNotInitialized"
+    },
+    {
+      "code": 6089,
+      "msg": "BufferRelayer round open called too early.",
+      "name": "BufferRelayerIllegalRoundOpenCall"
+    },
+    {
+      "code": 6090,
+      "msg": "Invalid slider account.",
+      "name": "InvalidSliderAccount"
+    },
+    {
+      "code": 6091,
+      "msg": "VRF lite account belongs to an existing pool.",
+      "name": "VrfLiteHasExistingPool"
+    },
+    {
+      "code": 6092,
+      "msg": "VRF pool is at max capacity.",
+      "name": "VrfPoolFull"
+    },
+    {
+      "code": 6093,
+      "msg": "VRF pool is empty.",
+      "name": "VrfPoolEmpty"
+    },
+    {
+      "code": 6094,
+      "msg": "Failed to find VRF account in remaining accounts array.",
+      "name": "VrfAccountNotFound"
+    },
+    {
+      "code": 6095,
+      "msg": "Account is not ready to be closed.",
+      "name": "AccountCloseNotReady"
+    },
+    {
+      "code": 6096,
+      "msg": "VRF requested too soon.",
+      "name": "VrfPoolRequestTooSoon"
+    },
+    {
+      "code": 6097,
+      "msg": "VRF pool miss.",
+      "name": "VrfPoolMiss"
+    },
+    {
+      "code": 6098,
+      "msg": "VRF lite belongs to a pool.",
+      "name": "VrfLiteOwnedByPool"
+    },
+    {
+      "code": 6099,
+      "msg": "Escrow has insufficient funds to perform this action.",
+      "name": "InsufficientTokenBalance"
+    },
+    {
+      "code": 6100,
+      "msg": "Invalid SAS quote account",
+      "name": "InvalidQuoteError"
+    },
+    {
+      "code": 6101,
+      "msg": "",
+      "name": "InvalidHistoryAccountError"
+    },
+    {
+      "code": 6102,
+      "msg": "",
+      "name": "GenericError"
+    },
+    {
+      "code": 6103,
+      "msg": "",
+      "name": "InvalidAuthorityState"
+    }
+  ],
+  "events": [
+    {
+      "fields": [
+        {
+          "index": true,
+          "name": "vrfPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "oraclePubkeys",
+          "type": {
+            "vec": "publicKey"
+          }
+        },
+        {
+          "index": false,
+          "name": "loadAmount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "existingAmount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "alpha",
+          "type": "bytes"
+        },
+        {
+          "index": false,
+          "name": "counter",
+          "type": "u128"
+        }
+      ],
+      "name": "VrfRequestRandomnessEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": true,
+          "name": "vrfPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "oraclePubkeys",
+          "type": {
+            "vec": "publicKey"
+          }
+        }
+      ],
+      "name": "VrfRequestEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": true,
+          "name": "vrfPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": true,
+          "name": "oraclePubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "authorityPubkey",
+          "type": "publicKey"
+        }
+      ],
+      "name": "VrfProveEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": true,
+          "name": "vrfPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": true,
+          "name": "oraclePubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "authorityPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "amount",
+          "type": "u64"
+        }
+      ],
+      "name": "VrfVerifyEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": true,
+          "name": "vrfPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": true,
+          "name": "oraclePubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "amount",
+          "type": "u64"
+        }
+      ],
+      "name": "VrfCallbackPerformedEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "feedPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "oraclePubkeys",
+          "type": {
+            "vec": "publicKey"
+          }
+        },
+        {
+          "index": false,
+          "name": "jobPubkeys",
+          "type": {
+            "vec": "publicKey"
+          }
+        },
+        {
+          "index": false,
+          "name": "remainingFunds",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "queueAuthority",
+          "type": "publicKey"
+        }
+      ],
+      "name": "AggregatorOpenRoundEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "feedPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "value",
+          "type": {
+            "defined": "BorshDecimal"
+          }
+        },
+        {
+          "index": false,
+          "name": "slot",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "timestamp",
+          "type": "i64"
+        },
+        {
+          "index": false,
+          "name": "oraclePubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "jobValues",
+          "type": {
+            "vec": {
+              "option": {
+                "defined": "BorshDecimal"
+              }
+            }
+          }
+        }
+      ],
+      "name": "AggregatorSaveResultEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "feedPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "value",
+          "type": {
+            "defined": "BorshDecimal"
+          }
+        },
+        {
+          "index": false,
+          "name": "slot",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "timestamp",
+          "type": "i64"
+        },
+        {
+          "index": false,
+          "name": "oraclePubkey",
+          "type": "publicKey"
+        }
+      ],
+      "name": "AggregatorTeeSaveResultEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "feedPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "value",
+          "type": {
+            "defined": "BorshDecimal"
+          }
+        },
+        {
+          "index": false,
+          "name": "slot",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "timestamp",
+          "type": "i64"
+        },
+        {
+          "index": false,
+          "name": "oraclePubkeys",
+          "type": {
+            "vec": "publicKey"
+          }
+        },
+        {
+          "index": false,
+          "name": "oracleValues",
+          "type": {
+            "vec": {
+              "defined": "BorshDecimal"
+            }
+          }
+        }
+      ],
+      "name": "AggregatorValueUpdateEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "feedPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "leasePubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "oraclePubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "walletPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "roundSlot",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "timestamp",
+          "type": "i64"
+        }
+      ],
+      "name": "OracleRewardEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "oraclePubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "walletPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "destinationWallet",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "previousAmount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "newAmount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "timestamp",
+          "type": "i64"
+        }
+      ],
+      "name": "OracleWithdrawEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "leasePubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "walletPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "previousAmount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "newAmount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "timestamp",
+          "type": "i64"
+        }
+      ],
+      "name": "LeaseWithdrawEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "feedPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "leasePubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "oraclePubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "walletPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "roundSlot",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "timestamp",
+          "type": "i64"
+        }
+      ],
+      "name": "OracleSlashEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "leasePubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "funder",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "timestamp",
+          "type": "i64"
+        }
+      ],
+      "name": "LeaseFundEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "feedPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "queuePubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "timestamp",
+          "type": "i64"
+        }
+      ],
+      "name": "ProbationBrokenEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "feedPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "timestamp",
+          "type": "i64"
+        }
+      ],
+      "name": "FeedPermissionRevokedEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "queuePubkey",
+          "type": "publicKey"
+        }
+      ],
+      "name": "GarbageCollectFailureEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "queuePubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "oraclePubkey",
+          "type": "publicKey"
+        }
+      ],
+      "name": "OracleBootedEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "crankPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": true,
+          "name": "aggregatorPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "reason",
+          "type": {
+            "option": "u32"
+          }
+        },
+        {
+          "index": false,
+          "name": "timestamp",
+          "type": "i64"
+        }
+      ],
+      "name": "AggregatorCrankEvictionEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "feedPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "leasePubkey",
+          "type": "publicKey"
+        }
+      ],
+      "name": "CrankLeaseInsufficientFundsEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "feedPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "leasePubkey",
+          "type": "publicKey"
+        }
+      ],
+      "name": "CrankPopExpectedFailureEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "relayerPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "jobPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "oraclePubkeys",
+          "type": {
+            "vec": "publicKey"
+          }
+        },
+        {
+          "index": false,
+          "name": "remainingFunds",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "queue",
+          "type": "publicKey"
+        }
+      ],
+      "name": "BufferRelayerOpenRoundEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "feedPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "slot",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "timestamp",
+          "type": "i64"
+        },
+        {
+          "index": false,
+          "name": "fee",
+          "type": "u64"
+        }
+      ],
+      "name": "PriorityFeeReimburseEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "feedPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "jobPubkey",
+          "type": "publicKey"
+        }
+      ],
+      "name": "AggregatorAddJobEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "feedPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "jobPubkey",
+          "type": "publicKey"
+        }
+      ],
+      "name": "AggregatorRemoveJobEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "feedPubkey",
+          "type": "publicKey"
+        }
+      ],
+      "name": "AggregatorLockEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "feedPubkey",
+          "type": "publicKey"
+        }
+      ],
+      "name": "AggregatorInitEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "feedPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "oldAuthority",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "newAuthority",
+          "type": "publicKey"
+        }
+      ],
+      "name": "AggregatorSetAuthorityEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "feedPubkey",
+          "type": "publicKey"
+        }
+      ],
+      "name": "AggregatorSetConfigsEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "permissionKey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "permission",
+          "type": {
+            "defined": "SwitchboardPermission"
+          }
+        },
+        {
+          "index": false,
+          "name": "enable",
+          "type": "bool"
+        }
+      ],
+      "name": "PermissionSetEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "queuePubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "vrfPoolPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "vrfPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "newSize",
+          "type": "u32"
+        },
+        {
+          "index": false,
+          "name": "minInterval",
+          "type": "u32"
+        }
+      ],
+      "name": "VrfPoolUpdateEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "queuePubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "vrfPoolPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "vrfPubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "oraclePubkey",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "slot",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "timestamp",
+          "type": "i64"
+        }
+      ],
+      "name": "VrfPoolRequestEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "quotePubkey",
+          "type": "publicKey"
+        }
+      ],
+      "name": "QuoteVerifyRequestEvent"
+    }
+  ],
+  "instructions": [
+    {
+      "accounts": [],
+      "args": [],
+      "name": "viewVersion"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "aggregator"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "permission"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lease"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "oracleQueue"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queueAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "solDest"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrowDest"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "docs": [
+            "Optional accounts"
+          ],
+          "isMut": true,
+          "isOptional": true,
+          "isSigner": false,
+          "name": "crank"
+        },
+        {
+          "isMut": true,
+          "isOptional": true,
+          "isSigner": false,
+          "name": "dataBuffer"
+        },
+        {
+          "isMut": true,
+          "isOptional": true,
+          "isSigner": false,
+          "name": "slidingWindow"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "AggregatorCloseParams"
+          }
+        }
+      ],
+      "name": "aggregatorClose"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "state"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "SetBumpsParams"
+          }
+        }
+      ],
+      "name": "setBumps"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "aggregator"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "job"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "AggregatorAddJobParams"
+          }
+        }
+      ],
+      "name": "aggregatorAddJob"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "aggregator"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queue"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "AggregatorInitParams"
+          }
+        }
+      ],
+      "name": "aggregatorInit"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "aggregator"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "AggregatorLockParams"
+          }
+        }
+      ],
+      "name": "aggregatorLock"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "aggregator"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lease"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oracleQueue"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queueAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "permission"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "payoutWallet"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "dataBuffer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mint"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "AggregatorOpenRoundParams"
+          }
+        }
+      ],
+      "name": "aggregatorOpenRound"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "aggregator"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "job"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "AggregatorRemoveJobParams"
+          }
+        }
+      ],
+      "name": "aggregatorRemoveJob"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "aggregator"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oracle"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "oracleAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "oracleQueue"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queueAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "feedPermission"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "oraclePermission"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lease"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "historyBuffer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mint"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "AggregatorSaveResultParams"
+          }
+        }
+      ],
+      "name": "aggregatorSaveResult"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "aggregator"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oracle"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "oracleAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "oracleQueue"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queueAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "feedPermission"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "oraclePermission"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lease"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "historyBuffer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mint"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "AggregatorSaveResultParams"
+          }
+        }
+      ],
+      "name": "aggregatorSaveResultV2"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "aggregator"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oracle"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "oracleAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "oracleQueue"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queueAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "feedPermission"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "oraclePermission"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lease"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "historyBuffer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "slider"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "quote"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "rewardWallet"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "AggregatorTeeSaveResultParams"
+          }
+        }
+      ],
+      "name": "aggregatorTeeSaveResult"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "aggregator"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "newAuthority"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "AggregatorSetAuthorityParams"
+          }
+        }
+      ],
+      "name": "aggregatorSetAuthority"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "aggregator"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "AggregatorSetConfigParams"
+          }
+        }
+      ],
+      "name": "aggregatorSetConfig"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "aggregator"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "slidingWindow"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "AggregatorSetResolutionModeParams"
+          }
+        }
+      ],
+      "name": "aggregatorSetResolutionMode"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "aggregator"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "buffer"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "AggregatorSetHistoryBufferParams"
+          }
+        }
+      ],
+      "name": "aggregatorSetHistoryBuffer"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "aggregator"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queue"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "AggregatorSetQueueParams"
+          }
+        }
+      ],
+      "name": "aggregatorSetQueue"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bufferRelayer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queue"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "job"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mint"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "BufferRelayerInitParams"
+          }
+        }
+      ],
+      "name": "bufferRelayerInit"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bufferRelayer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oracleQueue"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "dataBuffer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "permission"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "BufferRelayerOpenRoundParams"
+          }
+        }
+      ],
+      "name": "bufferRelayerOpenRound"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bufferRelayer"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "oracleAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "oracle"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oracleQueue"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "dataBuffer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queueAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "permission"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oracleWallet"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "BufferRelayerSaveResultParams"
+          }
+        }
+      ],
+      "name": "bufferRelayerSaveResult"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "crank"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queue"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "buffer"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "CrankInitParams"
+          }
+        }
+      ],
+      "name": "crankInit"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "crank"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oracleQueue"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queueAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "payoutWallet"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "crankDataBuffer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queueDataBuffer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mint"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "CrankPopParams"
+          }
+        }
+      ],
+      "name": "crankPop"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "crank"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oracleQueue"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queueAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "payoutWallet"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "crankDataBuffer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queueDataBuffer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mint"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "CrankPopParamsV2"
+          }
+        }
+      ],
+      "name": "crankPopV2"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "crank"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "aggregator"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oracleQueue"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queueAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "permission"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lease"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "dataBuffer"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "CrankPushParams"
+          }
+        }
+      ],
+      "name": "crankPush"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "job"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "JobInitParams"
+          }
+        }
+      ],
+      "name": "jobInit"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "job"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "JobSetDataParams"
+          }
+        }
+      ],
+      "name": "jobSetData"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lease"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "aggregator"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queue"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "funder"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mint"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "LeaseExtendParams"
+          }
+        }
+      ],
+      "name": "leaseExtend"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lease"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "queue"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "aggregator"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "funder"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mint"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "LeaseInitParams"
+          }
+        }
+      ],
+      "name": "leaseInit"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lease"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "withdrawAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "newAuthority"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "LeaseSetAuthorityParams"
+          }
+        }
+      ],
+      "name": "leaseSetAuthority"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lease"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "aggregator"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queue"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "withdrawAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "withdrawAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mint"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "LeaseWithdrawParams"
+          }
+        }
+      ],
+      "name": "leaseWithdraw"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oracle"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "oracleAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "gcOracle"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oracleQueue"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "permission"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "dataBuffer"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "OracleHeartbeatParams"
+          }
+        }
+      ],
+      "name": "oracleHeartbeat"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oracle"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "oracleAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "gcOracle"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oracleQueue"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "permission"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "dataBuffer"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "quote"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "OracleTeeHeartbeatParams"
+          }
+        }
+      ],
+      "name": "oracleTeeHeartbeat"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oracle"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "oracleAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "wallet"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queue"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "OracleInitParams"
+          }
+        }
+      ],
+      "name": "oracleInit"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "oracleQueue"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "buffer"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mint"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "OracleQueueInitParams"
+          }
+        }
+      ],
+      "name": "oracleQueueInit"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "queue"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "OracleQueueSetConfigParams"
+          }
+        }
+      ],
+      "name": "oracleQueueSetConfig"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oracle"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "oracleAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "withdrawAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oracleQueue"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "permission"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "OracleWithdrawParams"
+          }
+        }
+      ],
+      "name": "oracleWithdraw"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "permission"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "granter"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "grantee"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "PermissionInitParams"
+          }
+        }
+      ],
+      "name": "permissionInit"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "permission"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "PermissionSetParams"
+          }
+        }
+      ],
+      "name": "permissionSet"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "daoMint"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "ProgramConfigParams"
+          }
+        }
+      ],
+      "name": "programConfig"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "state"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "vault"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "daoMint"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "ProgramInitParams"
+          }
+        }
+      ],
+      "name": "programInit"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "state"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "to"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "vault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "VaultTransferParams"
+          }
+        }
+      ],
+      "name": "vaultTransfer"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "vrf"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "oracleQueue"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "VrfInitParams"
+          }
+        }
+      ],
+      "name": "vrfInit"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "vrf"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "permission"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "oracleQueue"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queueAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "solDest"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrowDest"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "VrfCloseParams"
+          }
+        }
+      ],
+      "name": "vrfCloseAction"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "vrfLite"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "permission"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queue"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queueAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "solDest"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrowDest"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "VrfLiteCloseParams"
+          }
+        }
+      ],
+      "name": "vrfLiteCloseAction"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "vrf"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queueAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queue"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "permission"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "VrfLiteInitParams"
+          }
+        }
+      ],
+      "name": "vrfLiteInit"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "vrfLite"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "callbackPid"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "oracle"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "oracleAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oracleWallet"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructionsSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "VrfLiteProveAndVerifyParams"
+          }
+        }
+      ],
+      "name": "vrfLiteProveAndVerify"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "vrfLite"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "queue"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queueAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "dataBuffer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "permission"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "recentBlockhashes"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "VrfLiteRequestRandomnessParams"
+          }
+        }
+      ],
+      "name": "vrfLiteRequestRandomness"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "vrfPool"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queue"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "VrfPoolInitParams"
+          }
+        }
+      ],
+      "name": "vrfPoolInit"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "vrfPool"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queue"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "VrfPoolRemoveParams"
+          }
+        }
+      ],
+      "name": "vrfPoolRemove"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "vrfPool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "vrfLite"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queue"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "permission"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "VrfPoolAddParams"
+          }
+        }
+      ],
+      "name": "vrfPoolAdd"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "vrfPool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "queue"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queueAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "dataBuffer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "recentBlockhashes"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "VrfPoolRequestParams"
+          }
+        }
+      ],
+      "name": "vrfPoolRequest"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "vrf"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "callbackPid"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "oracle"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "oracleAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oracleWallet"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructionsSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "VrfProveAndVerifyParams"
+          }
+        }
+      ],
+      "name": "vrfProveAndVerify"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "vrf"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oracleQueue"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "queueAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "dataBuffer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "permission"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "payerWallet"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "payerAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "recentBlockhashes"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programState"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "VrfRequestRandomnessParams"
+          }
+        }
+      ],
+      "name": "vrfRequestRandomness"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "vrf"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "VrfSetCallbackParams"
+          }
+        }
+      ],
+      "name": "vrfSetCallback"
+    }
+  ],
+  "name": "switchboard_v2",
+  "types": [
+    {
+      "name": "AggregatorAddJobParams",
+      "type": {
+        "fields": [
+          {
+            "name": "weight",
+            "type": {
+              "option": "u8"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AggregatorCloseParams",
+      "type": {
+        "fields": [
+          {
+            "name": "stateBump",
+            "type": "u8"
+          },
+          {
+            "name": "permissionBump",
+            "type": "u8"
+          },
+          {
+            "name": "leaseBump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AggregatorInitParams",
+      "type": {
+        "fields": [
+          {
+            "name": "name",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "metadata",
+            "type": {
+              "array": [
+                "u8",
+                128
+              ]
+            }
+          },
+          {
+            "name": "batchSize",
+            "type": "u32"
+          },
+          {
+            "name": "minOracleResults",
+            "type": "u32"
+          },
+          {
+            "name": "minJobResults",
+            "type": "u32"
+          },
+          {
+            "name": "minUpdateDelaySeconds",
+            "type": "u32"
+          },
+          {
+            "name": "startAfter",
+            "type": "i64"
+          },
+          {
+            "name": "varianceThreshold",
+            "type": {
+              "defined": "BorshDecimal"
+            }
+          },
+          {
+            "name": "forceReportPeriod",
+            "type": "i64"
+          },
+          {
+            "name": "expiration",
+            "type": "i64"
+          },
+          {
+            "name": "stateBump",
+            "type": "u8"
+          },
+          {
+            "name": "disableCrank",
+            "type": "bool"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AggregatorLockParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AggregatorOpenRoundParams",
+      "type": {
+        "fields": [
+          {
+            "name": "stateBump",
+            "type": "u8"
+          },
+          {
+            "name": "leaseBump",
+            "type": "u8"
+          },
+          {
+            "name": "permissionBump",
+            "type": "u8"
+          },
+          {
+            "name": "jitter",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AggregatorRemoveJobParams",
+      "type": {
+        "fields": [
+          {
+            "name": "jobIdx",
+            "type": "u32"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AggregatorSaveResultParams",
+      "type": {
+        "fields": [
+          {
+            "name": "oracleIdx",
+            "type": "u32"
+          },
+          {
+            "name": "error",
+            "type": "bool"
+          },
+          {
+            "name": "value",
+            "type": {
+              "defined": "BorshDecimal"
+            }
+          },
+          {
+            "name": "jobsChecksum",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "minResponse",
+            "type": {
+              "defined": "BorshDecimal"
+            }
+          },
+          {
+            "name": "maxResponse",
+            "type": {
+              "defined": "BorshDecimal"
+            }
+          },
+          {
+            "name": "feedPermissionBump",
+            "type": "u8"
+          },
+          {
+            "name": "oraclePermissionBump",
+            "type": "u8"
+          },
+          {
+            "name": "leaseBump",
+            "type": "u8"
+          },
+          {
+            "name": "stateBump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AggregatorSaveResultParamsV2",
+      "type": {
+        "fields": [
+          {
+            "name": "oracleIdx",
+            "type": "u32"
+          },
+          {
+            "name": "error",
+            "type": "bool"
+          },
+          {
+            "name": "value",
+            "type": {
+              "defined": "BorshDecimal"
+            }
+          },
+          {
+            "name": "jobsChecksum",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "minResponse",
+            "type": {
+              "defined": "BorshDecimal"
+            }
+          },
+          {
+            "name": "maxResponse",
+            "type": {
+              "defined": "BorshDecimal"
+            }
+          },
+          {
+            "name": "feedPermissionBump",
+            "type": "u8"
+          },
+          {
+            "name": "oraclePermissionBump",
+            "type": "u8"
+          },
+          {
+            "name": "leaseBump",
+            "type": "u8"
+          },
+          {
+            "name": "stateBump",
+            "type": "u8"
+          },
+          {
+            "name": "jobValues",
+            "type": {
+              "vec": {
+                "option": {
+                  "defined": "BorshDecimal"
+                }
+              }
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AggregatorSetAuthorityParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AggregatorSetBatchSizeParams",
+      "type": {
+        "fields": [
+          {
+            "name": "batchSize",
+            "type": "u32"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AggregatorSetConfigParams",
+      "type": {
+        "fields": [
+          {
+            "name": "name",
+            "type": {
+              "option": {
+                "array": [
+                  "u8",
+                  32
+                ]
+              }
+            }
+          },
+          {
+            "name": "metadata",
+            "type": {
+              "option": {
+                "array": [
+                  "u8",
+                  128
+                ]
+              }
+            }
+          },
+          {
+            "name": "minUpdateDelaySeconds",
+            "type": {
+              "option": "u32"
+            }
+          },
+          {
+            "name": "minJobResults",
+            "type": {
+              "option": "u32"
+            }
+          },
+          {
+            "name": "batchSize",
+            "type": {
+              "option": "u32"
+            }
+          },
+          {
+            "name": "minOracleResults",
+            "type": {
+              "option": "u32"
+            }
+          },
+          {
+            "name": "forceReportPeriod",
+            "type": {
+              "option": "u32"
+            }
+          },
+          {
+            "name": "varianceThreshold",
+            "type": {
+              "option": {
+                "defined": "BorshDecimal"
+              }
+            }
+          },
+          {
+            "name": "basePriorityFee",
+            "type": {
+              "option": "u32"
+            }
+          },
+          {
+            "name": "priorityFeeBump",
+            "type": {
+              "option": "u32"
+            }
+          },
+          {
+            "name": "priorityFeeBumpPeriod",
+            "type": {
+              "option": "u32"
+            }
+          },
+          {
+            "name": "maxPriorityFeeMultiplier",
+            "type": {
+              "option": "u32"
+            }
+          },
+          {
+            "name": "disableCrank",
+            "type": {
+              "option": "bool"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AggregatorSetForceReportPeriodParams",
+      "type": {
+        "fields": [
+          {
+            "name": "forceReportPeriod",
+            "type": "u32"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AggregatorSetHistoryBufferParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AggregatorSetMinJobsParams",
+      "type": {
+        "fields": [
+          {
+            "name": "minJobResults",
+            "type": "u32"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AggregatorSetMinOraclesParams",
+      "type": {
+        "fields": [
+          {
+            "name": "minOracleResults",
+            "type": "u32"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AggregatorSetQueueParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AggregatorSetResolutionModeParams",
+      "type": {
+        "fields": [
+          {
+            "name": "mode",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AggregatorSetUpdateIntervalParams",
+      "type": {
+        "fields": [
+          {
+            "name": "newInterval",
+            "type": "u32"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AggregatorSetVarianceThresholdParams",
+      "type": {
+        "fields": [
+          {
+            "name": "varianceThreshold",
+            "type": {
+              "defined": "BorshDecimal"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AggregatorTeeSaveResultParams",
+      "type": {
+        "fields": [
+          {
+            "name": "value",
+            "type": {
+              "defined": "BorshDecimal"
+            }
+          },
+          {
+            "name": "jobsChecksum",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "minResponse",
+            "type": {
+              "defined": "BorshDecimal"
+            }
+          },
+          {
+            "name": "maxResponse",
+            "type": {
+              "defined": "BorshDecimal"
+            }
+          },
+          {
+            "name": "feedPermissionBump",
+            "type": "u8"
+          },
+          {
+            "name": "oraclePermissionBump",
+            "type": "u8"
+          },
+          {
+            "name": "leaseBump",
+            "type": "u8"
+          },
+          {
+            "name": "stateBump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "BufferRelayerInitParams",
+      "type": {
+        "fields": [
+          {
+            "name": "name",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "minUpdateDelaySeconds",
+            "type": "u32"
+          },
+          {
+            "name": "stateBump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "BufferRelayerOpenRoundParams",
+      "type": {
+        "fields": [
+          {
+            "name": "stateBump",
+            "type": "u8"
+          },
+          {
+            "name": "permissionBump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "BufferRelayerSaveResultParams",
+      "type": {
+        "fields": [
+          {
+            "name": "stateBump",
+            "type": "u8"
+          },
+          {
+            "name": "permissionBump",
+            "type": "u8"
+          },
+          {
+            "name": "result",
+            "type": "bytes"
+          },
+          {
+            "name": "success",
+            "type": "bool"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "CrankInitParams",
+      "type": {
+        "fields": [
+          {
+            "name": "name",
+            "type": "bytes"
+          },
+          {
+            "name": "metadata",
+            "type": "bytes"
+          },
+          {
+            "name": "crankSize",
+            "type": "u32"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "CrankPopParams",
+      "type": {
+        "fields": [
+          {
+            "name": "stateBump",
+            "type": "u8"
+          },
+          {
+            "name": "leaseBumps",
+            "type": "bytes"
+          },
+          {
+            "name": "permissionBumps",
+            "type": "bytes"
+          },
+          {
+            "name": "nonce",
+            "type": {
+              "option": "u32"
+            }
+          },
+          {
+            "name": "failOpenOnAccountMismatch",
+            "type": {
+              "option": "bool"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "CrankPopParamsV2",
+      "type": {
+        "fields": [
+          {
+            "name": "stateBump",
+            "type": "u8"
+          },
+          {
+            "name": "leaseBumps",
+            "type": "bytes"
+          },
+          {
+            "name": "permissionBumps",
+            "type": "bytes"
+          },
+          {
+            "name": "nonce",
+            "type": {
+              "option": "u32"
+            }
+          },
+          {
+            "name": "failOpenOnAccountMismatch",
+            "type": {
+              "option": "bool"
+            }
+          },
+          {
+            "name": "popIdx",
+            "type": {
+              "option": "u32"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "CrankPushParams",
+      "type": {
+        "fields": [
+          {
+            "name": "stateBump",
+            "type": "u8"
+          },
+          {
+            "name": "permissionBump",
+            "type": "u8"
+          },
+          {
+            "name": "notifiRef",
+            "type": {
+              "option": {
+                "array": [
+                  "u8",
+                  64
+                ]
+              }
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "JobInitParams",
+      "type": {
+        "fields": [
+          {
+            "name": "name",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "expiration",
+            "type": "i64"
+          },
+          {
+            "name": "stateBump",
+            "type": "u8"
+          },
+          {
+            "name": "data",
+            "type": "bytes"
+          },
+          {
+            "name": "size",
+            "type": {
+              "option": "u32"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "JobSetDataParams",
+      "type": {
+        "fields": [
+          {
+            "name": "data",
+            "type": "bytes"
+          },
+          {
+            "name": "chunkIdx",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "LeaseExtendParams",
+      "type": {
+        "fields": [
+          {
+            "name": "loadAmount",
+            "type": "u64"
+          },
+          {
+            "name": "leaseBump",
+            "type": "u8"
+          },
+          {
+            "name": "stateBump",
+            "type": "u8"
+          },
+          {
+            "name": "walletBumps",
+            "type": "bytes"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "LeaseInitParams",
+      "type": {
+        "fields": [
+          {
+            "name": "loadAmount",
+            "type": "u64"
+          },
+          {
+            "name": "withdrawAuthority",
+            "type": "publicKey"
+          },
+          {
+            "name": "leaseBump",
+            "type": "u8"
+          },
+          {
+            "name": "stateBump",
+            "type": "u8"
+          },
+          {
+            "name": "walletBumps",
+            "type": "bytes"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "LeaseSetAuthorityParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "LeaseWithdrawParams",
+      "type": {
+        "fields": [
+          {
+            "name": "stateBump",
+            "type": "u8"
+          },
+          {
+            "name": "leaseBump",
+            "type": "u8"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "OracleHeartbeatParams",
+      "type": {
+        "fields": [
+          {
+            "name": "permissionBump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "OracleInitParams",
+      "type": {
+        "fields": [
+          {
+            "name": "name",
+            "type": "bytes"
+          },
+          {
+            "name": "metadata",
+            "type": "bytes"
+          },
+          {
+            "name": "stateBump",
+            "type": "u8"
+          },
+          {
+            "name": "oracleBump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "OracleQueueInitParams",
+      "type": {
+        "fields": [
+          {
+            "name": "name",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "metadata",
+            "type": {
+              "array": [
+                "u8",
+                64
+              ]
+            }
+          },
+          {
+            "name": "reward",
+            "type": "u64"
+          },
+          {
+            "name": "minStake",
+            "type": "u64"
+          },
+          {
+            "name": "feedProbationPeriod",
+            "type": "u32"
+          },
+          {
+            "name": "oracleTimeout",
+            "type": "u32"
+          },
+          {
+            "name": "slashingEnabled",
+            "type": "bool"
+          },
+          {
+            "name": "varianceToleranceMultiplier",
+            "type": {
+              "defined": "BorshDecimal"
+            }
+          },
+          {
+            "name": "consecutiveFeedFailureLimit",
+            "type": "u64"
+          },
+          {
+            "name": "consecutiveOracleFailureLimit",
+            "type": "u64"
+          },
+          {
+            "name": "queueSize",
+            "type": "u32"
+          },
+          {
+            "name": "unpermissionedFeeds",
+            "type": "bool"
+          },
+          {
+            "name": "unpermissionedVrf",
+            "type": "bool"
+          },
+          {
+            "name": "enableBufferRelayers",
+            "type": "bool"
+          },
+          {
+            "name": "enableTeeOnly",
+            "type": "bool"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "OracleQueueSetConfigParams",
+      "type": {
+        "fields": [
+          {
+            "name": "name",
+            "type": {
+              "option": {
+                "array": [
+                  "u8",
+                  32
+                ]
+              }
+            }
+          },
+          {
+            "name": "metadata",
+            "type": {
+              "option": {
+                "array": [
+                  "u8",
+                  64
+                ]
+              }
+            }
+          },
+          {
+            "name": "unpermissionedFeedsEnabled",
+            "type": {
+              "option": "bool"
+            }
+          },
+          {
+            "name": "unpermissionedVrfEnabled",
+            "type": {
+              "option": "bool"
+            }
+          },
+          {
+            "name": "enableBufferRelayers",
+            "type": {
+              "option": "bool"
+            }
+          },
+          {
+            "name": "varianceToleranceMultiplier",
+            "type": {
+              "option": {
+                "defined": "BorshDecimal"
+              }
+            }
+          },
+          {
+            "name": "slashingEnabled",
+            "type": {
+              "option": "bool"
+            }
+          },
+          {
+            "name": "reward",
+            "type": {
+              "option": "u64"
+            }
+          },
+          {
+            "name": "minStake",
+            "type": {
+              "option": "u64"
+            }
+          },
+          {
+            "name": "oracleTimeout",
+            "type": {
+              "option": "u32"
+            }
+          },
+          {
+            "name": "consecutiveFeedFailureLimit",
+            "type": {
+              "option": "u64"
+            }
+          },
+          {
+            "name": "consecutiveOracleFailureLimit",
+            "type": {
+              "option": "u64"
+            }
+          },
+          {
+            "name": "enableTeeOnly",
+            "type": {
+              "option": "bool"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "OracleQueueSetRewardsParams",
+      "type": {
+        "fields": [
+          {
+            "name": "rewards",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "OracleTeeHeartbeatParams",
+      "type": {
+        "fields": [
+          {
+            "name": "permissionBump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "OracleWithdrawParams",
+      "type": {
+        "fields": [
+          {
+            "name": "stateBump",
+            "type": "u8"
+          },
+          {
+            "name": "permissionBump",
+            "type": "u8"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "PermissionInitParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "PermissionSetParams",
+      "type": {
+        "fields": [
+          {
+            "name": "permission",
+            "type": {
+              "defined": "SwitchboardPermission"
+            }
+          },
+          {
+            "name": "enable",
+            "type": "bool"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "ProgramConfigParams",
+      "type": {
+        "fields": [
+          {
+            "name": "token",
+            "type": "publicKey"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "daoMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "addEnclaves",
+            "type": {
+              "vec": {
+                "array": [
+                  "u8",
+                  32
+                ]
+              }
+            }
+          },
+          {
+            "name": "rmEnclaves",
+            "type": {
+              "vec": {
+                "array": [
+                  "u8",
+                  32
+                ]
+              }
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "ProgramInitParams",
+      "type": {
+        "fields": [
+          {
+            "name": "stateBump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SetBumpsParams",
+      "type": {
+        "fields": [
+          {
+            "name": "stateBump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "VaultTransferParams",
+      "type": {
+        "fields": [
+          {
+            "name": "stateBump",
+            "type": "u8"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "VrfCloseParams",
+      "type": {
+        "fields": [
+          {
+            "name": "stateBump",
+            "type": "u8"
+          },
+          {
+            "name": "permissionBump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "VrfInitParams",
+      "type": {
+        "fields": [
+          {
+            "name": "callback",
+            "type": {
+              "defined": "Callback"
+            }
+          },
+          {
+            "name": "stateBump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "VrfLiteCloseParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "VrfLiteInitParams",
+      "type": {
+        "fields": [
+          {
+            "name": "callback",
+            "type": {
+              "option": {
+                "defined": "Callback"
+              }
+            }
+          },
+          {
+            "name": "stateBump",
+            "type": "u8"
+          },
+          {
+            "name": "expiration",
+            "type": {
+              "option": "i64"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "VrfLiteProveAndVerifyParams",
+      "type": {
+        "fields": [
+          {
+            "name": "nonce",
+            "type": {
+              "option": "u32"
+            }
+          },
+          {
+            "name": "proof",
+            "type": "bytes"
+          },
+          {
+            "name": "proofEncoded",
+            "type": "string"
+          },
+          {
+            "name": "counter",
+            "type": "u128"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "VrfLiteRequestRandomnessParams",
+      "type": {
+        "fields": [
+          {
+            "name": "callback",
+            "type": {
+              "option": {
+                "defined": "Callback"
+              }
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "VrfPoolAddParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "VrfPoolInitParams",
+      "type": {
+        "fields": [
+          {
+            "name": "maxRows",
+            "type": "u32"
+          },
+          {
+            "name": "minInterval",
+            "type": "u32"
+          },
+          {
+            "name": "stateBump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "VrfPoolRemoveParams",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "VrfPoolRequestParams",
+      "type": {
+        "fields": [
+          {
+            "name": "callback",
+            "type": {
+              "option": {
+                "defined": "Callback"
+              }
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "VrfProveParams",
+      "type": {
+        "fields": [
+          {
+            "name": "proof",
+            "type": "bytes"
+          },
+          {
+            "name": "idx",
+            "type": "u32"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "VrfProveAndVerifyParams",
+      "type": {
+        "fields": [
+          {
+            "name": "nonce",
+            "type": {
+              "option": "u32"
+            }
+          },
+          {
+            "name": "stateBump",
+            "type": "u8"
+          },
+          {
+            "name": "idx",
+            "type": "u32"
+          },
+          {
+            "name": "proof",
+            "type": "bytes"
+          },
+          {
+            "name": "proofEncoded",
+            "type": "string"
+          },
+          {
+            "name": "counter",
+            "type": "u128"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "VrfRequestRandomnessParams",
+      "type": {
+        "fields": [
+          {
+            "name": "permissionBump",
+            "type": "u8"
+          },
+          {
+            "name": "stateBump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "VrfSetCallbackParams",
+      "type": {
+        "fields": [
+          {
+            "name": "callback",
+            "type": {
+              "defined": "Callback"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "Callback",
+      "type": {
+        "fields": [
+          {
+            "name": "programId",
+            "type": "publicKey"
+          },
+          {
+            "name": "accounts",
+            "type": {
+              "vec": {
+                "defined": "AccountMetaBorsh"
+              }
+            }
+          },
+          {
+            "name": "ixData",
+            "type": "bytes"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "EcvrfProofZC",
+      "type": {
+        "fields": [
+          {
+            "name": "gamma",
+            "type": {
+              "defined": "EdwardsPointZC"
+            }
+          },
+          {
+            "name": "c",
+            "type": {
+              "defined": "Scalar"
+            }
+          },
+          {
+            "name": "s",
+            "type": {
+              "defined": "Scalar"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "docs": [
+        "The `Scalar` struct holds an integer \\(s < 2^{255} \\) which",
+        "represents an element of \\(mathbb Z / \u001bll\\)."
+      ],
+      "name": "Scalar",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "`bytes` is a little-endian byte encoding of an integer representing a scalar modulo the",
+              "group order.",
+              "",
+              "# Invariant",
+              "",
+              "The integer representing this scalar must be bounded above by \\(2^{255}\\), or",
+              "equivalently the high bit of `bytes[31]` must be zero.",
+              "",
+              "This ensures that there is room for a carry bit when computing a NAF representation."
+            ],
+            "name": "bytes",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "FieldElementZC",
+      "type": {
+        "fields": [
+          {
+            "name": "bytes",
+            "type": {
+              "array": [
+                "u64",
+                5
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "CompletedPointZC",
+      "type": {
+        "fields": [
+          {
+            "name": "x",
+            "type": {
+              "defined": "FieldElementZC"
+            }
+          },
+          {
+            "name": "y",
+            "type": {
+              "defined": "FieldElementZC"
+            }
+          },
+          {
+            "name": "z",
+            "type": {
+              "defined": "FieldElementZC"
+            }
+          },
+          {
+            "name": "t",
+            "type": {
+              "defined": "FieldElementZC"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "EdwardsPointZC",
+      "type": {
+        "fields": [
+          {
+            "name": "x",
+            "type": {
+              "defined": "FieldElementZC"
+            }
+          },
+          {
+            "name": "y",
+            "type": {
+              "defined": "FieldElementZC"
+            }
+          },
+          {
+            "name": "z",
+            "type": {
+              "defined": "FieldElementZC"
+            }
+          },
+          {
+            "name": "t",
+            "type": {
+              "defined": "FieldElementZC"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "ProjectivePointZC",
+      "type": {
+        "fields": [
+          {
+            "name": "x",
+            "type": {
+              "defined": "FieldElementZC"
+            }
+          },
+          {
+            "name": "y",
+            "type": {
+              "defined": "FieldElementZC"
+            }
+          },
+          {
+            "name": "z",
+            "type": {
+              "defined": "FieldElementZC"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "EcvrfIntermediate",
+      "type": {
+        "fields": [
+          {
+            "name": "r",
+            "type": {
+              "defined": "FieldElementZC"
+            }
+          },
+          {
+            "name": "nS",
+            "type": {
+              "defined": "FieldElementZC"
+            }
+          },
+          {
+            "name": "d",
+            "type": {
+              "defined": "FieldElementZC"
+            }
+          },
+          {
+            "name": "t13",
+            "type": {
+              "defined": "FieldElementZC"
+            }
+          },
+          {
+            "name": "t15",
+            "type": {
+              "defined": "FieldElementZC"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "BorshDecimal",
+      "type": {
+        "fields": [
+          {
+            "name": "mantissa",
+            "type": "i128"
+          },
+          {
+            "name": "scale",
+            "type": "u32"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "Quote",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "The address of the signer generated within an enclave."
+            ],
+            "name": "enclaveSigner",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The quotes MRENCLAVE measurement dictating the contents of the secure enclave."
+            ],
+            "name": "mrEnclave",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "docs": [
+              "The VerificationStatus of the quote."
+            ],
+            "name": "verificationStatus",
+            "type": "u8"
+          },
+          {
+            "docs": [
+              "The unix timestamp when the quote was last verified."
+            ],
+            "name": "verificationTimestamp",
+            "type": "i64"
+          },
+          {
+            "docs": [
+              "The unix timestamp when the quotes verification status expires."
+            ],
+            "name": "validUntil",
+            "type": "i64"
+          },
+          {
+            "docs": [
+              "The off-chain registry where the verifiers quote can be located."
+            ],
+            "name": "quoteRegistry",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "docs": [
+              "Key to lookup the buffer data on IPFS or an alternative decentralized storage solution."
+            ],
+            "name": "registryKey",
+            "type": {
+              "array": [
+                "u8",
+                64
+              ]
+            }
+          },
+          {
+            "docs": [
+              "Reserved."
+            ],
+            "name": "ebuf",
+            "type": {
+              "array": [
+                "u8",
+                256
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "VerifierAccountData",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "Represents the state of the quote verifiers enclave."
+            ],
+            "name": "enclave",
+            "type": {
+              "defined": "Quote"
+            }
+          },
+          {
+            "docs": [
+              "The authority of the EnclaveAccount which is permitted to make account changes."
+            ],
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Queue used for attestation to verify a MRENCLAVE measurement."
+            ],
+            "name": "attestationQueue",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The unix timestamp when the quote was created."
+            ],
+            "name": "createdAt",
+            "type": "i64"
+          },
+          {
+            "docs": [
+              "Whether the quote is located on the AttestationQueues buffer."
+            ],
+            "name": "isOnQueue",
+            "type": "bool"
+          },
+          {
+            "docs": [
+              "The last time the quote heartbeated on-chain."
+            ],
+            "name": "lastHeartbeat",
+            "type": "i64"
+          },
+          {
+            "docs": [
+              "The SwitchboardWallet account containing the reward escrow for verifying quotes on-chain.",
+              "We should set this whenever the operator changes so we dont need to pass another account and can verify with has_one."
+            ],
+            "name": "rewardEscrow",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The SwitchboardWallet account containing the queues required min_stake.",
+              "Needs to be separate from the reward_escrow. Allows easier 3rd party management of stake from rewards."
+            ],
+            "name": "stakeWallet",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Reserved."
+            ],
+            "name": "ebuf",
+            "type": {
+              "array": [
+                "u8",
+                1024
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "Hash",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "The bytes used to derive the hash."
+            ],
+            "name": "data",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SlidingWindowElement",
+      "type": {
+        "fields": [
+          {
+            "name": "oracleKey",
+            "type": "publicKey"
+          },
+          {
+            "name": "value",
+            "type": {
+              "defined": "SwitchboardDecimal"
+            }
+          },
+          {
+            "name": "slot",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AggregatorRound",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "Maintains the number of successful responses received from nodes.",
+              "Nodes can submit one successful response per round."
+            ],
+            "name": "numSuccess",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "Number of error responses."
+            ],
+            "name": "numError",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "Whether an update request round has ended."
+            ],
+            "name": "isClosed",
+            "type": "bool"
+          },
+          {
+            "docs": [
+              "Maintains the `solana_program::clock::Slot` that the round was opened at."
+            ],
+            "name": "roundOpenSlot",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "Maintains the `solana_program::clock::UnixTimestamp;` the round was opened at."
+            ],
+            "name": "roundOpenTimestamp",
+            "type": "i64"
+          },
+          {
+            "docs": [
+              "Maintains the current median of all successful round responses."
+            ],
+            "name": "result",
+            "type": {
+              "defined": "SwitchboardDecimal"
+            }
+          },
+          {
+            "docs": [
+              "Standard deviation of the accepted results in the round."
+            ],
+            "name": "stdDeviation",
+            "type": {
+              "defined": "SwitchboardDecimal"
+            }
+          },
+          {
+            "docs": [
+              "Maintains the minimum node response this round."
+            ],
+            "name": "minResponse",
+            "type": {
+              "defined": "SwitchboardDecimal"
+            }
+          },
+          {
+            "docs": [
+              "Maintains the maximum node response this round."
+            ],
+            "name": "maxResponse",
+            "type": {
+              "defined": "SwitchboardDecimal"
+            }
+          },
+          {
+            "docs": [
+              "Pubkeys of the oracles fulfilling this round."
+            ],
+            "name": "oraclePubkeysData",
+            "type": {
+              "array": [
+                "publicKey",
+                16
+              ]
+            }
+          },
+          {
+            "docs": [
+              "Represents all successful node responses this round. `NaN` if empty."
+            ],
+            "name": "mediansData",
+            "type": {
+              "array": [
+                {
+                  "defined": "SwitchboardDecimal"
+                },
+                16
+              ]
+            }
+          },
+          {
+            "docs": [
+              "Current rewards/slashes oracles have received this round."
+            ],
+            "name": "currentPayout",
+            "type": {
+              "array": [
+                "i64",
+                16
+              ]
+            }
+          },
+          {
+            "docs": [
+              "Keep track of which responses are fulfilled here."
+            ],
+            "name": "mediansFulfilled",
+            "type": {
+              "array": [
+                "bool",
+                16
+              ]
+            }
+          },
+          {
+            "docs": [
+              "Keeps track of which errors are fulfilled here."
+            ],
+            "name": "errorsFulfilled",
+            "type": {
+              "array": [
+                "bool",
+                16
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AggregatorHistoryRow",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "The timestamp of the sample."
+            ],
+            "name": "timestamp",
+            "type": "i64"
+          },
+          {
+            "docs": [
+              "The value of the sample."
+            ],
+            "name": "value",
+            "type": {
+              "defined": "SwitchboardDecimal"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SwitchboardDecimal",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "The part of a floating-point number that represents the significant digits of that number,",
+              "and that is multiplied by the base, 10, raised to the power of scale to give the actual value of the number."
+            ],
+            "name": "mantissa",
+            "type": "i128"
+          },
+          {
+            "docs": [
+              "The number of decimal places to move to the left to yield the actual value."
+            ],
+            "name": "scale",
+            "type": "u32"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "CrankRow",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "The PublicKey of the AggregatorAccountData."
+            ],
+            "name": "pubkey",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The aggregators next available update time."
+            ],
+            "name": "nextTimestamp",
+            "type": "i64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "OracleMetrics",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "Number of consecutive successful update request."
+            ],
+            "name": "consecutiveSuccess",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "Number of consecutive update request that resulted in an error."
+            ],
+            "name": "consecutiveError",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "Number of consecutive update request that resulted in a disagreement with the accepted median result."
+            ],
+            "name": "consecutiveDisagreement",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "Number of consecutive update request that were posted on-chain late and not included in an accepted result."
+            ],
+            "name": "consecutiveLateResponse",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "Number of consecutive update request that resulted in a failure."
+            ],
+            "name": "consecutiveFailure",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "Total number of successful update request."
+            ],
+            "name": "totalSuccess",
+            "type": "u128"
+          },
+          {
+            "docs": [
+              "Total number of update request that resulted in an error."
+            ],
+            "name": "totalError",
+            "type": "u128"
+          },
+          {
+            "docs": [
+              "Total number of update request that resulted in a disagreement with the accepted median result."
+            ],
+            "name": "totalDisagreement",
+            "type": "u128"
+          },
+          {
+            "docs": [
+              "Total number of update request that were posted on-chain late and not included in an accepted result."
+            ],
+            "name": "totalLateResponse",
+            "type": "u128"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "VrfBuilder",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "The OracleAccountData that is producing the randomness."
+            ],
+            "name": "producer",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The current status of the VRF verification."
+            ],
+            "name": "status",
+            "type": {
+              "defined": "VrfStatus"
+            }
+          },
+          {
+            "docs": [
+              "The VRF proof sourced from the producer."
+            ],
+            "name": "reprProof",
+            "type": {
+              "array": [
+                "u8",
+                80
+              ]
+            }
+          },
+          {
+            "name": "proof",
+            "type": {
+              "defined": "EcvrfProofZC"
+            }
+          },
+          {
+            "name": "yPoint",
+            "type": "publicKey"
+          },
+          {
+            "name": "stage",
+            "type": "u32"
+          },
+          {
+            "name": "stage1Out",
+            "type": {
+              "defined": "EcvrfIntermediate"
+            }
+          },
+          {
+            "name": "r1",
+            "type": {
+              "defined": "EdwardsPointZC"
+            }
+          },
+          {
+            "name": "r2",
+            "type": {
+              "defined": "EdwardsPointZC"
+            }
+          },
+          {
+            "name": "stage3Out",
+            "type": {
+              "defined": "EcvrfIntermediate"
+            }
+          },
+          {
+            "name": "hPoint",
+            "type": {
+              "defined": "EdwardsPointZC"
+            }
+          },
+          {
+            "name": "sReduced",
+            "type": {
+              "defined": "Scalar"
+            }
+          },
+          {
+            "name": "yPointBuilder",
+            "type": {
+              "array": [
+                {
+                  "defined": "FieldElementZC"
+                },
+                3
+              ]
+            }
+          },
+          {
+            "name": "yRistrettoPoint",
+            "type": {
+              "defined": "EdwardsPointZC"
+            }
+          },
+          {
+            "name": "mulRound",
+            "type": "u8"
+          },
+          {
+            "name": "hashPointsRound",
+            "type": "u8"
+          },
+          {
+            "name": "mulTmp1",
+            "type": {
+              "defined": "CompletedPointZC"
+            }
+          },
+          {
+            "name": "uPoint1",
+            "type": {
+              "defined": "EdwardsPointZC"
+            }
+          },
+          {
+            "name": "uPoint2",
+            "type": {
+              "defined": "EdwardsPointZC"
+            }
+          },
+          {
+            "name": "vPoint1",
+            "type": {
+              "defined": "EdwardsPointZC"
+            }
+          },
+          {
+            "name": "vPoint2",
+            "type": {
+              "defined": "EdwardsPointZC"
+            }
+          },
+          {
+            "name": "uPoint",
+            "type": {
+              "defined": "EdwardsPointZC"
+            }
+          },
+          {
+            "name": "vPoint",
+            "type": {
+              "defined": "EdwardsPointZC"
+            }
+          },
+          {
+            "name": "u1",
+            "type": {
+              "defined": "FieldElementZC"
+            }
+          },
+          {
+            "name": "u2",
+            "type": {
+              "defined": "FieldElementZC"
+            }
+          },
+          {
+            "name": "invertee",
+            "type": {
+              "defined": "FieldElementZC"
+            }
+          },
+          {
+            "name": "y",
+            "type": {
+              "defined": "FieldElementZC"
+            }
+          },
+          {
+            "name": "z",
+            "type": {
+              "defined": "FieldElementZC"
+            }
+          },
+          {
+            "name": "p1Bytes",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "p2Bytes",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "p3Bytes",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "p4Bytes",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "cPrimeHashbuf",
+            "type": {
+              "array": [
+                "u8",
+                16
+              ]
+            }
+          },
+          {
+            "name": "m1",
+            "type": {
+              "defined": "FieldElementZC"
+            }
+          },
+          {
+            "name": "m2",
+            "type": {
+              "defined": "FieldElementZC"
+            }
+          },
+          {
+            "docs": [
+              "The number of transactions remaining to verify the VRF proof."
+            ],
+            "name": "txRemaining",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "Whether the VRF proof has been verified on-chain."
+            ],
+            "name": "verified",
+            "type": "bool"
+          },
+          {
+            "docs": [
+              "The VRF proof verification result. Will be zeroized if still awaiting fulfillment."
+            ],
+            "name": "result",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AccountMetaZC",
+      "type": {
+        "fields": [
+          {
+            "name": "pubkey",
+            "type": "publicKey"
+          },
+          {
+            "name": "isSigner",
+            "type": "bool"
+          },
+          {
+            "name": "isWritable",
+            "type": "bool"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AccountMetaBorsh",
+      "type": {
+        "fields": [
+          {
+            "name": "pubkey",
+            "type": "publicKey"
+          },
+          {
+            "name": "isSigner",
+            "type": "bool"
+          },
+          {
+            "name": "isWritable",
+            "type": "bool"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "CallbackZC",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "The program ID of the callback program being invoked."
+            ],
+            "name": "programId",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The accounts being used in the callback instruction."
+            ],
+            "name": "accounts",
+            "type": {
+              "array": [
+                {
+                  "defined": "AccountMetaZC"
+                },
+                32
+              ]
+            }
+          },
+          {
+            "docs": [
+              "The number of accounts used in the callback"
+            ],
+            "name": "accountsLen",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "The serialized instruction data."
+            ],
+            "name": "ixData",
+            "type": {
+              "array": [
+                "u8",
+                1024
+              ]
+            }
+          },
+          {
+            "docs": [
+              "The number of serialized bytes in the instruction data."
+            ],
+            "name": "ixDataLen",
+            "type": "u32"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "VrfRound",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "The alpha bytes used to calculate the VRF proof."
+            ],
+            "name": "alpha",
+            "type": {
+              "array": [
+                "u8",
+                256
+              ]
+            }
+          },
+          {
+            "docs": [
+              "The number of bytes in the alpha buffer."
+            ],
+            "name": "alphaLen",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "The Slot when the VRF round was opened."
+            ],
+            "name": "requestSlot",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "The unix timestamp when the VRF round was opened."
+            ],
+            "name": "requestTimestamp",
+            "type": "i64"
+          },
+          {
+            "docs": [
+              "The VRF round result. Will be zeroized if still awaiting fulfillment."
+            ],
+            "name": "result",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "docs": [
+              "The number of builders who verified the VRF proof."
+            ],
+            "name": "numVerified",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "Reserved for future info."
+            ],
+            "name": "ebuf",
+            "type": {
+              "array": [
+                "u8",
+                256
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "VrfPoolRow",
+      "type": {
+        "fields": [
+          {
+            "name": "timestamp",
+            "type": "i64"
+          },
+          {
+            "name": "pubkey",
+            "type": "publicKey"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "BufferRelayerRound",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "Number of successful responses."
+            ],
+            "name": "numSuccess",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "Number of error responses."
+            ],
+            "name": "numError",
+            "type": "u32"
+          },
+          {
+            "docs": [
+              "Slot when the buffer relayer round was opened."
+            ],
+            "name": "roundOpenSlot",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "Timestamp when the buffer relayer round was opened."
+            ],
+            "name": "roundOpenTimestamp",
+            "type": "i64"
+          },
+          {
+            "docs": [
+              "The public key of the oracle fulfilling the buffer relayer update request."
+            ],
+            "name": "oraclePubkey",
+            "type": "publicKey"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "docs": [
+        "The `Lanes` enum represents a subset of the lanes `A,B,C,D` of a",
+        "`FieldElement2625x4`.",
+        "",
+        "Its used to specify blend operations without",
+        "having to know details about the data layout of the",
+        "`FieldElement2625x4`."
+      ],
+      "name": "Lanes",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "C"
+          },
+          {
+            "name": "D"
+          },
+          {
+            "name": "AB"
+          },
+          {
+            "name": "AC"
+          },
+          {
+            "name": "CD"
+          },
+          {
+            "name": "AD"
+          },
+          {
+            "name": "BC"
+          },
+          {
+            "name": "ABCD"
+          }
+        ]
+      }
+    },
+    {
+      "docs": [
+        "The `Shuffle` enum represents a shuffle of a `FieldElement2625x4`.",
+        "",
+        "The enum variants are named by what they do to a vector \\(",
+        "(A,B,C,D) \\); for instance, `Shuffle::BADC` turns \\( (A, B, C,",
+        "D) \\) into \\( (B, A, D, C) \\)."
+      ],
+      "name": "Shuffle",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "AAAA"
+          },
+          {
+            "name": "BBBB"
+          },
+          {
+            "name": "CACA"
+          },
+          {
+            "name": "DBBD"
+          },
+          {
+            "name": "ADDA"
+          },
+          {
+            "name": "CBCB"
+          },
+          {
+            "name": "ABAB"
+          },
+          {
+            "name": "BADC"
+          },
+          {
+            "name": "BACD"
+          },
+          {
+            "name": "ABDC"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Shuffle",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "AAAA"
+          },
+          {
+            "name": "BBBB"
+          },
+          {
+            "name": "BADC"
+          },
+          {
+            "name": "BACD"
+          },
+          {
+            "name": "ADDA"
+          },
+          {
+            "name": "CBCB"
+          },
+          {
+            "name": "ABDC"
+          },
+          {
+            "name": "ABAB"
+          },
+          {
+            "name": "DBBD"
+          },
+          {
+            "name": "CACA"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Lanes",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "D"
+          },
+          {
+            "name": "C"
+          },
+          {
+            "name": "AB"
+          },
+          {
+            "name": "AC"
+          },
+          {
+            "name": "AD"
+          },
+          {
+            "name": "BCD"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Error",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "InvalidPublicKey"
+          },
+          {
+            "name": "SerializationError"
+          },
+          {
+            "name": "DeserializationError"
+          },
+          {
+            "name": "InvalidDataError"
+          }
+        ]
+      }
+    },
+    {
+      "name": "VerificationStatus",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "None"
+          },
+          {
+            "name": "VerificationPending"
+          },
+          {
+            "name": "VerificationFailure"
+          },
+          {
+            "name": "VerificationSuccess"
+          },
+          {
+            "name": "VerificationOverride"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AggregatorResolutionMode",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "ModeRoundResolution"
+          },
+          {
+            "name": "ModeSlidingResolution"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SwitchboardPermission",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "PermitOracleHeartbeat"
+          },
+          {
+            "name": "PermitOracleQueueUsage"
+          },
+          {
+            "name": "PermitVrfRequests"
+          }
+        ]
+      }
+    },
+    {
+      "name": "OracleResponseType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "TypeSuccess"
+          },
+          {
+            "name": "TypeError"
+          },
+          {
+            "name": "TypeDisagreement"
+          },
+          {
+            "name": "TypeNoResponse"
+          }
+        ]
+      }
+    },
+    {
+      "name": "VrfStatus",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "StatusNone"
+          },
+          {
+            "name": "StatusRequesting"
+          },
+          {
+            "name": "StatusVerifying"
+          },
+          {
+            "name": "StatusVerified"
+          },
+          {
+            "name": "StatusCallbackSuccess"
+          },
+          {
+            "name": "StatusVerifyFailure"
+          }
+        ]
+      }
+    }
+  ],
+  "version": "0.1.0"
+}

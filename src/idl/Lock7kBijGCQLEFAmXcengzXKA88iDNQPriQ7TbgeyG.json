@@ -1,0 +1,1209 @@
+{
+  "accounts": [
+    {
+      "docs": [
+        "A group of [Escrow]s."
+      ],
+      "name": "Locker",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "Base account used to generate signer seeds."
+            ],
+            "name": "base",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Bump seed."
+            ],
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "docs": [
+              "Mint of the token that must be locked in the [Locker]."
+            ],
+            "name": "tokenMint",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Total number of tokens locked in [Escrow]s."
+            ],
+            "name": "lockedSupply",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "Governor associated with the [Locker]."
+            ],
+            "name": "governor",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Mutable parameters of how a [Locker] should behave."
+            ],
+            "name": "params",
+            "type": {
+              "defined": "LockerParams"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "docs": [
+        "An entry in the [Locker]s whitelist.",
+        "",
+        "The whitelist controls which programs are allowed to stake tokens into the system."
+      ],
+      "name": "LockerWhitelistEntry",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "Bump seed."
+            ],
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "docs": [
+              "[Locker] this whitelist entry belongs to."
+            ],
+            "name": "locker",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Key of the program_id allowed to call the `lock` CPI."
+            ],
+            "name": "programId",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The account authorized to be the [Escrow::owner] with this CPI.",
+              "If set to [anchor_lang::solana_program::system_program::ID],",
+              "all accounts are allowed to be the [Escrow::owner]."
+            ],
+            "name": "owner",
+            "type": "publicKey"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "docs": [
+        "Locks tokens on behalf of a user."
+      ],
+      "name": "Escrow",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "The [Locker] that this [Escrow] is part of."
+            ],
+            "name": "locker",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The key of the account that is authorized to stake into/withdraw from this [Escrow]."
+            ],
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Bump seed."
+            ],
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "docs": [
+              "The token account holding the escrow tokens."
+            ],
+            "name": "tokens",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Amount of tokens staked."
+            ],
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "When the [Escrow::owner] started their escrow."
+            ],
+            "name": "escrowStartedAt",
+            "type": "i64"
+          },
+          {
+            "docs": [
+              "When the escrow unlocks; i.e. the [Escrow::owner] is scheduled to be allowed to withdraw their tokens."
+            ],
+            "name": "escrowEndsAt",
+            "type": "i64"
+          },
+          {
+            "docs": [
+              "Account that is authorized to vote on behalf of this [Escrow].",
+              "Defaults to the [Escrow::owner]."
+            ],
+            "name": "voteDelegate",
+            "type": "publicKey"
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "msg": "CPI caller not whitelisted to invoke lock instruction.",
+      "name": "ProgramNotWhitelisted"
+    },
+    {
+      "code": 6001,
+      "msg": "Lockup duration must at least be the min stake duration.",
+      "name": "LockupDurationTooShort"
+    },
+    {
+      "code": 6002,
+      "msg": "Lockup duration must at most be the max stake duration.",
+      "name": "LockupDurationTooLong"
+    },
+    {
+      "code": 6003,
+      "msg": "A voting escrow refresh cannot shorten the escrow time remaining.",
+      "name": "RefreshCannotShorten"
+    },
+    {
+      "code": 6004,
+      "msg": "Escrow has not ended.",
+      "name": "EscrowNotEnded"
+    },
+    {
+      "code": 6005,
+      "msg": "Program whitelist enabled; please provide whitelist entry and instructions sysvar or use the lock_with_whitelist instruction.",
+      "name": "MustProvideWhitelist"
+    },
+    {
+      "code": 6006,
+      "msg": "CPI caller not whitelisted for escrow owner to invoke lock instruction.",
+      "name": "EscrowOwnerNotWhitelisted"
+    },
+    {
+      "code": 6007,
+      "msg": "Must call `lock_with_whitelist_entry` to lock via CPI.",
+      "name": "MustCallLockWithWhitelistEntry"
+    },
+    {
+      "code": 6008,
+      "msg": "Must call `lock_permissionless` since this DAO does not have a CPI whitelist.",
+      "name": "MustCallLockPermissionless"
+    }
+  ],
+  "events": [
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "locker",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "programId",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "owner",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "timestamp",
+          "type": "i64"
+        }
+      ],
+      "name": "ApproveLockPrivilegeEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "escrowOwner",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "locker",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "timestamp",
+          "type": "i64"
+        },
+        {
+          "index": false,
+          "name": "lockerSupply",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "releasedAmount",
+          "type": "u64"
+        }
+      ],
+      "name": "ExitEscrowEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "locker",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "escrowOwner",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "tokenMint",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "lockerSupply",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "duration",
+          "type": "i64"
+        },
+        {
+          "index": false,
+          "name": "prevEscrowEndsAt",
+          "type": "i64"
+        },
+        {
+          "index": false,
+          "name": "nextEscrowEndsAt",
+          "type": "i64"
+        },
+        {
+          "index": false,
+          "name": "nextEscrowStartedAt",
+          "type": "i64"
+        }
+      ],
+      "name": "LockEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "escrow",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "escrowOwner",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "locker",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "timestamp",
+          "type": "i64"
+        }
+      ],
+      "name": "NewEscrowEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "governor",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "locker",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "tokenMint",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "params",
+          "type": {
+            "defined": "LockerParams"
+          }
+        }
+      ],
+      "name": "NewLockerEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "locker",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "programId",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "timestamp",
+          "type": "i64"
+        }
+      ],
+      "name": "RevokeLockPrivilegeEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "locker",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "prevParams",
+          "type": {
+            "defined": "LockerParams"
+          }
+        },
+        {
+          "index": false,
+          "name": "params",
+          "type": {
+            "defined": "LockerParams"
+          }
+        }
+      ],
+      "name": "LockerSetParamsEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "escrowOwner",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "oldDelegate",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "newDelegate",
+          "type": "publicKey"
+        }
+      ],
+      "name": "SetVoteDelegateEvent"
+    }
+  ],
+  "instructions": [
+    {
+      "accounts": [
+        {
+          "docs": [
+            "Base."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "base"
+        },
+        {
+          "docs": [
+            "[Locker]."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "locker",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "Locker"
+              },
+              {
+                "kind": "account",
+                "path": "base",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "docs": [
+            "Mint of the token that can be used to join the [Locker]."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenMint"
+        },
+        {
+          "docs": [
+            "[Governor] associated with the [Locker]."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "governor"
+        },
+        {
+          "docs": [
+            "Payer of the initialization."
+          ],
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "docs": [
+            "System program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "bump",
+          "type": "u8"
+        },
+        {
+          "name": "params",
+          "type": {
+            "defined": "LockerParams"
+          }
+        }
+      ],
+      "docs": [
+        "Creates a new [Locker]."
+      ],
+      "name": "newLocker"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "[Locker]."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "locker"
+        },
+        {
+          "docs": [
+            "[Escrow]."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "Escrow"
+              },
+              {
+                "account": "Locker",
+                "kind": "account",
+                "path": "locker",
+                "type": "publicKey"
+              },
+              {
+                "kind": "account",
+                "path": "escrow_owner",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "escrowOwner"
+        },
+        {
+          "docs": [
+            "Payer of the initialization."
+          ],
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "docs": [
+            "System program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "bump",
+          "type": "u8"
+        }
+      ],
+      "docs": [
+        "Creates a new [Escrow] for an account.",
+        "",
+        "A Vote Escrow, or [Escrow] for short, is an agreement between an account (known as the `authority`) and the DAO to",
+        "lock up tokens for a specific period of time, in exchange for voting rights",
+        "linearly proportional to the amount of votes given."
+      ],
+      "name": "newEscrow"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "[Locker]."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "locker"
+        },
+        {
+          "docs": [
+            "[Escrow]."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "docs": [
+            "Token account held by the [Escrow]."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrowTokens"
+        },
+        {
+          "docs": [
+            "Authority of the [Escrow] and [Self::source_tokens]."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "escrowOwner"
+        },
+        {
+          "docs": [
+            "The source of deposited tokens."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "sourceTokens"
+        },
+        {
+          "docs": [
+            "Token program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "duration",
+          "type": "i64"
+        }
+      ],
+      "docs": [
+        "Stakes `amount` tokens into the [Escrow].",
+        "WARNING: if the program has a whitelist, one should use [crate::locked_voter::lock_with_whitelist] instead.",
+        "This version of the instruction is deprecated."
+      ],
+      "name": "lock"
+    },
+    {
+      "accounts": [
+        {
+          "accounts": [
+            {
+              "docs": [
+                "[Locker]."
+              ],
+              "isMut": true,
+              "isSigner": false,
+              "name": "locker"
+            },
+            {
+              "docs": [
+                "[Escrow]."
+              ],
+              "isMut": true,
+              "isSigner": false,
+              "name": "escrow"
+            },
+            {
+              "docs": [
+                "Token account held by the [Escrow]."
+              ],
+              "isMut": true,
+              "isSigner": false,
+              "name": "escrowTokens"
+            },
+            {
+              "docs": [
+                "Authority of the [Escrow] and [Self::source_tokens]."
+              ],
+              "isMut": false,
+              "isSigner": true,
+              "name": "escrowOwner"
+            },
+            {
+              "docs": [
+                "The source of deposited tokens."
+              ],
+              "isMut": true,
+              "isSigner": false,
+              "name": "sourceTokens"
+            },
+            {
+              "docs": [
+                "Token program."
+              ],
+              "isMut": false,
+              "isSigner": false,
+              "name": "tokenProgram"
+            }
+          ],
+          "name": "lock"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructionsSysvar"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "whitelistEntry"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "duration",
+          "type": "i64"
+        }
+      ],
+      "docs": [
+        "Stakes `amount` tokens into the [Escrow], if there is a whitelist.",
+        "Stakes `amount` tokens into the [Escrow] via CPI by using the provided [LockerWhitelistEntry]."
+      ],
+      "name": "lockWithWhitelistEntry"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The [Locker] being exited from."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "locker"
+        },
+        {
+          "docs": [
+            "The [Escrow] that is being closed."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "docs": [
+            "Authority of the [Escrow]."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "escrowOwner"
+        },
+        {
+          "docs": [
+            "Tokens locked up in the [Escrow]."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrowTokens"
+        },
+        {
+          "docs": [
+            "Destination for the tokens to unlock."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "destinationTokens"
+        },
+        {
+          "docs": [
+            "The payer to receive the rent refund."
+          ],
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "docs": [
+            "Token program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [],
+      "docs": [
+        "Stakes `amount` tokens into the [Escrow] if there is no whitelist.",
+        "Exits the DAO; i.e., withdraws all staked tokens in an [Escrow] if the [Escrow] is unlocked."
+      ],
+      "name": "exit"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The [Locker]."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "locker"
+        },
+        {
+          "docs": [
+            "The [Governor]."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "governor"
+        },
+        {
+          "docs": [
+            "The [Proposal]."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "proposal"
+        },
+        {
+          "docs": [
+            "The users [Escrow]."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "docs": [
+            "The [Escrow]s owner."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "escrowOwner"
+        },
+        {
+          "docs": [
+            "The [govern] program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "governProgram"
+        }
+      ],
+      "args": [],
+      "docs": [
+        "Activates a proposal."
+      ],
+      "name": "activateProposal"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The [Locker]."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "locker"
+        },
+        {
+          "docs": [
+            "The [Escrow] that is voting."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "docs": [
+            "Vote delegate of the [Escrow]."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "voteDelegate"
+        },
+        {
+          "docs": [
+            "The [Proposal] being voted on."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "proposal"
+        },
+        {
+          "docs": [
+            "The [Vote]."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "vote"
+        },
+        {
+          "docs": [
+            "The [Governor]."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "governor"
+        },
+        {
+          "docs": [
+            "The [govern] program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "governProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "side",
+          "type": "u8"
+        }
+      ],
+      "docs": [
+        "Casts a vote."
+      ],
+      "name": "castVote"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The [Escrow]."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "escrow"
+        },
+        {
+          "docs": [
+            "The owner of the [Escrow]."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "escrowOwner"
+        }
+      ],
+      "args": [
+        {
+          "name": "newDelegate",
+          "type": "publicKey"
+        }
+      ],
+      "docs": [
+        "Delegate escrow vote."
+      ],
+      "name": "setVoteDelegate"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The [Locker]."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "locker"
+        },
+        {
+          "docs": [
+            "The [Governor]."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "governor"
+        },
+        {
+          "docs": [
+            "The smart wallet on the [Governor]."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "smartWallet"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "LockerParams"
+          }
+        }
+      ],
+      "docs": [
+        "Set locker params."
+      ],
+      "name": "setLockerParams"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The [Locker]."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "locker"
+        },
+        {
+          "docs": [
+            "[LockerWhitelistEntry]."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "whitelistEntry",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "LockerWhitelistEntry"
+              },
+              {
+                "account": "Locker",
+                "kind": "account",
+                "path": "locker",
+                "type": "publicKey"
+              },
+              {
+                "kind": "account",
+                "path": "executable_id",
+                "type": "publicKey"
+              },
+              {
+                "kind": "account",
+                "path": "whitelisted_owner",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "docs": [
+            "Governor for the [Locker]."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "governor"
+        },
+        {
+          "docs": [
+            "Smart wallet on the [Governor]."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "smartWallet"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "executableId"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "whitelistedOwner"
+        },
+        {
+          "docs": [
+            "Payer of the initialization."
+          ],
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "docs": [
+            "System program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "bump",
+          "type": "u8"
+        }
+      ],
+      "docs": [
+        "Creates a new [LockerWhitelistEntry] to whitelist program from CPI."
+      ],
+      "name": "approveProgramLockPrivilege"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The [Locker]."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "locker"
+        },
+        {
+          "docs": [
+            "[LockerWhitelistEntry]."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "whitelistEntry"
+        },
+        {
+          "docs": [
+            "Governor for the [Locker]."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "governor"
+        },
+        {
+          "docs": [
+            "Smart wallet on the [Governor]."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "smartWallet"
+        },
+        {
+          "docs": [
+            "Payer of the initialization."
+          ],
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        }
+      ],
+      "args": [],
+      "docs": [
+        "Close a [LockerWhitelistEntry] revoking programs CPI privilege."
+      ],
+      "name": "revokeProgramLockPrivilege"
+    }
+  ],
+  "name": "locked_voter",
+  "types": [
+    {
+      "docs": [
+        "Contains parameters for the [Locker]."
+      ],
+      "name": "LockerParams",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "Whether or not the locking whitelist system is enabled."
+            ],
+            "name": "whitelistEnabled",
+            "type": "bool"
+          },
+          {
+            "docs": [
+              "The weight of a maximum vote lock relative to the total number of tokens locked.",
+              "For example, veCRV is 10 because 1 CRV locked for 4 years = 10 veCRV."
+            ],
+            "name": "maxStakeVoteMultiplier",
+            "type": "u8"
+          },
+          {
+            "docs": [
+              "Minimum staking duration."
+            ],
+            "name": "minStakeDuration",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "Maximum staking duration."
+            ],
+            "name": "maxStakeDuration",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "Minimum number of votes required to activate a proposal."
+            ],
+            "name": "proposalActivationMinVotes",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "version": "0.1.1"
+}

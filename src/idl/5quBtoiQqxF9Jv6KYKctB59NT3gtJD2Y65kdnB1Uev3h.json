@@ -1,0 +1,525 @@
+{
+  "instructions": [
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "splTokenProgram"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "ammId"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ammAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ammOpenOrders"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolLpMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "coinMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "pcMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "poolTokenCoin"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "poolTokenPc"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "withdrawQueue"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenDestLp"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "tokenTempLp"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "serumDexProgramId"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "serumDexMarket"
+        }
+      ],
+      "args": [
+        {
+          "name": "nonce",
+          "type": "u8"
+        },
+        {
+          "name": "openTime",
+          "type": "u64"
+        }
+      ],
+      "discriminant": {
+        "type": "u8",
+        "value": 0
+      },
+      "name": "initialize"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "splTokenProgram"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ammAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ammOpenOrders"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ammTargetOrders"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolLpMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolTokenCoin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolTokenPc"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "serumMarket"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userCoinToken"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userPcToken"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userLpToken"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "userOwner"
+        }
+      ],
+      "args": [
+        {
+          "name": "maxCoinAmount",
+          "type": "u64"
+        },
+        {
+          "name": "maxPcAmount",
+          "type": "u64"
+        },
+        {
+          "name": "baseSide",
+          "type": "u64"
+        }
+      ],
+      "discriminant": {
+        "type": "u8",
+        "value": 3
+      },
+      "name": "deposit"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "splTokenProgram"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ammAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ammOpenOrders"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ammTargetOrders"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolLpMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolTokenCoin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolTokenPc"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "withdrawQueue"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenTempLp"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "serumDexProgramId"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "serumMarket"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "coinVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pcVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "vaultSigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userLpToken"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userTokenCoin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userTokenPc"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "userOwner"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ],
+      "discriminant": {
+        "type": "u8",
+        "value": 4
+      },
+      "name": "withdraw"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "splTokenProgram"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ammAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ammOpenOrders"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ammTargetOrders"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolTokenCoin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolTokenPc"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "serumDexProgramId"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "serumMarket"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bids"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "asks"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "eventQ"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "coinVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pcVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "vaultSigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userSourceToken"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userDestinationToken"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "userOwner"
+        }
+      ],
+      "args": [
+        {
+          "name": "amountIn",
+          "type": "u64"
+        },
+        {
+          "name": "minimumAmountOut",
+          "type": "u64"
+        }
+      ],
+      "discriminant": {
+        "type": "u8",
+        "value": 9
+      },
+      "name": "swapBaseIn"
+    },
+    {
+      "accounts": [],
+      "args": [
+        {
+          "name": "nonce",
+          "type": "u8"
+        }
+      ],
+      "discriminant": {
+        "type": "u8",
+        "value": 10
+      },
+      "name": "preInitialize"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "splTokenProgram"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ammAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ammOpenOrders"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ammTargetOrders"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolTokenCoin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolTokenPc"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "serumDexProgramId"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "serumMarket"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bids"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "asks"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "eventQ"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "coinVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pcVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "vaultSigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userSourceToken"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userDestinationToken"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "userOwner"
+        }
+      ],
+      "args": [
+        {
+          "name": "maxAmountIn",
+          "type": "u64"
+        },
+        {
+          "name": "amountOut",
+          "type": "u64"
+        }
+      ],
+      "discriminant": {
+        "type": "u8",
+        "value": 11
+      },
+      "name": "swapBaseOut"
+    }
+  ],
+  "name": "RaydiumStableSwapAMM",
+  "version": "0.1.0"
+}

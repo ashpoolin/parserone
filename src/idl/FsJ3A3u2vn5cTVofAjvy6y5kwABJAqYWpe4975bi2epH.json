@@ -1,0 +1,780 @@
+{
+  "instructions": [
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "fundingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "freshMappingAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "permissionsAccount",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "permissions"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [],
+      "discriminant": {
+        "value": [
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "name": "initMapping"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "fundingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "curMapping"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nextMapping"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "permissionsAccount",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "permissions"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [],
+      "discriminant": {
+        "value": [
+          2,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      "name": "addMapping"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "fundingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tailMappingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "productAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "permissionsAccount",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "permissions"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "productMetadata",
+          "type": {
+            "defined": "ProductMetadata"
+          }
+        }
+      ],
+      "discriminant": {
+        "value": [
+          2,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0
+        ]
+      },
+      "name": "addProduct"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "fundingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "productAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "permissionsAccount",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "permissions"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "productMetadata",
+          "type": {
+            "defined": "ProductMetadata"
+          }
+        }
+      ],
+      "discriminant": {
+        "value": [
+          2,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0
+        ]
+      },
+      "name": "updProduct"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "fundingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "productAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "priceAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "permissionsAccount",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "permissions"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "expo",
+          "type": "i32"
+        },
+        {
+          "name": "pType",
+          "type": "u32"
+        }
+      ],
+      "discriminant": {
+        "value": [
+          2,
+          0,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0
+        ]
+      },
+      "name": "addPrice"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "fundingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "priceAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "permissionsAccount",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "permissions"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "pub",
+          "type": "publicKey"
+        }
+      ],
+      "discriminant": {
+        "value": [
+          2,
+          0,
+          0,
+          0,
+          5,
+          0,
+          0,
+          0
+        ]
+      },
+      "name": "addPublisher"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "fundingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "priceAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "permissionsAccount",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "permissions"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "pub",
+          "type": "publicKey"
+        }
+      ],
+      "discriminant": {
+        "value": [
+          2,
+          0,
+          0,
+          0,
+          6,
+          0,
+          0,
+          0
+        ]
+      },
+      "name": "delPublisher"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "fundingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "priceAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clock"
+        }
+      ],
+      "args": [
+        {
+          "name": "status",
+          "type": "u32"
+        },
+        {
+          "name": "unused",
+          "type": "u32"
+        },
+        {
+          "name": "price",
+          "type": "i64"
+        },
+        {
+          "name": "conf",
+          "type": "u64"
+        },
+        {
+          "name": "pubSlot",
+          "type": "u64"
+        }
+      ],
+      "discriminant": {
+        "value": [
+          2,
+          0,
+          0,
+          0,
+          7,
+          0,
+          0,
+          0
+        ]
+      },
+      "name": "updPrice"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "fundingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "priceAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clock"
+        }
+      ],
+      "args": [
+        {
+          "name": "status",
+          "type": "u32"
+        },
+        {
+          "name": "unused",
+          "type": "u32"
+        },
+        {
+          "name": "price",
+          "type": "i64"
+        },
+        {
+          "name": "conf",
+          "type": "u64"
+        },
+        {
+          "name": "pubSlot",
+          "type": "u64"
+        }
+      ],
+      "discriminant": {
+        "value": [
+          2,
+          0,
+          0,
+          0,
+          8,
+          0,
+          0,
+          0
+        ]
+      },
+      "name": "aggPrice"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "fundingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "priceAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "permissionsAccount",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "permissions"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "expo",
+          "type": "i32"
+        },
+        {
+          "name": "pType",
+          "type": "u32"
+        }
+      ],
+      "discriminant": {
+        "value": [
+          2,
+          0,
+          0,
+          0,
+          9,
+          0,
+          0,
+          0
+        ]
+      },
+      "name": "setExponent"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "fundingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "priceAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "permissionsAccount",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "permissions"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "minPub",
+          "type": "u8"
+        },
+        {
+          "name": "unused",
+          "type": {
+            "array": [
+              "u8",
+              3
+            ]
+          }
+        }
+      ],
+      "discriminant": {
+        "value": [
+          2,
+          0,
+          0,
+          0,
+          12,
+          0,
+          0,
+          0
+        ]
+      },
+      "name": "setMinPub"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "fundingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "priceAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clock"
+        }
+      ],
+      "args": [
+        {
+          "name": "status",
+          "type": "u32"
+        },
+        {
+          "name": "unused",
+          "type": "u32"
+        },
+        {
+          "name": "price",
+          "type": "i64"
+        },
+        {
+          "name": "conf",
+          "type": "u64"
+        },
+        {
+          "name": "pubSlot",
+          "type": "u64"
+        }
+      ],
+      "discriminant": {
+        "value": [
+          2,
+          0,
+          0,
+          0,
+          13,
+          0,
+          0,
+          0
+        ]
+      },
+      "name": "updPriceNoFailOnError"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "fundingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "productAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "priceAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "permissionsAccount",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "permissions"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [],
+      "discriminant": {
+        "value": [
+          2,
+          0,
+          0,
+          0,
+          15,
+          0,
+          0,
+          0
+        ]
+      },
+      "name": "delPrice"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "fundingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "mappingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "productAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "permissionsAccount",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "permissions"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [],
+      "discriminant": {
+        "value": [
+          2,
+          0,
+          0,
+          0,
+          16,
+          0,
+          0,
+          0
+        ]
+      },
+      "name": "delProduct"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "upgradeAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programDataAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "permissionsAccount",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "permissions"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "masterAuthority",
+          "type": "publicKey"
+        },
+        {
+          "name": "dataCurationAuthority",
+          "type": "publicKey"
+        },
+        {
+          "name": "securityAuthority",
+          "type": "publicKey"
+        }
+      ],
+      "discriminant": {
+        "value": [
+          2,
+          0,
+          0,
+          0,
+          17,
+          0,
+          0,
+          0
+        ]
+      },
+      "name": "updPermissions"
+    }
+  ],
+  "name": "pyth_oracle",
+  "types": [
+    {
+      "name": "ProductMetadata",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    }
+  ],
+  "version": "2.20.0"
+}

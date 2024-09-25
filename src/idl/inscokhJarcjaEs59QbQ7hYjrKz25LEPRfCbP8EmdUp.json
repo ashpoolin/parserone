@@ -1,0 +1,1000 @@
+{
+  "accounts": [
+    {
+      "name": "inscription",
+      "type": {
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "root",
+            "type": "publicKey"
+          },
+          {
+            "name": "mediaType",
+            "type": {
+              "defined": "MediaType"
+            }
+          },
+          {
+            "name": "encodingType",
+            "type": {
+              "defined": "EncodingType"
+            }
+          },
+          {
+            "name": "inscriptionData",
+            "type": "publicKey"
+          },
+          {
+            "name": "order",
+            "type": "u64"
+          },
+          {
+            "name": "size",
+            "type": "u32"
+          },
+          {
+            "name": "validationHash",
+            "type": {
+              "option": "string"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "inscriptionData",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "inscriptionRankPage",
+      "type": {
+        "fields": [
+          {
+            "name": "size",
+            "type": "u32"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "inscriptionSummary",
+      "type": {
+        "fields": [
+          {
+            "name": "inscriptionCountTotal",
+            "type": "u64"
+          },
+          {
+            "name": "inscriptionCountImmutables",
+            "type": "u64"
+          },
+          {
+            "name": "lastInscription",
+            "type": "publicKey"
+          },
+          {
+            "name": "lastInscriber",
+            "type": "publicKey"
+          },
+          {
+            "name": "lastInscriptionCreateTime",
+            "type": "i64"
+          },
+          {
+            "name": "extension",
+            "type": {
+              "defined": "SummaryExtension"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "inscriptionV3",
+      "type": {
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "root",
+            "type": "publicKey"
+          },
+          {
+            "name": "inscriptionData",
+            "type": "publicKey"
+          },
+          {
+            "name": "order",
+            "type": "u64"
+          },
+          {
+            "name": "size",
+            "type": "u32"
+          },
+          {
+            "name": "contentType",
+            "type": "string"
+          },
+          {
+            "name": "encoding",
+            "type": "string"
+          },
+          {
+            "name": "validationHash",
+            "type": {
+              "option": "string"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "migrator",
+      "type": {
+        "fields": [
+          {
+            "name": "root",
+            "type": "publicKey"
+          },
+          {
+            "name": "migrator",
+            "type": "publicKey"
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "msg": "Bad authority",
+      "name": "BadAuthority"
+    },
+    {
+      "code": 6001,
+      "msg": "Max size exceeded",
+      "name": "MaxSizeExceeded"
+    },
+    {
+      "code": 6002,
+      "msg": "Bad page",
+      "name": "BadInscriptionRankPage"
+    },
+    {
+      "code": 6003,
+      "msg": "Incorrect inscription data account",
+      "name": "IncorrectInscriptionDataAccount"
+    },
+    {
+      "code": 6004,
+      "msg": "Root signer mismatch",
+      "name": "RootSignerMismatch"
+    },
+    {
+      "code": 6005,
+      "msg": "Legacy metadata signer key does not match the expected PDA",
+      "name": "LegacyMetadataSignerMismatch"
+    },
+    {
+      "code": 6006,
+      "msg": "Mismatching mints between v1 and v2 inscriptions",
+      "name": "MismatchingInscriptions"
+    }
+  ],
+  "events": [
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "id",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "data",
+          "type": {
+            "defined": "InscriptionEventData"
+          }
+        }
+      ],
+      "name": "InscriptionEventCreate"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "id",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "data",
+          "type": {
+            "defined": "InscriptionEventData"
+          }
+        }
+      ],
+      "name": "InscriptionEventUpdate"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "id",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "size",
+          "type": "u32"
+        }
+      ],
+      "name": "InscriptionResizeEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "id",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "size",
+          "type": "u32"
+        }
+      ],
+      "name": "InscriptionResizeEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "id",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "data",
+          "type": {
+            "defined": "InscriptionV3EventData"
+          }
+        }
+      ],
+      "name": "InscriptionV3EventCreate"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "id",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "data",
+          "type": {
+            "defined": "InscriptionV3EventData"
+          }
+        }
+      ],
+      "name": "InscriptionV3EventUpdate"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "id",
+          "type": "publicKey"
+        }
+      ],
+      "name": "InscriptionWriteEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "id",
+          "type": "publicKey"
+        }
+      ],
+      "name": "InscriptionWriteEvent"
+    }
+  ],
+  "instructions": [
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "page"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "input",
+          "type": {
+            "defined": "CreateInscriptionRankInput"
+          }
+        }
+      ],
+      "name": "createInscriptionRankPage"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "inscriptionSummary"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "inscription"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "inscription2"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [],
+      "name": "makeInscriptionImmutable"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "inscriptionV3"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "inscriptionData"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [],
+      "name": "claimExcessRent"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "root"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "migrator"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "inscription"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "inscription2"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [],
+      "name": "migrateToV3"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "signer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "inscription"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "validationHash",
+          "type": {
+            "option": "string"
+          }
+        }
+      ],
+      "name": "setValidationHash"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "signer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "root"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "inscriptionSummary"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "inscriptionData"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "inscriptionV3"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "inscriptionInput",
+          "type": {
+            "defined": "CreateInscriptionInputV3"
+          }
+        }
+      ],
+      "name": "createInscriptionV3"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "signer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "inscriptionSummary"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "inscriptionData"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "inscriptionV3"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "inscriptionInput",
+          "type": {
+            "defined": "CreateGhostRootInscriptionInput"
+          }
+        }
+      ],
+      "name": "createGhostRootInscription"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "inscriptionSummary"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "inscriptionV3"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [],
+      "name": "makeInscriptionImmutableV3"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "inscriptionV3"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "inscriptionData"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "input",
+          "type": {
+            "defined": "ResizeInscriptionInput"
+          }
+        }
+      ],
+      "name": "resizeInscriptionV3"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "inscriptionV3"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "inscriptionData"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "input",
+          "type": {
+            "defined": "WriteToInscriptionInput"
+          }
+        }
+      ],
+      "name": "writeToInscriptionV3"
+    }
+  ],
+  "name": "libreplex_inscriptions",
+  "types": [
+    {
+      "name": "SignerType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Root"
+          },
+          {
+            "name": "LegacyMetadataSigner"
+          },
+          {
+            "name": "FairLaunchGhostRootSigner"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CreateInscriptionRankInput",
+      "type": {
+        "fields": [
+          {
+            "name": "pageIndex",
+            "type": "u32"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "CreateGhostRootInscriptionInput",
+      "type": {
+        "fields": [
+          {
+            "name": "authority",
+            "type": {
+              "option": "publicKey"
+            }
+          },
+          {
+            "name": "signerType",
+            "type": {
+              "defined": "SignerType"
+            }
+          },
+          {
+            "name": "validationHash",
+            "type": {
+              "option": "string"
+            }
+          },
+          {
+            "name": "root",
+            "type": "publicKey"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "ResizeInscriptionInput",
+      "type": {
+        "fields": [
+          {
+            "name": "change",
+            "type": "i32"
+          },
+          {
+            "name": "expectedStartSize",
+            "type": "u32"
+          },
+          {
+            "name": "targetSize",
+            "type": "u32"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "CreateInscriptionInputV3",
+      "type": {
+        "fields": [
+          {
+            "name": "authority",
+            "type": {
+              "option": "publicKey"
+            }
+          },
+          {
+            "name": "signerType",
+            "type": {
+              "defined": "SignerType"
+            }
+          },
+          {
+            "name": "validationHash",
+            "type": {
+              "option": "string"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "WriteToInscriptionInput",
+      "type": {
+        "fields": [
+          {
+            "name": "data",
+            "type": "bytes"
+          },
+          {
+            "name": "startPos",
+            "type": "u32"
+          },
+          {
+            "name": "mediaType",
+            "type": {
+              "option": "string"
+            }
+          },
+          {
+            "name": "encodingType",
+            "type": {
+              "option": "string"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "EncodingType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "None"
+          },
+          {
+            "name": "Base64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "InscriptionEventData",
+      "type": {
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "root",
+            "type": "publicKey"
+          },
+          {
+            "name": "mediaType",
+            "type": {
+              "defined": "MediaType"
+            }
+          },
+          {
+            "name": "encodingType",
+            "type": {
+              "defined": "EncodingType"
+            }
+          },
+          {
+            "name": "inscriptionData",
+            "type": "publicKey"
+          },
+          {
+            "name": "order",
+            "type": "u64"
+          },
+          {
+            "name": "size",
+            "type": "u32"
+          },
+          {
+            "name": "validationHash",
+            "type": {
+              "option": "string"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "InscriptionV3EventData",
+      "type": {
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "root",
+            "type": "publicKey"
+          },
+          {
+            "name": "contentType",
+            "type": "string"
+          },
+          {
+            "name": "encoding",
+            "type": "string"
+          },
+          {
+            "name": "inscriptionData",
+            "type": "publicKey"
+          },
+          {
+            "name": "order",
+            "type": "u64"
+          },
+          {
+            "name": "size",
+            "type": "u32"
+          },
+          {
+            "name": "validationHash",
+            "type": {
+              "option": "string"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "MediaType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "None"
+          },
+          {
+            "fields": [
+              {
+                "name": "subtype",
+                "type": "string"
+              }
+            ],
+            "name": "Audio"
+          },
+          {
+            "fields": [
+              {
+                "name": "subtype",
+                "type": "string"
+              }
+            ],
+            "name": "Application"
+          },
+          {
+            "fields": [
+              {
+                "name": "subtype",
+                "type": "string"
+              }
+            ],
+            "name": "Image"
+          },
+          {
+            "fields": [
+              {
+                "name": "subtype",
+                "type": "string"
+              }
+            ],
+            "name": "Video"
+          },
+          {
+            "fields": [
+              {
+                "name": "subtype",
+                "type": "string"
+              }
+            ],
+            "name": "Text"
+          },
+          {
+            "fields": [
+              {
+                "name": "mediaType",
+                "type": "string"
+              }
+            ],
+            "name": "Custom"
+          },
+          {
+            "name": "Erc721"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SummaryExtension",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "None"
+          }
+        ]
+      }
+    }
+  ],
+  "version": "0.4.0"
+}

@@ -1,0 +1,1966 @@
+{
+  "accounts": [
+    {
+      "name": "ClpVault",
+      "type": {
+        "fields": [
+          {
+            "name": "bumpSeed",
+            "type": "u8"
+          },
+          {
+            "name": "featuresEnabled",
+            "type": "u8"
+          },
+          {
+            "name": "swapCache",
+            "type": {
+              "defined": "SwapCache"
+            }
+          },
+          {
+            "name": "padding0",
+            "type": {
+              "array": [
+                "u8",
+                6
+              ]
+            }
+          },
+          {
+            "docs": [
+              "A nonce to allow more than one CLP Vault with the same trading pair for the same admin"
+            ],
+            "name": "nonce",
+            "type": "u16"
+          },
+          {
+            "name": "padding1",
+            "type": {
+              "array": [
+                "u8",
+                14
+              ]
+            }
+          },
+          {
+            "docs": [
+              "The address of the concentrated liquidity pool. E.g. Orca Whirlpool address"
+            ],
+            "name": "clp",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The SPL token Mint address for the LP tokens"
+            ],
+            "name": "lpMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "lpMintBump",
+            "type": "u8"
+          },
+          {
+            "name": "padding2",
+            "type": {
+              "array": [
+                "u8",
+                15
+              ]
+            }
+          },
+          {
+            "docs": [
+              "SPL token Mint A of the trading pair"
+            ],
+            "name": "tokenMintA",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "An SPL token Account for staging A tokens"
+            ],
+            "name": "tokenVaultA",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "SPL Token mint B of the trading pair"
+            ],
+            "name": "tokenMintB",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "An SPL token Account for staging B tokens"
+            ],
+            "name": "tokenVaultB",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "A percentage of the trading fees and rewards taken by the CLP Vault"
+            ],
+            "name": "performanceFee",
+            "type": "u32"
+          },
+          {
+            "name": "padding3",
+            "type": {
+              "array": [
+                "u8",
+                12
+              ]
+            }
+          },
+          {
+            "docs": [
+              "A fee percentage taken upon withdrawing"
+            ],
+            "name": "withdrawalFee",
+            "type": "u32"
+          },
+          {
+            "name": "padding4",
+            "type": {
+              "array": [
+                "u8",
+                12
+              ]
+            }
+          },
+          {
+            "docs": [
+              "A percentage of the performance_fee that gets paid to the market_maker."
+            ],
+            "name": "marketMakingFee",
+            "type": "u32"
+          },
+          {
+            "name": "padding5",
+            "type": {
+              "array": [
+                "u8",
+                12
+              ]
+            }
+          },
+          {
+            "docs": [
+              "The strategy that is enlisted by the vault"
+            ],
+            "name": "strategy",
+            "type": {
+              "defined": "StrategyType"
+            }
+          },
+          {
+            "name": "padding6",
+            "type": {
+              "array": [
+                "u8",
+                15
+              ]
+            }
+          },
+          {
+            "docs": [
+              "The key that has the ability to adjust positions and rebalance"
+            ],
+            "name": "marketMakingKey",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The key that has the ability to change the market_making_key and strategy."
+            ],
+            "name": "adminKey",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The key that must be the owner of SPL Token Accounts that receive fees"
+            ],
+            "name": "feeOwner",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The number of active Positions the vault has on the CLP"
+            ],
+            "name": "numActivePositions",
+            "type": "u8"
+          },
+          {
+            "name": "padding7",
+            "type": {
+              "array": [
+                "u8",
+                15
+              ]
+            }
+          },
+          {
+            "docs": [
+              "The TokenAccount owned by the ClpVault that controls the PositionBundle"
+            ],
+            "name": "positionBundleTokenAccount",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The mint address of the whirlpool PositionBundle"
+            ],
+            "name": "positionBundleMint",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The Whirlpool PositionBundle account"
+            ],
+            "name": "positionBundle",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "A slice of the active position information"
+            ],
+            "name": "positions",
+            "type": {
+              "array": [
+                {
+                  "defined": "VaultPosition"
+                },
+                5
+              ]
+            }
+          },
+          {
+            "docs": [
+              "The initial amount of tokenA to tokenB required per LP token when there is 0 liquidity on",
+              "positions or in the reserve. This is only used for the inital deposit into the vault.",
+              "Without this, the vault would have no basis for calculating the amount of tokenA & tokenB",
+              "required to mint 1 LP token."
+            ],
+            "name": "initialTokenRatio",
+            "type": {
+              "defined": "TokenRatio"
+            }
+          },
+          {
+            "docs": [
+              "A key indicating the primary StakePool for the vault. This is used as reference for UIs."
+            ],
+            "name": "stakePool",
+            "type": "publicKey"
+          },
+          {
+            "name": "ratioCache",
+            "type": {
+              "defined": "VaultRatioCache"
+            }
+          },
+          {
+            "name": "swapEventCache",
+            "type": {
+              "defined": "SwapEventCache"
+            }
+          },
+          {
+            "name": "reserved0",
+            "type": {
+              "array": [
+                "u8",
+                416
+              ]
+            }
+          },
+          {
+            "name": "reserved1",
+            "type": {
+              "array": [
+                "u128",
+                32
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "msg": "CLP is unknown",
+      "name": "UnknownClp"
+    },
+    {
+      "code": 6001,
+      "msg": "TokenAMint does not match underlying CLP",
+      "name": "MintAClpMismatch"
+    },
+    {
+      "code": 6002,
+      "msg": "TokenBMint does not match underlying CLP",
+      "name": "MintBClpMismatch"
+    },
+    {
+      "code": 6003,
+      "msg": "PositionBundle was already created",
+      "name": "PositionBundleAlreadyCreated"
+    },
+    {
+      "code": 6004,
+      "msg": "Max positions exceeded",
+      "name": "MaxPositionsExceeded"
+    },
+    {
+      "code": 6005,
+      "msg": "Position exists at index",
+      "name": "PositionExistsAtIndex"
+    },
+    {
+      "code": 6006,
+      "msg": "Market maker must sign for this instruction",
+      "name": "MarketMakerMustSign"
+    },
+    {
+      "code": 6007,
+      "msg": "CLP does not match the ClpVault state",
+      "name": "ClpMismatch"
+    },
+    {
+      "code": 6008,
+      "msg": "Max active positions greater than 1",
+      "name": "MaxActivePositonsNotOne"
+    },
+    {
+      "code": 6009,
+      "msg": "VaultPosition liquidity should be 0 when supply is 0",
+      "name": "VaultPositionLiquidityIssue"
+    },
+    {
+      "code": 6010,
+      "msg": "Max token amount exceeded",
+      "name": "MaxTokenAmountExceeded"
+    },
+    {
+      "code": 6011,
+      "msg": "Position bundle token account does not match ClpVault",
+      "name": "PositionBundleTokenAccountMismatch"
+    },
+    {
+      "code": 6012,
+      "msg": "Position accounts do not match vault position at correct index",
+      "name": "PositionAccountsDoNotMatch"
+    },
+    {
+      "code": 6013,
+      "msg": "Token Vault A does not match ClpVault",
+      "name": "TokenVaultAMismatch"
+    },
+    {
+      "code": 6014,
+      "msg": "Token Vault B does not match ClpVault",
+      "name": "TokenVaultBMismatch"
+    },
+    {
+      "code": 6015,
+      "msg": "LP mint does not match ClpVault",
+      "name": "LpMintMismatch"
+    },
+    {
+      "code": 6016,
+      "msg": "Remaining accounts is missing the VaultPositions",
+      "name": "RemainingAccountsMissingVaultPositions"
+    },
+    {
+      "code": 6017,
+      "msg": "Expected minimum tokens not returned",
+      "name": "MinimumTokensNotReturned"
+    },
+    {
+      "code": 6018,
+      "msg": "Incorrect admin key",
+      "name": "InccorectAdminKey"
+    },
+    {
+      "code": 6019,
+      "msg": "Fee account is not owned by fee_owner",
+      "name": "IncorrectFeeOwner"
+    },
+    {
+      "code": 6020,
+      "msg": "Failed to deserialize position at that key",
+      "name": "UnknownPosition"
+    },
+    {
+      "code": 6021,
+      "msg": "MM fee account is not owned by market_making_key",
+      "name": "IncorrectMMFeeOwner"
+    },
+    {
+      "code": 6022,
+      "msg": "Metadata deserialization failed",
+      "name": "MetadataDeserializationFailed"
+    },
+    {
+      "code": 6023,
+      "msg": "Clp program does not own clp",
+      "name": "AccountMustBeOwnedByClpProgram"
+    },
+    {
+      "code": 6024,
+      "msg": "Incorrect Authority",
+      "name": "IncorrectAuthority"
+    },
+    {
+      "code": 6025,
+      "msg": "Setup must be the first IX in the TX.",
+      "name": "SetupNotFirst"
+    },
+    {
+      "code": 6026,
+      "msg": "Cleanup ix must be the last IX in the TX.",
+      "name": "CleanupIxNotFound"
+    },
+    {
+      "code": 6027,
+      "msg": "IX in the TX not allowed: Compute, Jupiter, Psy CLP, Psy Token Exchange.",
+      "name": "IxForbidden"
+    },
+    {
+      "code": 6028,
+      "msg": "Invalid source or destination: not the Clps a or b vault.",
+      "name": "InvalidSwapVault"
+    },
+    {
+      "code": 6029,
+      "msg": "Failed cache state sanity check.",
+      "name": "CacheStateSanityCheck"
+    },
+    {
+      "code": 6030,
+      "msg": "The swap feature is currently disabled.",
+      "name": "SwapFeatureDisabled"
+    },
+    {
+      "code": 6031,
+      "msg": "Setup IX appears more than once.",
+      "name": "SetupAppearsMultiple"
+    }
+  ],
+  "events": [
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "a",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "b",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "vault",
+          "type": "publicKey"
+        }
+      ],
+      "name": "CollectedFeesEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "a",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "b",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "vault",
+          "type": "publicKey"
+        }
+      ],
+      "name": "CollectedRewardsEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "vault",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "user",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "a",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "b",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "lp",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "prevLpSupply",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "uncollectedFeesRewardsA",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "uncollectedFeesRewardsB",
+          "type": "u64"
+        }
+      ],
+      "name": "DepositEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "vault",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "marketMaker",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "sourceBefore",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "destBefore",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "sourceAfter",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "destAfter",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "sourceStatus",
+          "type": "u8"
+        }
+      ],
+      "name": "ExternalSwapEvent"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "vault",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "user",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "a",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "b",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "lp",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "wFeeA",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "wFeeB",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "prevLpSupply",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "uncollectedFeesRewardsA",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "uncollectedFeesRewardsB",
+          "type": "u64"
+        }
+      ],
+      "name": "WithdrawEvent"
+    }
+  ],
+  "instructions": [
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The payer funding the transaction"
+          ],
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "docs": [
+            "SPL token Mint A of the trading pair"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenMintA"
+        },
+        {
+          "docs": [
+            "SPL Token mint B of the trading pair"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenMintB"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clp"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "clpVault"
+        },
+        {
+          "docs": [
+            "An SPL token Account for staging A tokens"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenVaultA"
+        },
+        {
+          "docs": [
+            "An SPL token Account for staging B tokens"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenVaultB"
+        },
+        {
+          "docs": [
+            "An SPL token Mint for the vault LP tokens"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "lpMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "nonce",
+          "type": "u16"
+        },
+        {
+          "name": "adminKey",
+          "type": "publicKey"
+        },
+        {
+          "name": "marketMakingKey",
+          "type": "publicKey"
+        },
+        {
+          "name": "feeOwner",
+          "type": "publicKey"
+        },
+        {
+          "name": "performanceFee",
+          "type": "u32"
+        },
+        {
+          "name": "withdrawalFee",
+          "type": "u32"
+        },
+        {
+          "name": "marketMakingFee",
+          "type": "u32"
+        },
+        {
+          "name": "strategyType",
+          "type": {
+            "defined": "StrategyType"
+          }
+        },
+        {
+          "name": "initialTokenRatio",
+          "type": {
+            "defined": "TokenRatio"
+          }
+        }
+      ],
+      "name": "initialize"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "adminKey"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "clpVault"
+        }
+      ],
+      "args": [
+        {
+          "name": "marketMakingKey",
+          "type": "publicKey"
+        },
+        {
+          "name": "feeOwner",
+          "type": "publicKey"
+        },
+        {
+          "name": "performanceFee",
+          "type": "u32"
+        },
+        {
+          "name": "withdrawalFee",
+          "type": "u32"
+        },
+        {
+          "name": "marketMakingFee",
+          "type": "u32"
+        },
+        {
+          "name": "strategyType",
+          "type": {
+            "defined": "StrategyType"
+          }
+        },
+        {
+          "name": "stakePool",
+          "type": "publicKey"
+        },
+        {
+          "name": "featuresEnabled",
+          "type": "u8"
+        }
+      ],
+      "name": "updateConfig"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "clpVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clpProgram"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "positionBundle"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "positionBundleMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "positionBundleTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        }
+      ],
+      "args": [],
+      "name": "initializePositionBundle"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userTokenA"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userTokenB"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userLpTokenAcct"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clpVault"
+        },
+        {
+          "docs": [
+            "The SPL token Mint address for ClpVault liquidity providers"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "lpMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenVaultA"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenVaultB"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "positionBundleTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clpProgram"
+        },
+        {
+          "docs": [
+            "the CLP program."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "clp"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "clpTokenVaultA"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "clpTokenVaultB"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "lpMintAmount",
+          "type": "u64"
+        },
+        {
+          "name": "tokenMaxA",
+          "type": "u64"
+        },
+        {
+          "name": "tokenMaxB",
+          "type": "u64"
+        }
+      ],
+      "name": "deposit"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The address paying for the transaction."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userTokenA"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userTokenB"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userLpTokenAcct"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clpVault"
+        },
+        {
+          "docs": [
+            "The SPL token Mint address for ClpVault liquidity providers"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "lpMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenVaultA"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenVaultB"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "positionBundleTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clpProgram"
+        },
+        {
+          "docs": [
+            "the CLP program."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "clp"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "clpTokenVaultA"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "clpTokenVaultB"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenAFeeAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenBFeeAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "lpAmount",
+          "type": "u64"
+        },
+        {
+          "name": "tokenMinA",
+          "type": "u64"
+        },
+        {
+          "name": "tokenMinB",
+          "type": "u64"
+        }
+      ],
+      "name": "withdraw"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The address that is funding opening the Position"
+          ],
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "docs": [
+            "The CLP Vaults market maker. The key must sign the transaction."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "marketMakingKey"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "clpVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clp"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clpProgram"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bundledPosition"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "positionBundle"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "positionBundleTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "positionIndex",
+          "type": "u8"
+        },
+        {
+          "name": "tickLowerIndex",
+          "type": "i32"
+        },
+        {
+          "name": "tickUpperIndex",
+          "type": "i32"
+        }
+      ],
+      "name": "openPosition"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The address that is receiving rent from closing the position"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "receiver"
+        },
+        {
+          "docs": [
+            "The CLP Vaults market maker. The key must sign the transaction."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "marketMakingKey"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "clpVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clp"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clpProgram"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bundledPosition"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "positionBundle"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "positionBundleTokenAccount"
+        }
+      ],
+      "args": [
+        {
+          "name": "positionIndex",
+          "type": "u8"
+        }
+      ],
+      "name": "closePosition"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The CLP Vaults market maker. The key must sign the transaction."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "marketMakingKey"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clpVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenVaultA"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenVaultB"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "positionBundleTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "position"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tickArrayLower"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tickArrayUpper"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clpProgram"
+        },
+        {
+          "docs": [
+            "the CLP program."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "clp"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "clpTokenVaultA"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "clpTokenVaultB"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "liquidityAmount",
+          "type": "u128"
+        },
+        {
+          "name": "tokenMaxA",
+          "type": "u64"
+        },
+        {
+          "name": "tokenMaxB",
+          "type": "u64"
+        },
+        {
+          "name": "positionIndex",
+          "type": "u8"
+        }
+      ],
+      "name": "increaseLiquidity"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The CLP Vaults market maker. The key must sign the transaction."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "marketMakingKey"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clpVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenVaultA"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenVaultB"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "positionBundleTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "position"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tickArrayLower"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tickArrayUpper"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clpProgram"
+        },
+        {
+          "docs": [
+            "the CLP program."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "clp"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "clpTokenVaultA"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "clpTokenVaultB"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "liquidityAmount",
+          "type": "u128"
+        },
+        {
+          "name": "tokenMinA",
+          "type": "u64"
+        },
+        {
+          "name": "tokenMinB",
+          "type": "u64"
+        },
+        {
+          "name": "positionIndex",
+          "type": "u8"
+        }
+      ],
+      "name": "decreaseLiquidity"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "clp"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clpProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clpVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "positionBundleTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenVaultA"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenVaultB"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenARewardVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenBRewardVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenAFeeAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenBFeeAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [],
+      "name": "collectRewards"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clpVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "clp"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clpProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "positionBundleTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenVaultA"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "clpTokenVaultA"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenVaultB"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "clpTokenVaultB"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "feeAccountTokenA"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "feeAccountTokenB"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "mmFeeAccountTokenA"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "mmFeeAccountTokenB"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [],
+      "name": "collectFees"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "metadataAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenAMetadataAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenBMetadataAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clpVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "lpMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clp"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "metadataProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "uri",
+          "type": "string"
+        }
+      ],
+      "name": "updateTokenMeta"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The CLMM Vault for which the cache is being created"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "clpVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenVaultA"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenVaultB"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clpProgram"
+        },
+        {
+          "docs": [
+            "the CLP program."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "clp"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lpMint"
+        }
+      ],
+      "args": [],
+      "name": "setVaultRatioCache"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "Gains authority to transfer funds from the pool until the end of the ix."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "marketMakingKey"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "clpVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "source"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "dest"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructionSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ],
+      "docs": [
+        "The market maker calls this ix first (other than compute program ixes) in a tx to swap one",
+        "asset for another. The cleanup ix must be last in the same tx, and the swap must use",
+        "Jupiter."
+      ],
+      "name": "externalSwapSetup"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "Gained authority to transfer funds from the pool until the end of the ix."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "marketMakingKey"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "clpVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "source"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "dest"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [],
+      "docs": [
+        "The market maker calls this ix last in a tx to swap one asset for another."
+      ],
+      "name": "externalSwapCleanup"
+    }
+  ],
+  "metadata": {
+    "address": "ArmN3Av2boBg8pkkeCK9UuCN9zSUVc2UQg1qR2sKwm8d"
+  },
+  "name": "clp_vault",
+  "types": [
+    {
+      "name": "VaultRatioCache",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "Total amount of tokenA managed by the vault"
+            ],
+            "name": "totalTokenA",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "Total amount of tokenB managed by the vault"
+            ],
+            "name": "totalTokenB",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "The total supply of vault LP tokens"
+            ],
+            "name": "lpSupply",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "The Unix timestamp for when the cache was last updated"
+            ],
+            "name": "cachedAt",
+            "type": "i64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "TokenRatio",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "The amount of token a required for the initial deposit"
+            ],
+            "name": "tokenA",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "The amount of token b required for the initial deposit"
+            ],
+            "name": "tokenB",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "VaultPosition",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "The underlying CLP position."
+            ],
+            "name": "positionKey",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The address of the lower TickArray"
+            ],
+            "name": "lowerTick",
+            "type": "i32"
+          },
+          {
+            "name": "padding0",
+            "type": {
+              "array": [
+                "u8",
+                12
+              ]
+            }
+          },
+          {
+            "docs": [
+              "The address of the upper TickArray"
+            ],
+            "name": "upperTick",
+            "type": "i32"
+          },
+          {
+            "name": "padding1",
+            "type": {
+              "array": [
+                "u8",
+                12
+              ]
+            }
+          },
+          {
+            "name": "reserve",
+            "type": {
+              "array": [
+                "u128",
+                16
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "docs": [
+        "Caches flags passed between the external setup and cleanup ixes."
+      ],
+      "name": "SwapCache",
+      "type": {
+        "fields": [
+          {
+            "name": "sourceStatus",
+            "type": {
+              "defined": "SourceState"
+            }
+          },
+          {
+            "name": "cacheState",
+            "type": {
+              "defined": "CacheState"
+            }
+          },
+          {
+            "name": "padding1",
+            "type": {
+              "array": [
+                "u8",
+                6
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "docs": [
+        "Caches the before/after balance of the most recent external swap event. To read details of older",
+        "swap events, parse the `ExternalSwapEvent` emitted on cleanup"
+      ],
+      "name": "SwapEventCache",
+      "type": {
+        "fields": [
+          {
+            "name": "sourceBefore",
+            "type": "u64"
+          },
+          {
+            "name": "destBefore",
+            "type": "u64"
+          },
+          {
+            "name": "sourceAfter",
+            "type": "u64"
+          },
+          {
+            "name": "destAfter",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "ClpProvider",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "ORCA"
+          }
+        ]
+      }
+    },
+    {
+      "name": "StrategyType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "PriceDiscovery"
+          },
+          {
+            "name": "VolatilePair"
+          },
+          {
+            "name": "StablePair"
+          },
+          {
+            "name": "StableSlowlyDiverging"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CacheState",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Default"
+          },
+          {
+            "name": "Ready"
+          },
+          {
+            "name": "Consumed"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SourceState",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Default"
+          },
+          {
+            "name": "SourceIsA"
+          },
+          {
+            "name": "SourceIsB"
+          }
+        ]
+      }
+    }
+  ],
+  "version": "0.1.4"
+}

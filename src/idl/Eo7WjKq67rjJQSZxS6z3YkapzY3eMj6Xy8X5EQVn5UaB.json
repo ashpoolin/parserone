@@ -1,0 +1,2529 @@
+{
+  "accounts": [
+    {
+      "docs": [
+        "State of pool account"
+      ],
+      "name": "Pool",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "LP token mint of the pool"
+            ],
+            "name": "lpMint",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Token A mint of the pool. Eg: USDT"
+            ],
+            "name": "tokenAMint",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Token B mint of the pool. Eg: USDC"
+            ],
+            "name": "tokenBMint",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Vault account for token A. Token A of the pool will be deposit / withdraw from this vault account."
+            ],
+            "name": "aVault",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Vault account for token B. Token B of the pool will be deposit / withdraw from this vault account."
+            ],
+            "name": "bVault",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "LP token account of vault A. Used to receive/burn the vault LP upon deposit/withdraw from the vault."
+            ],
+            "name": "aVaultLp",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "LP token account of vault B. Used to receive/burn the vault LP upon deposit/withdraw from the vault."
+            ],
+            "name": "bVaultLp",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "A vault lp bump. Used to create signer seeds."
+            ],
+            "name": "aVaultLpBump",
+            "type": "u8"
+          },
+          {
+            "docs": [
+              "Flag to determine whether the pool is enabled, or disabled."
+            ],
+            "name": "enabled",
+            "type": "bool"
+          },
+          {
+            "docs": [
+              "Admin fee token account for token A. Used to receive trading fee."
+            ],
+            "name": "adminTokenAFee",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Admin fee token account for token B. Used to receive trading fee."
+            ],
+            "name": "adminTokenBFee",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Owner of the pool."
+            ],
+            "name": "admin",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Store the fee charges setting."
+            ],
+            "name": "fees",
+            "type": {
+              "defined": "PoolFees"
+            }
+          },
+          {
+            "docs": [
+              "Pool type"
+            ],
+            "name": "poolType",
+            "type": {
+              "defined": "PoolType"
+            }
+          },
+          {
+            "docs": [
+              "Stake pubkey of SPL stake pool"
+            ],
+            "name": "stake",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Padding for future pool field"
+            ],
+            "name": "padding",
+            "type": {
+              "defined": "Padding"
+            }
+          },
+          {
+            "docs": [
+              "The type of the swap curve supported by the pool."
+            ],
+            "name": "curveType",
+            "type": {
+              "defined": "CurveType"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "docs": [
+    "Program for AMM"
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "msg": "Math operation overflow",
+      "name": "MathOverflow"
+    },
+    {
+      "code": 6001,
+      "msg": "Invalid fee setup",
+      "name": "InvalidFee"
+    },
+    {
+      "code": 6002,
+      "msg": "Invalid invariant d",
+      "name": "InvalidInvariant"
+    },
+    {
+      "code": 6003,
+      "msg": "Fee calculation failure",
+      "name": "FeeCalculationFailure"
+    },
+    {
+      "code": 6004,
+      "msg": "Exceeded slippage tolerance",
+      "name": "ExceededSlippage"
+    },
+    {
+      "code": 6005,
+      "msg": "Invalid curve calculation",
+      "name": "InvalidCalculation"
+    },
+    {
+      "code": 6006,
+      "msg": "Given pool token amount results in zero trading tokens",
+      "name": "ZeroTradingTokens"
+    },
+    {
+      "code": 6007,
+      "msg": "Math conversion overflow",
+      "name": "ConversionError"
+    },
+    {
+      "code": 6008,
+      "msg": "LP mint authority must be A vault lp, without freeze authority, and 0 supply",
+      "name": "FaultyLpMint"
+    },
+    {
+      "code": 6009,
+      "msg": "Token mint mismatched",
+      "name": "MismatchedTokenMint"
+    },
+    {
+      "code": 6010,
+      "msg": "LP mint mismatched",
+      "name": "MismatchedLpMint"
+    },
+    {
+      "code": 6011,
+      "msg": "Invalid lp token owner",
+      "name": "MismatchedOwner"
+    },
+    {
+      "code": 6012,
+      "msg": "Invalid vault account",
+      "name": "InvalidVaultAccount"
+    },
+    {
+      "code": 6013,
+      "msg": "Invalid vault lp account",
+      "name": "InvalidVaultLpAccount"
+    },
+    {
+      "code": 6014,
+      "msg": "Invalid pool lp mint account",
+      "name": "InvalidPoolLpMintAccount"
+    },
+    {
+      "code": 6015,
+      "msg": "Pool disabled",
+      "name": "PoolDisabled"
+    },
+    {
+      "code": 6016,
+      "msg": "Invalid admin account",
+      "name": "InvalidAdminAccount"
+    },
+    {
+      "code": 6017,
+      "msg": "Invalid admin fee account",
+      "name": "InvalidAdminFeeAccount"
+    },
+    {
+      "code": 6018,
+      "msg": "Same admin account",
+      "name": "SameAdminAccount"
+    },
+    {
+      "code": 6019,
+      "msg": "Identical user source and destination token account",
+      "name": "IdenticalSourceDestination"
+    },
+    {
+      "code": 6020,
+      "msg": "Apy calculation error",
+      "name": "ApyCalculationError"
+    },
+    {
+      "code": 6021,
+      "msg": "Insufficient virtual price snapshot",
+      "name": "InsufficientSnapshot"
+    },
+    {
+      "code": 6022,
+      "msg": "Current curve is non-updatable",
+      "name": "NonUpdatableCurve"
+    },
+    {
+      "code": 6023,
+      "msg": "New curve is mismatched with old curve",
+      "name": "MisMatchedCurve"
+    },
+    {
+      "code": 6024,
+      "msg": "Amplification is invalid",
+      "name": "InvalidAmplification"
+    },
+    {
+      "code": 6025,
+      "msg": "Operation is not supported",
+      "name": "UnsupportedOperation"
+    },
+    {
+      "code": 6026,
+      "msg": "Exceed max amplification changes",
+      "name": "ExceedMaxAChanges"
+    },
+    {
+      "code": 6027,
+      "msg": "Invalid remaining accounts length",
+      "name": "InvalidRemainingAccountsLen"
+    },
+    {
+      "code": 6028,
+      "msg": "Invalid remaining account",
+      "name": "InvalidRemainingAccounts"
+    },
+    {
+      "code": 6029,
+      "msg": "Token mint B doesnt matches depeg type token mint",
+      "name": "MismatchedDepegMint"
+    },
+    {
+      "code": 6030,
+      "msg": "Invalid APY account",
+      "name": "InvalidApyAccount"
+    },
+    {
+      "code": 6031,
+      "msg": "Invalid token multiplier",
+      "name": "InvalidTokenMultiplier"
+    },
+    {
+      "code": 6032,
+      "msg": "Invalid depeg information",
+      "name": "InvalidDepegInformation"
+    },
+    {
+      "code": 6033,
+      "msg": "Update time constraint violated",
+      "name": "UpdateTimeConstraint"
+    },
+    {
+      "code": 6034,
+      "msg": "Exceeded max fee bps",
+      "name": "ExceedMaxFeeBps"
+    },
+    {
+      "code": 6035,
+      "msg": "Owner fee exceed half of trade fee",
+      "name": "OwnerFeeOverHalfOfTradeFee"
+    },
+    {
+      "code": 6036,
+      "msg": "Invalid admin",
+      "name": "InvalidAdmin"
+    },
+    {
+      "code": 6037,
+      "msg": "Pool is not permissioned",
+      "name": "PoolIsNotPermissioned"
+    },
+    {
+      "code": 6038,
+      "msg": "Invalid deposit amount",
+      "name": "InvalidDepositAmount"
+    },
+    {
+      "code": 6039,
+      "msg": "Invalid fee owner",
+      "name": "InvalidFeeOwner"
+    },
+    {
+      "code": 6040,
+      "msg": "Pool is not depleted",
+      "name": "NonDepletedPool"
+    },
+    {
+      "code": 6041,
+      "msg": "Token amount is not 1:1",
+      "name": "AmountNotPeg"
+    }
+  ],
+  "events": [
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "lpMintAmount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "tokenAAmount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "tokenBAmount",
+          "type": "u64"
+        }
+      ],
+      "name": "AddLiquidity"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "lpUnmintAmount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "tokenAOutAmount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "tokenBOutAmount",
+          "type": "u64"
+        }
+      ],
+      "name": "RemoveLiquidity"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "inAmount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "outAmount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "tradeFee",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "adminFee",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "hostFee",
+          "type": "u64"
+        }
+      ],
+      "name": "Swap"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "tradeFeeNumerator",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "tradeFeeDenominator",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "ownerTradeFeeNumerator",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "ownerTradeFeeDenominator",
+          "type": "u64"
+        }
+      ],
+      "name": "SetPoolFees"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "tokenAAmount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "tokenBAmount",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "virtualPrice",
+          "type": "f64"
+        },
+        {
+          "index": false,
+          "name": "currentTimestamp",
+          "type": "u64"
+        }
+      ],
+      "name": "PoolInfo"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "admin",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "newAdmin",
+          "type": "publicKey"
+        }
+      ],
+      "name": "TransferAdmin"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "adminTokenAFee",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "adminTokenBFee",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "newAdminTokenAFee",
+          "type": "publicKey"
+        },
+        {
+          "index": false,
+          "name": "newAdminTokenBFee",
+          "type": "publicKey"
+        }
+      ],
+      "name": "SetAdminFeeAccount"
+    },
+    {
+      "fields": [
+        {
+          "index": false,
+          "name": "newAmp",
+          "type": "u64"
+        },
+        {
+          "index": false,
+          "name": "updatedTimestamp",
+          "type": "u64"
+        }
+      ],
+      "name": "OverrideCurveParam"
+    }
+  ],
+  "instructions": [
+    {
+      "accounts": [
+        {
+          "docs": [
+            "Pool account (arbitrary address)"
+          ],
+          "isMut": true,
+          "isSigner": true,
+          "name": "pool"
+        },
+        {
+          "docs": [
+            "LP token mint of the pool"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "lpMint"
+        },
+        {
+          "docs": [
+            "Token A mint of the pool. Eg: USDT"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenAMint"
+        },
+        {
+          "docs": [
+            "Token B mint of the pool. Eg: USDC"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenBMint"
+        },
+        {
+          "docs": [
+            "Vault account for token A. Token A of the pool will be deposit / withdraw from this vault account."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVault"
+        },
+        {
+          "docs": [
+            "Vault account for token B. Token B of the pool will be deposit / withdraw from this vault account."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVault"
+        },
+        {
+          "docs": [
+            "LP token mint of vault A"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVaultLpMint"
+        },
+        {
+          "docs": [
+            "LP token mint of vault B"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVaultLpMint"
+        },
+        {
+          "docs": [
+            "LP token account of vault A. Used to receive/burn the vault LP upon deposit/withdraw from the vault."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVaultLp"
+        },
+        {
+          "docs": [
+            "LP token account of vault B. Used to receive/burn vault LP upon deposit/withdraw from the vault."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVaultLp"
+        },
+        {
+          "docs": [
+            "Admin token account for pool token A mint. Used to bootstrap the pool with initial liquidity."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "adminTokenA"
+        },
+        {
+          "docs": [
+            "Admin token account for pool token B mint. Used to bootstrap the pool with initial liquidity."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "adminTokenB"
+        },
+        {
+          "docs": [
+            "Admin pool LP token account. Used to receive LP during first deposit (initialize pool)",
+            "Admin pool LP token account. Used to receive LP during first deposit (initialize pool)"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "adminPoolLp"
+        },
+        {
+          "docs": [
+            "Admin fee token account for token A. Used to receive trading fee."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "adminTokenAFee"
+        },
+        {
+          "docs": [
+            "Admin fee token account for token B. Used to receive trading fee."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "adminTokenBFee"
+        },
+        {
+          "docs": [
+            "Admin account. This account will be the admin of the pool, and the payer for PDA during initialize pool."
+          ],
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "feeOwner"
+        },
+        {
+          "docs": [
+            "Rent account."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "docs": [
+            "Vault program. The pool will deposit/withdraw liquidity from the vault."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "vaultProgram"
+        },
+        {
+          "docs": [
+            "Token program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "docs": [
+            "Associated token program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "docs": [
+            "System program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "curveType",
+          "type": {
+            "defined": "CurveType"
+          }
+        }
+      ],
+      "docs": [
+        "Initialize a new permissioned pool."
+      ],
+      "name": "initializePermissionedPool"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "Pool account (PDA address)"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "docs": [
+            "LP token mint of the pool"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "lpMint"
+        },
+        {
+          "docs": [
+            "Token A mint of the pool. Eg: USDT"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenAMint"
+        },
+        {
+          "docs": [
+            "Token B mint of the pool. Eg: USDC"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenBMint"
+        },
+        {
+          "docs": [
+            "Vault account for token A. Token A of the pool will be deposit / withdraw from this vault account."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVault"
+        },
+        {
+          "docs": [
+            "Vault account for token B. Token B of the pool will be deposit / withdraw from this vault account."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVault"
+        },
+        {
+          "docs": [
+            "Token vault account of vault A"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aTokenVault"
+        },
+        {
+          "docs": [
+            "Token vault account of vault B"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bTokenVault"
+        },
+        {
+          "docs": [
+            "LP token mint of vault A"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVaultLpMint"
+        },
+        {
+          "docs": [
+            "LP token mint of vault B"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVaultLpMint"
+        },
+        {
+          "docs": [
+            "LP token account of vault A. Used to receive/burn the vault LP upon deposit/withdraw from the vault."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVaultLp"
+        },
+        {
+          "docs": [
+            "LP token account of vault B. Used to receive/burn vault LP upon deposit/withdraw from the vault."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVaultLp"
+        },
+        {
+          "docs": [
+            "Payer token account for pool token A mint. Used to bootstrap the pool with initial liquidity."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "payerTokenA"
+        },
+        {
+          "docs": [
+            "Admin token account for pool token B mint. Used to bootstrap the pool with initial liquidity."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "payerTokenB"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "payerPoolLp"
+        },
+        {
+          "docs": [
+            "Admin fee token account for token A. Used to receive trading fee."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "adminTokenAFee"
+        },
+        {
+          "docs": [
+            "Admin fee token account for token B. Used to receive trading fee."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "adminTokenBFee"
+        },
+        {
+          "docs": [
+            "Admin account. This account will be the admin of the pool, and the payer for PDA during initialize pool."
+          ],
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "feeOwner"
+        },
+        {
+          "docs": [
+            "Rent account."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "docs": [
+            "Vault program. The pool will deposit/withdraw liquidity from the vault."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "vaultProgram"
+        },
+        {
+          "docs": [
+            "Token program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "docs": [
+            "Associated token program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "docs": [
+            "System program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "curveType",
+          "type": {
+            "defined": "CurveType"
+          }
+        },
+        {
+          "name": "tokenAAmount",
+          "type": "u64"
+        },
+        {
+          "name": "tokenBAmount",
+          "type": "u64"
+        }
+      ],
+      "docs": [
+        "Initialize a new permissionless pool."
+      ],
+      "name": "initializePermissionlessPool"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "Pool account (PDA address)"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "docs": [
+            "LP token mint of the pool"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "lpMint"
+        },
+        {
+          "docs": [
+            "Token A mint of the pool. Eg: USDT"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenAMint"
+        },
+        {
+          "docs": [
+            "Token B mint of the pool. Eg: USDC"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenBMint"
+        },
+        {
+          "docs": [
+            "Vault account for token A. Token A of the pool will be deposit / withdraw from this vault account."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVault"
+        },
+        {
+          "docs": [
+            "Vault account for token B. Token B of the pool will be deposit / withdraw from this vault account."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVault"
+        },
+        {
+          "docs": [
+            "Token vault account of vault A"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aTokenVault"
+        },
+        {
+          "docs": [
+            "Token vault account of vault B"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bTokenVault"
+        },
+        {
+          "docs": [
+            "LP token mint of vault A"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVaultLpMint"
+        },
+        {
+          "docs": [
+            "LP token mint of vault B"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVaultLpMint"
+        },
+        {
+          "docs": [
+            "LP token account of vault A. Used to receive/burn the vault LP upon deposit/withdraw from the vault."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVaultLp"
+        },
+        {
+          "docs": [
+            "LP token account of vault B. Used to receive/burn vault LP upon deposit/withdraw from the vault."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVaultLp"
+        },
+        {
+          "docs": [
+            "Payer token account for pool token A mint. Used to bootstrap the pool with initial liquidity."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "payerTokenA"
+        },
+        {
+          "docs": [
+            "Admin token account for pool token B mint. Used to bootstrap the pool with initial liquidity."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "payerTokenB"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "payerPoolLp"
+        },
+        {
+          "docs": [
+            "Admin fee token account for token A. Used to receive trading fee."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "adminTokenAFee"
+        },
+        {
+          "docs": [
+            "Admin fee token account for token B. Used to receive trading fee."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "adminTokenBFee"
+        },
+        {
+          "docs": [
+            "Admin account. This account will be the admin of the pool, and the payer for PDA during initialize pool."
+          ],
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "feeOwner"
+        },
+        {
+          "docs": [
+            "Rent account."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "docs": [
+            "Vault program. The pool will deposit/withdraw liquidity from the vault."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "vaultProgram"
+        },
+        {
+          "docs": [
+            "Token program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "docs": [
+            "Associated token program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "docs": [
+            "System program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "curveType",
+          "type": {
+            "defined": "CurveType"
+          }
+        },
+        {
+          "name": "tradeFeeBps",
+          "type": "u64"
+        },
+        {
+          "name": "tokenAAmount",
+          "type": "u64"
+        },
+        {
+          "name": "tokenBAmount",
+          "type": "u64"
+        }
+      ],
+      "docs": [
+        "Initialize a new permissionless pool with customized fee tier"
+      ],
+      "name": "initializePermissionlessPoolWithFeeTier"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "Pool account (PDA)"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "docs": [
+            "Admin account. Must be owner of the pool."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "admin"
+        }
+      ],
+      "args": [
+        {
+          "name": "enable",
+          "type": "bool"
+        }
+      ],
+      "docs": [
+        "Enable or disable a pool. A disabled pool allow only remove balanced liquidity operation."
+      ],
+      "name": "enableOrDisablePool"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "Pool account (PDA)"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "docs": [
+            "User token account. Token from this account will be transfer into the vault by the pool in exchange for another token of the pool."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "userSourceToken"
+        },
+        {
+          "docs": [
+            "User token account. The exchanged token will be transfer into this account from the pool."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "userDestinationToken"
+        },
+        {
+          "docs": [
+            "Vault account for token a. token a of the pool will be deposit / withdraw from this vault account."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVault"
+        },
+        {
+          "docs": [
+            "Vault account for token b. token b of the pool will be deposit / withdraw from this vault account."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVault"
+        },
+        {
+          "docs": [
+            "Token vault account of vault A"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aTokenVault"
+        },
+        {
+          "docs": [
+            "Token vault account of vault B"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bTokenVault"
+        },
+        {
+          "docs": [
+            "Lp token mint of vault a"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVaultLpMint"
+        },
+        {
+          "docs": [
+            "Lp token mint of vault b"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVaultLpMint"
+        },
+        {
+          "docs": [
+            "LP token account of vault A. Used to receive/burn the vault LP upon deposit/withdraw from the vault."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVaultLp"
+        },
+        {
+          "docs": [
+            "LP token account of vault B. Used to receive/burn the vault LP upon deposit/withdraw from the vault."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVaultLp"
+        },
+        {
+          "docs": [
+            "Admin fee token account. Used to receive trading fee. Its mint field must matched with user_source_token mint field."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "adminTokenFee"
+        },
+        {
+          "docs": [
+            "User account. Must be owner of user_source_token."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "docs": [
+            "Vault program. the pool will deposit/withdraw liquidity from the vault."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "vaultProgram"
+        },
+        {
+          "docs": [
+            "Token program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "inAmount",
+          "type": "u64"
+        },
+        {
+          "name": "minimumOutAmount",
+          "type": "u64"
+        }
+      ],
+      "docs": [
+        "Swap token A to B, or vice versa. An amount of trading fee will be charged for liquidity provider, and the admin of the pool."
+      ],
+      "name": "swap"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "Pool account (PDA)"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "docs": [
+            "LP token mint of the pool"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "lpMint"
+        },
+        {
+          "docs": [
+            "User pool lp token account. LP will be burned from this account upon success liquidity removal."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "userPoolLp"
+        },
+        {
+          "docs": [
+            "LP token account of vault A. Used to receive/burn the vault LP upon deposit/withdraw from the vault."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVaultLp"
+        },
+        {
+          "docs": [
+            "LP token account of vault B. Used to receive/burn the vault LP upon deposit/withdraw from the vault."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVaultLp"
+        },
+        {
+          "docs": [
+            "Vault account for token A. Token A of the pool will be deposit / withdraw from this vault account."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVault"
+        },
+        {
+          "docs": [
+            "Vault account for token B. Token B of the pool will be deposit / withdraw from this vault account."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVault"
+        },
+        {
+          "docs": [
+            "LP token mint of vault A"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVaultLpMint"
+        },
+        {
+          "docs": [
+            "LP token mint of vault B"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVaultLpMint"
+        },
+        {
+          "docs": [
+            "Token vault account of vault A"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aTokenVault"
+        },
+        {
+          "docs": [
+            "Token vault account of vault B"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bTokenVault"
+        },
+        {
+          "docs": [
+            "User token account to receive token upon success liquidity removal."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "userDestinationToken"
+        },
+        {
+          "docs": [
+            "User account. Must be owner of the user_pool_lp account."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "docs": [
+            "Vault program. The pool will deposit/withdraw liquidity from the vault."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "vaultProgram"
+        },
+        {
+          "docs": [
+            "Token program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "poolTokenAmount",
+          "type": "u64"
+        },
+        {
+          "name": "minimumOutAmount",
+          "type": "u64"
+        }
+      ],
+      "docs": [
+        "Withdraw only single token from the pool. Only supported by pool with stable swap curve."
+      ],
+      "name": "removeLiquiditySingleSide"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "Pool account (PDA)"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "docs": [
+            "LP token mint of the pool"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "lpMint"
+        },
+        {
+          "docs": [
+            "user pool lp token account. lp will be burned from this account upon success liquidity removal."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "userPoolLp"
+        },
+        {
+          "docs": [
+            "LP token account of vault A. Used to receive/burn the vault LP upon deposit/withdraw from the vault."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVaultLp"
+        },
+        {
+          "docs": [
+            "LP token account of vault B. Used to receive/burn the vault LP upon deposit/withdraw from the vault."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVaultLp"
+        },
+        {
+          "docs": [
+            "Vault account for token a. token a of the pool will be deposit / withdraw from this vault account."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVault"
+        },
+        {
+          "docs": [
+            "Vault account for token b. token b of the pool will be deposit / withdraw from this vault account."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVault"
+        },
+        {
+          "docs": [
+            "LP token mint of vault a"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVaultLpMint"
+        },
+        {
+          "docs": [
+            "LP token mint of vault b"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVaultLpMint"
+        },
+        {
+          "docs": [
+            "Token vault account of vault A"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aTokenVault"
+        },
+        {
+          "docs": [
+            "Token vault account of vault B"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bTokenVault"
+        },
+        {
+          "docs": [
+            "User token A account. Token will be transfer from this account if it is add liquidity operation. Else, token will be transfer into this account."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "userAToken"
+        },
+        {
+          "docs": [
+            "User token B account. Token will be transfer from this account if it is add liquidity operation. Else, token will be transfer into this account."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "userBToken"
+        },
+        {
+          "docs": [
+            "User account. Must be owner of user_a_token, and user_b_token."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "docs": [
+            "Vault program. the pool will deposit/withdraw liquidity from the vault."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "vaultProgram"
+        },
+        {
+          "docs": [
+            "Token program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "minimumPoolTokenAmount",
+          "type": "u64"
+        },
+        {
+          "name": "tokenAAmount",
+          "type": "u64"
+        },
+        {
+          "name": "tokenBAmount",
+          "type": "u64"
+        }
+      ],
+      "docs": [
+        "Deposit tokens to the pool in an imbalance ratio. Only supported by pool with stable swap curve."
+      ],
+      "name": "addImbalanceLiquidity"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "Pool account (PDA)"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "docs": [
+            "LP token mint of the pool"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "lpMint"
+        },
+        {
+          "docs": [
+            "user pool lp token account. lp will be burned from this account upon success liquidity removal."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "userPoolLp"
+        },
+        {
+          "docs": [
+            "LP token account of vault A. Used to receive/burn the vault LP upon deposit/withdraw from the vault."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVaultLp"
+        },
+        {
+          "docs": [
+            "LP token account of vault B. Used to receive/burn the vault LP upon deposit/withdraw from the vault."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVaultLp"
+        },
+        {
+          "docs": [
+            "Vault account for token a. token a of the pool will be deposit / withdraw from this vault account."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVault"
+        },
+        {
+          "docs": [
+            "Vault account for token b. token b of the pool will be deposit / withdraw from this vault account."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVault"
+        },
+        {
+          "docs": [
+            "LP token mint of vault a"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVaultLpMint"
+        },
+        {
+          "docs": [
+            "LP token mint of vault b"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVaultLpMint"
+        },
+        {
+          "docs": [
+            "Token vault account of vault A"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aTokenVault"
+        },
+        {
+          "docs": [
+            "Token vault account of vault B"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bTokenVault"
+        },
+        {
+          "docs": [
+            "User token A account. Token will be transfer from this account if it is add liquidity operation. Else, token will be transfer into this account."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "userAToken"
+        },
+        {
+          "docs": [
+            "User token B account. Token will be transfer from this account if it is add liquidity operation. Else, token will be transfer into this account."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "userBToken"
+        },
+        {
+          "docs": [
+            "User account. Must be owner of user_a_token, and user_b_token."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "docs": [
+            "Vault program. the pool will deposit/withdraw liquidity from the vault."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "vaultProgram"
+        },
+        {
+          "docs": [
+            "Token program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "poolTokenAmount",
+          "type": "u64"
+        },
+        {
+          "name": "minimumATokenOut",
+          "type": "u64"
+        },
+        {
+          "name": "minimumBTokenOut",
+          "type": "u64"
+        }
+      ],
+      "docs": [
+        "Withdraw tokens from the pool in a balanced ratio. User will still able to withdraw from pool even the pool is disabled. This allow user to exit their liquidity when theres some unforeseen event happen."
+      ],
+      "name": "removeBalanceLiquidity"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "Pool account (PDA)"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "docs": [
+            "LP token mint of the pool"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "lpMint"
+        },
+        {
+          "docs": [
+            "user pool lp token account. lp will be burned from this account upon success liquidity removal."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "userPoolLp"
+        },
+        {
+          "docs": [
+            "LP token account of vault A. Used to receive/burn the vault LP upon deposit/withdraw from the vault."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVaultLp"
+        },
+        {
+          "docs": [
+            "LP token account of vault B. Used to receive/burn the vault LP upon deposit/withdraw from the vault."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVaultLp"
+        },
+        {
+          "docs": [
+            "Vault account for token a. token a of the pool will be deposit / withdraw from this vault account."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVault"
+        },
+        {
+          "docs": [
+            "Vault account for token b. token b of the pool will be deposit / withdraw from this vault account."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVault"
+        },
+        {
+          "docs": [
+            "LP token mint of vault a"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVaultLpMint"
+        },
+        {
+          "docs": [
+            "LP token mint of vault b"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVaultLpMint"
+        },
+        {
+          "docs": [
+            "Token vault account of vault A"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aTokenVault"
+        },
+        {
+          "docs": [
+            "Token vault account of vault B"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bTokenVault"
+        },
+        {
+          "docs": [
+            "User token A account. Token will be transfer from this account if it is add liquidity operation. Else, token will be transfer into this account."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "userAToken"
+        },
+        {
+          "docs": [
+            "User token B account. Token will be transfer from this account if it is add liquidity operation. Else, token will be transfer into this account."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "userBToken"
+        },
+        {
+          "docs": [
+            "User account. Must be owner of user_a_token, and user_b_token."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "docs": [
+            "Vault program. the pool will deposit/withdraw liquidity from the vault."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "vaultProgram"
+        },
+        {
+          "docs": [
+            "Token program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "poolTokenAmount",
+          "type": "u64"
+        },
+        {
+          "name": "maximumTokenAAmount",
+          "type": "u64"
+        },
+        {
+          "name": "maximumTokenBAmount",
+          "type": "u64"
+        }
+      ],
+      "docs": [
+        "Deposit tokens to the pool in a balanced ratio."
+      ],
+      "name": "addBalanceLiquidity"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "Pool account (PDA)"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "docs": [
+            "Admin account. Must be owner of the pool."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "admin"
+        }
+      ],
+      "args": [
+        {
+          "name": "fees",
+          "type": {
+            "defined": "PoolFees"
+          }
+        }
+      ],
+      "docs": [
+        "Update trading fee charged for liquidity provider, and admin."
+      ],
+      "name": "setPoolFees"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "Pool account (PDA)"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "docs": [
+            "Admin account. Must be owner of the pool."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "admin"
+        }
+      ],
+      "args": [
+        {
+          "name": "curveType",
+          "type": {
+            "defined": "CurveType"
+          }
+        }
+      ],
+      "docs": [
+        "Update swap curve parameters. This function do not allow update of curve type. For example: stable swap curve to constant product curve. Only supported by pool with stable swap curve.",
+        "Only amp is allowed to be override. The other attributes of stable swap curve will be ignored."
+      ],
+      "name": "overrideCurveParam"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "Pool account (PDA)"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "docs": [
+            "Admin account. Must be owner of the pool."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "docs": [
+            "New admin account."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "newAdmin"
+        }
+      ],
+      "args": [],
+      "docs": [
+        "Transfer the admin of the pool to new admin."
+      ],
+      "name": "transferAdmin"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "Pool account (PDA)"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "docs": [
+            "New admin fee token account for pool token A. Used to receive trading fee."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "newAdminTokenAFee"
+        },
+        {
+          "docs": [
+            "New admin fee token account for pool token B. Used to receive trading fee."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "newAdminTokenBFee"
+        },
+        {
+          "docs": [
+            "Admin account. Must be owner of the pool."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "admin"
+        }
+      ],
+      "args": [],
+      "docs": [
+        "Update fee token account of the pool admin."
+      ],
+      "name": "setAdminFeeAccount"
+    },
+    {
+      "accounts": [
+        {
+          "docs": [
+            "Pool account (PDA)"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "docs": [
+            "LP token mint of the pool"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "lpMint"
+        },
+        {
+          "docs": [
+            "user pool lp token account. lp will be burned from this account upon success liquidity removal."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "userPoolLp"
+        },
+        {
+          "docs": [
+            "LP token account of vault A. Used to receive/burn the vault LP upon deposit/withdraw from the vault."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVaultLp"
+        },
+        {
+          "docs": [
+            "LP token account of vault B. Used to receive/burn the vault LP upon deposit/withdraw from the vault."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVaultLp"
+        },
+        {
+          "docs": [
+            "Vault account for token a. token a of the pool will be deposit / withdraw from this vault account."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVault"
+        },
+        {
+          "docs": [
+            "Vault account for token b. token b of the pool will be deposit / withdraw from this vault account."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVault"
+        },
+        {
+          "docs": [
+            "LP token mint of vault a"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aVaultLpMint"
+        },
+        {
+          "docs": [
+            "LP token mint of vault b"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bVaultLpMint"
+        },
+        {
+          "docs": [
+            "Token vault account of vault A"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "aTokenVault"
+        },
+        {
+          "docs": [
+            "Token vault account of vault B"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bTokenVault"
+        },
+        {
+          "docs": [
+            "User token A account. Token will be transfer from this account if it is add liquidity operation. Else, token will be transfer into this account."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "userAToken"
+        },
+        {
+          "docs": [
+            "User token B account. Token will be transfer from this account if it is add liquidity operation. Else, token will be transfer into this account."
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "userBToken"
+        },
+        {
+          "docs": [
+            "User account. Must be owner of user_a_token, and user_b_token."
+          ],
+          "isMut": false,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "docs": [
+            "Vault program. the pool will deposit/withdraw liquidity from the vault."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "vaultProgram"
+        },
+        {
+          "docs": [
+            "Token program."
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "tokenAAmount",
+          "type": "u64"
+        },
+        {
+          "name": "tokenBAmount",
+          "type": "u64"
+        }
+      ],
+      "docs": [
+        "Bootstrap the pool when liquidity is depleted."
+      ],
+      "name": "bootstrapLiquidity"
+    }
+  ],
+  "name": "amm",
+  "types": [
+    {
+      "docs": [
+        "Multiplier for the pool token. Used to normalized token with different decimal into the same precision."
+      ],
+      "name": "TokenMultiplier",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "Multiplier for token A of the pool."
+            ],
+            "name": "tokenAMultiplier",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "Multiplier for token B of the pool."
+            ],
+            "name": "tokenBMultiplier",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "Record the highest token decimal in the pool. For example, Token A is 6 decimal, token B is 9 decimal. This will save value of 9."
+            ],
+            "name": "precisionFactor",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "docs": [
+        "Information regarding fee charges"
+      ],
+      "name": "PoolFees",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "Trade fees are extra token amounts that are held inside the token",
+              "accounts during a trade, making the value of liquidity tokens rise.",
+              "Trade fee numerator"
+            ],
+            "name": "tradeFeeNumerator",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "Trade fee denominator"
+            ],
+            "name": "tradeFeeDenominator",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "Owner trading fees are extra token amounts that are held inside the token",
+              "accounts during a trade, with the equivalent in pool tokens minted to",
+              "the owner of the program.",
+              "Owner trade fee numerator"
+            ],
+            "name": "ownerTradeFeeNumerator",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "Owner trade fee denominator"
+            ],
+            "name": "ownerTradeFeeDenominator",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "docs": [
+        "Contains information for depeg pool"
+      ],
+      "name": "Depeg",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "The virtual price of staking / interest bearing token"
+            ],
+            "name": "baseVirtualPrice",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "The virtual price of staking / interest bearing token"
+            ],
+            "name": "baseCacheUpdated",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "Type of the depeg pool"
+            ],
+            "name": "depegType",
+            "type": {
+              "defined": "DepegType"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "docs": [
+        "Padding for future pool fields"
+      ],
+      "name": "Padding",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "Padding 0"
+            ],
+            "name": "padding0",
+            "type": {
+              "array": [
+                "u8",
+                15
+              ]
+            }
+          },
+          {
+            "docs": [
+              "Padding 1"
+            ],
+            "name": "padding",
+            "type": {
+              "array": [
+                "u128",
+                29
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "docs": [
+        "Rounding direction"
+      ],
+      "name": "RoundDirection",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Floor"
+          },
+          {
+            "name": "Ceiling"
+          }
+        ]
+      }
+    },
+    {
+      "docs": [
+        "Trade (swap) direction"
+      ],
+      "name": "TradeDirection",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "AtoB"
+          },
+          {
+            "name": "BtoA"
+          }
+        ]
+      }
+    },
+    {
+      "docs": [
+        "Type of the swap curve"
+      ],
+      "name": "NewCurveType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "ConstantProduct"
+          },
+          {
+            "fields": [
+              {
+                "docs": [
+                  "Amplification coefficient"
+                ],
+                "name": "amp",
+                "type": "u64"
+              },
+              {
+                "docs": [
+                  "Multiplier for the pool token. Used to normalized token with different decimal into the same precision."
+                ],
+                "name": "token_multiplier",
+                "type": {
+                  "defined": "TokenMultiplier"
+                }
+              },
+              {
+                "docs": [
+                  "Depeg pool information. Contains functions to allow token amount to be repeg using stake / interest bearing token virtual price"
+                ],
+                "name": "depeg",
+                "type": {
+                  "defined": "Depeg"
+                }
+              },
+              {
+                "docs": [
+                  "The last amp updated timestamp. Used to prevent update_curve_info called infinitely many times within a short period"
+                ],
+                "name": "last_amp_updated_timestamp",
+                "type": "u64"
+              }
+            ],
+            "name": "Stable"
+          },
+          {
+            "fields": [
+              {
+                "name": "field_one",
+                "type": "u64"
+              },
+              {
+                "name": "field_two",
+                "type": "u64"
+              }
+            ],
+            "name": "NewCurve"
+          }
+        ]
+      }
+    },
+    {
+      "docs": [
+        "Type of the swap curve"
+      ],
+      "name": "CurveType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "ConstantProduct"
+          },
+          {
+            "fields": [
+              {
+                "docs": [
+                  "Amplification coefficient"
+                ],
+                "name": "amp",
+                "type": "u64"
+              },
+              {
+                "docs": [
+                  "Multiplier for the pool token. Used to normalized token with different decimal into the same precision."
+                ],
+                "name": "token_multiplier",
+                "type": {
+                  "defined": "TokenMultiplier"
+                }
+              },
+              {
+                "docs": [
+                  "Depeg pool information. Contains functions to allow token amount to be repeg using stake / interest bearing token virtual price"
+                ],
+                "name": "depeg",
+                "type": {
+                  "defined": "Depeg"
+                }
+              },
+              {
+                "docs": [
+                  "The last amp updated timestamp. Used to prevent update_curve_info called infinitely many times within a short period"
+                ],
+                "name": "last_amp_updated_timestamp",
+                "type": "u64"
+              }
+            ],
+            "name": "Stable"
+          }
+        ]
+      }
+    },
+    {
+      "docs": [
+        "Type of depeg pool"
+      ],
+      "name": "DepegType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "None"
+          },
+          {
+            "name": "Marinade"
+          },
+          {
+            "name": "Lido"
+          },
+          {
+            "name": "SplStake"
+          }
+        ]
+      }
+    },
+    {
+      "docs": [
+        "Pool type"
+      ],
+      "name": "PoolType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Permissioned"
+          },
+          {
+            "name": "Permissionless"
+          }
+        ]
+      }
+    }
+  ],
+  "version": "0.4.9"
+}

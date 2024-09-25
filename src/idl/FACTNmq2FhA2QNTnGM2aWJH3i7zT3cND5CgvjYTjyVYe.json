@@ -1,0 +1,95 @@
+{
+  "accounts": [
+    {
+      "name": "PlayerFactionData",
+      "type": {
+        "fields": [
+          {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
+            "name": "enlistedAtTimestamp",
+            "type": "i64"
+          },
+          {
+            "name": "factionId",
+            "type": "u8"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "padding",
+            "type": {
+              "array": [
+                "u64",
+                5
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "msg": "Faction ID must be 0, 1, or 2.",
+      "name": "FactionTypeError"
+    }
+  ],
+  "instructions": [
+    {
+      "accounts": [
+        {
+          "docs": [
+            "The player faction account"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "playerFactionAccount"
+        },
+        {
+          "docs": [
+            "The player account"
+          ],
+          "isMut": true,
+          "isSigner": true,
+          "name": "playerAccount"
+        },
+        {
+          "docs": [
+            "Solana System program"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "docs": [
+            "Solana System clock"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "clock"
+        }
+      ],
+      "args": [
+        {
+          "name": "bump",
+          "type": "u8"
+        },
+        {
+          "name": "factionId",
+          "type": "u8"
+        }
+      ],
+      "name": "processEnlistPlayer"
+    }
+  ],
+  "name": "faction_enlistment",
+  "version": "0.1.0"
+}

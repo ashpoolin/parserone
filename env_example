@@ -1,0 +1,3 @@
+SOLANA_CONNECTION=https://mainnet.helius-rpc.com/?api-key=<INSERT YOUR API KEY>
+HELIUS_ENHANCED_API=https://api.helius.xyz/v0/transactions/?api-key=<INSERT YOUR API KEY>
+ANCHOR_WALLET=anchor_wallet.json

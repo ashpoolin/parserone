@@ -1,0 +1,2038 @@
+{
+  "accounts": [
+    {
+      "name": "GlobalConfig",
+      "type": {
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "governanceAuthority",
+            "type": "publicKey"
+          },
+          {
+            "name": "pythTokenMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "pythGovernanceRealm",
+            "type": "publicKey"
+          },
+          {
+            "name": "unlockingDuration",
+            "type": "u8"
+          },
+          {
+            "name": "epochDuration",
+            "type": "u64"
+          },
+          {
+            "name": "freeze",
+            "type": "bool"
+          },
+          {
+            "name": "pdaAuthority",
+            "type": "publicKey"
+          },
+          {
+            "name": "governanceProgram",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Once the pyth token is listed, governance can update the config to set this value.",
+              "Once this value is set, vesting schedules that depend on the token list date can start",
+              "vesting."
+            ],
+            "name": "pythTokenListTime",
+            "type": {
+              "option": "i64"
+            }
+          },
+          {
+            "name": "agreementHash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "mockClockTime",
+            "type": "i64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "docs": [
+        "Copied this struct from https://github.com/solana-labs/solana-program-library/blob/master/governance/addin-api/src/max_voter_weight.rs"
+      ],
+      "name": "MaxVoterWeightRecord",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "The Realm the MaxVoterWeightRecord belongs to"
+            ],
+            "name": "realm",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Governing Token Mint the MaxVoterWeightRecord is associated with",
+              "Note: The addin can take deposits of any tokens and is not restricted to the community or",
+              "council tokens only"
+            ],
+            "name": "governingTokenMint",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Max voter weight",
+              "The max voter weight provided by the addin for the given realm and governing_token_mint"
+            ],
+            "name": "maxVoterWeight",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "The slot when the max voting weight expires",
+              "It should be set to None if the weight never expires",
+              "If the max vote weight decays with time, for example for time locked based weights, then",
+              "the expiry must be set As a pattern Revise instruction to update the max weight should",
+              "be invoked before governance instruction within the same transaction and the expiry set",
+              "to the current slot to provide up to date weight"
+            ],
+            "name": "maxVoterWeightExpiry",
+            "type": {
+              "option": "u64"
+            }
+          },
+          {
+            "docs": [
+              "Reserved space for future versions"
+            ],
+            "name": "reserved",
+            "type": {
+              "array": [
+                "u8",
+                8
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "docs": [
+        "An array that contains all of a users positions i.e. where are the staking and who are they",
+        "staking to.",
+        "The invariant we preserve is : For i < next_index, positions[i] == Some",
+        "For i >= next_index, positions[i] == None"
+      ],
+      "name": "PositionData",
+      "type": {
+        "fields": [
+          {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
+            "name": "positions",
+            "type": {
+              "array": [
+                {
+                  "array": [
+                    "u8",
+                    200
+                  ]
+                },
+                20
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SplitRequest",
+      "type": {
+        "fields": [
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "recipient",
+            "type": "publicKey"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "docs": [
+        "This is the metadata account for each staker",
+        "It is derived from the positions account with seeds \"stake_metadata\" and the positions account",
+        "pubkey It stores some PDA bumps, the owner of the account and the vesting schedule"
+      ],
+      "name": "StakeAccountMetadataV2",
+      "type": {
+        "fields": [
+          {
+            "name": "metadataBump",
+            "type": "u8"
+          },
+          {
+            "name": "custodyBump",
+            "type": "u8"
+          },
+          {
+            "name": "authorityBump",
+            "type": "u8"
+          },
+          {
+            "name": "voterBump",
+            "type": "u8"
+          },
+          {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
+            "name": "lock",
+            "type": {
+              "defined": "VestingSchedule"
+            }
+          },
+          {
+            "name": "nextIndex",
+            "type": "u8"
+          },
+          {
+            "name": "transferEpoch",
+            "type": {
+              "option": "u64"
+            }
+          },
+          {
+            "name": "signedAgreementHash",
+            "type": {
+              "option": {
+                "array": [
+                  "u8",
+                  32
+                ]
+              }
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "docs": [
+        "This represents a target that users can stake to",
+        "Currently we store the last time the target account was updated, the current locked balance",
+        "and the amount by which the locked balance will change in the next epoch"
+      ],
+      "name": "TargetMetadata",
+      "type": {
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "lastUpdateAt",
+            "type": "u64"
+          },
+          {
+            "name": "prevEpochLocked",
+            "type": "u64"
+          },
+          {
+            "name": "locked",
+            "type": "u64"
+          },
+          {
+            "name": "deltaLocked",
+            "type": "i64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "docs": [
+        "Copied this struct from https://github.com/solana-labs/solana-program-library/blob/master/governance/addin-api/src/voter_weight.rs",
+        "Anchor has a macro (vote_weight_record) that is supposed to generate this struct, but it doesnt",
+        "work because the errors macros are not updated for anchor 0.22.0.",
+        "Even if it did work, the type wouldnt show up in the IDL. SPL doesnt produce an API, which",
+        "means that means wed need the equivalent of this code on the client side.",
+        "If Anchor fixes the macro, we might consider changing it"
+      ],
+      "name": "VoterWeightRecord",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "VoterWeightRecord discriminator sha256(\"account:VoterWeightRecord\")[..8]",
+              "Note: The discriminator size must match the addin implementing program discriminator size",
+              "to ensure its stored in the private space of the account data and its unique",
+              "pub account_discriminator: [u8; 8],",
+              "The Realm the VoterWeightRecord belongs to"
+            ],
+            "name": "realm",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Governing Token Mint the VoterWeightRecord is associated with",
+              "Note: The addin can take deposits of any tokens and is not restricted to the community or",
+              "council tokens only"
+            ],
+            "name": "governingTokenMint",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "The owner of the governing token and voter",
+              "This is the actual owner (voter) and corresponds to TokenOwnerRecord.governing_token_owner"
+            ],
+            "name": "governingTokenOwner",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Voters weight",
+              "The weight of the voter provided by the addin for the given realm, governing_token_mint and",
+              "governing_token_owner (voter)"
+            ],
+            "name": "voterWeight",
+            "type": "u64"
+          },
+          {
+            "docs": [
+              "The slot when the voting weight expires",
+              "It should be set to None if the weight never expires",
+              "If the voter weight decays with time, for example for time locked based weights, then the",
+              "expiry must be set As a common pattern Revise instruction to update the weight should",
+              "be invoked before governance instruction within the same transaction and the expiry set",
+              "to the current slot to provide up to date weight"
+            ],
+            "name": "voterWeightExpiry",
+            "type": {
+              "option": "u64"
+            }
+          },
+          {
+            "docs": [
+              "The governance action the voters weight pertains to",
+              "It allows to provided voters weight specific to the particular action the weight is",
+              "evaluated for When the action is provided then the governance program asserts the",
+              "executing action is the same as specified by the addin"
+            ],
+            "name": "weightAction",
+            "type": {
+              "option": {
+                "defined": "VoterWeightAction"
+              }
+            }
+          },
+          {
+            "docs": [
+              "The target the voters weight  action pertains to",
+              "It allows to provided voters weight specific to the target the weight is evaluated for",
+              "For example when addin supplies weight to vote on a particular proposal then it must",
+              "specify the proposal as the action target When the target is provided then the",
+              "governance program asserts the target is the same as specified by the addin"
+            ],
+            "name": "weightActionTarget",
+            "type": {
+              "option": "publicKey"
+            }
+          },
+          {
+            "docs": [
+              "Reserved space for future versions"
+            ],
+            "name": "reserved",
+            "type": {
+              "array": [
+                "u8",
+                8
+              ]
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "msg": "Too much exposure to product",
+      "name": "TooMuchExposureToProduct"
+    },
+    {
+      "code": 6001,
+      "msg": "Too much exposure to governance",
+      "name": "TooMuchExposureToGovernance"
+    },
+    {
+      "code": 6002,
+      "msg": "Tokens not yet vested",
+      "name": "TokensNotYetVested"
+    },
+    {
+      "code": 6003,
+      "msg": "Risk limit exceeded",
+      "name": "RiskLimitExceeded"
+    },
+    {
+      "code": 6004,
+      "msg": "Number of position limit reached",
+      "name": "TooManyPositions"
+    },
+    {
+      "code": 6005,
+      "msg": "Position not in use",
+      "name": "PositionNotInUse"
+    },
+    {
+      "code": 6006,
+      "msg": "New position needs to have positive balance",
+      "name": "CreatePositionWithZero"
+    },
+    {
+      "code": 6007,
+      "msg": "Closing a position of 0 is not allowed",
+      "name": "ClosePositionWithZero"
+    },
+    {
+      "code": 6008,
+      "msg": "Invalid product/publisher pair",
+      "name": "InvalidPosition"
+    },
+    {
+      "code": 6009,
+      "msg": "Amount to unlock bigger than position",
+      "name": "AmountBiggerThanPosition"
+    },
+    {
+      "code": 6010,
+      "msg": "Position already unlocking",
+      "name": "AlreadyUnlocking"
+    },
+    {
+      "code": 6011,
+      "msg": "Epoch duration is 0",
+      "name": "ZeroEpochDuration"
+    },
+    {
+      "code": 6012,
+      "msg": "Owner needs to own destination account",
+      "name": "WithdrawToUnauthorizedAccount"
+    },
+    {
+      "code": 6013,
+      "msg": "Insufficient balance to cover the withdrawal",
+      "name": "InsufficientWithdrawableBalance"
+    },
+    {
+      "code": 6014,
+      "msg": "Target in position doesnt match target in instruction data",
+      "name": "WrongTarget"
+    },
+    {
+      "code": 6015,
+      "msg": "An arithmetic operation unexpectedly overflowed",
+      "name": "GenericOverflow"
+    },
+    {
+      "code": 6016,
+      "msg": "Locked balance must be positive",
+      "name": "NegativeBalance"
+    },
+    {
+      "code": 6017,
+      "msg": "Protocol is frozen",
+      "name": "Frozen"
+    },
+    {
+      "code": 6018,
+      "msg": "Not allowed when not debugging",
+      "name": "DebuggingOnly"
+    },
+    {
+      "code": 6019,
+      "msg": "Proposal too long",
+      "name": "ProposalTooLong"
+    },
+    {
+      "code": 6020,
+      "msg": "Voting epoch is either too old or hasnt started",
+      "name": "InvalidVotingEpoch"
+    },
+    {
+      "code": 6021,
+      "msg": "Voting hasnt started",
+      "name": "ProposalNotActive"
+    },
+    {
+      "code": 6022,
+      "msg": "Extra governance account required",
+      "name": "NoRemainingAccount"
+    },
+    {
+      "code": 6023,
+      "msg": "Unauthorized caller",
+      "name": "Unauthorized"
+    },
+    {
+      "code": 6024,
+      "msg": "Precondition to upgrade account violated",
+      "name": "AccountUpgradeFailed"
+    },
+    {
+      "code": 6025,
+      "msg": "Not implemented",
+      "name": "NotImplemented"
+    },
+    {
+      "code": 6026,
+      "msg": "Error deserializing position",
+      "name": "PositionSerDe"
+    },
+    {
+      "code": 6027,
+      "msg": "Position out of bounds",
+      "name": "PositionOutOfBounds"
+    },
+    {
+      "code": 6028,
+      "msg": "Cant vote during an accounts transfer epoch",
+      "name": "VoteDuringTransferEpoch"
+    },
+    {
+      "code": 6029,
+      "msg": "You need to be an LLC member to perform this action",
+      "name": "NotLlcMember"
+    },
+    {
+      "code": 6030,
+      "msg": "Invalid LLC agreement",
+      "name": "InvalidLlcAgreement"
+    },
+    {
+      "code": 6031,
+      "msg": "Cant split 0 tokens from an account",
+      "name": "SplitZeroTokens"
+    },
+    {
+      "code": 6032,
+      "msg": "Cant split more tokens than are in the account",
+      "name": "SplitTooManyTokens"
+    },
+    {
+      "code": 6033,
+      "msg": "Cant split a token account with staking positions. Unstake your tokens first.",
+      "name": "SplitWithStake"
+    },
+    {
+      "code": 6034,
+      "msg": "The approval arguments do not match the split request.",
+      "name": "InvalidApproval"
+    },
+    {
+      "code": 6035,
+      "msg": "Other",
+      "name": "Other"
+    }
+  ],
+  "instructions": [
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "configAccount",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "config"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "globalConfig",
+          "type": {
+            "defined": "GlobalConfig"
+          }
+        }
+      ],
+      "name": "initConfig"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "governanceSigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "config"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "newAuthority",
+          "type": "publicKey"
+        }
+      ],
+      "name": "updateGovernanceAuthority"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "governanceSigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "config"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "newAuthority",
+          "type": "publicKey"
+        }
+      ],
+      "name": "updatePdaAuthority"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "governanceSigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "config"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "tokenListTime",
+          "type": {
+            "option": "i64"
+          }
+        }
+      ],
+      "name": "updateTokenListTime"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "governanceSigner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "config"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "agreementHash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ],
+      "name": "updateAgreementHash"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakeAccountPositions"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakeAccountMetadata",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "stake_metadata"
+              },
+              {
+                "kind": "account",
+                "path": "stake_account_positions",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakeAccountCustody",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "custody"
+              },
+              {
+                "kind": "account",
+                "path": "stake_account_positions",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "docs": [
+            "CHECK : This AccountInfo is safe because its a checked PDA"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "custodyAuthority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "authority"
+              },
+              {
+                "kind": "account",
+                "path": "stake_account_positions",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "voterRecord",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "voter_weight"
+              },
+              {
+                "kind": "account",
+                "path": "stake_account_positions",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "config"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "owner",
+          "type": "publicKey"
+        },
+        {
+          "name": "lock",
+          "type": {
+            "defined": "VestingSchedule"
+          }
+        }
+      ],
+      "docs": [
+        "Trustless instruction that creates a stake account for a user",
+        "The main account i.e. the position accounts needs to be initialized outside of the program",
+        "otherwise we run into stack limits"
+      ],
+      "name": "createStakeAccount"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakeAccountPositions"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakeAccountMetadata",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "stake_metadata"
+              },
+              {
+                "kind": "account",
+                "path": "stake_account_positions",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "stakeAccountCustody",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "custody"
+              },
+              {
+                "kind": "account",
+                "path": "stake_account_positions",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "config"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "targetAccount"
+        }
+      ],
+      "args": [
+        {
+          "name": "targetWithParameters",
+          "type": {
+            "defined": "TargetWithParameters"
+          }
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ],
+      "docs": [
+        "Creates a position",
+        "Looks for the first available place in the array, fails if array is full",
+        "Computes risk and fails if new positions exceed risk limit"
+      ],
+      "name": "createPosition"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakeAccountPositions"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakeAccountMetadata",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "stake_metadata"
+              },
+              {
+                "kind": "account",
+                "path": "stake_account_positions",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "stakeAccountCustody",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "custody"
+              },
+              {
+                "kind": "account",
+                "path": "stake_account_positions",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "config"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "targetAccount"
+        }
+      ],
+      "args": [
+        {
+          "name": "index",
+          "type": "u8"
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "targetWithParameters",
+          "type": {
+            "defined": "TargetWithParameters"
+          }
+        }
+      ],
+      "name": "closePosition"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "destination"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "stakeAccountPositions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "stakeAccountMetadata",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "stake_metadata"
+              },
+              {
+                "kind": "account",
+                "path": "stake_account_positions",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakeAccountCustody",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "custody"
+              },
+              {
+                "kind": "account",
+                "path": "stake_account_positions",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "docs": [
+            "CHECK : This AccountInfo is safe because its a checked PDA"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "custodyAuthority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "authority"
+              },
+              {
+                "kind": "account",
+                "path": "stake_account_positions",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "config"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ],
+      "name": "withdrawStake"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "stakeAccountPositions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "stakeAccountMetadata",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "stake_metadata"
+              },
+              {
+                "kind": "account",
+                "path": "stake_account_positions",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "stakeAccountCustody",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "custody"
+              },
+              {
+                "kind": "account",
+                "path": "stake_account_positions",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "voterRecord",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "voter_weight"
+              },
+              {
+                "kind": "account",
+                "path": "stake_account_positions",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "config"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "governanceTarget",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "target"
+              },
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "voting"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "action",
+          "type": {
+            "defined": "VoterWeightAction"
+          }
+        }
+      ],
+      "name": "updateVoterWeight"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "maxVoterRecord",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "max_voter"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "config"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [],
+      "name": "updateMaxVoterWeight"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "governanceSigner"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "config"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "targetAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "target",
+          "type": {
+            "defined": "Target"
+          }
+        }
+      ],
+      "name": "createTarget"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "config"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "seconds",
+          "type": "i64"
+        }
+      ],
+      "name": "advanceClock"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "stakeAccountPositions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "stakeAccountMetadata",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "stake_metadata"
+              },
+              {
+                "kind": "account",
+                "path": "stake_account_positions",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakeAccountSplitRequest",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "split_request"
+              },
+              {
+                "kind": "account",
+                "path": "stake_account_positions",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "config"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "recipient",
+          "type": "publicKey"
+        }
+      ],
+      "docs": [
+        "* Any user of the staking program can request to split their account and     * give a part of it to another user.     * This is mostly useful to transfer unvested tokens. Each user can only have one active     * request at a time.     * In the first step, the user requests a split by specifying the `amount` of tokens     * they want to give to the other user and the `recipient`s pubkey."
+      ],
+      "name": "requestSplit"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sourceStakeAccountPositions"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sourceStakeAccountMetadata",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "stake_metadata"
+              },
+              {
+                "kind": "account",
+                "path": "source_stake_account_positions",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sourceStakeAccountSplitRequest",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "split_request"
+              },
+              {
+                "kind": "account",
+                "path": "source_stake_account_positions",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sourceStakeAccountCustody",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "custody"
+              },
+              {
+                "kind": "account",
+                "path": "source_stake_account_positions",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "docs": [
+            "CHECK : This AccountInfo is safe because its a checked PDA"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "sourceCustodyAuthority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "authority"
+              },
+              {
+                "kind": "account",
+                "path": "source_stake_account_positions",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "newStakeAccountPositions"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "newStakeAccountMetadata",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "stake_metadata"
+              },
+              {
+                "kind": "account",
+                "path": "new_stake_account_positions",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "newStakeAccountCustody",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "custody"
+              },
+              {
+                "kind": "account",
+                "path": "new_stake_account_positions",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "docs": [
+            "CHECK : This AccountInfo is safe because its a checked PDA"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "newCustodyAuthority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "authority"
+              },
+              {
+                "kind": "account",
+                "path": "new_stake_account_positions",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "newVoterRecord",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "voter_weight"
+              },
+              {
+                "kind": "account",
+                "path": "new_stake_account_positions",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "config"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "mint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "recipient",
+          "type": "publicKey"
+        }
+      ],
+      "docs": [
+        "* A split request can only be accepted by the `pda_authority`` from     * the config account. If accepted, `amount` tokens are transferred to a new stake account     * owned by the `recipient` and the split request is reset (by setting `amount` to 0).     * The recipient of a transfer cant vote during the epoch of the transfer.     *     * The `pda_authority` must explicitly approve both the amount of tokens and recipient, and     * these parameters must match the request (in the `split_request` account)."
+      ],
+      "name": "acceptSplit"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "payer"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "stakeAccountPositions"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakeAccountMetadata",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "stake_metadata"
+              },
+              {
+                "kind": "account",
+                "path": "stake_account_positions",
+                "type": "publicKey"
+              }
+            ]
+          }
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "type": "string",
+                "value": "config"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "agreementHash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ],
+      "docs": [
+        "* Accept to join the DAO LLC     * This must happen before create_position or update_voter_weight     * The user signs a hash of the agreement and the program checks that the hash matches the agreement"
+      ],
+      "name": "joinDaoLlc"
+    }
+  ],
+  "name": "staking",
+  "types": [
+    {
+      "docs": [
+        "This represents a staking position, i.e. an amount that someone has staked to a particular",
+        "target. This is one of the core pieces of our staking design, and stores all",
+        "of the state related to a position The voting position is a position where the",
+        "target_with_parameters is VOTING"
+      ],
+      "name": "Position",
+      "type": {
+        "fields": [
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "activationEpoch",
+            "type": "u64"
+          },
+          {
+            "name": "unlockingStart",
+            "type": {
+              "option": "u64"
+            }
+          },
+          {
+            "name": "targetWithParameters",
+            "type": {
+              "defined": "TargetWithParameters"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "GlobalConfig",
+      "type": {
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "governanceAuthority",
+            "type": "publicKey"
+          },
+          {
+            "name": "pythTokenMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "pythGovernanceRealm",
+            "type": "publicKey"
+          },
+          {
+            "name": "unlockingDuration",
+            "type": "u8"
+          },
+          {
+            "name": "epochDuration",
+            "type": "u64"
+          },
+          {
+            "name": "freeze",
+            "type": "bool"
+          },
+          {
+            "name": "pdaAuthority",
+            "type": "publicKey"
+          },
+          {
+            "name": "governanceProgram",
+            "type": "publicKey"
+          },
+          {
+            "docs": [
+              "Once the pyth token is listed, governance can update the config to set this value.",
+              "Once this value is set, vesting schedules that depend on the token list date can start",
+              "vesting."
+            ],
+            "name": "pythTokenListTime",
+            "type": {
+              "option": "i64"
+            }
+          },
+          {
+            "name": "agreementHash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "mockClockTime",
+            "type": "i64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "Target",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Voting"
+          },
+          {
+            "fields": [
+              {
+                "name": "product",
+                "type": "publicKey"
+              }
+            ],
+            "name": "Staking"
+          }
+        ]
+      }
+    },
+    {
+      "name": "TargetWithParameters",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Voting"
+          },
+          {
+            "fields": [
+              {
+                "name": "product",
+                "type": "publicKey"
+              },
+              {
+                "name": "publisher",
+                "type": {
+                  "defined": "Publisher"
+                }
+              }
+            ],
+            "name": "Staking"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Publisher",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "DEFAULT"
+          },
+          {
+            "fields": [
+              {
+                "name": "address",
+                "type": "publicKey"
+              }
+            ],
+            "name": "SOME"
+          }
+        ]
+      }
+    },
+    {
+      "docs": [
+        "The core states that a position can be in"
+      ],
+      "name": "PositionState",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "UNLOCKED"
+          },
+          {
+            "name": "LOCKING"
+          },
+          {
+            "name": "LOCKED"
+          },
+          {
+            "name": "PREUNLOCKING"
+          },
+          {
+            "name": "UNLOCKING"
+          }
+        ]
+      }
+    },
+    {
+      "docs": [
+        "Represents how a given initial balance vests over time",
+        "It is unit-less, but units must be consistent"
+      ],
+      "name": "VestingSchedule",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "FullyVested"
+          },
+          {
+            "fields": [
+              {
+                "name": "initial_balance",
+                "type": "u64"
+              },
+              {
+                "name": "start_date",
+                "type": "i64"
+              },
+              {
+                "name": "period_duration",
+                "type": "u64"
+              },
+              {
+                "name": "num_periods",
+                "type": "u64"
+              }
+            ],
+            "name": "PeriodicVesting"
+          },
+          {
+            "fields": [
+              {
+                "name": "initial_balance",
+                "type": "u64"
+              },
+              {
+                "name": "period_duration",
+                "type": "u64"
+              },
+              {
+                "name": "num_periods",
+                "type": "u64"
+              }
+            ],
+            "name": "PeriodicVestingAfterListing"
+          }
+        ]
+      }
+    },
+    {
+      "docs": [
+        "The governance action VoterWeight is evaluated for"
+      ],
+      "name": "VoterWeightAction",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "CastVote"
+          },
+          {
+            "name": "CommentProposal"
+          },
+          {
+            "name": "CreateGovernance"
+          },
+          {
+            "name": "CreateProposal"
+          },
+          {
+            "name": "SignOffProposal"
+          }
+        ]
+      }
+    }
+  ],
+  "version": "1.0.0"
+}

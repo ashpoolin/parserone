@@ -1,0 +1,345 @@
+{
+  "instructions": [
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "payer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenSwap"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenAccountA"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenAccountB"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenPool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "feeAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenAccountPool"
+        }
+      ],
+      "args": [
+        {
+          "name": "nonce",
+          "type": "u64"
+        }
+      ],
+      "discriminant": {
+        "type": "u8",
+        "value": 0
+      },
+      "name": "initialize"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenSwap"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userTransferAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userSource"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolSource"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolDestination"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userDestination"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "feeAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "refundTo"
+        }
+      ],
+      "args": [
+        {
+          "name": "amountIn",
+          "type": "u64"
+        },
+        {
+          "name": "minimumAmountOut",
+          "type": "u64"
+        }
+      ],
+      "discriminant": {
+        "type": "u8",
+        "value": 1
+      },
+      "name": "swap"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenSwap"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userTransferAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sourceA"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sourceB"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "intoA"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "intoB"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolToken"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "TOKEN_PROGRAM_ID"
+        }
+      ],
+      "args": [
+        {
+          "name": "poolTokenAmount",
+          "type": "u64"
+        },
+        {
+          "name": "maximumTokenA",
+          "type": "u64"
+        },
+        {
+          "name": "maximumTokenB",
+          "type": "u64"
+        }
+      ],
+      "discriminant": {
+        "type": "u8",
+        "value": 2
+      },
+      "name": "depositAllTokenTypes"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenSwap"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userTransferAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sourcePoolAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fromA"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fromB"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userAccountA"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userAccountB"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "feeAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "TOKEN_PROGRAM_ID"
+        }
+      ],
+      "args": [
+        {
+          "name": "poolTokenAmount",
+          "type": "u64"
+        },
+        {
+          "name": "minimumTokenA",
+          "type": "u64"
+        },
+        {
+          "name": "minimumTokenB",
+          "type": "u64"
+        }
+      ],
+      "discriminant": {
+        "type": "u8",
+        "value": 3
+      },
+      "name": "withdrawAllTokenTypes"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenSwap"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "authority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userTransferAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "source"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "intoA"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "intoB"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolToken"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "poolAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "TOKEN_PROGRAM_ID"
+        }
+      ],
+      "args": [
+        {
+          "name": "sourceTokenAmount",
+          "type": "u64"
+        },
+        {
+          "name": "minimumPoolTokenAmount",
+          "type": "u64"
+        }
+      ],
+      "discriminant": {
+        "type": "u8",
+        "value": 4
+      },
+      "name": "depositSingleTokenTypeExactAmountIn"
+    }
+  ],
+  "name": "dooar",
+  "version": "0.0.1"
+}

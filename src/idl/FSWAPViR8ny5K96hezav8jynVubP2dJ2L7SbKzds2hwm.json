@@ -1,0 +1,666 @@
+{
+  "instructions": [
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpProgram"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fundingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "receivingAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "swapPool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "receivingCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "receivingCustodyOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "receivingCustodyTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "dispensingCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "dispensingCustodyOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "dispensingCustodyTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "positionPool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "position"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "market"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralCustodyTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "eventAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "SwapAndOpenParams"
+          }
+        }
+      ],
+      "name": "swapAndOpen"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpProgram"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fundingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "receivingAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "swapPool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "receivingCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "receivingCustodyOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "receivingCustodyTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "dispensingCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "dispensingCustodyOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "dispensingCustodyTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "positionPool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "position"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "market"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralCustodyTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "eventAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "SwapsParams"
+          }
+        }
+      ],
+      "name": "swapAndAddCollateral"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpProgram"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fundingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "receivingAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "swapPool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "receivingCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "receivingCustodyOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "receivingCustodyTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "dispensingCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "dispensingCustodyOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "dispensingCustodyTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "positionPool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "position"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "market"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralCustodyTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "eventAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "CloseAndSwapParams"
+          }
+        }
+      ],
+      "name": "closeAndSwap"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpProgram"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fundingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "receivingAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "perpetuals"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "swapPool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "receivingCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "receivingCustodyOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "receivingCustodyTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "dispensingCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "dispensingCustodyOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "dispensingCustodyTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "positionPool"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "position"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "market"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "targetOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralCustody"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collateralOracleAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralCustodyTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "eventAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "ixSysvar"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "RemoveCollateralAndSwapParams"
+          }
+        }
+      ],
+      "name": "removeCollateralAndSwap"
+    }
+  ],
+  "name": "perp_composability",
+  "types": [
+    {
+      "name": "SwapAndOpenParams",
+      "type": {
+        "fields": [
+          {
+            "name": "amountIn",
+            "type": "u64"
+          },
+          {
+            "name": "minAmountOut",
+            "type": "u64"
+          },
+          {
+            "name": "openPriceWithSlippage",
+            "type": {
+              "defined": "OraclesPrice"
+            }
+          },
+          {
+            "name": "openSizeAmount",
+            "type": "u64"
+          },
+          {
+            "name": "privilege",
+            "type": {
+              "defined": "Privilege"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SwapsParams",
+      "type": {
+        "fields": [
+          {
+            "name": "amountIn",
+            "type": "u64"
+          },
+          {
+            "name": "minAmountOut",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "OraclesPrice",
+      "type": {
+        "fields": [
+          {
+            "name": "price",
+            "type": "u64"
+          },
+          {
+            "name": "exponent",
+            "type": "i32"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "CloseAndSwapParams",
+      "type": {
+        "fields": [
+          {
+            "name": "minAmountOut",
+            "type": "u64"
+          },
+          {
+            "name": "closePriceWithSlippage",
+            "type": {
+              "defined": "OraclesPrice"
+            }
+          },
+          {
+            "name": "privilege",
+            "type": {
+              "defined": "Privilege"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "RemoveCollateralAndSwapParams",
+      "type": {
+        "fields": [
+          {
+            "name": "minAmountOut",
+            "type": "u64"
+          },
+          {
+            "name": "collateralDelta",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "Privilege",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "None"
+          },
+          {
+            "name": "NFT"
+          },
+          {
+            "name": "Referral"
+          }
+        ]
+      }
+    }
+  ],
+  "version": "0.1.0"
+}

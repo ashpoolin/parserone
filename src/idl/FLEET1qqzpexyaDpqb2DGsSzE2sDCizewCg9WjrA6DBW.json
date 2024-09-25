@@ -1,0 +1,1666 @@
+{
+  "accounts": [
+    {
+      "name": "ScoreVars",
+      "type": {
+        "fields": [
+          {
+            "name": "updateAuthorityMaster",
+            "type": "publicKey"
+          },
+          {
+            "name": "fuelMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "foodMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "armsMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "toolkitMint",
+            "type": "publicKey"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "ScoreVarsShip",
+      "type": {
+        "fields": [
+          {
+            "name": "shipMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "rewardRatePerSecond",
+            "type": "u64"
+          },
+          {
+            "name": "fuelMaxReserve",
+            "type": "u32"
+          },
+          {
+            "name": "foodMaxReserve",
+            "type": "u32"
+          },
+          {
+            "name": "armsMaxReserve",
+            "type": "u32"
+          },
+          {
+            "name": "toolkitMaxReserve",
+            "type": "u32"
+          },
+          {
+            "name": "millisecondsToBurnOneFuel",
+            "type": "u32"
+          },
+          {
+            "name": "millisecondsToBurnOneFood",
+            "type": "u32"
+          },
+          {
+            "name": "millisecondsToBurnOneArms",
+            "type": "u32"
+          },
+          {
+            "name": "millisecondsToBurnOneToolkit",
+            "type": "u32"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "ShipStaking",
+      "type": {
+        "fields": [
+          {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
+            "name": "factionId",
+            "type": "u8"
+          },
+          {
+            "name": "shipMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "shipQuantityInEscrow",
+            "type": "u64"
+          },
+          {
+            "name": "fuelQuantityInEscrow",
+            "type": "u64"
+          },
+          {
+            "name": "foodQuantityInEscrow",
+            "type": "u64"
+          },
+          {
+            "name": "armsQuantityInEscrow",
+            "type": "u64"
+          },
+          {
+            "name": "fuelCurrentCapacity",
+            "type": "u64"
+          },
+          {
+            "name": "foodCurrentCapacity",
+            "type": "u64"
+          },
+          {
+            "name": "armsCurrentCapacity",
+            "type": "u64"
+          },
+          {
+            "name": "healthCurrentCapacity",
+            "type": "u64"
+          },
+          {
+            "name": "stakedAtTimestamp",
+            "type": "i64"
+          },
+          {
+            "name": "fueledAtTimestamp",
+            "type": "i64"
+          },
+          {
+            "name": "fedAtTimestamp",
+            "type": "i64"
+          },
+          {
+            "name": "armedAtTimestamp",
+            "type": "i64"
+          },
+          {
+            "name": "repairedAtTimestamp",
+            "type": "i64"
+          },
+          {
+            "name": "currentCapacityTimestamp",
+            "type": "i64"
+          },
+          {
+            "name": "totalTimeStaked",
+            "type": "u64"
+          },
+          {
+            "name": "stakedTimePaid",
+            "type": "u64"
+          },
+          {
+            "name": "pendingRewards",
+            "type": "u64"
+          },
+          {
+            "name": "totalRewardsPaid",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "msg": "Scorevars auth is not initialized",
+      "name": "ScorevarsNotInitialized"
+    },
+    {
+      "code": 6001,
+      "msg": "Scorevars auth invalid",
+      "name": "ScorevarsAuthInvalid"
+    },
+    {
+      "code": 6002,
+      "msg": "Faction ID must be 0, 1, or 2.",
+      "name": "FactionTypeError"
+    },
+    {
+      "code": 6003,
+      "msg": "Invalid Ship Mint",
+      "name": "InvalidShipError"
+    },
+    {
+      "code": 6004,
+      "msg": "Invalid Resource Mint",
+      "name": "InvalidResourceError"
+    },
+    {
+      "code": 6005,
+      "msg": "Resource Quantity must be >0.",
+      "name": "ZeroResourceError"
+    },
+    {
+      "code": 6006,
+      "msg": "Ship Quantity must be >0.",
+      "name": "ZeroShipError"
+    },
+    {
+      "code": 6007,
+      "msg": "Numerical overflow error",
+      "name": "NumericalOverflowError"
+    },
+    {
+      "code": 6008,
+      "msg": "Resource Amount Too Small, would add 0 seconds to capacity",
+      "name": "ResourceAmountTooSmall"
+    },
+    {
+      "code": 6009,
+      "msg": "Invalid ScoreVars account for ship Staking Account given",
+      "name": "InvalidScoreVarsAccount"
+    },
+    {
+      "code": 6010,
+      "msg": "Invalid Resource Withdraw, nothing to withdraw",
+      "name": "InvalidResourceWithdraw"
+    },
+    {
+      "code": 6011,
+      "msg": "Invalid Ship Staking Owner",
+      "name": "InvalidShipStakingOwner"
+    },
+    {
+      "code": 6012,
+      "msg": "Invalid Ship Withdraw",
+      "name": "InvalidShipWithdraw"
+    },
+    {
+      "code": 6013,
+      "msg": "Not enough toolkits for Ship Withdraw",
+      "name": "NotEnoughToolkits"
+    },
+    {
+      "code": 6014,
+      "msg": "Escrow account must be 0 to close accounts",
+      "name": "EscrowAccountNotZero"
+    },
+    {
+      "code": 6015,
+      "msg": "Token account does not have correct owner!",
+      "name": "IncorrectTokenAccountOwner"
+    },
+    {
+      "code": 6016,
+      "msg": "Token or Mint Account is not initialized!",
+      "name": "UninitializedTokenAccount"
+    },
+    {
+      "code": 6017,
+      "msg": "Token or Mint Account mint is not correct!",
+      "name": "IncorrectTokenAccountMint"
+    },
+    {
+      "code": 6018,
+      "msg": "Invalid Player Faction Account",
+      "name": "InvalidPlayerFactionPDA"
+    }
+  ],
+  "instructions": [
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "playerAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "shipStakingAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "scoreVarsAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "shipTokenAccountEscrow"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fuelTokenAccountEscrow"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "foodTokenAccountEscrow"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "armsTokenAccountEscrow"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "escrowAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "shipMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "fuelMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "foodMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "armsMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clock"
+        }
+      ],
+      "args": [
+        {
+          "name": "stakingBump",
+          "type": "u8"
+        },
+        {
+          "name": "scorevarsBump",
+          "type": "u8"
+        },
+        {
+          "name": "shipBump",
+          "type": "u8"
+        },
+        {
+          "name": "fuelBump",
+          "type": "u8"
+        },
+        {
+          "name": "foodBump",
+          "type": "u8"
+        },
+        {
+          "name": "armsBump",
+          "type": "u8"
+        },
+        {
+          "name": "escrowAuthBump",
+          "type": "u8"
+        }
+      ],
+      "name": "processCloseAccounts"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "updateAuthorityAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "scoreVarsAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "scoreVarsShipAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "shipMint"
+        }
+      ],
+      "args": [
+        {
+          "name": "scorevarsBump",
+          "type": "u8"
+        },
+        {
+          "name": "scorevarsShipBump",
+          "type": "u8"
+        }
+      ],
+      "name": "processDeregisterShip"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "playerAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "shipStakingAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "scoreVarsShipAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "playerAtlasTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "treasuryTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "treasuryAuthorityAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clock"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "shipMint"
+        }
+      ],
+      "args": [
+        {
+          "name": "stakingBump",
+          "type": "u8"
+        },
+        {
+          "name": "scorevarsShipBump",
+          "type": "u8"
+        },
+        {
+          "name": "treasuryBump",
+          "type": "u8"
+        },
+        {
+          "name": "treasuryAuthBump",
+          "type": "u8"
+        }
+      ],
+      "name": "processHarvest"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "playerAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "shipStakingAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "scoreVarsShipAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "playerFactionAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "escrowAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clock"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "shipMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "shipTokenAccountSource"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "shipTokenAccountEscrow"
+        }
+      ],
+      "args": [
+        {
+          "name": "stakingBump",
+          "type": "u8"
+        },
+        {
+          "name": "scorevarsShipBump",
+          "type": "u8"
+        },
+        {
+          "name": "escrowAuthBump",
+          "type": "u8"
+        },
+        {
+          "name": "escrowBump",
+          "type": "u8"
+        },
+        {
+          "name": "shipQuantity",
+          "type": "u64"
+        }
+      ],
+      "name": "processInitialDeposit"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "updateAuthorityAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "scoreVarsAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "treasuryTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "treasuryAuthorityAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "atlasMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "fuelMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "foodMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "armsMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "toolkitMint"
+        }
+      ],
+      "args": [
+        {
+          "name": "bump",
+          "type": "u8"
+        },
+        {
+          "name": "treasuryBump",
+          "type": "u8"
+        },
+        {
+          "name": "treasuryAuthBump",
+          "type": "u8"
+        }
+      ],
+      "name": "processInitialize"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "playerAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "shipStakingAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "scoreVarsShipAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "escrowAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clock"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "shipMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "shipTokenAccountSource"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "shipTokenAccountEscrow"
+        }
+      ],
+      "args": [
+        {
+          "name": "stakingBump",
+          "type": "u8"
+        },
+        {
+          "name": "scorevarsShipBump",
+          "type": "u8"
+        },
+        {
+          "name": "escrowAuthBump",
+          "type": "u8"
+        },
+        {
+          "name": "escrowBump",
+          "type": "u8"
+        },
+        {
+          "name": "shipQuantity",
+          "type": "u64"
+        }
+      ],
+      "name": "processPartialDeposit"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "tokenOwnerAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "playerAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "shipStakingAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "scoreVarsAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "scoreVarsShipAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "escrowAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clock"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "docs": [
+            "as accounts Mint and Token Accounts because doing so here causes a stack overflow error :("
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "shipMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "armsMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "armsTokenAccountSource"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "armsTokenAccountEscrow"
+        }
+      ],
+      "args": [
+        {
+          "name": "stakingBump",
+          "type": "u8"
+        },
+        {
+          "name": "scorevarsBump",
+          "type": "u8"
+        },
+        {
+          "name": "scorevarsShipBump",
+          "type": "u8"
+        },
+        {
+          "name": "escrowAuthBump",
+          "type": "u8"
+        },
+        {
+          "name": "escrowBump",
+          "type": "u8"
+        },
+        {
+          "name": "armsQuantity",
+          "type": "u64"
+        }
+      ],
+      "name": "processRearm"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "tokenOwnerAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "playerAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "shipStakingAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "scoreVarsAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "scoreVarsShipAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "escrowAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clock"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "docs": [
+            "as accounts Mint and Token Accounts because doing so here causes a stack overflow error :("
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "shipMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "foodMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "foodTokenAccountSource"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "foodTokenAccountEscrow"
+        }
+      ],
+      "args": [
+        {
+          "name": "stakingBump",
+          "type": "u8"
+        },
+        {
+          "name": "scorevarsBump",
+          "type": "u8"
+        },
+        {
+          "name": "scorevarsShipBump",
+          "type": "u8"
+        },
+        {
+          "name": "escrowAuthBump",
+          "type": "u8"
+        },
+        {
+          "name": "escrowBump",
+          "type": "u8"
+        },
+        {
+          "name": "foodQuantity",
+          "type": "u64"
+        }
+      ],
+      "name": "processRefeed"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "tokenOwnerAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "playerAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "shipStakingAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "scoreVarsAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "scoreVarsShipAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "escrowAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clock"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "docs": [
+            "as accounts Mint and Token Accounts because doing so here causes a stack overflow error :("
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "shipMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "fuelMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fuelTokenAccountSource"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fuelTokenAccountEscrow"
+        }
+      ],
+      "args": [
+        {
+          "name": "stakingBump",
+          "type": "u8"
+        },
+        {
+          "name": "scorevarsBump",
+          "type": "u8"
+        },
+        {
+          "name": "scorevarsShipBump",
+          "type": "u8"
+        },
+        {
+          "name": "escrowAuthBump",
+          "type": "u8"
+        },
+        {
+          "name": "escrowBump",
+          "type": "u8"
+        },
+        {
+          "name": "fuelQuantity",
+          "type": "u64"
+        }
+      ],
+      "name": "processRefuel"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "updateAuthorityAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "scoreVarsAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "scoreVarsShipAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "shipMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "scorevarsBump",
+          "type": "u8"
+        },
+        {
+          "name": "scorevarsShipBump",
+          "type": "u8"
+        },
+        {
+          "name": "rewardRatePerSecond",
+          "type": "u64"
+        },
+        {
+          "name": "fuelMaxReserve",
+          "type": "u32"
+        },
+        {
+          "name": "foodMaxReserve",
+          "type": "u32"
+        },
+        {
+          "name": "armsMaxReserve",
+          "type": "u32"
+        },
+        {
+          "name": "toolkitMaxReserve",
+          "type": "u32"
+        },
+        {
+          "name": "millisecondsToBurnOneFuel",
+          "type": "u32"
+        },
+        {
+          "name": "millisecondsToBurnOneFood",
+          "type": "u32"
+        },
+        {
+          "name": "millisecondsToBurnOneArms",
+          "type": "u32"
+        },
+        {
+          "name": "millisecondsToBurnOneToolkit",
+          "type": "u32"
+        }
+      ],
+      "name": "processRegisterShip"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "tokenOwnerAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "playerAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "shipStakingAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "scoreVarsAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "scoreVarsShipAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clock"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "docs": [
+            "as accounts Mint and Token Accounts because doing so here causes a stack overflow error :("
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "shipMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "toolkitMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "toolkitTokenAccountSource"
+        }
+      ],
+      "args": [
+        {
+          "name": "stakingBump",
+          "type": "u8"
+        },
+        {
+          "name": "scorevarsBump",
+          "type": "u8"
+        },
+        {
+          "name": "scorevarsShipBump",
+          "type": "u8"
+        },
+        {
+          "name": "toolkitQuantity",
+          "type": "u64"
+        }
+      ],
+      "name": "processRepair"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "playerAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "updateAuthorityAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "shipStakingAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "scoreVarsShipAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "scoreVarsAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clock"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "shipMint"
+        }
+      ],
+      "args": [
+        {
+          "name": "stakingBump",
+          "type": "u8"
+        },
+        {
+          "name": "scorevarsBump",
+          "type": "u8"
+        },
+        {
+          "name": "scorevarsShipBump",
+          "type": "u8"
+        }
+      ],
+      "name": "processSettle"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "updateAuthorityAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "scoreVarsAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "scoreVarsShipAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "shipMint"
+        }
+      ],
+      "args": [
+        {
+          "name": "scorevarsBump",
+          "type": "u8"
+        },
+        {
+          "name": "scorevarsShipBump",
+          "type": "u8"
+        },
+        {
+          "name": "newRewardRatePerSecond",
+          "type": "u64"
+        }
+      ],
+      "name": "processUpdateRewardRate"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "playerAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "shipStakingAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "scoreVarsAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "scoreVarsShipAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "armsTokenAccountEscrow"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "armsTokenAccountReturn"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "armsMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "escrowAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clock"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "shipMint"
+        }
+      ],
+      "args": [
+        {
+          "name": "stakingBump",
+          "type": "u8"
+        },
+        {
+          "name": "scorevarsBump",
+          "type": "u8"
+        },
+        {
+          "name": "scorevarsShipBump",
+          "type": "u8"
+        },
+        {
+          "name": "escrowAuthBump",
+          "type": "u8"
+        },
+        {
+          "name": "escrowBump",
+          "type": "u8"
+        }
+      ],
+      "name": "processWithdrawArms"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "playerAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "shipStakingAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "scoreVarsAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "scoreVarsShipAccount"
+        },
+        {
+          "docs": [
+            "doing so results in a stack overflow error.  We therefore do this withing the processor"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "foodTokenAccountEscrow"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "foodTokenAccountReturn"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "foodMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "escrowAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clock"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "shipMint"
+        }
+      ],
+      "args": [
+        {
+          "name": "stakingBump",
+          "type": "u8"
+        },
+        {
+          "name": "scorevarsBump",
+          "type": "u8"
+        },
+        {
+          "name": "scorevarsShipBump",
+          "type": "u8"
+        },
+        {
+          "name": "escrowAuthBump",
+          "type": "u8"
+        },
+        {
+          "name": "escrowBump",
+          "type": "u8"
+        }
+      ],
+      "name": "processWithdrawFood"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "playerAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "shipStakingAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "scoreVarsAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "scoreVarsShipAccount"
+        },
+        {
+          "docs": [
+            "doing so results in a stack overflow error.  We therefore do this withing the processor"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "fuelTokenAccountEscrow"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fuelTokenAccountReturn"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fuelMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "escrowAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clock"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "shipMint"
+        }
+      ],
+      "args": [
+        {
+          "name": "stakingBump",
+          "type": "u8"
+        },
+        {
+          "name": "scorevarsBump",
+          "type": "u8"
+        },
+        {
+          "name": "scorevarsShipBump",
+          "type": "u8"
+        },
+        {
+          "name": "escrowAuthBump",
+          "type": "u8"
+        },
+        {
+          "name": "escrowBump",
+          "type": "u8"
+        }
+      ],
+      "name": "processWithdrawFuel"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "playerAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "shipStakingAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "scoreVarsAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "scoreVarsShipAccount"
+        },
+        {
+          "docs": [
+            "results in a stack overflow error.  Instead we verify within the instruction processor"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "playerAtlasTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "shipTokenAccountEscrow"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "shipTokenAccountReturn"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "toolkitTokenAccountSource"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "treasuryTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "treasuryAuthorityAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "escrowAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "clock"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "shipMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "toolkitMint"
+        }
+      ],
+      "args": [
+        {
+          "name": "stakingBump",
+          "type": "u8"
+        },
+        {
+          "name": "scorevarsBump",
+          "type": "u8"
+        },
+        {
+          "name": "scorevarsShipBump",
+          "type": "u8"
+        },
+        {
+          "name": "escrowAuthBump",
+          "type": "u8"
+        },
+        {
+          "name": "escrowBump",
+          "type": "u8"
+        },
+        {
+          "name": "treasuryAuthBump",
+          "type": "u8"
+        },
+        {
+          "name": "treasuryBump",
+          "type": "u8"
+        }
+      ],
+      "name": "processWithdrawShips"
+    }
+  ],
+  "name": "score",
+  "version": "0.1.0"
+}

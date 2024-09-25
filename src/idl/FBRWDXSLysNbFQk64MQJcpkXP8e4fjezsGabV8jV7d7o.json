@@ -1,0 +1,284 @@
+{
+  "accounts": [
+    {
+      "name": "RewardVault",
+      "type": {
+        "fields": [
+          {
+            "name": "admin",
+            "type": "publicKey"
+          },
+          {
+            "name": "collection",
+            "type": "publicKey"
+          },
+          {
+            "name": "rewardMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "transferAuthority",
+            "type": "publicKey"
+          },
+          {
+            "name": "rewardTokenAccount",
+            "type": "publicKey"
+          },
+          {
+            "name": "lpTokenAccount",
+            "type": "publicKey"
+          },
+          {
+            "name": "nftCount",
+            "type": "u64"
+          },
+          {
+            "name": "accruedAmount",
+            "type": "u128"
+          },
+          {
+            "name": "paidAmount",
+            "type": "u128"
+          },
+          {
+            "name": "rewardsPerNft",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "transferAuthorityBump",
+            "type": "u8"
+          },
+          {
+            "name": "tokenAccountBump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "RewardRecord",
+      "type": {
+        "fields": [
+          {
+            "name": "mint",
+            "type": "publicKey"
+          },
+          {
+            "name": "rewardDebt",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "msg": "Unsuppported NFT collection",
+      "name": "InvalidCollection"
+    }
+  ],
+  "instructions": [
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "rewardVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rewardMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "rewardTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "collectionMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "programData"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "InitRewardVaultParams"
+          }
+        }
+      ],
+      "name": "initRewardVault"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": true,
+          "name": "admin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fundingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "rewardVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "rewardTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": "DistributeRewardsParams"
+          }
+        }
+      ],
+      "name": "distributeRewards"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "owner"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "feePayer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nftMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "nftTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "metadataAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "receivingAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "rewardRecord"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "rewardVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "rewardTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "transferAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        }
+      ],
+      "args": [],
+      "name": "collectReward"
+    }
+  ],
+  "name": "fbnft_rewards",
+  "types": [
+    {
+      "name": "InitRewardVaultParams",
+      "type": {
+        "fields": [
+          {
+            "name": "nftCount",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "DistributeRewardsParams",
+      "type": {
+        "fields": [
+          {
+            "name": "rewardAmount",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "version": "0.1.0"
+}

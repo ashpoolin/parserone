@@ -1,0 +1,8615 @@
+{
+  "accounts": [
+    {
+      "name": "collateralBox",
+      "type": {
+        "fields": [
+          {
+            "name": "fbond",
+            "type": "publicKey"
+          },
+          {
+            "name": "collateralBoxType",
+            "type": {
+              "defined": "CollateralBoxType"
+            }
+          },
+          {
+            "name": "collateralTokenMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "collateralTokenAccount",
+            "type": "publicKey"
+          },
+          {
+            "name": "collateralAmount",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "fraktBond",
+      "type": {
+        "fields": [
+          {
+            "name": "fraktBondState",
+            "type": {
+              "defined": "FraktBondState"
+            }
+          },
+          {
+            "name": "bondTradeTransactionsCounter",
+            "type": "u8"
+          },
+          {
+            "name": "borrowedAmount",
+            "type": "u64"
+          },
+          {
+            "name": "banxStake",
+            "type": "publicKey"
+          },
+          {
+            "name": "fraktMarket",
+            "type": "publicKey"
+          },
+          {
+            "name": "amountToReturn",
+            "type": "u64"
+          },
+          {
+            "name": "actualReturnedAmount",
+            "type": "u64"
+          },
+          {
+            "name": "terminatedCounter",
+            "type": "u8"
+          },
+          {
+            "name": "fbondTokenMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "fbondTokenSupply",
+            "type": "u64"
+          },
+          {
+            "name": "activatedAt",
+            "type": "u64"
+          },
+          {
+            "name": "liquidatingAt",
+            "type": "u64"
+          },
+          {
+            "name": "fbondIssuer",
+            "type": "publicKey"
+          },
+          {
+            "name": "repaidOrLiquidatedAt",
+            "type": "u64"
+          },
+          {
+            "name": "currentPerpetualBorrowed",
+            "type": "u64"
+          },
+          {
+            "name": "lastTransactedAt",
+            "type": "u64"
+          },
+          {
+            "name": "refinanceAuctionStartedAt",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "flashLoanPool",
+      "type": {
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "borrowing",
+            "type": "bool"
+          },
+          {
+            "name": "balance",
+            "type": "u64"
+          },
+          {
+            "name": "loanFeePoints",
+            "type": "u16"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "hadespinLeaderboardEntry",
+      "type": {
+        "fields": [
+          {
+            "name": "user",
+            "type": "publicKey"
+          },
+          {
+            "name": "totalSolDeposited",
+            "type": "u64"
+          },
+          {
+            "name": "totalSolInNftDeposited",
+            "type": "u64"
+          },
+          {
+            "name": "totalNftDeposited",
+            "type": "u64"
+          },
+          {
+            "name": "totalFeePayed",
+            "type": "u64"
+          },
+          {
+            "name": "totalSolWon",
+            "type": "u64"
+          },
+          {
+            "name": "lastTransactedAt",
+            "type": "u64"
+          },
+          {
+            "name": "placeholderOne",
+            "type": "publicKey"
+          },
+          {
+            "name": "placeholderTwo",
+            "type": "publicKey"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "hadespinLeaderboardWeekEntry",
+      "type": {
+        "fields": [
+          {
+            "name": "user",
+            "type": "publicKey"
+          },
+          {
+            "name": "week",
+            "type": "u64"
+          },
+          {
+            "name": "totalSolDeposited",
+            "type": "u64"
+          },
+          {
+            "name": "totalSolInNftDeposited",
+            "type": "u64"
+          },
+          {
+            "name": "totalNftDeposited",
+            "type": "u64"
+          },
+          {
+            "name": "totalFeePayed",
+            "type": "u64"
+          },
+          {
+            "name": "totalSolWon",
+            "type": "u64"
+          },
+          {
+            "name": "lastTransactedAt",
+            "type": "u64"
+          },
+          {
+            "name": "placeholderOne",
+            "type": "publicKey"
+          },
+          {
+            "name": "placeholderTwo",
+            "type": "publicKey"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "hadespinRakeback",
+      "type": {
+        "fields": [
+          {
+            "name": "user",
+            "type": "publicKey"
+          },
+          {
+            "name": "hadesToClaimAmount",
+            "type": "u64"
+          },
+          {
+            "name": "claimTimestamp",
+            "type": "u64"
+          },
+          {
+            "name": "claimedAt",
+            "type": "u64"
+          },
+          {
+            "name": "claimed",
+            "type": "bool"
+          },
+          {
+            "name": "lastTransactedAt",
+            "type": "u64"
+          },
+          {
+            "name": "placeholderOne",
+            "type": "publicKey"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "roundSetting",
+      "type": {
+        "fields": [
+          {
+            "name": "completedRounds",
+            "type": "u64"
+          },
+          {
+            "name": "totalSolDeposited",
+            "type": "u64"
+          },
+          {
+            "name": "totalFeeCollected",
+            "type": "u64"
+          },
+          {
+            "name": "totalParticipants",
+            "type": "u64"
+          },
+          {
+            "name": "roundDuration",
+            "type": "u64"
+          },
+          {
+            "name": "minSolToDeposit",
+            "type": "u64"
+          },
+          {
+            "name": "feePercent",
+            "type": "u64"
+          },
+          {
+            "name": "canInitializeNextRound",
+            "type": "bool"
+          },
+          {
+            "name": "lastRoundEndsAt",
+            "type": "u64"
+          },
+          {
+            "name": "lastTransactedAt",
+            "type": "u64"
+          },
+          {
+            "name": "rakebackHadesForSol",
+            "type": "u64"
+          },
+          {
+            "name": "contractBid",
+            "type": "u64"
+          },
+          {
+            "name": "placeholdeOne",
+            "type": "u64"
+          },
+          {
+            "name": "placeholdeTwo",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "round",
+      "type": {
+        "fields": [
+          {
+            "name": "roundState",
+            "type": {
+              "defined": "RoundState"
+            }
+          },
+          {
+            "name": "roundValue",
+            "type": "u64"
+          },
+          {
+            "name": "startedAt",
+            "type": "u64"
+          },
+          {
+            "name": "solAmount",
+            "type": "u64"
+          },
+          {
+            "name": "feeAmount",
+            "type": "u64"
+          },
+          {
+            "name": "participants",
+            "type": "u64"
+          },
+          {
+            "name": "roundEndsAt",
+            "type": "u64"
+          },
+          {
+            "name": "lastTransactedAt",
+            "type": "u64"
+          },
+          {
+            "name": "winner",
+            "type": "publicKey"
+          },
+          {
+            "name": "roundNumber",
+            "type": "u64"
+          },
+          {
+            "name": "solInNftAmount",
+            "type": "u64"
+          },
+          {
+            "name": "contractBid",
+            "type": "u64"
+          },
+          {
+            "name": "placeholderOne",
+            "type": "u64"
+          },
+          {
+            "name": "placeholderTwo",
+            "type": "u64"
+          },
+          {
+            "name": "placeholderThree",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "userRound",
+      "type": {
+        "fields": [
+          {
+            "name": "round",
+            "type": "publicKey"
+          },
+          {
+            "name": "solDeposited",
+            "type": "u64"
+          },
+          {
+            "name": "startSolPosition",
+            "type": "u64"
+          },
+          {
+            "name": "user",
+            "type": "publicKey"
+          },
+          {
+            "name": "lastTransactedAt",
+            "type": "u64"
+          },
+          {
+            "name": "depositedAt",
+            "type": "u64"
+          },
+          {
+            "name": "nftMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "jackpotSolAmount",
+            "type": "u64"
+          },
+          {
+            "name": "jackpotClaimedAt",
+            "type": "u64"
+          },
+          {
+            "name": "jackpotClaimed",
+            "type": "bool"
+          },
+          {
+            "name": "placeholderOne",
+            "type": "u64"
+          },
+          {
+            "name": "placeholderTwo",
+            "type": "u32"
+          },
+          {
+            "name": "placeholderThree",
+            "type": "bool"
+          },
+          {
+            "name": "placeholderFour",
+            "type": "bool"
+          },
+          {
+            "name": "placeholderFive",
+            "type": "bool"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "hadoMarketRegistry",
+      "type": {
+        "fields": [
+          {
+            "name": "hadoMarket",
+            "type": "publicKey"
+          },
+          {
+            "name": "fraktMarket",
+            "type": "publicKey"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "hadoMarketValidation",
+      "type": {
+        "fields": [
+          {
+            "name": "hadoMarket",
+            "type": "publicKey"
+          },
+          {
+            "name": "creatorHash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "placeholderOne",
+            "type": "publicKey"
+          },
+          {
+            "name": "placeholderTwo",
+            "type": "publicKey"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "hadoMarket",
+      "type": {
+        "fields": [
+          {
+            "name": "marketAuthority",
+            "type": "publicKey"
+          },
+          {
+            "name": "marketState",
+            "type": {
+              "defined": "MarketState"
+            }
+          },
+          {
+            "name": "marketTrustType",
+            "type": {
+              "defined": "MarketTrustType"
+            }
+          },
+          {
+            "name": "pairValidationType",
+            "type": {
+              "defined": "PairValidationType"
+            }
+          },
+          {
+            "name": "fraktMarket",
+            "type": "publicKey"
+          },
+          {
+            "name": "minBidCap",
+            "type": "u64"
+          },
+          {
+            "name": "minMarketFee",
+            "type": "u64"
+          },
+          {
+            "name": "whitelistType",
+            "type": {
+              "defined": "NftValidationWhitelistTypeHado"
+            }
+          },
+          {
+            "name": "whitelistedAddress",
+            "type": "publicKey"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "bondOfferV2",
+      "type": {
+        "fields": [
+          {
+            "name": "hadoMarket",
+            "type": "publicKey"
+          },
+          {
+            "name": "pairState",
+            "type": {
+              "defined": "PairState"
+            }
+          },
+          {
+            "name": "bondingCurve",
+            "type": {
+              "defined": "BondOfferBondingCurve"
+            }
+          },
+          {
+            "name": "baseSpotPrice",
+            "type": "u64"
+          },
+          {
+            "name": "mathCounter",
+            "type": "i64"
+          },
+          {
+            "name": "currentSpotPrice",
+            "type": "u64"
+          },
+          {
+            "name": "concentrationIndex",
+            "type": "u64"
+          },
+          {
+            "name": "bidCap",
+            "type": "u64"
+          },
+          {
+            "name": "bidSettlement",
+            "type": "i64"
+          },
+          {
+            "name": "edgeSettlement",
+            "type": "u64"
+          },
+          {
+            "name": "fundsSolOrTokenBalance",
+            "type": "u64"
+          },
+          {
+            "name": "buyOrdersQuantity",
+            "type": "u64"
+          },
+          {
+            "name": "lastTransactedAt",
+            "type": "u64"
+          },
+          {
+            "name": "assetReceiver",
+            "type": "publicKey"
+          },
+          {
+            "name": "validation",
+            "type": {
+              "defined": "BondOfferValidation"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "bondTradeTransactionV2",
+      "type": {
+        "fields": [
+          {
+            "name": "bondTradeTransactionState",
+            "type": {
+              "defined": "BondTradeTransactionV2State"
+            }
+          },
+          {
+            "name": "bondOffer",
+            "type": "publicKey"
+          },
+          {
+            "name": "user",
+            "type": "publicKey"
+          },
+          {
+            "name": "amountOfBonds",
+            "type": "u64"
+          },
+          {
+            "name": "solAmount",
+            "type": "u64"
+          },
+          {
+            "name": "feeAmount",
+            "type": "u64"
+          },
+          {
+            "name": "bondTradeTransactionType",
+            "type": {
+              "defined": "BondTradeTransactionV2Type"
+            }
+          },
+          {
+            "name": "fbondTokenMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "soldAt",
+            "type": "u64"
+          },
+          {
+            "name": "redeemedAt",
+            "type": "u64"
+          },
+          {
+            "name": "redeemResult",
+            "type": {
+              "defined": "RedeemResult"
+            }
+          },
+          {
+            "name": "seller",
+            "type": "publicKey"
+          },
+          {
+            "name": "isDirectSell",
+            "type": "bool"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "lenderLeaderboard",
+      "type": {
+        "fields": [
+          {
+            "name": "user",
+            "type": "publicKey"
+          },
+          {
+            "name": "leaderboardState",
+            "type": {
+              "defined": "LenderLeaderboardState"
+            }
+          },
+          {
+            "name": "lastClaimedAt",
+            "type": "u64"
+          },
+          {
+            "name": "totalClaimedAmount",
+            "type": "u64"
+          },
+          {
+            "name": "totalInterestRewards",
+            "type": "u64"
+          },
+          {
+            "name": "totalLent",
+            "type": "u64"
+          },
+          {
+            "name": "totalRepaid",
+            "type": "u64"
+          },
+          {
+            "name": "placeholderOne",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "lenderWeeklyLeaderboard",
+      "type": {
+        "fields": [
+          {
+            "name": "user",
+            "type": "publicKey"
+          },
+          {
+            "name": "leaderboardState",
+            "type": {
+              "defined": "LenderLeaderboardState"
+            }
+          },
+          {
+            "name": "lastWeeklyClaimedAt",
+            "type": "u64"
+          },
+          {
+            "name": "totalWeeklyClaimedAmount",
+            "type": "u64"
+          },
+          {
+            "name": "week",
+            "type": "u64"
+          },
+          {
+            "name": "totalInterestRewards",
+            "type": "u64"
+          },
+          {
+            "name": "totalLent",
+            "type": "u64"
+          },
+          {
+            "name": "totalRepaid",
+            "type": "u64"
+          },
+          {
+            "name": "placeholderOne",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "adventureSubscription",
+      "type": {
+        "fields": [
+          {
+            "name": "user",
+            "type": "publicKey"
+          },
+          {
+            "name": "stake",
+            "type": "publicKey"
+          },
+          {
+            "name": "adventure",
+            "type": "publicKey"
+          },
+          {
+            "name": "subscribedAt",
+            "type": "u64"
+          },
+          {
+            "name": "unsubscribedAt",
+            "type": "u64"
+          },
+          {
+            "name": "harvestedAt",
+            "type": "u64"
+          },
+          {
+            "name": "amountOfSolHarvested",
+            "type": "u64"
+          },
+          {
+            "name": "placeholderOne",
+            "type": "publicKey"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "adventure",
+      "type": {
+        "fields": [
+          {
+            "name": "adventureState",
+            "type": {
+              "defined": "AdventureState"
+            }
+          },
+          {
+            "name": "periodStartedAt",
+            "type": "u64"
+          },
+          {
+            "name": "periodEndingAt",
+            "type": "u64"
+          },
+          {
+            "name": "rewardsUpperLimit",
+            "type": "u64"
+          },
+          {
+            "name": "rewardsLowerLimit",
+            "type": "u64"
+          },
+          {
+            "name": "totalPeriodRevenue",
+            "type": "u64"
+          },
+          {
+            "name": "rewardsToBeDistributed",
+            "type": "u64"
+          },
+          {
+            "name": "totalBanxSubscribed",
+            "type": "u64"
+          },
+          {
+            "name": "totalPartnerPoints",
+            "type": "u64"
+          },
+          {
+            "name": "totalPlayerPoints",
+            "type": "u64"
+          },
+          {
+            "name": "banxSubscribedLeft",
+            "type": "u64"
+          },
+          {
+            "name": "partnerPointsLeft",
+            "type": "u64"
+          },
+          {
+            "name": "playerPointsLeft",
+            "type": "u64"
+          },
+          {
+            "name": "rewardsLeft",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "banxPointsMap",
+      "type": {
+        "fields": [
+          {
+            "name": "banxMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "playerPoints",
+            "type": "u64"
+          },
+          {
+            "name": "partnerPoints",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "banxStake",
+      "type": {
+        "fields": [
+          {
+            "name": "banxStakeState",
+            "type": {
+              "defined": "BanxStakeState"
+            }
+          },
+          {
+            "name": "adventureSubscriptionsQuantity",
+            "type": "u64"
+          },
+          {
+            "name": "nftMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "collateralTokenAccount",
+            "type": "publicKey"
+          },
+          {
+            "name": "user",
+            "type": "publicKey"
+          },
+          {
+            "name": "stakedAt",
+            "type": "u64"
+          },
+          {
+            "name": "unstakedOrLiquidatedAt",
+            "type": "u64"
+          },
+          {
+            "name": "isLoaned",
+            "type": "bool"
+          },
+          {
+            "name": "bond",
+            "type": "publicKey"
+          },
+          {
+            "name": "playerPoints",
+            "type": "u64"
+          },
+          {
+            "name": "partnerPoints",
+            "type": "u64"
+          },
+          {
+            "name": "farmedAmount",
+            "type": "u64"
+          },
+          {
+            "name": "placeholderOne",
+            "type": "publicKey"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "banxUser",
+      "type": {
+        "fields": [
+          {
+            "name": "user",
+            "type": "publicKey"
+          },
+          {
+            "name": "stakedPlayerPoints",
+            "type": "u64"
+          },
+          {
+            "name": "stakedPartnerPoints",
+            "type": "u64"
+          },
+          {
+            "name": "stakedBanx",
+            "type": "u64"
+          },
+          {
+            "name": "totalHarvestedRewards",
+            "type": "u64"
+          },
+          {
+            "name": "freeLiquidityCurrent",
+            "type": "u64"
+          },
+          {
+            "name": "placeholderOne",
+            "type": "publicKey"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "stakingSettings",
+      "type": {
+        "fields": [
+          {
+            "name": "mainVaultBalance",
+            "type": "u64"
+          },
+          {
+            "name": "upperRewardsLimit",
+            "type": "u64"
+          },
+          {
+            "name": "lowerRewardsLimit",
+            "type": "u64"
+          },
+          {
+            "name": "placeholderOne",
+            "type": "publicKey"
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "msg": "MetadataDoesntExist",
+      "name": "MetadataDoesntExist"
+    },
+    {
+      "code": 6001,
+      "msg": "DerivedKeyInvalid",
+      "name": "DerivedKeyInvalid"
+    },
+    {
+      "code": 6002,
+      "msg": "InvalidCollectionDetails",
+      "name": "InvalidCollectionDetails"
+    },
+    {
+      "code": 6003,
+      "msg": "InvalidCollection",
+      "name": "InvalidCollection"
+    },
+    {
+      "code": 6004,
+      "msg": "InvalidCollectionMint",
+      "name": "InvalidCollectionMint"
+    },
+    {
+      "code": 6005,
+      "msg": "NftNotVerified",
+      "name": "NftNotVerified"
+    },
+    {
+      "code": 6006,
+      "msg": "InvalidOwner",
+      "name": "InvalidOwner"
+    },
+    {
+      "code": 6007,
+      "msg": "InvalidDelta",
+      "name": "InvalidDelta"
+    },
+    {
+      "code": 6008,
+      "msg": "InvalidFee",
+      "name": "InvalidFee"
+    },
+    {
+      "code": 6009,
+      "msg": "InvalidPairType",
+      "name": "InvalidPairType"
+    },
+    {
+      "code": 6010,
+      "msg": "NotEnoughInTokenAccount",
+      "name": "NotEnoughInTokenAccount"
+    },
+    {
+      "code": 6011,
+      "msg": "InvalidMint",
+      "name": "InvalidMint"
+    },
+    {
+      "code": 6012,
+      "msg": "InvalidSolVault",
+      "name": "InvalidSolVault"
+    },
+    {
+      "code": 6013,
+      "msg": "InvalidFundingAmount",
+      "name": "InvalidFundingAmount"
+    },
+    {
+      "code": 6014,
+      "msg": "NotEnoughLamports",
+      "name": "NotEnoughLamports"
+    },
+    {
+      "code": 6015,
+      "msg": "InvalidJpegOwner",
+      "name": "InvalidJpegOwner"
+    },
+    {
+      "code": 6016,
+      "msg": "InvalidTokenAccount",
+      "name": "InvalidTokenAccount"
+    },
+    {
+      "code": 6017,
+      "msg": "InvalidPayer",
+      "name": "InvalidPayer"
+    },
+    {
+      "code": 6018,
+      "msg": "ShouldBeActive",
+      "name": "ShouldBeActive"
+    },
+    {
+      "code": 6019,
+      "msg": "Can't make 0 orders",
+      "name": "CantMakeZeroOrders"
+    },
+    {
+      "code": 6020,
+      "msg": "OnlyClassicAuthority",
+      "name": "OnlyClassicAuthority"
+    },
+    {
+      "code": 6021,
+      "msg": "NotValidAuthorityAdapter",
+      "name": "NotValidAuthorityAdapter"
+    },
+    {
+      "code": 6022,
+      "msg": "UserDoesntHaveAuthority",
+      "name": "UserDoesntHaveAuthority"
+    },
+    {
+      "code": 6023,
+      "msg": "WrongSeed",
+      "name": "WrongSeed"
+    },
+    {
+      "code": 6024,
+      "msg": "CanDepositSolOnlyToTokenToNft",
+      "name": "CanDepositSolOnlyToTokenToNft"
+    },
+    {
+      "code": 6025,
+      "msg": "MaxAmountOfOrdersSucceeded",
+      "name": "MaxAmountOfOrdersSucceeded"
+    },
+    {
+      "code": 6026,
+      "msg": "CanDepositNftOnlyToNftToToken",
+      "name": "CanDepositNftOnlyToNftToToken"
+    },
+    {
+      "code": 6027,
+      "msg": "TokenAccountDoesntContainNft",
+      "name": "TokenAccountDoesntContainNft"
+    },
+    {
+      "code": 6028,
+      "msg": "MarketAuthorityIncorrect",
+      "name": "MarketAuthorityIncorrect"
+    },
+    {
+      "code": 6029,
+      "msg": "CanAddWhitelistOnlyToInitializingMarket",
+      "name": "CanAddWhitelistOnlyToInitializingMarket"
+    },
+    {
+      "code": 6030,
+      "msg": "CanPutPairsOnlyToAvailableMarkets",
+      "name": "CanPutPairsOnlyToAvailableMarkets"
+    },
+    {
+      "code": 6031,
+      "msg": "PairAndNftValidationMarketDoesntMatch",
+      "name": "PairAndNftValidationMarketDoesntMatch"
+    },
+    {
+      "code": 6032,
+      "msg": "OnlyMarketScopeSupported",
+      "name": "OnlyMarketScopeSupported"
+    },
+    {
+      "code": 6033,
+      "msg": "NotWhitelistedNftForThisMarket",
+      "name": "NotWhitelistedNftForThisMarket"
+    },
+    {
+      "code": 6034,
+      "msg": "CanDepositOnlyToLiquidityProvision",
+      "name": "CanDepositOnlyToLiquidityProvision"
+    },
+    {
+      "code": 6035,
+      "msg": "NftBoxDoesntMatchPair",
+      "name": "NftBoxDoesntMatchPair"
+    },
+    {
+      "code": 6036,
+      "msg": "NftBoxShouldBeActive",
+      "name": "NftBoxShouldBeActive"
+    },
+    {
+      "code": 6037,
+      "msg": "NftBoxDoesntMatchMint",
+      "name": "NftBoxDoesntMatchMint"
+    },
+    {
+      "code": 6038,
+      "msg": "CantBuyNftFromTokenForNft",
+      "name": "CantBuyNftFromTokenForNft"
+    },
+    {
+      "code": 6039,
+      "msg": "OnlyTokenForNftIsEligibleForThisSell",
+      "name": "OnlyTokenForNftIsEligibleForThisSell"
+    },
+    {
+      "code": 6040,
+      "msg": "NoBuyOrdersOnThisPair",
+      "name": "NoBuyOrdersOnThisPair"
+    },
+    {
+      "code": 6041,
+      "msg": "OnlyLiquidityProvisionIsEligibleForThisSell",
+      "name": "OnlyLiquidityProvisionIsEligibleForThisSell"
+    },
+    {
+      "code": 6042,
+      "msg": "OnlyTokenForNftIsEligibleForThisWithdrawal",
+      "name": "OnlyTokenForNftIsEligibleForThisWithdrawal"
+    },
+    {
+      "code": 6043,
+      "msg": "OnlyNftForTokenIsEligibleForThisWithdrawal",
+      "name": "OnlyNftForTokenIsEligibleForThisWithdrawal"
+    },
+    {
+      "code": 6044,
+      "msg": "OnlyLiquidityProvisionIsEligibleForThisWithdrawal",
+      "name": "OnlyLiquidityProvisionIsEligibleForThisWithdrawal"
+    },
+    {
+      "code": 6045,
+      "msg": "InstructionIsNotSupported",
+      "name": "InstructionIsNotSupported"
+    },
+    {
+      "code": 6046,
+      "msg": "CanTradeOnlyWithPairsOnMarket",
+      "name": "CanTradeOnlyWithPairsOnMarket"
+    },
+    {
+      "code": 6047,
+      "msg": "NoLiquidityFeesToWithdraw",
+      "name": "NoLiquidityFeesToWithdraw"
+    },
+    {
+      "code": 6048,
+      "msg": "MaxAmountToPayExceeded",
+      "name": "MaxAmountToPayExceeded"
+    },
+    {
+      "code": 6049,
+      "msg": "GettingLessThanMinAmountToGet",
+      "name": "GettingLessThanMinAmountToGet"
+    },
+    {
+      "code": 6050,
+      "msg": "UserDoesntHaveHadomarketAuthority",
+      "name": "UserDoesntHaveHadomarketAuthority"
+    },
+    {
+      "code": 6051,
+      "msg": "HadomarketAlreadyFinished",
+      "name": "HadomarketAlreadyFinished"
+    },
+    {
+      "code": 6052,
+      "msg": "CanDepositLiqudityOnlyToVirtualOrInitializingPairs",
+      "name": "CanDepositLiqudityOnlyToVirtualOrInitializingPairs"
+    },
+    {
+      "code": 6053,
+      "msg": "CanModifyOnlyToVirtualOrInitializingPairs",
+      "name": "CanModifyOnlyToVirtualOrInitializingPairs"
+    },
+    {
+      "code": 6054,
+      "msg": "LiquidityProvisionOrderPairDoesntMatch",
+      "name": "LiquidityProvisionOrderPairDoesntMatch"
+    },
+    {
+      "code": 6055,
+      "msg": "OnlyVirtualLpOrdersCanBeWithdrawnByThisFunction",
+      "name": "OnlyVirtualLpOrdersCanBeWithdrawnByThisFunction"
+    },
+    {
+      "code": 6056,
+      "msg": "OnlyVirtualOrTokenizedLpOrdersCanBeReplacedByThisFunction",
+      "name": "OnlyVirtualOrTokenizedLpOrdersCanBeReplacedByThisFunction"
+    },
+    {
+      "code": 6057,
+      "msg": "LiquidityProvisionOrderNotEdge",
+      "name": "LiquidityProvisionOrderNotEdge"
+    },
+    {
+      "code": 6058,
+      "msg": "NftPairBoxNotParsingFromRemaining",
+      "name": "NftPairBoxNotParsingFromRemaining"
+    },
+    {
+      "code": 6059,
+      "msg": "VaultNftTokenAccountNotParsingFromRemaining",
+      "name": "VaultNftTokenAccountNotParsingFromRemaining"
+    },
+    {
+      "code": 6060,
+      "msg": "UserTokenAccountNotParsingFromRemaining",
+      "name": "UserTokenAccountNotParsingFromRemaining"
+    },
+    {
+      "code": 6061,
+      "msg": "WithdrawingOnlyAtLeastOneBuyAndOneSellPairs",
+      "name": "WithdrawingOnlyAtLeastOneBuyAndOneSellPairs"
+    },
+    {
+      "code": 6062,
+      "msg": "VaultDoesntMatchBox",
+      "name": "VaultDoesntMatchBox"
+    },
+    {
+      "code": 6063,
+      "msg": "WithdrawingOnlyBuyOrdersPairs",
+      "name": "WithdrawingOnlyBuyOrdersPairs"
+    },
+    {
+      "code": 6064,
+      "msg": "WithdrawingOnlySellOrdersPairs",
+      "name": "WithdrawingOnlySellOrdersPairs"
+    },
+    {
+      "code": 6065,
+      "msg": "LiquidityProvisionOrderIsWithdrawn",
+      "name": "LiquidityProvisionOrderIsWithdrawn"
+    },
+    {
+      "code": 6066,
+      "msg": "LiquidityProvisionOrderIsNotCorrectOrderForPair",
+      "name": "LiquidityProvisionOrderIsNotCorrectOrderForPair"
+    },
+    {
+      "code": 6067,
+      "msg": "OnlyMarketVirtualPairsCanBeTokenized",
+      "name": "OnlyMarketVirtualPairsCanBeTokenized"
+    },
+    {
+      "code": 6068,
+      "msg": "OnlyLiquidityProvisionPairsCanBeTokenized",
+      "name": "OnlyLiquidityProvisionPairsCanBeTokenized"
+    },
+    {
+      "code": 6069,
+      "msg": "OnlyInitializingPairsCanBePutOnMarket",
+      "name": "OnlyInitializingPairsCanBePutOnMarket"
+    },
+    {
+      "code": 6070,
+      "msg": "CanMakeLpOrderTokenizedOnlyFromTokenizedPair",
+      "name": "CanMakeLpOrderTokenizedOnlyFromTokenizedPair"
+    },
+    {
+      "code": 6071,
+      "msg": "OnlyVirtualLpOrderCanBeTokenized",
+      "name": "OnlyVirtualLpOrderCanBeTokenized"
+    },
+    {
+      "code": 6072,
+      "msg": "OnlyTokenizedLpOrdersCanWithdrawFees",
+      "name": "OnlyTokenizedLpOrdersCanWithdrawFees"
+    },
+    {
+      "code": 6073,
+      "msg": "UserLpTokenAccountDoesntContainNft",
+      "name": "UserLpTokenAccountDoesntContainNft"
+    },
+    {
+      "code": 6074,
+      "msg": "OnlyTokenizedLpOrdersCanBeWithdrawnByThisFunction",
+      "name": "OnlyTokenizedLpOrdersCanBeWithdrawnByThisFunction"
+    },
+    {
+      "code": 6075,
+      "msg": "LpTokenMintDoesntMatchOrder",
+      "name": "LpTokenMintDoesntMatchOrder"
+    },
+    {
+      "code": 6076,
+      "msg": "CanCloseVirtualPoolOnlyIfNoLiquidityLeft",
+      "name": "CanCloseVirtualPoolOnlyIfNoLiquidityLeft"
+    },
+    {
+      "code": 6077,
+      "msg": "CantSetBidCapSmallerThanMarketMinimum",
+      "name": "CantSetBidCapSmallerThanMarketMinimum"
+    },
+    {
+      "code": 6078,
+      "msg": "CantDepositNftWithNotMarketDecimals",
+      "name": "CantDepositNftWithNotMarketDecimals"
+    },
+    {
+      "code": 6079,
+      "msg": "FndAmountCantExceedBidCap",
+      "name": "FndAmountCantExceedBidCap"
+    },
+    {
+      "code": 6080,
+      "msg": "CantBuyMoreThatRemainingBidSettlement",
+      "name": "CantBuyMoreThatRemainingBidSettlement"
+    },
+    {
+      "code": 6081,
+      "msg": "CantBuyMoreThanActiveTokensAmount",
+      "name": "CantBuyMoreThanActiveTokensAmount"
+    },
+    {
+      "code": 6082,
+      "msg": "CantSellMoreThanActiveTokensAmount",
+      "name": "CantSellMoreThanActiveTokensAmount"
+    },
+    {
+      "code": 6083,
+      "msg": "CantDepositMoreThanBidCap",
+      "name": "CantDepositMoreThanBidCap"
+    },
+    {
+      "code": 6084,
+      "msg": "CantDepositZero",
+      "name": "CantDepositZero"
+    },
+    {
+      "code": 6085,
+      "msg": "CantWithdrawMoreThanBidCap",
+      "name": "CantWithdrawMoreThanBidCap"
+    },
+    {
+      "code": 6086,
+      "msg": "CantWithdrawZero",
+      "name": "CantWithdrawZero"
+    },
+    {
+      "code": 6087,
+      "msg": "CantWithdrawMoreThanNftBoxActiveTokens",
+      "name": "CantWithdrawMoreThanNftBoxActiveTokens"
+    },
+    {
+      "code": 6088,
+      "msg": "CantSetReturnAmountLessThanMinimum",
+      "name": "CantSetReturnAmountLessThanMinimum"
+    },
+    {
+      "code": 6089,
+      "msg": "CantSetBondDurationNotStandart",
+      "name": "CantSetBondDurationNotStandart"
+    },
+    {
+      "code": 6090,
+      "msg": "CanAddCollateralOnlyToInitializedFBond",
+      "name": "CanAddCollateralOnlyToInitializedFBond"
+    },
+    {
+      "code": 6091,
+      "msg": "OnlyIssuerCanAddCollateralBox",
+      "name": "OnlyIssuerCanAddCollateralBox"
+    },
+    {
+      "code": 6092,
+      "msg": "FBondTokenMintDoesntMatch",
+      "name": "FBondTokenMintDoesntMatch"
+    },
+    {
+      "code": 6093,
+      "msg": "CanActivateOnlyInitializedBond",
+      "name": "CanActivateOnlyInitializedBond"
+    },
+    {
+      "code": 6094,
+      "msg": "BondAuthorityIssuerDoesntMatch",
+      "name": "BondAuthorityIssuerDoesntMatch"
+    },
+    {
+      "code": 6095,
+      "msg": "CanRepayOnlyActivatedBond",
+      "name": "CanRepayOnlyActivatedBond"
+    },
+    {
+      "code": 6096,
+      "msg": "CanRedeemOnlyRepaidFBond",
+      "name": "CanRedeemOnlyRepaidFBond"
+    },
+    {
+      "code": 6097,
+      "msg": "CantSetNotRoundedAmountToReturn",
+      "name": "CantSetNotRoundedAmountToReturn"
+    },
+    {
+      "code": 6098,
+      "msg": "CanGetOnlyRepaidCollateral",
+      "name": "CanGetOnlyRepaidCollateral"
+    },
+    {
+      "code": 6099,
+      "msg": "CollateralTokenMintDoesntMatchBox",
+      "name": "CollateralTokenMintDoesntMatchBox"
+    },
+    {
+      "code": 6100,
+      "msg": "CanLiquidateOnlyActiveFBondWhichEnteredLiquidation",
+      "name": "CanLiquidateOnlyActiveFBondWhichEnteredLiquidation"
+    },
+    {
+      "code": 6101,
+      "msg": "WrongAdmin",
+      "name": "WrongAdmin"
+    },
+    {
+      "code": 6102,
+      "msg": "CanBurnEntireSupplyOnlyForActiveBond",
+      "name": "CanBurnEntireSupplyOnlyForActiveBond"
+    },
+    {
+      "code": 6103,
+      "msg": "UserDoesntOwnAllSupply",
+      "name": "UserDoesntOwnAllSupply"
+    },
+    {
+      "code": 6104,
+      "msg": "WrongAllSupplyBurner",
+      "name": "WrongAllSupplyBurner"
+    },
+    {
+      "code": 6105,
+      "msg": "LoanToValueFilterOutOfBound",
+      "name": "LoanToValueFilterOutOfBound"
+    },
+    {
+      "code": 6106,
+      "msg": "ValidationDoesntMatchPair",
+      "name": "ValidationDoesntMatchPair"
+    },
+    {
+      "code": 6107,
+      "msg": "CollateralBoxDoesntBelongFbond",
+      "name": "CollateralBoxDoesntBelongFbond"
+    },
+    {
+      "code": 6108,
+      "msg": "FraktMarketDoesntMatchHadoMarketRegistry",
+      "name": "FraktMarketDoesntMatchHadoMarketRegistry"
+    },
+    {
+      "code": 6109,
+      "msg": "FraktMarketNotActive",
+      "name": "FraktMarketNotActive"
+    },
+    {
+      "code": 6110,
+      "msg": "OracleFloorDoesntMatchFraktMarket",
+      "name": "OracleFloorDoesntMatchFraktMarket"
+    },
+    {
+      "code": 6111,
+      "msg": "FraktMarketDoesntMatchWhitelistEntry",
+      "name": "FraktMarketDoesntMatchWhitelistEntry"
+    },
+    {
+      "code": 6112,
+      "msg": "ActualLoanToValueExceedsFilter",
+      "name": "ActualLoanToValueExceedsFilter"
+    },
+    {
+      "code": 6113,
+      "msg": "PairDoesntMatchHadomarket",
+      "name": "PairDoesntMatchHadomarket"
+    },
+    {
+      "code": 6114,
+      "msg": "ActualLoanDurationExceedsFilter",
+      "name": "ActualLoanDurationExceedsFilter"
+    },
+    {
+      "code": 6115,
+      "msg": "NftIsNotMasterEdition",
+      "name": "NftIsNotMasterEdition"
+    },
+    {
+      "code": 6116,
+      "msg": "NftValidationAdapterIsExpired",
+      "name": "NftValidationAdapterIsExpired"
+    },
+    {
+      "code": 6117,
+      "msg": "CustomValidationAdapterProgramDoesntMatchUser",
+      "name": "CustomValidationAdapterProgramDoesntMatchUser"
+    },
+    {
+      "code": 6118,
+      "msg": "OnlyAdminCanInitializeFlashLoanPool",
+      "name": "OnlyAdminCanInitializeFlashLoanPool"
+    },
+    {
+      "code": 6119,
+      "msg": "CantSetLoanFeePointsGreaterThanBasePoints",
+      "name": "CantSetLoanFeePointsGreaterThanBasePoints"
+    },
+    {
+      "code": 6120,
+      "msg": "OnlyPoolAuthorityCanDepositAndWithdrawLiquidity",
+      "name": "OnlyPoolAuthorityCanDepositAndWithdrawLiquidity"
+    },
+    {
+      "code": 6121,
+      "msg": "CantWithdrawMoreThanPoolBalance",
+      "name": "CantWithdrawMoreThanPoolBalance"
+    },
+    {
+      "code": 6122,
+      "msg": "CantBorrowAndRepayByCpi",
+      "name": "CantBorrowAndRepayByCpi"
+    },
+    {
+      "code": 6123,
+      "msg": "RepayAmountDoesntCorrespondBorrowAmount",
+      "name": "RepayAmountDoesntCorrespondBorrowAmount"
+    },
+    {
+      "code": 6124,
+      "msg": "TransactionDoesntContainRepayInstruction",
+      "name": "TransactionDoesntContainRepayInstruction"
+    },
+    {
+      "code": 6125,
+      "msg": "AlreadyBorrowing",
+      "name": "AlreadyBorrowing"
+    },
+    {
+      "code": 6126,
+      "msg": "WrongHadeswapProgramId",
+      "name": "WrongHadeswapProgramId"
+    },
+    {
+      "code": 6127,
+      "msg": "AmountToReturnIsHigherThanMax",
+      "name": "AmountToReturnIsHigherThanMax"
+    },
+    {
+      "code": 6128,
+      "msg": "AutocompoundNotSupportedYet",
+      "name": "AutocompoundNotSupportedYet"
+    },
+    {
+      "code": 6129,
+      "msg": "AutocompoundDepositIsNotActive",
+      "name": "AutocompoundDepositIsNotActive"
+    },
+    {
+      "code": 6130,
+      "msg": "AutocompoundDepositDoesntMatchPair",
+      "name": "AutocompoundDepositDoesntMatchPair"
+    },
+    {
+      "code": 6131,
+      "msg": "OnlyAdminCanRedeemFbondsFromAutocompoundToPair",
+      "name": "OnlyAdminCanRedeemFbondsFromAutocompoundToPair"
+    },
+    {
+      "code": 6132,
+      "msg": "InvalidAssetReceiverTokenAccount",
+      "name": "InvalidAssetReceiverTokenAccount"
+    },
+    {
+      "code": 6133,
+      "msg": "AutoreceiveSolToUserFeatureNotEnabled",
+      "name": "AutoreceiveSolToUserFeatureNotEnabled"
+    },
+    {
+      "code": 6134,
+      "msg": "AutocompoundFeatureNotEnabled",
+      "name": "AutocompoundFeatureNotEnabled"
+    },
+    {
+      "code": 6135,
+      "msg": "InvalidAssetReceiver",
+      "name": "InvalidAssetReceiver"
+    },
+    {
+      "code": 6136,
+      "msg": "BondCollateralOrSolReceiverNotUser",
+      "name": "BondCollateralOrSolReceiverNotUser"
+    },
+    {
+      "code": 6137,
+      "msg": "OnlyBuyPairsAreSupported",
+      "name": "OnlyBuyPairsAreSupported"
+    },
+    {
+      "code": 6138,
+      "msg": "CanModifyOnlyTokenForNftPairs",
+      "name": "CanModifyOnlyTokenForNftPairs"
+    },
+    {
+      "code": 6139,
+      "msg": "OraclePriceIsStale",
+      "name": "OraclePriceIsStale"
+    },
+    {
+      "code": 6140,
+      "msg": "NftLiquidationTimeNotPassed",
+      "name": "NftLiquidationTimeNotPassed"
+    },
+    {
+      "code": 6141,
+      "msg": "CanDepositReturnedSolOnlyToLiquidatingBond",
+      "name": "CanDepositReturnedSolOnlyToLiquidatingBond"
+    },
+    {
+      "code": 6142,
+      "msg": "Debugger",
+      "name": "Debugger"
+    },
+    {
+      "code": 6143,
+      "msg": "NotSupportedSellCase",
+      "name": "NotSupportedSellCase"
+    },
+    {
+      "code": 6144,
+      "msg": "CollateralTokenMintDoesntMatchAutocompoundDeposit",
+      "name": "CollateralTokenMintDoesntMatchAutocompoundDeposit"
+    },
+    {
+      "code": 6145,
+      "msg": "NotCorrectAutocompoundType",
+      "name": "NotCorrectAutocompoundType"
+    },
+    {
+      "code": 6146,
+      "msg": "BadRuleSet",
+      "name": "BadRuleSet"
+    },
+    {
+      "code": 6147,
+      "msg": "DelegateBuilderFailed",
+      "name": "DelegateBuilderFailed"
+    },
+    {
+      "code": 6148,
+      "msg": "LockBuilderFailed",
+      "name": "LockBuilderFailed"
+    },
+    {
+      "code": 6149,
+      "msg": "CanRedeemFromAutocompoundToUserOnlyIfPairClosed",
+      "name": "CanRedeemFromAutocompoundToUserOnlyIfPairClosed"
+    },
+    {
+      "code": 6150,
+      "msg": "AmountToClaimCantExceedAmountOfBondsInAutocompoundDeposit",
+      "name": "AmountToClaimCantExceedAmountOfBondsInAutocompoundDeposit"
+    },
+    {
+      "code": 6151,
+      "msg": "CollateralOwnerDoesntMatchCollateralTokenAccount",
+      "name": "CollateralOwnerDoesntMatchCollateralTokenAccount"
+    },
+    {
+      "code": 6152,
+      "msg": "CanLiquidateOnlyBondsWithBondCollateralOrSolReceiver",
+      "name": "CanLiquidateOnlyBondsWithBondCollateralOrSolReceiver"
+    },
+    {
+      "code": 6153,
+      "msg": "MerkleTreeIsNotSupported",
+      "name": "MerkleTreeIsNotSupported"
+    },
+    {
+      "code": 6154,
+      "msg": "UserDoesntHaveEnoughBalance",
+      "name": "UserDoesntHaveEnoughBalance"
+    },
+    {
+      "code": 6155,
+      "msg": "CantSellToBuggedNegativeInterestPair",
+      "name": "CantSellToBuggedNegativeInterestPair"
+    },
+    {
+      "code": 6156,
+      "msg": "ThisCollectionIsDisabled",
+      "name": "ThisCollectionIsDisabled"
+    },
+    {
+      "code": 6157,
+      "msg": "InvalidMutualBondOfferDepositVault",
+      "name": "InvalidMutualBondOfferDepositVault"
+    },
+    {
+      "code": 6158,
+      "msg": "OnlyBondOfferDepositsAndFullBondAreSupported",
+      "name": "OnlyBondOfferDepositsAndFullBondAreSupported"
+    },
+    {
+      "code": 6159,
+      "msg": "MerkleTreeWhitelistIsNotSupported",
+      "name": "MerkleTreeWhitelistIsNotSupported"
+    },
+    {
+      "code": 6160,
+      "msg": "CantSellZero",
+      "name": "CantSellZero"
+    },
+    {
+      "code": 6161,
+      "msg": "BondOfferHadoMarketDoesntMatch",
+      "name": "BondOfferHadoMarketDoesntMatch"
+    },
+    {
+      "code": 6162,
+      "msg": "FundsSolVaultPdaIsIncorrect",
+      "name": "FundsSolVaultPdaIsIncorrect"
+    },
+    {
+      "code": 6163,
+      "msg": "BondOfferVaultPdaIsIncorrect",
+      "name": "BondOfferVaultPdaIsIncorrect"
+    },
+    {
+      "code": 6164,
+      "msg": "BondTradeTransactionV2PdaIsIncorrect",
+      "name": "BondTradeTransactionV2PdaIsIncorrect"
+    },
+    {
+      "code": 6165,
+      "msg": "BondBalancesBeforeAndAfterInstructionDontMatch",
+      "name": "BondBalancesBeforeAndAfterInstructionDontMatch"
+    },
+    {
+      "code": 6166,
+      "msg": "NotAuthorizedToRemoveBondOffer",
+      "name": "NotAuthorizedToRemoveBondOffer"
+    },
+    {
+      "code": 6167,
+      "msg": "CantUpdateRemovedBondOffer",
+      "name": "CantUpdateRemovedBondOffer"
+    },
+    {
+      "code": 6168,
+      "msg": "BondTradeTransactionNotActive",
+      "name": "BondTradeTransactionNotActive"
+    },
+    {
+      "code": 6169,
+      "msg": "BondOfferDoesntMatchTradeTransaction",
+      "name": "BondOfferDoesntMatchTradeTransaction"
+    },
+    {
+      "code": 6170,
+      "msg": "ReceiveNftIsNotOption",
+      "name": "ReceiveNftIsNotOption"
+    },
+    {
+      "code": 6171,
+      "msg": "CanLiquidateOnlyActiveBond",
+      "name": "CanLiquidateOnlyActiveBond"
+    },
+    {
+      "code": 6172,
+      "msg": "CollateralBoxDoesntMatchFbond",
+      "name": "CollateralBoxDoesntMatchFbond"
+    },
+    {
+      "code": 6173,
+      "msg": "AutocompoundPairShouldBeOnMarketVirtual",
+      "name": "AutocompoundPairShouldBeOnMarketVirtual"
+    },
+    {
+      "code": 6174,
+      "msg": "UserDoesntOwnHisBondTradeTransaction",
+      "name": "UserDoesntOwnHisBondTradeTransaction"
+    },
+    {
+      "code": 6175,
+      "msg": "UsersBondTradeTransactionHasIncorrectFbondTokenMint",
+      "name": "UsersBondTradeTransactionHasIncorrectFbondTokenMint"
+    },
+    {
+      "code": 6176,
+      "msg": "UsersBondTradeTransactionIsInactive",
+      "name": "UsersBondTradeTransactionIsInactive"
+    },
+    {
+      "code": 6177,
+      "msg": "SumOfBondsInExitingTradeTransactionsDoesntMatchTotalAmountToSell",
+      "name": "SumOfBondsInExitingTradeTransactionsDoesntMatchTotalAmountToSell"
+    },
+    {
+      "code": 6178,
+      "msg": "CantSellNotFullBondsSupplyOnRefinance",
+      "name": "CantSellNotFullBondsSupplyOnRefinance"
+    },
+    {
+      "code": 6179,
+      "msg": "OnlyAdminCanMigrate",
+      "name": "OnlyAdminCanMigrate"
+    },
+    {
+      "code": 6180,
+      "msg": "BondFeaturesNoneAndReceiveNftOnLiquidationAreNotSupported",
+      "name": "BondFeaturesNoneAndReceiveNftOnLiquidationAreNotSupported"
+    },
+    {
+      "code": 6181,
+      "msg": "SomethingWrongWithMigrationBondOfferIsMissing",
+      "name": "SomethingWrongWithMigrationBondOfferIsMissing"
+    },
+    {
+      "code": 6182,
+      "msg": "SecondAddressIsNotUserOrBondOffer",
+      "name": "SecondAddressIsNotUserOrBondOffer"
+    },
+    {
+      "code": 6183,
+      "msg": "SumOfBondsInRepayDoesntMatchBondsSupply",
+      "name": "SumOfBondsInRepayDoesntMatchBondsSupply"
+    },
+    {
+      "code": 6184,
+      "msg": "CantBuyoutForLowerThanMinimumPrice",
+      "name": "CantBuyoutForLowerThanMinimumPrice"
+    },
+    {
+      "code": 6185,
+      "msg": "CantBuyoutNftOnDutchAuctionWhenThereAreOnlyOneLender",
+      "name": "CantBuyoutNftOnDutchAuctionWhenThereAreOnlyOneLender"
+    },
+    {
+      "code": 6186,
+      "msg": "ThereAreMoreThanOneLenderOfThisBond",
+      "name": "ThereAreMoreThanOneLenderOfThisBond"
+    },
+    {
+      "code": 6187,
+      "msg": "TradeTransactionDoesntMatchBond",
+      "name": "TradeTransactionDoesntMatchBond"
+    },
+    {
+      "code": 6188,
+      "msg": "CantLiquidatePerpetualBonds",
+      "name": "CantLiquidatePerpetualBonds"
+    },
+    {
+      "code": 6189,
+      "msg": "CantRepayExpiredReceivingCollateralLoan",
+      "name": "CantRepayExpiredReceivingCollateralLoan"
+    },
+    {
+      "code": 6190,
+      "msg": "DisabledPairsWithMoreThanOneOrder",
+      "name": "DisabledPairsWithMoreThanOneOrder"
+    },
+    {
+      "code": 6191,
+      "msg": "CollectionIsDisabled",
+      "name": "CollectionIsDisabled"
+    },
+    {
+      "code": 6192,
+      "msg": "ShouldBeEscrow",
+      "name": "ShouldBeEscrow"
+    },
+    {
+      "code": 6193,
+      "msg": "EscrowLoansNotSupported",
+      "name": "EscrowLoansNotSupported"
+    },
+    {
+      "code": 6194,
+      "msg": "OnlyBanxIsSupportedForStaking",
+      "name": "OnlyBanxIsSupportedForStaking"
+    },
+    {
+      "code": 6195,
+      "msg": "UserDoesntOwnStake",
+      "name": "UserDoesntOwnStake"
+    },
+    {
+      "code": 6196,
+      "msg": "BanxIsNotStaked",
+      "name": "BanxIsNotStaked"
+    },
+    {
+      "code": 6197,
+      "msg": "CantUnstakeLoanedBanx",
+      "name": "CantUnstakeLoanedBanx"
+    },
+    {
+      "code": 6198,
+      "msg": "WrongCollateralTokenAccount",
+      "name": "WrongCollateralTokenAccount"
+    },
+    {
+      "code": 6199,
+      "msg": "WrongNftMint",
+      "name": "WrongNftMint"
+    },
+    {
+      "code": 6200,
+      "msg": "CantUnstakeWithActiveSubscriptions",
+      "name": "CantUnstakeWithActiveSubscriptions"
+    },
+    {
+      "code": 6201,
+      "msg": "AdventureDoesntLayOnCurve",
+      "name": "AdventureDoesntLayOnCurve"
+    },
+    {
+      "code": 6202,
+      "msg": "CantSubscribeToPassedWeek",
+      "name": "CantSubscribeToPassedWeek"
+    },
+    {
+      "code": 6203,
+      "msg": "CantHaveMoreThanThreeSubscriptions",
+      "name": "CantHaveMoreThanThreeSubscriptions"
+    },
+    {
+      "code": 6204,
+      "msg": "CantSubscribeMoreThanThreeWeeksAhead",
+      "name": "CantSubscribeMoreThanThreeWeeksAhead"
+    },
+    {
+      "code": 6205,
+      "msg": "CantUnsubscribeFromPassedAdventureNeedToHarvest",
+      "name": "CantUnsubscribeFromPassedAdventureNeedToHarvest"
+    },
+    {
+      "code": 6206,
+      "msg": "AlreadyUnsubscribedOrHarvested",
+      "name": "AlreadyUnsubscribedOrHarvested"
+    },
+    {
+      "code": 6207,
+      "msg": "CantHarvestNotEndedAdventures",
+      "name": "CantHarvestNotEndedAdventures"
+    },
+    {
+      "code": 6208,
+      "msg": "SubscriptionDoesntMatchAdventure",
+      "name": "SubscriptionDoesntMatchAdventure"
+    },
+    {
+      "code": 6209,
+      "msg": "RefinanceAuctionNotStartedYet",
+      "name": "RefinanceAuctionNotStartedYet"
+    },
+    {
+      "code": 6210,
+      "msg": "AdventureSubscriptionPdaIsIncorrect",
+      "name": "AdventureSubscriptionPdaIsIncorrect"
+    },
+    {
+      "code": 6211,
+      "msg": "BanxIsAlreadyLoaned",
+      "name": "BanxIsAlreadyLoaned"
+    },
+    {
+      "code": 6212,
+      "msg": "CantStandartRepayStakedBanx",
+      "name": "CantStandartRepayStakedBanx"
+    },
+    {
+      "code": 6213,
+      "msg": "StakeDoesntBelongToBond",
+      "name": "StakeDoesntBelongToBond"
+    },
+    {
+      "code": 6214,
+      "msg": "FirstAdventureNotFound",
+      "name": "FirstAdventureNotFound"
+    },
+    {
+      "code": 6215,
+      "msg": "BanxUserIsntFbondIssuer",
+      "name": "BanxUserIsntFbondIssuer"
+    },
+    {
+      "code": 6216,
+      "msg": "ConstantBidCapExceeded",
+      "name": "ConstantBidCapExceeded"
+    },
+    {
+      "code": 6217,
+      "msg": "TotalLoanValueIsMoreThanMaxOfferValue",
+      "name": "TotalLoanValueIsMoreThanMaxOfferValue"
+    },
+    {
+      "code": 6218,
+      "msg": "NeedToRepayAllTradeTransactions",
+      "name": "NeedToRepayAllTradeTransactions"
+    },
+    {
+      "code": 6219,
+      "msg": "SubscriptionDoesntBelongToStake",
+      "name": "SubscriptionDoesntBelongToStake"
+    },
+    {
+      "code": 6220,
+      "msg": "OnlyMerkleTreeWhitelistTypeAllowedForCnft",
+      "name": "OnlyMerkleTreeWhitelistTypeAllowedForCnft"
+    },
+    {
+      "code": 6221,
+      "msg": "BanxIsNotCnft",
+      "name": "BanxIsNotCnft"
+    },
+    {
+      "code": 6222,
+      "msg": "OnlyPerpetualMarketsAreSupported",
+      "name": "OnlyPerpetualMarketsAreSupported"
+    },
+    {
+      "code": 6223,
+      "msg": "UserDoesntOwnHadomarket",
+      "name": "UserDoesntOwnHadomarket"
+    },
+    {
+      "code": 6224,
+      "msg": "TokenAccountDoentMatchUserOrToken",
+      "name": "TokenAccountDoentMatchUserOrToken"
+    },
+    {
+      "code": 6225,
+      "msg": "FraktBondPdaIsIncorrect",
+      "name": "FraktBondPdaIsIncorrect"
+    },
+    {
+      "code": 6226,
+      "msg": "FinishAllGood",
+      "name": "FinishAllGood"
+    },
+    {
+      "code": 6227,
+      "msg": "UserDoesntOwnLiquidatedBond",
+      "name": "UserDoesntOwnLiquidatedBond"
+    },
+    {
+      "code": 6228,
+      "msg": "BondTradeTransactionIsNotTerminating",
+      "name": "BondTradeTransactionIsNotTerminating"
+    },
+    {
+      "code": 6229,
+      "msg": "LoanIsNotLiquidatedYet",
+      "name": "LoanIsNotLiquidatedYet"
+    },
+    {
+      "code": 6230,
+      "msg": "TokenMintDoesntBelongBond",
+      "name": "TokenMintDoesntBelongBond"
+    },
+    {
+      "code": 6231,
+      "msg": "LoanIsAlreadyTerminated",
+      "name": "LoanIsAlreadyTerminated"
+    },
+    {
+      "code": 6232,
+      "msg": "LenderDoesntMatchTradeTxn",
+      "name": "LenderDoesntMatchTradeTxn"
+    },
+    {
+      "code": 6233,
+      "msg": "CanRefinanceOnlyActiveLoan",
+      "name": "CanRefinanceOnlyActiveLoan"
+    },
+    {
+      "code": 6234,
+      "msg": "HadoMarketDoesntMatchBond",
+      "name": "HadoMarketDoesntMatchBond"
+    },
+    {
+      "code": 6235,
+      "msg": "BondOfferDoesntMatchHadoMarket",
+      "name": "BondOfferDoesntMatchHadoMarket"
+    },
+    {
+      "code": 6236,
+      "msg": "LoanIsNotActive",
+      "name": "LoanIsNotActive"
+    },
+    {
+      "code": 6237,
+      "msg": "CantBorrowZero",
+      "name": "CantBorrowZero"
+    },
+    {
+      "code": 6238,
+      "msg": "LoanIsAlreadyLiquidated",
+      "name": "LoanIsAlreadyLiquidated"
+    },
+    {
+      "code": 6239,
+      "msg": "Can't repay partial 0 or 100%+",
+      "name": "RepayFractionIsIncorrect"
+    },
+    {
+      "code": 6240,
+      "msg": "WrongStakedBanxHadoMarket",
+      "name": "WrongStakedBanxHadoMarket"
+    },
+    {
+      "code": 6241,
+      "msg": "StakedBanxHadoMarket",
+      "name": "StakedBanxHadoMarket"
+    },
+    {
+      "code": 6242,
+      "msg": "Not63PointsBanx",
+      "name": "Not63PointsBanx"
+    },
+    {
+      "code": 6243,
+      "msg": "BanxStakeDoesntMatchBond",
+      "name": "BanxStakeDoesntMatchBond"
+    },
+    {
+      "code": 6244,
+      "msg": "BondOfferShouldBeBondingCurve",
+      "name": "BondOfferShouldBeBondingCurve"
+    },
+    {
+      "code": 6245,
+      "msg": "BondOfferShouldBePerpetualOffer",
+      "name": "BondOfferShouldBePerpetualOffer"
+    },
+    {
+      "code": 6246,
+      "msg": "ProtocolFeeReceiverIsIncorrect",
+      "name": "ProtocolFeeReceiverIsIncorrect"
+    },
+    {
+      "code": 6247,
+      "msg": "RoundIsNotOpen",
+      "name": "RoundIsNotOpen"
+    },
+    {
+      "code": 6248,
+      "msg": "RoundIsOpen",
+      "name": "RoundIsOpen"
+    },
+    {
+      "code": 6249,
+      "msg": "LessThenMinDeposit",
+      "name": "LessThenMinDeposit"
+    },
+    {
+      "code": 6250,
+      "msg": "LastRoundIsOpen",
+      "name": "LastRoundIsOpen"
+    },
+    {
+      "code": 6251,
+      "msg": "RoundPdaIsIncorrect",
+      "name": "RoundPdaIsIncorrect"
+    },
+    {
+      "code": 6252,
+      "msg": "WrongRoundNumber",
+      "name": "WrongRoundNumber"
+    },
+    {
+      "code": 6253,
+      "msg": "UserIsNotWinner",
+      "name": "UserIsNotWinner"
+    },
+    {
+      "code": 6254,
+      "msg": "RewardsAlreadyClaimed",
+      "name": "RewardsAlreadyClaimed"
+    },
+    {
+      "code": 6255,
+      "msg": "Address Mismatch",
+      "name": "AddressMismatch"
+    },
+    {
+      "code": 6256,
+      "msg": "Program Mismatch",
+      "name": "ProgramMismatch"
+    },
+    {
+      "code": 6257,
+      "msg": "Missing Repay",
+      "name": "MissingRepay"
+    },
+    {
+      "code": 6258,
+      "msg": "Incorrect Owner",
+      "name": "IncorrectOwner"
+    },
+    {
+      "code": 6259,
+      "msg": "Incorrect Program Authority",
+      "name": "IncorrectProgramAuthority"
+    },
+    {
+      "code": 6260,
+      "msg": "Cannot Borrow Before Repay",
+      "name": "CannotBorrowBeforeRepay"
+    },
+    {
+      "code": 6261,
+      "msg": "Unknown Instruction",
+      "name": "UnknownInstruction"
+    },
+    {
+      "code": 6262,
+      "msg": "ToNewBondOffer",
+      "name": "ToNewBondOffer"
+    },
+    {
+      "code": 6263,
+      "msg": "JackpotAlreadyClaimed",
+      "name": "JackpotAlreadyClaimed"
+    },
+    {
+      "code": 6264,
+      "msg": "UserDoNotHaveJackpot",
+      "name": "UserDoNotHaveJackpot"
+    },
+    {
+      "code": 6265,
+      "msg": "RakebackAlreadyClaimed",
+      "name": "RakebackAlreadyClaimed"
+    },
+    {
+      "code": 6266,
+      "msg": "RakebackLocked",
+      "name": "RakebackLocked"
+    },
+    {
+      "code": 6267,
+      "msg": "LastOrderIsLowerThanZero",
+      "name": "LastOrderIsLowerThanZero"
+    },
+    {
+      "code": 6268,
+      "msg": "OnlyLinearCurveIsSupported",
+      "name": "OnlyLinearCurveIsSupported"
+    },
+    {
+      "code": 6269,
+      "msg": "CantRefinanceFromSameOffer",
+      "name": "CantRefinanceFromSameOffer"
+    },
+    {
+      "code": 6270,
+      "msg": "CantRefinanceFromNotSameTypeOffers",
+      "name": "CantRefinanceFromNotSameTypeOffers"
+    },
+    {
+      "code": 6271,
+      "msg": "Reserves are negative somehow, it's error",
+      "name": "ReservesCantBecomeNegative"
+    },
+    {
+      "code": 6272,
+      "msg": "FacelessShouldBeMigratedInSpecialWay",
+      "name": "FacelessShouldBeMigratedInSpecialWay"
+    },
+    {
+      "code": 6273,
+      "msg": "OfferDoesntBelongToTradeTransaction",
+      "name": "OfferDoesntBelongToTradeTransaction"
+    },
+    {
+      "code": 6274,
+      "msg": "IncorrectAdditionalParticipant",
+      "name": "IncorrectAdditionalParticipant"
+    },
+    {
+      "code": 6275,
+      "msg": "BanxIsNotLocked",
+      "name": "BanxIsNotLocked"
+    },
+    {
+      "code": 6276,
+      "msg": "InstructionIsDisabled",
+      "name": "InstructionIsDisabled"
+    },
+    {
+      "code": 6277,
+      "msg": "WrongCreator",
+      "name": "WrongCreator"
+    },
+    {
+      "code": 6278,
+      "msg": "ThisUserCantRepay",
+      "name": "ThisUserCantRepay"
+    },
+    {
+      "code": 6279,
+      "msg": "AprIsOutOfBound",
+      "name": "AprIsOutOfBound"
+    }
+  ],
+  "instructions": [
+    {
+      "accounts": [
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "hadoMarket"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "fraktMarket"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "hadoRegistry"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [],
+      "name": "boundHadoMarketToFraktMarket"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferV2"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "amountOfSolToDeposit",
+          "type": "u64"
+        }
+      ],
+      "name": "depositToBondOfferStandard"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferV2"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "amountOfTokensToWithdraw",
+          "type": "u64"
+        }
+      ],
+      "name": "withdrawFromBondOfferStandard"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "hadoMarket"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "docs": [
+            "CHECK Custom validation adapter"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "validationAdapterProgram"
+        },
+        {
+          "docs": [
+            "CHECK Custom token mint"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "pairTokenMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "marketParams",
+          "type": {
+            "defined": "InitializeHadoMarketParams"
+          }
+        }
+      ],
+      "name": "initializeHadoMarket"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "hadoMarket"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [],
+      "name": "finishHadoMarket"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "hadoMarket"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "newFee",
+          "type": "u64"
+        }
+      ],
+      "name": "updateHadoMarketFee"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferV2"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [],
+      "name": "removeBondOfferV2"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralBox"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fbond"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondProgramAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authRules"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "metadataProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "editionInfo"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nftMetadata"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerTokenRecord"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "destTokenRecord"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authorizationRulesProgram"
+        },
+        {
+          "docs": [
+            "CHECK : admin address"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "admin"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "authorizationData",
+          "type": {
+            "option": {
+              "defined": "AuthorizationDataLocal"
+            }
+          }
+        }
+      ],
+      "name": "repayFbondToTradeTransactions"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralBox"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fbond"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "hadoRegistry"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "hadoMarket"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "oracleFloor"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "whitelistEntry"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "protocolFeeReceiver"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "metadataProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "metadataInfo"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "editionInfo"
+        }
+      ],
+      "args": [
+        {
+          "name": "sellBondParams",
+          "type": {
+            "vec": {
+              "defined": "SellBondParams"
+            }
+          }
+        }
+      ],
+      "name": "exitValidateAndSellToBondOffersV2"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralBox"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fbond"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondProgramAuthority"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "hadoRegistry"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "hadoMarket"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "oracleFloor"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "whitelistEntry"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "docs": [
+            "CHECK : admin address"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "admin"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralTokenMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "newFbond"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "newBondProgramAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "newCollateralTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "newCollateralBox"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userTokenAccount"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "protocolFeeReceiver"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "metadataProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "metadataInfo"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "editionInfo"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nftMetadata"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerTokenRecord"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "destTokenRecord"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authorizationRulesProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "sellBondParams",
+          "type": {
+            "vec": {
+              "defined": "SellBondParams"
+            }
+          }
+        }
+      ],
+      "name": "refinanceToBondOffersV2"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "fbond"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondProgramAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralBox"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "hadoRegistry"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "hadoMarket"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "oracleFloor"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "whitelistEntry"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "protocolFeeReceiver"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "metadataProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "editionInfo"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nftMetadata"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerTokenRecord"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "destTokenRecord"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authorizationRulesProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "sellBondParams",
+          "type": {
+            "vec": {
+              "defined": "SellBondParams"
+            }
+          }
+        }
+      ],
+      "name": "createBondAndSellToOffers"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralBox"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fbond"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "middleTokenRecord"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralOwner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "fraktMarket"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "oracleFloor"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "whitelistEntry"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "metadataProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "editionInfo"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nftMetadata"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerTokenRecord"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "destTokenRecord"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authorizationRulesProgram"
+        },
+        {
+          "docs": [
+            "CHECK : admin address"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "admin"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "docs": [
+            "CHECK : optional banx stake"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "banxStake"
+        },
+        {
+          "docs": [
+            "CHECK : optional banx stake"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "banxUser"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakingSettings"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakingRewardsVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authRules"
+        }
+      ],
+      "args": [
+        {
+          "name": "authorizationData",
+          "type": {
+            "option": {
+              "defined": "AuthorizationDataLocal"
+            }
+          }
+        },
+        {
+          "name": "repayAccountsQuantity",
+          "type": "u64"
+        }
+      ],
+      "name": "liquidateBondOnAuctionPnft"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralBox"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fbond"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "middleTokenRecord"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualMiddleTokenRecord"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondProgramAuthorityTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTokenAccount"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondTradeTransactionV2"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondProgramAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralOwner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "metadataProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "editionInfo"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nftMetadata"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerTokenRecord"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "destTokenRecord"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authorizationRulesProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "docs": [
+            "CHECK : optional banx stake"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "banxStake"
+        },
+        {
+          "docs": [
+            "CHECK : optional banx stake"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "banxUser"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakingSettings"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakingRewardsVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authRules"
+        }
+      ],
+      "args": [
+        {
+          "name": "authorizationData",
+          "type": {
+            "option": {
+              "defined": "AuthorizationDataLocal"
+            }
+          }
+        }
+      ],
+      "name": "claimNftByLenderPnft"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "fbond"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondProgramAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralBox"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "hadoRegistry"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "hadoMarket"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "oracleFloor"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "whitelistEntry"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "protocolFeeReceiver"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "metadataProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "editionInfo"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nftMetadata"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerTokenRecord"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "destTokenRecord"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authorizationRulesProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "sellBondParams",
+          "type": {
+            "vec": {
+              "defined": "SellBondParams"
+            }
+          }
+        }
+      ],
+      "name": "createBondAndSellToOffersForTest"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "loanFeePoints",
+          "type": "u16"
+        }
+      ],
+      "name": "initializeFlashLoanPool"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "fundsSolVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "solAmountToDeposit",
+          "type": "u64"
+        }
+      ],
+      "name": "depositSolToFlashLoanPool"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "fundsSolVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "solAmountToWithdraw",
+          "type": "u64"
+        }
+      ],
+      "name": "withdrawSolFromFlashLoanPool"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "fundsSolVault"
+        },
+        {
+          "docs": [
+            "CHECK : instructions"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "solAmountToBorrow",
+          "type": "u64"
+        }
+      ],
+      "name": "takeFlashLoan"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "pool"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "fundsSolVault"
+        },
+        {
+          "docs": [
+            "CHECK : instructions"
+          ],
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "solAmountToRepay",
+          "type": "u64"
+        }
+      ],
+      "name": "repayFlashLoan"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferV2"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "hadoMarket"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "bondOfferRandomSeed",
+          "type": "u64"
+        },
+        {
+          "name": "amountOfSolToDeposit",
+          "type": "u64"
+        },
+        {
+          "name": "loanToValueFilter",
+          "type": "u64"
+        },
+        {
+          "name": "maxReturnAmountFilter",
+          "type": "u64"
+        },
+        {
+          "name": "bondFeatures",
+          "type": {
+            "defined": "BondFeatures"
+          }
+        }
+      ],
+      "name": "createBondOfferStandard"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferV2"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "loanToValueFilter",
+          "type": "u64"
+        },
+        {
+          "name": "maxReturnAmountFilter",
+          "type": "u64"
+        }
+      ],
+      "name": "updateBondOfferStandard"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "banxStake"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "banxUser"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "banxPointsMap"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "hadoRegistry"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "whitelistEntry"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "metadataProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "editionInfo"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nftMetadata"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerTokenRecord"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authorizationRulesProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "subscriptionParams",
+          "type": {
+            "vec": {
+              "defined": "SubscriptionParams"
+            }
+          }
+        }
+      ],
+      "name": "stakeBanx"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "banxStake"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "banxUser"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakingSettings"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakingRewardsVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userTokenAccount"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "metadataProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "editionInfo"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nftMetadata"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerTokenRecord"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "destTokenRecord"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authRules"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authorizationRulesProgram"
+        }
+      ],
+      "args": [],
+      "name": "unstakeBanx"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "banxStake"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "adventure"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "adventureSubscription"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakingSettings"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakingRewardsVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "subscriptionWeeks",
+          "type": "u64"
+        }
+      ],
+      "name": "unsubOrHarvestWeeks"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakingSettings"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakingRewardsVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "unsubOrHarvestParams",
+          "type": {
+            "vec": {
+              "defined": "UnsubOrHarvestParams"
+            }
+          }
+        }
+      ],
+      "name": "unsubOrHarvestWeeksEnhanced"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "protocolFeeReceiver"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructions"
+        }
+      ],
+      "args": [
+        {
+          "name": "perpetualBorrowParams",
+          "type": {
+            "vec": {
+              "defined": "BorrowPerpetualParams"
+            }
+          }
+        },
+        {
+          "name": "optimizeIntoReserves",
+          "type": "bool"
+        },
+        {
+          "name": "aprRate",
+          "type": "u64"
+        }
+      ],
+      "name": "borrowPerpetualTest"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakingSettings"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "lowerRewardsLimit",
+          "type": "u64"
+        },
+        {
+          "name": "upperRewardsLimit",
+          "type": "u64"
+        }
+      ],
+      "name": "updateStakingSettings"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "banxPointsMap"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "playerPoints",
+          "type": "u64"
+        },
+        {
+          "name": "partnerPoints",
+          "type": "u64"
+        }
+      ],
+      "name": "mapBanxToPoints"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "banxUser"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "playerPoints",
+          "type": "u64"
+        },
+        {
+          "name": "partnerPoints",
+          "type": "u64"
+        }
+      ],
+      "name": "patchBrokenUserStakes"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakingSettings"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakingRewardsVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "amountOfSolToDeposit",
+          "type": "u64"
+        }
+      ],
+      "name": "depositToRewardsVault"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "banxStake"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "isLoaned",
+          "type": "bool"
+        }
+      ],
+      "name": "fixBrokenBanxStake"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakingSettings"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakingRewardsVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "amountOfSolToWithdraw",
+          "type": "u64"
+        }
+      ],
+      "name": "withdrawRewardsFromVault"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferV2"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondTradeTransactionV2"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralBox"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fbond"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "hadoRegistry"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "hadoMarket"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "docs": [
+            "CHECK : admin address"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "admin"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "newFbond"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "newCollateralBox"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "protocolFeeReceiver"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "bondOfferRandomSeed",
+          "type": "u64"
+        }
+      ],
+      "name": "refinanceFbondByLender"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "banxStake"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "fbond"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralBox"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "hadoRegistry"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "hadoMarket"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "oracleFloor"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "protocolFeeReceiver"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "sellBondParams",
+          "type": {
+            "vec": {
+              "defined": "SellBondParams"
+            }
+          }
+        }
+      ],
+      "name": "sellStakedBanxToOffers"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "banxStake"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralBox"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fbond"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "docs": [
+            "CHECK : admin address"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "admin"
+        }
+      ],
+      "args": [],
+      "name": "repayStakedBanx"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferV2"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "hadoMarket"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lenderLeaderboard"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lenderWeeklyLeaderboard"
+        }
+      ],
+      "args": [
+        {
+          "name": "bondOfferRandomSeed",
+          "type": "u64"
+        },
+        {
+          "name": "loanValue",
+          "type": "u64"
+        },
+        {
+          "name": "amountOfLoans",
+          "type": "u64"
+        }
+      ],
+      "name": "createPerpetualBondOffer"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferV2"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lenderLeaderboard"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lenderWeeklyLeaderboard"
+        }
+      ],
+      "args": [],
+      "name": "removePerpetualOffer"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "metadataProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authorizationRulesProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [],
+      "name": "repayPerpetualLoan"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [],
+      "name": "repayPerpetualLoanTest"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fbond"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferV2"
+        },
+        {
+          "docs": [
+            "CHECK old_bond_offer_v2"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "uninitializedOldBondOfferV2"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondTradeTransactionV2"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oldBondTradeTransactionV2"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lender"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "hadoMarket"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "protocolFeeReceiver"
+        },
+        {
+          "docs": [
+            "CHECK sponsor vault"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "sponsorVault"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "oldBondOfferVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "bondOfferRandomSeed",
+          "type": "u64"
+        }
+      ],
+      "name": "refinancePerpetualLoan"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "fbond"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralBox"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "hadoRegistry"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "hadoMarket"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "oracleFloor"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "whitelistEntry"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "protocolFeeReceiver"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "treeAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "merkleTree"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "logWrapper"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "compressionProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "bubblegumProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "nftMint"
+        }
+      ],
+      "args": [
+        {
+          "name": "sellBondParams",
+          "type": {
+            "vec": {
+              "defined": "SellBondParams"
+            }
+          }
+        },
+        {
+          "name": "root",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "dataHash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "creatorHash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "nonce",
+          "type": "u64"
+        },
+        {
+          "name": "index",
+          "type": "u32"
+        },
+        {
+          "name": "proofLen",
+          "type": "u8"
+        }
+      ],
+      "name": "createBondAndSellToOffersCnft"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralBox"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fbond"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "docs": [
+            "CHECK : admin address"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "admin"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "treeAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "merkleTree"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "logWrapper"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "compressionProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "bubblegumProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "root",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "dataHash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "creatorHash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "nonce",
+          "type": "u64"
+        },
+        {
+          "name": "index",
+          "type": "u32"
+        },
+        {
+          "name": "proofLen",
+          "type": "u8"
+        }
+      ],
+      "name": "repayFbondToTradeTransactionsCnft"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralBox"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fbond"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "hadoRegistry"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "hadoMarket"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "oracleFloor"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "whitelistEntry"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "admin"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "newFbond"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "newCollateralBox"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "protocolFeeReceiver"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "sellBondParams",
+          "type": {
+            "vec": {
+              "defined": "SellBondParams"
+            }
+          }
+        }
+      ],
+      "name": "refinanceToBondOffersV2Cnft"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralBox"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fbond"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondTradeTransactionV2"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "treeAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "merkleTree"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "logWrapper"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "compressionProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "bubblegumProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "root",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "dataHash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "creatorHash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "nonce",
+          "type": "u64"
+        },
+        {
+          "name": "index",
+          "type": "u32"
+        }
+      ],
+      "name": "claimNftByLenderCnft"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralBox"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fbond"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "fraktMarket"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "oracleFloor"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "whitelistEntry"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "docs": [
+            "CHECK : admin address"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "admin"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "treeAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "merkleTree"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "logWrapper"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "compressionProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "bubblegumProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "repayAccountsQuantity",
+          "type": "u64"
+        },
+        {
+          "name": "root",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "dataHash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "creatorHash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "nonce",
+          "type": "u64"
+        },
+        {
+          "name": "index",
+          "type": "u32"
+        }
+      ],
+      "name": "liquidateBondOnAuctionCnft"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "hadoMarket"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "fraktMarket"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "hadoRegistry"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "whitelistEntry"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "marketParams",
+          "type": {
+            "defined": "MakePerpetualMarketParams"
+          }
+        }
+      ],
+      "name": "makePerpetualMarket"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "hadoMarket"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "hadoMarketValidation"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "creatorHash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ],
+      "name": "makePerpetualMarketValidation"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "hadoMarket"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "fraktMarket"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "hadoRegistry"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "whitelistEntry"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [],
+      "name": "updatePerpetualMarket"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferV2"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lenderLeaderboard"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lenderWeeklyLeaderboard"
+        }
+      ],
+      "args": [
+        {
+          "name": "newLoanValue",
+          "type": "u64"
+        },
+        {
+          "name": "amountOfLoans",
+          "type": "u64"
+        }
+      ],
+      "name": "updatePerpetualOffer"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "hadoMarket"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "minMarketFee",
+          "type": "u64"
+        }
+      ],
+      "name": "updateInterestPerpetualMarket"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "protocolFeeReceiver"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "metadataProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authorizationRulesProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "perpetualBorrowParams",
+          "type": {
+            "vec": {
+              "defined": "BorrowPerpetualParams"
+            }
+          }
+        },
+        {
+          "name": "optimizeIntoReserves",
+          "type": "bool"
+        },
+        {
+          "name": "aprRate",
+          "type": "u64"
+        }
+      ],
+      "name": "borrowPerpetual"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondTradeTransactionV2"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fbond"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "banxStake"
+        },
+        {
+          "docs": [
+            "CHECK : optional banx stake"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "banxUser"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakingSettings"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "stakingRewardsVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenMint"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralOwner"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "collateralTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authRules"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "metadataProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "editionInfo"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "nftMetadata"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerTokenRecord"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "middleTokenRecord"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "destTokenRecord"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authorizationRulesProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "docs": [
+            "CHECK old_bond_offer_v2"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "uninitializedOldBondOfferV2"
+        }
+      ],
+      "args": [
+        {
+          "name": "authorizationData",
+          "type": {
+            "option": {
+              "defined": "AuthorizationDataLocal"
+            }
+          }
+        }
+      ],
+      "name": "claimPerpetualLoan"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondTradeTransactionV2"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fbond"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "docs": [
+            "CHECK old_bond_offer_v2"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "uninitializedOldBondOfferV2"
+        }
+      ],
+      "args": [],
+      "name": "claimPerpetualLoanTest"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fbond"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondTradeTransactionV2"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOffer"
+        }
+      ],
+      "args": [],
+      "name": "terminatePerpetualLoan"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fbond"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferV2"
+        },
+        {
+          "docs": [
+            "CHECK old_bond_offer_v2"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "uninitializedOldBondOfferV2"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferVault"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "oldBondOfferVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondTradeTransactionV2"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oldBondTradeTransactionV2"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "hadoMarket"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "protocolFeeReceiver"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "docs": [
+            "CHECK sponsor vault"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "sponsorVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [],
+      "name": "instantRefinancePerpetualLoan"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fbond"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferV2"
+        },
+        {
+          "docs": [
+            "CHECK old_bond_offer_v2"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "uninitializedOldBondOfferV2"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferVault"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "oldBondOfferVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondTradeTransactionV2"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oldBondTradeTransactionV2"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "hadoMarket"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lender"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "protocolFeeReceiver"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "docs": [
+            "CHECK sponsor vault"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "sponsorVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "solToRefinance",
+          "type": "u64"
+        },
+        {
+          "name": "bondOfferRandomSeed",
+          "type": "u64"
+        },
+        {
+          "name": "aprRate",
+          "type": "u64"
+        }
+      ],
+      "name": "borrowerRefinance"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "protocolFeeReceiver"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "metadataProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authorizationRulesProgram"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "ownerTokenRecord"
+        }
+      ],
+      "args": [
+        {
+          "name": "perpetualBorrowParams",
+          "type": {
+            "vec": {
+              "defined": "BorrowPerpetualParams"
+            }
+          }
+        },
+        {
+          "name": "optimizeIntoReserves",
+          "type": "bool"
+        },
+        {
+          "name": "aprRate",
+          "type": "u64"
+        }
+      ],
+      "name": "borrowStakedBanxPerpetual"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "metadataProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "instructions"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "authorizationRulesProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [],
+      "name": "repayStakedBanxPerpetualLoan"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol doesnt fit into the instruction"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "protocolFeeReceiver"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOffer"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "treeAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "sponsorVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "whitelistEntry"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "merkleTree"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "hadoMarketValidation"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "logWrapper"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "compressionProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "bubblegumProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "nftMint"
+        }
+      ],
+      "args": [
+        {
+          "name": "perpetualBorrowParam",
+          "type": {
+            "defined": "BorrowPerpetualParams"
+          }
+        },
+        {
+          "name": "root",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "dataHash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "creatorHash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "nonce",
+          "type": "u64"
+        },
+        {
+          "name": "index",
+          "type": "u32"
+        },
+        {
+          "name": "proofLen",
+          "type": "u8"
+        },
+        {
+          "name": "optimizeIntoReserves",
+          "type": "bool"
+        },
+        {
+          "name": "aprRate",
+          "type": "u64"
+        }
+      ],
+      "name": "borrowCnftPerpetual"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferVault"
+        },
+        {
+          "docs": [
+            "CHECK bond_offer_v2"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "uninitializedBondOfferV2"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "treeAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "merkleTree"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "logWrapper"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "compressionProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "bubblegumProgram"
+        }
+      ],
+      "args": [
+        {
+          "name": "root",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "dataHash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "creatorHash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "nonce",
+          "type": "u64"
+        },
+        {
+          "name": "index",
+          "type": "u32"
+        },
+        {
+          "name": "proofLen",
+          "type": "u8"
+        }
+      ],
+      "name": "repayCnftPerpetualLoan"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondTradeTransactionV2"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fbond"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "treeAuthority"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "merkleTree"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "logWrapper"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "compressionProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "bubblegumProgram"
+        },
+        {
+          "docs": [
+            "CHECK old_bond_offer_v2"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "uninitializedOldBondOfferV2"
+        }
+      ],
+      "args": [
+        {
+          "name": "root",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "dataHash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "creatorHash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "nonce",
+          "type": "u64"
+        },
+        {
+          "name": "index",
+          "type": "u32"
+        },
+        {
+          "name": "proofLen",
+          "type": "u8"
+        }
+      ],
+      "name": "claimCnftPerpetualLoan"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lender"
+        },
+        {
+          "docs": [
+            "CHECK old_bond_offer_v2"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "uninitializedOldBondOfferV2"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oldBondTradeTransactionV2"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "repaidBondTradeTransactionV2"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fbond"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "protocolFeeReceiver"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "fractionToRepay",
+          "type": "u64"
+        }
+      ],
+      "name": "repayPartialPerpetualLoan"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "docs": [
+            "CHECK sponsor vault"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "sponsorVault"
+        }
+      ],
+      "args": [
+        {
+          "name": "solToTransfer",
+          "type": "u64"
+        }
+      ],
+      "name": "transferToSponsorVault"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "docs": [
+            "CHECK sponsor vault"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "sponsorVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "amountOfSolToWithdraw",
+          "type": "u64"
+        }
+      ],
+      "name": "withdrawFromSponsorVault"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userRound"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "round"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "hadespinLeaderboardEntry"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "hadespinLeaderboardWeekEntry"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "rakeback"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "roundSetting"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "roundTxnVault"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "additionalParticipantsVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "solToDeposit",
+          "type": "u64"
+        },
+        {
+          "name": "roundNumber",
+          "type": "u64"
+        },
+        {
+          "name": "userRoundRandomSeed",
+          "type": "u64"
+        }
+      ],
+      "name": "joinRound"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userRound"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "round"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "hadespinLeaderboardEntry"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "hadespinLeaderboardWeekEntry"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "roundSetting"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "roundTxnVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "rakeback"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "additionalParticipantsVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "solInNftToDeposit",
+          "type": "u64"
+        },
+        {
+          "name": "roundNumber",
+          "type": "u64"
+        },
+        {
+          "name": "userRoundRandomSeed",
+          "type": "u64"
+        }
+      ],
+      "name": "joinRoundWithNft"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userRound"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "round"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "hadespinLeaderboardEntry"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "rakeback"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "roundSetting"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOffer"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "additionalParticipantsVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "hadoMarket"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "roundTxnVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "roundNumber",
+          "type": "u64"
+        },
+        {
+          "name": "userRoundRandomSeed",
+          "type": "u64"
+        }
+      ],
+      "name": "joinRoundWithNftTest"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "round"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userRound"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "roundSetting"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "hadespinLeaderboardEntry"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "hadespinLeaderboardWeekEntry"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "roundTxnVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [],
+      "name": "drawUserTicket"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "roundSetting"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "roundDuration",
+          "type": "u64"
+        },
+        {
+          "name": "minSolToDeposit",
+          "type": "u64"
+        },
+        {
+          "name": "feePercent",
+          "type": "u64"
+        },
+        {
+          "name": "completedRounds",
+          "type": "u64"
+        },
+        {
+          "name": "canInitializeNextRound",
+          "type": "bool"
+        },
+        {
+          "name": "rakebackHadesForSol",
+          "type": "u64"
+        },
+        {
+          "name": "contractBid",
+          "type": "u64"
+        }
+      ],
+      "name": "initializeRoundSettings"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "roundSetting"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [],
+      "name": "deleteRoundSettings"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userRound"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [],
+      "name": "deleteUserRound"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userRound"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "jackpotVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [],
+      "name": "claimUserJackpot"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "rakeback"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "rakebackVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "tokenMint"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "associatedTokenProgram"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "userTokenAccount"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "rakebackVaultTokenAccount"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "tokenProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [],
+      "name": "claimUserRakeback"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferV2"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "hadoMarket"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lenderLeaderboard"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lenderWeeklyLeaderboard"
+        }
+      ],
+      "args": [
+        {
+          "name": "bondOfferRandomSeed",
+          "type": "u64"
+        },
+        {
+          "name": "loanValue",
+          "type": "u64"
+        },
+        {
+          "name": "quantityOfLoans",
+          "type": "u64"
+        },
+        {
+          "name": "bondingCurveType",
+          "type": {
+            "defined": "BondOfferBondingCurveType"
+          }
+        },
+        {
+          "name": "delta",
+          "type": "u64"
+        }
+      ],
+      "name": "createPerpetualBondOfferBonding"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferV2"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lenderLeaderboard"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lenderWeeklyLeaderboard"
+        }
+      ],
+      "args": [
+        {
+          "name": "loanValue",
+          "type": "u64"
+        },
+        {
+          "name": "quantityOfLoans",
+          "type": "u64"
+        },
+        {
+          "name": "delta",
+          "type": "u64"
+        }
+      ],
+      "name": "updatePerpetualOfferBonding"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferV2"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lenderLeaderboard"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lenderWeeklyLeaderboard"
+        }
+      ],
+      "args": [],
+      "name": "claimPerpetualBondOfferInterest"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferV2"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lenderLeaderboard"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lenderWeeklyLeaderboard"
+        }
+      ],
+      "args": [],
+      "name": "createLeaderboardForOffer"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferV2"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lenderLeaderboard"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lenderWeeklyLeaderboard"
+        }
+      ],
+      "args": [],
+      "name": "claimPerpetualBondOfferReserves"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferV2"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oldBondOfferV2"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "bondOfferRandomSeed",
+          "type": "u64"
+        }
+      ],
+      "name": "migrateOldToBondingOffer"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "adventureSubscription"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "subUser"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [],
+      "name": "topSubscription"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "round"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "roundTxnVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [],
+      "name": "claimContractWin"
+    },
+    {
+      "accounts": [
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "fbond"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferV2"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondOfferVault"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "oldBondOfferVault"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "bondTradeTransactionV2"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "oldBondTradeTransactionV2"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "hadoMarket"
+        },
+        {
+          "isMut": true,
+          "isSigner": true,
+          "name": "user"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "lender"
+        },
+        {
+          "isMut": true,
+          "isSigner": false,
+          "name": "protocolFeeReceiver"
+        },
+        {
+          "docs": [
+            "CHECK vault for sol"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "mutualBondTradeTxnVault"
+        },
+        {
+          "docs": [
+            "CHECK sponsor vault"
+          ],
+          "isMut": true,
+          "isSigner": false,
+          "name": "sponsorVault"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "systemProgram"
+        },
+        {
+          "isMut": false,
+          "isSigner": false,
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "solToRefinance",
+          "type": "u64"
+        },
+        {
+          "name": "bondOfferRandomSeed",
+          "type": "u64"
+        },
+        {
+          "name": "aprRate",
+          "type": "u64"
+        }
+      ],
+      "name": "borrowerRefinanceToSame"
+    }
+  ],
+  "name": "bonds",
+  "types": [
+    {
+      "name": "FBondBumps",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SellBondParams",
+      "type": {
+        "fields": [
+          {
+            "name": "minAmountToGet",
+            "type": "u64"
+          },
+          {
+            "name": "amountToSell",
+            "type": "u64"
+          },
+          {
+            "name": "bondTradeTransactionV2Bump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "FBondBumps",
+      "type": {
+        "fields": [],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "InitializeHadoMarketParams",
+      "type": {
+        "fields": [
+          {
+            "name": "minBidCap",
+            "type": "u64"
+          },
+          {
+            "name": "minMarketFee",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "BorrowPerpetualParams",
+      "type": {
+        "fields": [
+          {
+            "name": "minAmountToGet",
+            "type": "u64"
+          },
+          {
+            "name": "amountOfSolToGet",
+            "type": "u64"
+          },
+          {
+            "name": "bondTradeTransactionV2Bump",
+            "type": "u8"
+          },
+          {
+            "name": "fraktBondBump",
+            "type": "u8"
+          },
+          {
+            "name": "bondOfferVaultBump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "MakePerpetualMarketParams",
+      "type": {
+        "fields": [
+          {
+            "name": "minBidCap",
+            "type": "u64"
+          },
+          {
+            "name": "minMarketFee",
+            "type": "u64"
+          },
+          {
+            "name": "marketState",
+            "type": {
+              "defined": "MarketState"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "UnsubOrHarvestParams",
+      "type": {
+        "fields": [
+          {
+            "name": "subscriptionWeeks",
+            "type": "u64"
+          },
+          {
+            "name": "unsubAccounts",
+            "type": "u8"
+          },
+          {
+            "name": "adventureBump",
+            "type": "u8"
+          },
+          {
+            "name": "subscriptionBump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SubscriptionParams",
+      "type": {
+        "fields": [
+          {
+            "name": "weeks",
+            "type": "u64"
+          },
+          {
+            "name": "subscriptionBump",
+            "type": "u8"
+          },
+          {
+            "name": "adventureBump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "BondOfferValidation",
+      "type": {
+        "fields": [
+          {
+            "name": "loanToValueFilter",
+            "type": "u64"
+          },
+          {
+            "name": "durationFilter",
+            "type": "u64"
+          },
+          {
+            "name": "maxReturnAmountFilter",
+            "type": "u64"
+          },
+          {
+            "name": "bondFeatures",
+            "type": {
+              "defined": "BondFeatures"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "BondOfferBondingCurve",
+      "type": {
+        "fields": [
+          {
+            "name": "delta",
+            "type": "u64"
+          },
+          {
+            "name": "bondingType",
+            "type": {
+              "defined": "BondOfferBondingCurveType"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AuthorizationDataLocal",
+      "type": {
+        "fields": [
+          {
+            "name": "payload",
+            "type": {
+              "vec": {
+                "defined": "TaggedPayload"
+              }
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "TaggedPayload",
+      "type": {
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "payload",
+            "type": {
+              "defined": "PayloadTypeLocal"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "SeedsVecLocal",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "The vector of derivation seeds."
+            ],
+            "name": "seeds",
+            "type": {
+              "vec": "bytes"
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "ProofInfoLocal",
+      "type": {
+        "fields": [
+          {
+            "docs": [
+              "The merkle proof."
+            ],
+            "name": "proof",
+            "type": {
+              "vec": {
+                "array": [
+                  "u8",
+                  32
+                ]
+              }
+            }
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "CollateralBoxType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Escrow"
+          },
+          {
+            "name": "Escrowless"
+          }
+        ]
+      }
+    },
+    {
+      "name": "FraktBondState",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Initialized"
+          },
+          {
+            "name": "Active"
+          },
+          {
+            "name": "Repaid"
+          },
+          {
+            "name": "Liquidating"
+          },
+          {
+            "name": "Liquidated"
+          },
+          {
+            "name": "PerpetualActive"
+          },
+          {
+            "name": "PerpetualRepaid"
+          },
+          {
+            "name": "PerpetualLiquidatedByAuction"
+          },
+          {
+            "name": "PerpetualLiquidatedByClaim"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RoundState",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Uninitialized"
+          },
+          {
+            "name": "Initialized"
+          },
+          {
+            "name": "Open"
+          },
+          {
+            "name": "Drawn"
+          }
+        ]
+      }
+    },
+    {
+      "name": "NftValidationWhitelistTypeHado",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Creator"
+          },
+          {
+            "name": "Nft"
+          },
+          {
+            "name": "MerkleTree"
+          },
+          {
+            "name": "CollectionId"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MarketTrustType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Unverified"
+          },
+          {
+            "name": "Verified"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MarketState",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Initializing"
+          },
+          {
+            "name": "Available"
+          },
+          {
+            "name": "InitializingPerpetual"
+          },
+          {
+            "name": "AvailablePerpetual"
+          },
+          {
+            "name": "PrivateAvailablePerpetual"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PairValidationType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "ClassicValidation"
+          },
+          {
+            "name": "CustomValidation"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PairTokenType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "NativeSol"
+          },
+          {
+            "name": "Spl"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BondFeatures",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "None"
+          },
+          {
+            "name": "Autocompound"
+          },
+          {
+            "name": "ReceiveNftOnLiquidation"
+          },
+          {
+            "name": "AutoreceiveSol"
+          },
+          {
+            "name": "AutoCompoundAndReceiveNft"
+          },
+          {
+            "name": "AutoReceiveAndReceiveNft"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PairState",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Initializing"
+          },
+          {
+            "name": "OnMarketVirtual"
+          },
+          {
+            "name": "OnMarketTokenized"
+          },
+          {
+            "name": "Frozen"
+          },
+          {
+            "name": "Closed"
+          },
+          {
+            "name": "PerpetualOnMarket"
+          },
+          {
+            "name": "PerpetualClosed"
+          },
+          {
+            "name": "PerpetualBondingCurveOnMarket"
+          },
+          {
+            "name": "PerpetualMigrated"
+          },
+          {
+            "name": "PerpetualBondingCurveClosed"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BondOfferBondingCurveType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Linear"
+          },
+          {
+            "name": "Exponential"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BondTradeTransactionV2State",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "NotActive"
+          },
+          {
+            "name": "Active"
+          },
+          {
+            "name": "PerpetualActive"
+          },
+          {
+            "name": "PerpetualRepaid"
+          },
+          {
+            "name": "PerpetualLiquidatedByAuction"
+          },
+          {
+            "name": "PerpetualLiquidatedByClaim"
+          },
+          {
+            "name": "PerpetualManualTerminating"
+          },
+          {
+            "name": "PerpetualPartialRepaid"
+          },
+          {
+            "name": "PerpetualRefinanceRepaid"
+          },
+          {
+            "name": "PerpetualRefinancedActive"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BondTradeTransactionV2Type",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "None"
+          },
+          {
+            "name": "Autocompound"
+          },
+          {
+            "name": "ReceiveNftOnLiquidation"
+          },
+          {
+            "name": "AutoreceiveSol"
+          },
+          {
+            "name": "AutoCompoundAndReceiveNft"
+          },
+          {
+            "name": "AutoReceiveAndReceiveNft"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RedeemResult",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "None"
+          },
+          {
+            "name": "AutoReceiveSol"
+          },
+          {
+            "name": "Autocompound"
+          },
+          {
+            "name": "Nft"
+          },
+          {
+            "name": "ExitSol"
+          }
+        ]
+      }
+    },
+    {
+      "name": "LenderLeaderboardState",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Uninitialized"
+          },
+          {
+            "name": "Initialized"
+          },
+          {
+            "name": "Removed"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AdventureState",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Uninitialized"
+          },
+          {
+            "name": "Initialized"
+          },
+          {
+            "name": "DistributingInitialized"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BanxStakeState",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Staked"
+          },
+          {
+            "name": "Unstaked"
+          },
+          {
+            "name": "Liquidated"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PayloadTypeLocal",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "fields": [
+              "publicKey"
+            ],
+            "name": "Pubkey"
+          },
+          {
+            "fields": [
+              {
+                "defined": "SeedsVecLocal"
+              }
+            ],
+            "name": "Seeds"
+          },
+          {
+            "fields": [
+              {
+                "defined": "ProofInfoLocal"
+              }
+            ],
+            "name": "MerkleProof"
+          },
+          {
+            "fields": [
+              "u64"
+            ],
+            "name": "Number"
+          }
+        ]
+      }
+    }
+  ],
+  "version": "0.1.0"
+}
